@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2145203C138997320BA5897D /* Pods_MeChef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */; };
 		DAFA9B752228907100B2CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B742228907100B2CD4D /* AppDelegate.swift */; };
 		DAFA9B772228907100B2CD4D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B762228907100B2CD4D /* FirstViewController.swift */; };
 		DAFA9B792228907100B2CD4D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B782228907100B2CD4D /* SecondViewController.swift */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeChef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D820362D14F07E8CE325649B /* Pods-MeChef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeChef.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeChef/Pods-MeChef.release.xcconfig"; sourceTree = "<group>"; };
 		DAFA9B712228907100B2CD4D /* MeChef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeChef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFA9B742228907100B2CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFA9B762228907100B2CD4D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		DAFA9B922228907300B2CD4D /* MeChefUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeChefUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFA9B962228907300B2CD4D /* MeChefUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeChefUITests.swift; sourceTree = "<group>"; };
 		DAFA9B982228907300B2CD4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1E6713CA8F446E686381782 /* Pods-MeChef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeChef.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeChef/Pods-MeChef.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2145203C138997320BA5897D /* Pods_MeChef.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA967C3504E28781135240AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1E6713CA8F446E686381782 /* Pods-MeChef.debug.xcconfig */,
+				D820362D14F07E8CE325649B /* Pods-MeChef.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DAFA9B682228907100B2CD4D = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +97,8 @@
 				DAFA9B8A2228907300B2CD4D /* MeChefTests */,
 				DAFA9B952228907300B2CD4D /* MeChefUITests */,
 				DAFA9B722228907100B2CD4D /* Products */,
+				DA967C3504E28781135240AE /* Pods */,
+				F2CACE70F004F25205BD3ECB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +115,9 @@
 		DAFA9B732228907100B2CD4D /* MeChef */ = {
 			isa = PBXGroup;
 			children = (
+				DAFA9BA62228915400B2CD4D /* Cells */,
+				DAFA9BA52228914E00B2CD4D /* Controllers */,
+				DAFA9BA42228914100B2CD4D /* Service */,
 				DAFA9B742228907100B2CD4D /* AppDelegate.swift */,
 				DAFA9B762228907100B2CD4D /* FirstViewController.swift */,
 				DAFA9B782228907100B2CD4D /* SecondViewController.swift */,
@@ -128,6 +147,35 @@
 			path = MeChefUITests;
 			sourceTree = "<group>";
 		};
+		DAFA9BA42228914100B2CD4D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		DAFA9BA52228914E00B2CD4D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DAFA9BA62228915400B2CD4D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F2CACE70F004F25205BD3ECB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +183,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DAFA9B9B2228907300B2CD4D /* Build configuration list for PBXNativeTarget "MeChef" */;
 			buildPhases = (
+				47EFAFB9C0B43857BAF8A860 /* [CP] Check Pods Manifest.lock */,
 				DAFA9B6D2228907100B2CD4D /* Sources */,
 				DAFA9B6E2228907100B2CD4D /* Frameworks */,
 				DAFA9B6F2228907100B2CD4D /* Resources */,
+				C8BD2C9BD4CA206461290B06 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +303,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		47EFAFB9C0B43857BAF8A860 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MeChef-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8BD2C9BD4CA206461290B06 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MeChef/Pods-MeChef-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeChef/Pods-MeChef-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DAFA9B6D2228907100B2CD4D /* Sources */ = {
@@ -434,11 +531,13 @@
 		};
 		DAFA9B9C2228907300B2CD4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1E6713CA8F446E686381782 /* Pods-MeChef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,11 +551,13 @@
 		};
 		DAFA9B9D2228907300B2CD4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D820362D14F07E8CE325649B /* Pods-MeChef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
