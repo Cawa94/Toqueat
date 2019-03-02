@@ -2,3 +2,13 @@
 Pods/
 
 Podfile\.lock
+
+MeChefTests/
+
+MeChefUITests/
+
+Generated/Models\.swift
+
+common/
+
+api-generator-templates/

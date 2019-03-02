@@ -7,8 +7,11 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'MeChef' do
-  pod 'RxGesture'
   pod 'Alamofire'
+  pod 'RxGesture'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxAlamofire'
+  pod 'ObjectMapper'
+  pod 'SwiftLint'
 end

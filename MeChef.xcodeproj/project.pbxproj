@@ -8,36 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		2145203C138997320BA5897D /* Pods_MeChef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */; };
+		DADF5A26222AAE460064DB75 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADF5A25222AAE460064DB75 /* RequestError.swift */; };
+		DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADF5A27222AAE5A0064DB75 /* LeadKitError.swift */; };
+		DADF5A2A222AAEB10064DB75 /* NetworkService+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADF5A29222AAEB10064DB75 /* NetworkService+Extensions.swift */; };
 		DAFA9B752228907100B2CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B742228907100B2CD4D /* AppDelegate.swift */; };
 		DAFA9B772228907100B2CD4D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B762228907100B2CD4D /* FirstViewController.swift */; };
 		DAFA9B792228907100B2CD4D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B782228907100B2CD4D /* SecondViewController.swift */; };
 		DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFA9B7A2228907100B2CD4D /* Main.storyboard */; };
 		DAFA9B7E2228907200B2CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAFA9B7D2228907200B2CD4D /* Assets.xcassets */; };
 		DAFA9B812228907200B2CD4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFA9B7F2228907200B2CD4D /* LaunchScreen.storyboard */; };
-		DAFA9B8C2228907300B2CD4D /* MeChefTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B8B2228907300B2CD4D /* MeChefTests.swift */; };
-		DAFA9B972228907300B2CD4D /* MeChefUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B962228907300B2CD4D /* MeChefUITests.swift */; };
+		DAFD096B22297AA400F1255A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD096A22297AA400F1255A /* NetworkService.swift */; };
+		DAFD096F2229816C00F1255A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD096E2229816C00F1255A /* Models.swift */; };
+		DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD09742229872700F1255A /* ApiRequestParameters.swift */; };
+		DAFD09782229903E00F1255A /* DishesRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD09772229903E00F1255A /* DishesRequests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		DAFA9B882228907300B2CD4D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DAFA9B692228907100B2CD4D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DAFA9B702228907100B2CD4D;
-			remoteInfo = MeChef;
-		};
-		DAFA9B932228907300B2CD4D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DAFA9B692228907100B2CD4D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DAFA9B702228907100B2CD4D;
-			remoteInfo = MeChef;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeChef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D820362D14F07E8CE325649B /* Pods-MeChef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeChef.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeChef/Pods-MeChef.release.xcconfig"; sourceTree = "<group>"; };
+		DADF5A25222AAE460064DB75 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		DADF5A27222AAE5A0064DB75 /* LeadKitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadKitError.swift; sourceTree = "<group>"; };
+		DADF5A29222AAEB10064DB75 /* NetworkService+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Extensions.swift"; sourceTree = "<group>"; };
 		DAFA9B712228907100B2CD4D /* MeChef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeChef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFA9B742228907100B2CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFA9B762228907100B2CD4D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -46,12 +37,10 @@
 		DAFA9B7D2228907200B2CD4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAFA9B802228907200B2CD4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAFA9B822228907200B2CD4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DAFA9B872228907300B2CD4D /* MeChefTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeChefTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DAFA9B8B2228907300B2CD4D /* MeChefTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeChefTests.swift; sourceTree = "<group>"; };
-		DAFA9B8D2228907300B2CD4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DAFA9B922228907300B2CD4D /* MeChefUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeChefUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DAFA9B962228907300B2CD4D /* MeChefUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeChefUITests.swift; sourceTree = "<group>"; };
-		DAFA9B982228907300B2CD4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAFD096A22297AA400F1255A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		DAFD096E2229816C00F1255A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		DAFD09742229872700F1255A /* ApiRequestParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestParameters.swift; sourceTree = "<group>"; };
+		DAFD09772229903E00F1255A /* DishesRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesRequests.swift; sourceTree = "<group>"; };
 		F1E6713CA8F446E686381782 /* Pods-MeChef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeChef.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MeChef/Pods-MeChef.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,20 +50,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2145203C138997320BA5897D /* Pods_MeChef.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAFA9B842228907300B2CD4D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAFA9B8F2228907300B2CD4D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,12 +65,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DADF5A24222AAE370064DB75 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				DADF5A25222AAE460064DB75 /* RequestError.swift */,
+				DADF5A27222AAE5A0064DB75 /* LeadKitError.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		DAFA9B682228907100B2CD4D = {
 			isa = PBXGroup;
 			children = (
 				DAFA9B732228907100B2CD4D /* MeChef */,
-				DAFA9B8A2228907300B2CD4D /* MeChefTests */,
-				DAFA9B952228907300B2CD4D /* MeChefUITests */,
+				DAFD096D2229816C00F1255A /* Generated */,
 				DAFA9B722228907100B2CD4D /* Products */,
 				DA967C3504E28781135240AE /* Pods */,
 				F2CACE70F004F25205BD3ECB /* Frameworks */,
@@ -106,8 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				DAFA9B712228907100B2CD4D /* MeChef.app */,
-				DAFA9B872228907300B2CD4D /* MeChefTests.xctest */,
-				DAFA9B922228907300B2CD4D /* MeChefUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,41 +96,23 @@
 		DAFA9B732228907100B2CD4D /* MeChef */ = {
 			isa = PBXGroup;
 			children = (
-				DAFA9BA62228915400B2CD4D /* Cells */,
-				DAFA9BA52228914E00B2CD4D /* Controllers */,
-				DAFA9BA42228914100B2CD4D /* Service */,
+				DAFA9B822228907200B2CD4D /* Info.plist */,
 				DAFA9B742228907100B2CD4D /* AppDelegate.swift */,
-				DAFA9B762228907100B2CD4D /* FirstViewController.swift */,
-				DAFA9B782228907100B2CD4D /* SecondViewController.swift */,
-				DAFA9B7A2228907100B2CD4D /* Main.storyboard */,
 				DAFA9B7D2228907200B2CD4D /* Assets.xcassets */,
 				DAFA9B7F2228907200B2CD4D /* LaunchScreen.storyboard */,
-				DAFA9B822228907200B2CD4D /* Info.plist */,
+				DAFA9B7A2228907100B2CD4D /* Main.storyboard */,
+				DAFA9BA62228915400B2CD4D /* Cells */,
+				DAFA9BA52228914E00B2CD4D /* Controllers */,
+				DAFD0970222981DC00F1255A /* Extensions */,
+				DAFA9BA42228914100B2CD4D /* Service */,
 			);
 			path = MeChef;
-			sourceTree = "<group>";
-		};
-		DAFA9B8A2228907300B2CD4D /* MeChefTests */ = {
-			isa = PBXGroup;
-			children = (
-				DAFA9B8B2228907300B2CD4D /* MeChefTests.swift */,
-				DAFA9B8D2228907300B2CD4D /* Info.plist */,
-			);
-			path = MeChefTests;
-			sourceTree = "<group>";
-		};
-		DAFA9B952228907300B2CD4D /* MeChefUITests */ = {
-			isa = PBXGroup;
-			children = (
-				DAFA9B962228907300B2CD4D /* MeChefUITests.swift */,
-				DAFA9B982228907300B2CD4D /* Info.plist */,
-			);
-			path = MeChefUITests;
 			sourceTree = "<group>";
 		};
 		DAFA9BA42228914100B2CD4D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				DAFD0972222986F700F1255A /* Network */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -157,6 +120,8 @@
 		DAFA9BA52228914E00B2CD4D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DAFA9B762228907100B2CD4D /* FirstViewController.swift */,
+				DAFA9B782228907100B2CD4D /* SecondViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -166,6 +131,41 @@
 			children = (
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		DAFD096D2229816C00F1255A /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				DAFD096E2229816C00F1255A /* Models.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		DAFD0970222981DC00F1255A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DAFD0972222986F700F1255A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DADF5A24222AAE370064DB75 /* Enums */,
+				DAFD09732229870600F1255A /* Requests */,
+				DAFD09742229872700F1255A /* ApiRequestParameters.swift */,
+				DAFD096A22297AA400F1255A /* NetworkService.swift */,
+				DADF5A29222AAEB10064DB75 /* NetworkService+Extensions.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DAFD09732229870600F1255A /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				DAFD09772229903E00F1255A /* DishesRequests.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		F2CACE70F004F25205BD3ECB /* Frameworks */ = {
@@ -184,9 +184,11 @@
 			buildConfigurationList = DAFA9B9B2228907300B2CD4D /* Build configuration list for PBXNativeTarget "MeChef" */;
 			buildPhases = (
 				47EFAFB9C0B43857BAF8A860 /* [CP] Check Pods Manifest.lock */,
+				DAFD09712229841300F1255A /* API Generator */,
 				DAFA9B6D2228907100B2CD4D /* Sources */,
 				DAFA9B6E2228907100B2CD4D /* Frameworks */,
 				DAFA9B6F2228907100B2CD4D /* Resources */,
+				DADF5A23222AABEE0064DB75 /* SwiftLint */,
 				C8BD2C9BD4CA206461290B06 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -197,42 +199,6 @@
 			productName = MeChef;
 			productReference = DAFA9B712228907100B2CD4D /* MeChef.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DAFA9B862228907300B2CD4D /* MeChefTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DAFA9B9E2228907300B2CD4D /* Build configuration list for PBXNativeTarget "MeChefTests" */;
-			buildPhases = (
-				DAFA9B832228907300B2CD4D /* Sources */,
-				DAFA9B842228907300B2CD4D /* Frameworks */,
-				DAFA9B852228907300B2CD4D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DAFA9B892228907300B2CD4D /* PBXTargetDependency */,
-			);
-			name = MeChefTests;
-			productName = MeChefTests;
-			productReference = DAFA9B872228907300B2CD4D /* MeChefTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		DAFA9B912228907300B2CD4D /* MeChefUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DAFA9BA12228907300B2CD4D /* Build configuration list for PBXNativeTarget "MeChefUITests" */;
-			buildPhases = (
-				DAFA9B8E2228907300B2CD4D /* Sources */,
-				DAFA9B8F2228907300B2CD4D /* Frameworks */,
-				DAFA9B902228907300B2CD4D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DAFA9B942228907300B2CD4D /* PBXTargetDependency */,
-			);
-			name = MeChefUITests;
-			productName = MeChefUITests;
-			productReference = DAFA9B922228907300B2CD4D /* MeChefUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -246,14 +212,6 @@
 				TargetAttributes = {
 					DAFA9B702228907100B2CD4D = {
 						CreatedOnToolsVersion = 10.1;
-					};
-					DAFA9B862228907300B2CD4D = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = DAFA9B702228907100B2CD4D;
-					};
-					DAFA9B912228907300B2CD4D = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = DAFA9B702228907100B2CD4D;
 					};
 				};
 			};
@@ -271,8 +229,6 @@
 			projectRoot = "";
 			targets = (
 				DAFA9B702228907100B2CD4D /* MeChef */,
-				DAFA9B862228907300B2CD4D /* MeChefTests */,
-				DAFA9B912228907300B2CD4D /* MeChefUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -285,20 +241,6 @@
 				DAFA9B812228907200B2CD4D /* LaunchScreen.storyboard in Resources */,
 				DAFA9B7E2228907200B2CD4D /* Assets.xcassets in Resources */,
 				DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAFA9B852228907300B2CD4D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAFA9B902228907300B2CD4D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +273,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MeChef/Pods-MeChef-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
@@ -339,6 +283,8 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
@@ -349,6 +295,38 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeChef/Pods-MeChef-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DADF5A23222AABEE0064DB75 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint --path MeChef\n";
+		};
+		DAFD09712229841300F1255A /* API Generator */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "API Generator";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -l";
+			shellScript = "java -jar api-generator-1.0.4-all.jar --specification-path common/api/ --output-path Generated --templates-path api-generator-templates/Swift --action generate-client-code --single-file true\n\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -356,42 +334,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DADF5A26222AAE460064DB75 /* RequestError.swift in Sources */,
 				DAFA9B792228907100B2CD4D /* SecondViewController.swift in Sources */,
 				DAFA9B752228907100B2CD4D /* AppDelegate.swift in Sources */,
+				DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */,
+				DAFD096B22297AA400F1255A /* NetworkService.swift in Sources */,
 				DAFA9B772228907100B2CD4D /* FirstViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAFA9B832228907300B2CD4D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DAFA9B8C2228907300B2CD4D /* MeChefTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAFA9B8E2228907300B2CD4D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DAFA9B972228907300B2CD4D /* MeChefUITests.swift in Sources */,
+				DAFD09782229903E00F1255A /* DishesRequests.swift in Sources */,
+				DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */,
+				DADF5A2A222AAEB10064DB75 /* NetworkService+Extensions.swift in Sources */,
+				DAFD096F2229816C00F1255A /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DAFA9B892228907300B2CD4D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DAFA9B702228907100B2CD4D /* MeChef */;
-			targetProxy = DAFA9B882228907300B2CD4D /* PBXContainerItemProxy */;
-		};
-		DAFA9B942228907300B2CD4D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DAFA9B702228907100B2CD4D /* MeChef */;
-			targetProxy = DAFA9B932228907300B2CD4D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DAFA9B7A2228907100B2CD4D /* Main.storyboard */ = {
@@ -569,88 +525,6 @@
 			};
 			name = Release;
 		};
-		DAFA9B9F2228907300B2CD4D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZWDDZD6GHF;
-				INFOPLIST_FILE = MeChefTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = es.YC.MeChefTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeChef.app/MeChef";
-			};
-			name = Debug;
-		};
-		DAFA9BA02228907300B2CD4D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZWDDZD6GHF;
-				INFOPLIST_FILE = MeChefTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = es.YC.MeChefTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeChef.app/MeChef";
-			};
-			name = Release;
-		};
-		DAFA9BA22228907300B2CD4D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZWDDZD6GHF;
-				INFOPLIST_FILE = MeChefUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = es.YC.MeChefUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MeChef;
-			};
-			name = Debug;
-		};
-		DAFA9BA32228907300B2CD4D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZWDDZD6GHF;
-				INFOPLIST_FILE = MeChefUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = es.YC.MeChefUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MeChef;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -668,24 +542,6 @@
 			buildConfigurations = (
 				DAFA9B9C2228907300B2CD4D /* Debug */,
 				DAFA9B9D2228907300B2CD4D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DAFA9B9E2228907300B2CD4D /* Build configuration list for PBXNativeTarget "MeChefTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DAFA9B9F2228907300B2CD4D /* Debug */,
-				DAFA9BA02228907300B2CD4D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DAFA9BA12228907300B2CD4D /* Build configuration list for PBXNativeTarget "MeChefUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DAFA9BA22228907300B2CD4D /* Debug */,
-				DAFA9BA32228907300B2CD4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
