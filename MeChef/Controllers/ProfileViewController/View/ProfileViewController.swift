@@ -1,12 +1,19 @@
 import UIKit
 import RxSwift
+import RxCocoa
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseStatefulController<User> {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var tokenLabel: UILabel!
 
-    var viewModel: ProfileViewModel!
+    var profileViewModel: ProfileViewModel! {
+        didSet {
+            viewModel = profileViewModel
+        }
+    }
+
     private let disposeBag = DisposeBag()
 
     override var prefersStatusBarHidden: Bool {
@@ -15,8 +22,6 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailLabel.text = "Tu che hai fatto il login, bravo!"
-        tokenLabel.text = SessionService.user?.authToken
     }
 
     @IBAction func performLogout(_ sender: Any) {
@@ -24,6 +29,20 @@ class ProfileViewController: UIViewController {
         DispatchQueue.main.async {
             NavigationService.replaceLastTabItem()
         }
+    }
+
+    // MARK: - StatefulViewController related methods
+
+    override func onResultsState() {
+        self.nameLabel.text = profileViewModel.result?.name
+        self.lastNameLabel.text = profileViewModel.result?.lastname
+        self.emailLabel.text = profileViewModel.result?.email
+    }
+
+    override func onLoadingState() {
+        self.nameLabel.text = "LOADING"
+        self.lastNameLabel.text = "LOADING"
+        self.emailLabel.text = "LOADING"
     }
 
 }

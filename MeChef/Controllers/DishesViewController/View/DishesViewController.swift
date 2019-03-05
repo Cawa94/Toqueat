@@ -1,11 +1,14 @@
 import UIKit
 import RxSwift
 
-class DishesViewController: UIViewController {
+class DishesViewController: BaseTableViewController<[Dish], Dish> {
 
-    @IBOutlet weak var dishesTableView: UITableView!
+    var dishesViewModel: DishesViewModel! {
+        didSet {
+            tableViewModel = dishesViewModel
+        }
+    }
 
-    var viewModel: DishesViewModel!
     private let disposeBag = DisposeBag()
 
     override var prefersStatusBarHidden: Bool {
@@ -15,31 +18,11 @@ class DishesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dishesTableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
-                                 forCellReuseIdentifier: "DishTableViewCell")
-
-        NetworkService.shared.getAllDishes()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { chefs in
-                self.viewModel.dishesList = chefs
-                self.dishesTableView.reloadData()
-            })
-            .disposed(by: disposeBag)
+        tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "DishTableViewCell")
     }
 
-}
-
-extension DishesViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.dishesList.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
                                                  for: indexPath)
         configure(cell, at: indexPath)
@@ -49,7 +32,7 @@ extension DishesViewController: UITableViewDelegate, UITableViewDataSource {
     private func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let dishCell as DishTableViewCell:
-            let dish = viewModel.dishesList[indexPath.row]
+            let dish = dishesViewModel.elementAt(indexPath.row)
             dishCell.configureWith(dish)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
@@ -59,6 +42,13 @@ extension DishesViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             break
         }
+    }
+
+    // MARK: - StatefulViewController related methods
+
+    override func onResultsState() {
+        dishesViewModel.elements = dishesViewModel.result ?? []
+        super.onResultsState()
     }
 
 }

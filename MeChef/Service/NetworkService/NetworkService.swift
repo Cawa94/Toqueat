@@ -11,7 +11,7 @@ public extension Alamofire.SessionManager {
 
 class NetworkService {
 
-    static let baseUrl = "http://169.254.191.136:3000/" // OFFICE
+    static let baseUrl = "http://169.254.56.115:3000/" // OFFICE
     //static let baseUrl = "http://169.254.53.153:3000/" // HOME
 
     // Alamofire Settings

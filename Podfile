@@ -14,4 +14,6 @@ target 'MeChef' do
   pod 'RxAlamofire'
   pod 'ObjectMapper'
   pod 'SwiftLint'
+  pod 'StatefulViewController'
+  pod 'LeadKit'
 end

@@ -21,7 +21,7 @@ class MainTabViewController: UITabBarController {
                          image: UIImage(named: "chef_icon_off")?.withRenderingMode(.alwaysOriginal),
                          selectedImage: UIImage(named: "chef_icon_on")?.withRenderingMode(.alwaysOriginal))
 
-        let profileController = NavigationService.loginOrProfileTab()
+        let profileController = NavigationService.loginOrProfileTab().embedInNavigationController()
 
         let viewControllerList = [ dishesController, chefsController, profileController ]
         viewControllers = viewControllerList

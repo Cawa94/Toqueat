@@ -49,8 +49,8 @@ extension NavigationService {
 
     static func loginOrProfileTab() -> UIViewController {
         let profileController = SessionService.isLoggedIn
-            ? profileViewController().embedInNavigationController()
-            : loginViewController().embedInNavigationController()
+            ? profileViewController()
+            : loginViewController()
         profileController.tabBarItem =
             UITabBarItem(title: "Profile",
                          image: UIImage(named: "user_icon_off")?.withRenderingMode(.alwaysOriginal),
@@ -59,7 +59,7 @@ extension NavigationService {
     }
 
     static func replaceLastTabItem() {
-        mainViewController?.viewControllers?[2] = loginOrProfileTab()
+        mainViewController?.viewControllers?[2] = loginOrProfileTab().embedInNavigationController()
     }
 
 }

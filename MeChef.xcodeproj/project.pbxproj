@@ -34,7 +34,6 @@
 		DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC99473222BE97C000282F1 /* DishTableViewCell.xib */; };
 		DADF5A26222AAE460064DB75 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADF5A25222AAE460064DB75 /* RequestError.swift */; };
 		DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADF5A27222AAE5A0064DB75 /* LeadKitError.swift */; };
-		DADF5A2A222AAEB10064DB75 /* NetworkService+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADF5A29222AAEB10064DB75 /* NetworkService+Extensions.swift */; };
 		DADFF2C0222E847300BB6404 /* DishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2BF222E847300BB6404 /* DishViewModel.swift */; };
 		DADFF2C3222E848000BB6404 /* DishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2C1222E848000BB6404 /* DishViewController.swift */; };
 		DADFF2C4222E848000BB6404 /* DishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DADFF2C2222E848000BB6404 /* DishViewController.xib */; };
@@ -43,6 +42,11 @@
 		DADFF2CD222E878C00BB6404 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DADFF2CB222E878C00BB6404 /* RegisterViewController.xib */; };
 		DADFF2CF222E885A00BB6404 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2CE222E885A00BB6404 /* RegisterViewModel.swift */; };
 		DADFF2D1222E888700BB6404 /* NavigationService+RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2D0222E888700BB6404 /* NavigationService+RegisterViewController.swift */; };
+		DADFF2D4222EC29500BB6404 /* BaseStatefulController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2D3222EC29500BB6404 /* BaseStatefulController.swift */; };
+		DADFF2D8222EC42700BB6404 /* BaseStatefulViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2D7222EC42700BB6404 /* BaseStatefulViewModel.swift */; };
+		DADFF2DA222ED1C400BB6404 /* NetworkService+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2D9222ED1C400BB6404 /* NetworkService+Extensions.swift */; };
+		DADFF2E6222ED89200BB6404 /* BaseTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2E5222ED89200BB6404 /* BaseTableViewModel.swift */; };
+		DADFF2E8222ED89600BB6404 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2E7222ED89600BB6404 /* BaseTableViewController.swift */; };
 		DAF4FE1F222ACFEF00F208DB /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE1E222ACFEF00F208DB /* NavigationService.swift */; };
 		DAF4FE22222AD02700F208DB /* ChefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE20222AD02700F208DB /* ChefsViewController.swift */; };
 		DAF4FE23222AD02700F208DB /* ChefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF4FE21222AD02700F208DB /* ChefsViewController.xib */; };
@@ -93,7 +97,6 @@
 		DAC99473222BE97C000282F1 /* DishTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishTableViewCell.xib; sourceTree = "<group>"; };
 		DADF5A25222AAE460064DB75 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		DADF5A27222AAE5A0064DB75 /* LeadKitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadKitError.swift; sourceTree = "<group>"; };
-		DADF5A29222AAEB10064DB75 /* NetworkService+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+Extensions.swift"; sourceTree = "<group>"; };
 		DADFF2BF222E847300BB6404 /* DishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishViewModel.swift; sourceTree = "<group>"; };
 		DADFF2C1222E848000BB6404 /* DishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishViewController.swift; sourceTree = "<group>"; };
 		DADFF2C2222E848000BB6404 /* DishViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishViewController.xib; sourceTree = "<group>"; };
@@ -102,6 +105,11 @@
 		DADFF2CB222E878C00BB6404 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		DADFF2CE222E885A00BB6404 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		DADFF2D0222E888700BB6404 /* NavigationService+RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+RegisterViewController.swift"; sourceTree = "<group>"; };
+		DADFF2D3222EC29500BB6404 /* BaseStatefulController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatefulController.swift; sourceTree = "<group>"; };
+		DADFF2D7222EC42700BB6404 /* BaseStatefulViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStatefulViewModel.swift; sourceTree = "<group>"; };
+		DADFF2D9222ED1C400BB6404 /* NetworkService+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Extensions.swift"; sourceTree = "<group>"; };
+		DADFF2E5222ED89200BB6404 /* BaseTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewModel.swift; sourceTree = "<group>"; };
+		DADFF2E7222ED89600BB6404 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		DAF4FE1E222ACFEF00F208DB /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 		DAF4FE20222AD02700F208DB /* ChefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefsViewController.swift; sourceTree = "<group>"; };
 		DAF4FE21222AD02700F208DB /* ChefsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefsViewController.xib; sourceTree = "<group>"; };
@@ -352,6 +360,56 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		DADFF2D2222EC26900BB6404 /* BaseStatefulController */ = {
+			isa = PBXGroup;
+			children = (
+				DADFF2D5222EC40200BB6404 /* View */,
+				DADFF2D6222EC40700BB6404 /* ViewModel */,
+			);
+			path = BaseStatefulController;
+			sourceTree = "<group>";
+		};
+		DADFF2D5222EC40200BB6404 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DADFF2D3222EC29500BB6404 /* BaseStatefulController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DADFF2D6222EC40700BB6404 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DADFF2D7222EC42700BB6404 /* BaseStatefulViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DADFF2E2222ED87200BB6404 /* BaseTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DADFF2E3222ED88400BB6404 /* View */,
+				DADFF2E4222ED88700BB6404 /* ViewModel */,
+			);
+			path = BaseTableViewController;
+			sourceTree = "<group>";
+		};
+		DADFF2E3222ED88400BB6404 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DADFF2E7222ED89600BB6404 /* BaseTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DADFF2E4222ED88700BB6404 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DADFF2E5222ED89200BB6404 /* BaseTableViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		DAF4FE1A222ACF8D00F208DB /* ChefsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +520,8 @@
 		DAFA9BA52228914E00B2CD4D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DADFF2D2222EC26900BB6404 /* BaseStatefulController */,
+				DADFF2E2222ED87200BB6404 /* BaseTableViewController */,
 				DAF4FE1A222ACF8D00F208DB /* ChefsViewController */,
 				DA57E4D8222C56CA0086B5DA /* ChefViewController */,
 				DAC99465222BE7B2000282F1 /* DishesViewController */,
@@ -508,7 +568,7 @@
 				DAFD09732229870600F1255A /* Requests */,
 				DAFD09742229872700F1255A /* ApiRequestParameters.swift */,
 				DAFD096A22297AA400F1255A /* NetworkService.swift */,
-				DADF5A29222AAEB10064DB75 /* NetworkService+Extensions.swift */,
+				DADFF2D9222ED1C400BB6404 /* NetworkService+Extensions.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -637,22 +697,32 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MeChef/Pods-MeChef-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/LeadKit/LeadKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/StatefulViewController/StatefulViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
+				"${BUILT_PRODUCTS_DIR}/TableKit/TableKit.framework",
+				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeadKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StatefulViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TableKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -664,13 +734,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = SwiftLint;
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,8 +765,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAC9946C222BE7F3000282F1 /* DishesViewController.swift in Sources */,
+				DADFF2D8222EC42700BB6404 /* BaseStatefulViewModel.swift in Sources */,
 				DA57E4DD222C571F0086B5DA /* ChefViewModel.swift in Sources */,
 				DA8454A2222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift in Sources */,
+				DADFF2DA222ED1C400BB6404 /* NetworkService+Extensions.swift in Sources */,
 				DA979BE9222C912600D452B9 /* NavigationService+ProfileViewController.swift in Sources */,
 				DAF4FE22222AD02700F208DB /* ChefsViewController.swift in Sources */,
 				DAF4FE25222AD03A00F208DB /* ChefsViewModel.swift in Sources */,
@@ -713,6 +781,7 @@
 				DAF4FE28222AD0AB00F208DB /* MainTabViewController.swift in Sources */,
 				DADFF2C3222E848000BB6404 /* DishViewController.swift in Sources */,
 				DAC99464222BE680000282F1 /* UIColor+Extensions.swift in Sources */,
+				DADFF2D4222EC29500BB6404 /* BaseStatefulController.swift in Sources */,
 				DADFF2C0222E847300BB6404 /* DishViewModel.swift in Sources */,
 				DADFF2CF222E885A00BB6404 /* RegisterViewModel.swift in Sources */,
 				DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */,
@@ -726,15 +795,16 @@
 				DA9E074E222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift in Sources */,
 				DA8454A4222D1F8A0052A8D2 /* LoginViewModel.swift in Sources */,
 				DAC99467222BE7CE000282F1 /* NavigationService+DishesViewController.swift in Sources */,
+				DADFF2E6222ED89200BB6404 /* BaseTableViewModel.swift in Sources */,
 				DA9E0750222E71250094A69D /* SessionService.swift in Sources */,
 				DAF4FE1F222ACFEF00F208DB /* NavigationService.swift in Sources */,
+				DADFF2E8222ED89600BB6404 /* BaseTableViewController.swift in Sources */,
 				DAF4FE33222AD82200F208DB /* ChefTableViewCell.swift in Sources */,
 				DA57E4E0222C57790086B5DA /* ChefViewController.swift in Sources */,
 				DADFF2C6222E84BB00BB6404 /* NavigationService+DishViewController.swift in Sources */,
 				DAF4FE2C222AD30F00F208DB /* UIViewController+Extensions.swift in Sources */,
 				DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */,
 				DADFF2D1222E888700BB6404 /* NavigationService+RegisterViewController.swift in Sources */,
-				DADF5A2A222AAEB10064DB75 /* NetworkService+Extensions.swift in Sources */,
 				DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */,
 				DAAFED6E222E592B00F8F1BE /* UsersRequests.swift in Sources */,
 				DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */,

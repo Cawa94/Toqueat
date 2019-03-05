@@ -5,9 +5,9 @@ extension NavigationService {
     static func dishesViewController() -> DishesViewController {
         let controller = DishesViewController(nibName: DishesViewController.xibName,
                                               bundle: nil)
-        let viewModel = DishesViewModel(dishesList: [])
+        let viewModel = DishesViewModel()
 
-        controller.viewModel = viewModel
+        controller.dishesViewModel = viewModel
         return controller
     }
 
