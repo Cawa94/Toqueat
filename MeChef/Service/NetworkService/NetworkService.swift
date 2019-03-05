@@ -11,8 +11,8 @@ public extension Alamofire.SessionManager {
 
 class NetworkService {
 
-    static let baseUrl = "http://169.254.56.115:3000/" // OFFICE
-    //static let baseUrl = "http://169.254.53.153:3000/" // HOME
+    //static let baseUrl = "http://169.254.56.115:3000/" // OFFICE
+    static let baseUrl = "http://169.254.123.205:3000/" // HOME
 
     // Alamofire Settings
     var defaultTimeoutInterval: TimeInterval = 20.0

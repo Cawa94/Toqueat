@@ -32,13 +32,13 @@ extension NavigationService {
         appWindow.rootViewController = controller
     }
 
-    static func pushChefViewController(chef: Chef) {
-        let chefController = chefViewController(chef: chef)
+    static func pushChefViewController(chefId: Int64) {
+        let chefController = chefViewController(chefId: chefId)
         push(viewController: chefController, animated: true)
     }
 
-    static func pushDishViewController(dish: Dish) {
-        let dishController = dishViewController(dish: dish)
+    static func pushDishViewController(dishId: Int64) {
+        let dishController = dishViewController(dishId: dishId)
         push(viewController: dishController, animated: true)
     }
 

@@ -20,10 +20,6 @@ class ProfileViewController: BaseStatefulController<User> {
         return true
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     @IBAction func performLogout(_ sender: Any) {
         SessionService.logout()
         DispatchQueue.main.async {

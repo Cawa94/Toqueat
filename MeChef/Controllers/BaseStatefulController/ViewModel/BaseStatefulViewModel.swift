@@ -25,8 +25,6 @@ class BaseStatefulViewModel<ResultType>: BaseViewModel {
         loadingViewModel.loadingStateDriver
             .drive(loadingStateVariable)
             .disposed(by: disposeBag)
-
-        loadingViewModel.reload()
     }
 
     var loadingStateDriver: Driver<LoadingState> {

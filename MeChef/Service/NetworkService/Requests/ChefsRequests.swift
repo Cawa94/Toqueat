@@ -3,8 +3,8 @@ import Alamofire
 
 extension NetworkService {
 
-    func getChefWith(chefId: Int64) -> Single<Chef> {
-        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)")
+    func getChefWith(id: Int64) -> Single<Chef> {
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(id)")
 
         return request(with: apiParameters)
     }

@@ -36,7 +36,7 @@ class DishesViewController: BaseTableViewController<[Dish], Dish> {
             dishCell.configureWith(dish)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
-                    NavigationService.pushDishViewController(dish: dish)
+                    NavigationService.pushDishViewController(dishId: dish.id)
                 })
                 .disposed(by: dishCell.disposeBag)
         default:

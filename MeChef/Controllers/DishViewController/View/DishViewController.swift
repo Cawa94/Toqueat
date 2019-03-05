@@ -1,9 +1,14 @@
 import UIKit
 import RxSwift
 
-class DishViewController: UIViewController {
+class DishViewController: BaseStatefulController<Dish> {
 
-    var viewModel: DishViewModel!
+    var dishViewModel: DishViewModel! {
+        didSet {
+            viewModel = dishViewModel
+        }
+    }
+
     private let disposeBag = DisposeBag()
 
     override var prefersStatusBarHidden: Bool {

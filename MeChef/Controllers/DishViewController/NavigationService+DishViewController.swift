@@ -2,12 +2,12 @@ import UIKit
 
 extension NavigationService {
 
-    static func dishViewController(dish: Dish) -> DishViewController {
+    static func dishViewController(dishId: Int64) -> DishViewController {
         let controller = DishViewController(nibName: DishViewController.xibName,
                                             bundle: nil)
-        let viewModel = DishViewModel(dish: dish)
+        let viewModel = DishViewModel(dishId: dishId)
 
-        controller.viewModel = viewModel
+        controller.dishViewModel = viewModel
         return controller
     }
 

@@ -1,5 +1,3 @@
-import Foundation
-
 final class DishesViewModel: BaseTableViewModel<[Dish], Dish> {
 
     private let dishesPlaceholders = [

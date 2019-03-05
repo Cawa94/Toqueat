@@ -1,7 +1,8 @@
-import Foundation
+final class DishViewModel: BaseStatefulViewModel<Dish> {
 
-struct DishViewModel {
-
-    var dish: Dish
+    init(dishId: Int64) {
+        let dishRequest = NetworkService.shared.getDishWith(id: dishId)
+        super.init(dataSource: dishRequest)
+    }
 
 }

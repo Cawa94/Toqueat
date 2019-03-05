@@ -2,12 +2,12 @@ import UIKit
 
 extension NavigationService {
 
-    static func chefViewController(chef: Chef) -> ChefViewController {
+    static func chefViewController(chefId: Int64) -> ChefViewController {
         let controller = ChefViewController(nibName: ChefViewController.xibName,
                                             bundle: nil)
-        let viewModel = ChefViewModel(chef: chef)
+        let viewModel = ChefViewModel(chefId: chefId)
 
-        controller.viewModel = viewModel
+        controller.chefViewModel = viewModel
         return controller
     }
 
