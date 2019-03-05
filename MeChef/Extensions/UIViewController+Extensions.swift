@@ -18,4 +18,11 @@ extension UIViewController {
         return String(describing: self)
     }
 
+    func embedInNavigationController() -> UINavigationController {
+        let navController = UINavigationController(rootViewController: self)
+
+        navController.isNavigationBarHidden = true
+        return navController
+    }
+
 }

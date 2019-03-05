@@ -51,6 +51,11 @@ extension DishesViewController: UITableViewDelegate, UITableViewDataSource {
         case let dishCell as DishTableViewCell:
             let dish = viewModel.dishesList[indexPath.row]
             dishCell.configureWith(dish)
+            dishCell.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    NavigationService.pushDishViewController(dish: dish)
+                })
+                .disposed(by: dishCell.disposeBag)
         default:
             break
         }

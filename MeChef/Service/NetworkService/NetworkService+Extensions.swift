@@ -70,7 +70,7 @@ private extension Reactive where Base: DataRequest {
             }
     }
 
-    internal func responseJSONOnQueue(_ queue: DispatchQueue) -> Observable<ServerResponse> {
+    func responseJSONOnQueue(_ queue: DispatchQueue) -> Observable<ServerResponse> {
         let responseSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
         return responseResult(queue: queue, responseSerializer: responseSerializer)
             .map { ServerResponse(response: $0.0, result: $0.1) }
@@ -96,7 +96,7 @@ private extension Reactive where Base: DataRequest {
         }
     }
 
-    public func cast<T>(_ value: Any?) throws -> T {
+    func cast<T>(_ value: Any?) throws -> T {
         guard let val = value as? T else {
             throw LeadKitError.failedToCastValue(expectedType: T.self, givenType: type(of: value))
         }

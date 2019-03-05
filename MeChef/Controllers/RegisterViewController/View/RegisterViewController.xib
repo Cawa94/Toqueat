@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="MeChef" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmPasswordTextField" destination="oGc-of-Dts" id="5uC-hs-NtN"/>
+                <outlet property="emailTextField" destination="xeA-Qa-qCo" id="JSd-Sf-aMW"/>
+                <outlet property="lastnameTextField" destination="w2W-G7-kLQ" id="RiQ-l4-ygl"/>
+                <outlet property="nameTextField" destination="5Bb-g6-Pjj" id="3wg-oP-nM0"/>
+                <outlet property="passwordTextField" destination="uUN-sM-4TH" id="gvl-ci-d9c"/>
+                <outlet property="registerButton" destination="TI4-Da-b3C" id="0bJ-aO-1eS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="bXX-3t-ybO">
+                    <rect key="frame" x="10" y="173.5" width="355" height="320"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Bb-g6-Pjj">
+                            <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="rMn-jV-40W"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Fake" borderStyle="roundedRect" placeholder="Lastname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w2W-G7-kLQ">
+                            <rect key="frame" x="0.0" y="58" width="355" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="aEA-wg-EQ6"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test@fake.com" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xeA-Qa-qCo">
+                            <rect key="frame" x="0.0" y="116" width="355" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="ZbF-aw-fJH"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uUN-sM-4TH">
+                            <rect key="frame" x="0.0" y="174" width="355" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="oKF-Rw-reb"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oGc-of-Dts">
+                            <rect key="frame" x="0.0" y="232" width="355" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="c96-2q-Xb4"/>
+                            </connections>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TI4-Da-b3C">
+                            <rect key="frame" x="0.0" y="290" width="355" height="30"/>
+                            <state key="normal" title="Register"/>
+                            <connections>
+                                <action selector="performRegistration:" destination="-1" eventType="touchUpInside" id="zKL-9W-jHW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bXX-3t-ybO" secondAttribute="trailing" constant="10" id="0Pd-VJ-CPs"/>
+                <constraint firstItem="bXX-3t-ybO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="K5e-Rb-b7H"/>
+                <constraint firstItem="bXX-3t-ybO" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="lyp-Oc-fCK"/>
+                <constraint firstItem="bXX-3t-ybO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="wmP-Hd-33i"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

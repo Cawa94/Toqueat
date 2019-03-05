@@ -4,20 +4,62 @@ struct NavigationService {
 
     init() {}
 
-    static var appWindow: UIWindow {
+    private static var appWindow: UIWindow {
         return AppDelegate.shared.appWindow
     }
 
-    static var navigationController: UINavigationController? {
+    private static var navigationController: UINavigationController? {
         return appWindow.rootViewController?.topVisibleViewController.navigationController
     }
 
-    static var mainViewController: MainTabViewController? {
-        return rootNavigationController?.viewControllers.first as? MainTabViewController
+    private static var mainViewController: MainTabViewController? {
+        return appWindow.rootViewController as? MainTabViewController
     }
 
-    static var rootNavigationController: UINavigationController? {
+    private static var rootNavigationController: UINavigationController? {
         return appWindow.rootViewController as? UINavigationController
+    }
+
+    private static func push(viewController: UIViewController, animated: Bool) {
+        navigationController?.pushViewController(viewController, animated: animated)
+    }
+
+}
+
+extension NavigationService {
+
+    static func setRootController(controller: UIViewController) {
+        appWindow.rootViewController = controller
+    }
+
+    static func pushChefViewController(chef: Chef) {
+        let chefController = chefViewController(chef: chef)
+        push(viewController: chefController, animated: true)
+    }
+
+    static func pushDishViewController(dish: Dish) {
+        let dishController = dishViewController(dish: dish)
+        push(viewController: dishController, animated: true)
+    }
+
+    static func pushRegisterViewController() {
+        let registerController = registerViewController()
+        push(viewController: registerController, animated: true)
+    }
+
+    static func loginOrProfileTab() -> UIViewController {
+        let profileController = SessionService.isLoggedIn
+            ? profileViewController().embedInNavigationController()
+            : loginViewController().embedInNavigationController()
+        profileController.tabBarItem =
+            UITabBarItem(title: "Profile",
+                         image: UIImage(named: "user_icon_off")?.withRenderingMode(.alwaysOriginal),
+                         selectedImage: UIImage(named: "user_icon_on")?.withRenderingMode(.alwaysOriginal))
+        return profileController
+    }
+
+    static func replaceLastTabItem() {
+        mainViewController?.viewControllers?[2] = loginOrProfileTab()
     }
 
 }

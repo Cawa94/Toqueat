@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import RxGesture
 
 class ChefsViewController: UIViewController {
 
@@ -51,8 +52,14 @@ extension ChefsViewController: UITableViewDelegate, UITableViewDataSource {
         case let chefCell as ChefTableViewCell:
             let chef = viewModel.chefsList[indexPath.row]
             chefCell.configureWith(chef)
+            chefCell.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    NavigationService.pushChefViewController(chef: chef)
+                })
+                .disposed(by: chefCell.disposeBag)
         default:
             break
         }
     }
+
 }
