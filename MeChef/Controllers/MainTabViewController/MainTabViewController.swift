@@ -9,22 +9,23 @@ class MainTabViewController: UITabBarController {
         UITabBar.appearance().barTintColor = .white
         UITabBar.appearance().backgroundColor = .white
 
-        let dishesController = NavigationService.dishesViewController().embedInNavigationController()
-        dishesController.tabBarItem =
-            UITabBarItem(title: "Dishes",
-                         image: UIImage(named: "dish_icon_off")?.withRenderingMode(.alwaysOriginal),
-                         selectedImage: UIImage(named: "dish_icon_on")?.withRenderingMode(.alwaysOriginal))
+        let dishesController = NavigationService.dishesControllerTab()
 
-        let chefsController = NavigationService.chefsViewController().embedInNavigationController()
-        chefsController.tabBarItem =
-            UITabBarItem(title: "Chefs",
-                         image: UIImage(named: "chef_icon_off")?.withRenderingMode(.alwaysOriginal),
-                         selectedImage: UIImage(named: "chef_icon_on")?.withRenderingMode(.alwaysOriginal))
+        let chefsController = NavigationService.chefsControllerTab()
 
-        let profileController = NavigationService.loginOrProfileTab().embedInNavigationController()
+        let profileController = NavigationService.loginOrProfileTab()
 
         let viewControllerList = [ dishesController, chefsController, profileController ]
         viewControllers = viewControllerList
+    }
+
+    func reloadDishesChefsControllers() {
+        viewControllers?[0] = NavigationService.dishesControllerTab()
+        viewControllers?[1] = NavigationService.chefsControllerTab()
+    }
+
+    func reloadProfileController() {
+        viewControllers?[2] = NavigationService.loginOrProfileTab()
     }
 
 }

@@ -10,7 +10,8 @@ extension NetworkService {
     }
 
     func getAllDishes() -> Single<[Dish]> {
-        let apiParameters = ApiRequestParameters(relativeUrl: "dishes")
+        let apiParameters = ApiRequestParameters(relativeUrl: "dishes",
+                                                 parameters: currentCityParameter)
 
         return (request(with: apiParameters) as Single<DishesResponse>)
             .map { $0.dishes }

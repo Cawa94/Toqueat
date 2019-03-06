@@ -10,7 +10,8 @@ extension NetworkService {
     }
 
     func getAllChefs() -> Single<[Chef]> {
-        let apiParameters = ApiRequestParameters(relativeUrl: "chefs")
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs",
+                                                 parameters: currentCityParameter)
 
         return (request(with: apiParameters) as Single<ChefsResponse>)
             .map { $0.chefs }

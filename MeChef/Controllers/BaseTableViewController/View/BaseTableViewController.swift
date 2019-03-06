@@ -36,15 +36,15 @@ class BaseTableViewController<ResultType, ElementType>: BaseStatefulController<R
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
 
     override func onLoadingState() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
+    }
+
+    override func onEmptyState() {
+        self.tableView.reloadData()
     }
 
 }

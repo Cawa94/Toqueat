@@ -18,12 +18,19 @@ struct SessionService {
         }
     }
 
+    static func updateWith(city: City) {
+        SessionService.user = UserSession(authToken: SessionService.user?.authToken ?? "",
+                                          city: city)
+        NavigationService.reloadMainTabControllers()
+    }
+
     static var isLoggedIn: Bool {
         return user != nil
     }
 
     static func logout() {
-        user = nil
+        SessionService.user = nil
+        NavigationService.reloadMainTabControllers()
     }
 
 }

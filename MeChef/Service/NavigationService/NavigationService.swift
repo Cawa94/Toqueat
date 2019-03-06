@@ -32,6 +32,43 @@ extension NavigationService {
         appWindow.rootViewController = controller
     }
 
+    static func dishesControllerTab() -> UIViewController {
+        let dishesController = NavigationService.dishesViewController().embedInNavigationController()
+        dishesController.tabBarItem =
+            UITabBarItem(title: "Dishes",
+                         image: UIImage(named: "dish_icon_off")?.withRenderingMode(.alwaysOriginal),
+                         selectedImage: UIImage(named: "dish_icon_on")?.withRenderingMode(.alwaysOriginal))
+        return dishesController
+    }
+
+    static func chefsControllerTab() -> UIViewController {
+        let chefsController = NavigationService.chefsViewController().embedInNavigationController()
+        chefsController.tabBarItem =
+            UITabBarItem(title: "Chefs",
+                         image: UIImage(named: "chef_icon_off")?.withRenderingMode(.alwaysOriginal),
+                         selectedImage: UIImage(named: "chef_icon_on")?.withRenderingMode(.alwaysOriginal))
+        return chefsController
+    }
+
+    static func loginOrProfileTab() -> UIViewController {
+        let profileController = SessionService.isLoggedIn
+            ? profileViewController().embedInNavigationController()
+            : loginViewController().embedInNavigationController()
+        profileController.tabBarItem =
+            UITabBarItem(title: "Profile",
+                         image: UIImage(named: "user_icon_off")?.withRenderingMode(.alwaysOriginal),
+                         selectedImage: UIImage(named: "user_icon_on")?.withRenderingMode(.alwaysOriginal))
+        return profileController
+    }
+
+    static func replaceLastTabItem() {
+        mainViewController?.reloadProfileController()
+    }
+
+    static func reloadMainTabControllers() {
+        mainViewController?.reloadDishesChefsControllers()
+    }
+
     static func pushChefViewController(chefId: Int64) {
         let chefController = chefViewController(chefId: chefId)
         push(viewController: chefController, animated: true)
@@ -45,21 +82,6 @@ extension NavigationService {
     static func pushRegisterViewController() {
         let registerController = registerViewController()
         push(viewController: registerController, animated: true)
-    }
-
-    static func loginOrProfileTab() -> UIViewController {
-        let profileController = SessionService.isLoggedIn
-            ? profileViewController()
-            : loginViewController()
-        profileController.tabBarItem =
-            UITabBarItem(title: "Profile",
-                         image: UIImage(named: "user_icon_off")?.withRenderingMode(.alwaysOriginal),
-                         selectedImage: UIImage(named: "user_icon_on")?.withRenderingMode(.alwaysOriginal))
-        return profileController
-    }
-
-    static func replaceLastTabItem() {
-        mainViewController?.viewControllers?[2] = loginOrProfileTab().embedInNavigationController()
     }
 
 }

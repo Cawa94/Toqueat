@@ -11,8 +11,8 @@ public extension Alamofire.SessionManager {
 
 class NetworkService {
 
-    //static let baseUrl = "http://169.254.56.115:3000/" // OFFICE
-    static let baseUrl = "http://169.254.123.205:3000/" // HOME
+    static let baseUrl = "http://169.254.41.83:3000/" // OFFICE
+    //static let baseUrl = "http://169.254.123.205:3000/" // HOME
 
     // Alamofire Settings
     var defaultTimeoutInterval: TimeInterval = 20.0
@@ -28,6 +28,12 @@ class NetworkService {
         sessionManager =
             SessionManager(configuration: configuration,
                            serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
+    }
+
+    var currentCityParameter: Parameters {
+        guard let userCityId = SessionService.user?.city?.id
+            else { return [:] }
+        return ["city_id": userCityId]
     }
 
     func request<T: ImmutableMappable>(with parameters: ApiRequestParameters) -> Single<T> {

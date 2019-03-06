@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2145203C138997320BA5897D /* Pods_MeChef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */; };
+		DA454778222FDDB100237F6D /* CitiesRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA454777222FDDB100237F6D /* CitiesRequests.swift */; };
 		DA57E4DD222C571F0086B5DA /* ChefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4DC222C571F0086B5DA /* ChefViewModel.swift */; };
 		DA57E4E0222C57790086B5DA /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4DE222C57790086B5DA /* ChefViewController.swift */; };
 		DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57E4DF222C57790086B5DA /* ChefViewController.xib */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeChef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D820362D14F07E8CE325649B /* Pods-MeChef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeChef.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeChef/Pods-MeChef.release.xcconfig"; sourceTree = "<group>"; };
+		DA454777222FDDB100237F6D /* CitiesRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesRequests.swift; sourceTree = "<group>"; };
 		DA57E4DC222C571F0086B5DA /* ChefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefViewModel.swift; sourceTree = "<group>"; };
 		DA57E4DE222C57790086B5DA /* ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
 		DA57E4DF222C57790086B5DA /* ChefViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefViewController.xib; sourceTree = "<group>"; };
@@ -576,8 +578,9 @@
 		DAFD09732229870600F1255A /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				DAFD09772229903E00F1255A /* DishesRequests.swift */,
 				DAF4FE35222ADA7000F208DB /* ChefsRequests.swift */,
+				DA454777222FDDB100237F6D /* CitiesRequests.swift */,
+				DAFD09772229903E00F1255A /* DishesRequests.swift */,
 				DAAFED6D222E592B00F8F1BE /* UsersRequests.swift */,
 			);
 			path = Requests;
@@ -780,6 +783,7 @@
 				DADFF2CC222E878C00BB6404 /* RegisterViewController.swift in Sources */,
 				DAF4FE28222AD0AB00F208DB /* MainTabViewController.swift in Sources */,
 				DADFF2C3222E848000BB6404 /* DishViewController.swift in Sources */,
+				DA454778222FDDB100237F6D /* CitiesRequests.swift in Sources */,
 				DAC99464222BE680000282F1 /* UIColor+Extensions.swift in Sources */,
 				DADFF2D4222EC29500BB6404 /* BaseStatefulController.swift in Sources */,
 				DADFF2C0222E847300BB6404 /* DishViewModel.swift in Sources */,

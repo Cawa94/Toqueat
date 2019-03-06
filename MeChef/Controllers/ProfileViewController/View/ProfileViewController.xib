@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="MeChef" customModuleProvider="target">
             <connections>
+                <outlet property="cityLabel" destination="BNl-GR-cak" id="BKA-pi-zAc"/>
                 <outlet property="emailLabel" destination="8aK-wK-S5f" id="Qwv-Vk-Tdf"/>
                 <outlet property="lastNameLabel" destination="14M-16-oWz" id="gN6-Sq-wxs"/>
                 <outlet property="nameLabel" destination="ToW-Vm-X1T" id="n7g-vw-iJs"/>
@@ -30,7 +31,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="I1u-KA-qld">
-                    <rect key="frame" x="10" y="90.5" width="355" height="103.5"/>
+                    <rect key="frame" x="10" y="90.5" width="355" height="145"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToW-Vm-X1T">
                             <rect key="frame" x="156.5" y="0.0" width="42" height="20.5"/>
@@ -46,6 +47,12 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aK-wK-S5f">
                             <rect key="frame" x="156.5" y="83" width="42" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNl-GR-cak">
+                            <rect key="frame" x="156.5" y="124.5" width="42" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
