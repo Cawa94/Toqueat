@@ -45,7 +45,7 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
     }
 
     override func onResultsState() {
-        chefViewModel.elements = chefViewModel.result?.dishes ?? []
+        chefViewModel.elements = chefViewModel.result.dishes ?? []
         chefNameLabel.text = chefViewModel.chefName
         super.onResultsState()
     }

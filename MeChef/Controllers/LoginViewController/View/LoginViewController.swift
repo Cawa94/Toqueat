@@ -21,10 +21,19 @@ class LoginViewController: UIViewController {
         let bodyParameters = LoginParameters(email: email,
                                              password: password)
         NetworkService.shared.login(loginBody: bodyParameters)
+            .flatMap { response -> Single<User> in
+                SessionService.session = UserSession(authToken: response.authToken, city: nil, user: nil)
+                return NetworkService.shared.getUserInfo()
+            }
             .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { userSession in
-                SessionService.user = userSession
+            .subscribe(onSuccess: { user in
+                SessionService.updateWith(user: BaseResultWithIdAndName(id: user.id,
+                                                                        name: user.name),
+                                          city: user.city)
+                CartService.getCartOrCreateNew()
                 NavigationService.replaceLastTabItem()
+            }, onError: { error in
+                debugPrint(error)
             })
             .disposed(by: disposeBag)
     }

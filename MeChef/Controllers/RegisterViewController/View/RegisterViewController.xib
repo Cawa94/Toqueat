@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="MeChef" customModuleProvider="target">
             <connections>
+                <outlet property="cityTextField" destination="4Pp-fC-QuT" id="R0j-AA-gle"/>
                 <outlet property="confirmPasswordTextField" destination="oGc-of-Dts" id="5uC-hs-NtN"/>
                 <outlet property="emailTextField" destination="xeA-Qa-qCo" id="JSd-Sf-aMW"/>
                 <outlet property="lastnameTextField" destination="w2W-G7-kLQ" id="RiQ-l4-ygl"/>
@@ -27,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="bXX-3t-ybO">
-                    <rect key="frame" x="10" y="173.5" width="355" height="320"/>
+                    <rect key="frame" x="10" y="144.5" width="355" height="378"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Bb-g6-Pjj">
                             <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
@@ -74,8 +75,17 @@
                                 <outlet property="delegate" destination="-1" id="c96-2q-Xb4"/>
                             </connections>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TI4-Da-b3C">
+                        <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Pp-fC-QuT">
                             <rect key="frame" x="0.0" y="290" width="355" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="yZW-cg-Zm9"/>
+                            </connections>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TI4-Da-b3C">
+                            <rect key="frame" x="0.0" y="348" width="355" height="30"/>
                             <state key="normal" title="Register"/>
                             <connections>
                                 <action selector="performRegistration:" destination="-1" eventType="touchUpInside" id="zKL-9W-jHW"/>

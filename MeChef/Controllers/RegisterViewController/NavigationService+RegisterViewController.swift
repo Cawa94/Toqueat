@@ -7,7 +7,7 @@ extension NavigationService {
                                                 bundle: nil)
         let viewModel = RegisterViewModel()
 
-        controller.viewModel = viewModel
+        controller.registerViewModel = viewModel
         return controller
     }
 

@@ -25,7 +25,7 @@ public struct ApiRequestParameters {
     }
 
     static var commonHeaders: HTTPHeaders {
-        if let authToken = SessionService.user?.authToken {
+        if let authToken = SessionService.session?.authToken {
             return ["Authorization": authToken]
         } else {
             return [:]

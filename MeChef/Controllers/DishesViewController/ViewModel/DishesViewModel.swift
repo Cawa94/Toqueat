@@ -1,10 +1,11 @@
 final class DishesViewModel: BaseTableViewModel<[Dish], Dish> {
 
     private let dishesPlaceholders = [
-        Dish(id: -1, name: "LOADING", description: "LOADING"),
-        Dish(id: -1, name: "LOADING", description: "LOADING"),
-        Dish(id: -1, name: "LOADING", description: "LOADING"),
-        Dish(id: -1, name: "LOADING", description: "LOADING")
+        Dish(description: "LOADING", chef: BaseResultWithIdAndName(id: -1, name: ""), id: -1, name: "LOADING"),
+        Dish(description: "LOADING", chef: BaseResultWithIdAndName(id: -1, name: ""), id: -1, name: "LOADING"),
+        Dish(description: "LOADING", chef: BaseResultWithIdAndName(id: -1, name: ""), id: -1, name: "LOADING"),
+        Dish(description: "LOADING", chef: BaseResultWithIdAndName(id: -1, name: ""), id: -1, name: "LOADING"),
+        Dish(description: "LOADING", chef: BaseResultWithIdAndName(id: -1, name: ""), id: -1, name: "LOADING")
     ]
 
     init() {

@@ -43,11 +43,11 @@ class BaseStatefulViewModel<ResultType>: BaseViewModel {
         return loadingStateVariable.value
     }
 
-    var result: ResultType? {
+    var result: ResultType {
         if case .result(let result, _) = currentLoadingState {
             return result
         } else {
-            return nil
+            fatalError("RESULT used before request completed")
         }
     }
 

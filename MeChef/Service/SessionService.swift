@@ -9,7 +9,7 @@ struct SessionService {
         // Singleton
     }
 
-    static var user: UserSession? {
+    static var session: UserSession? {
         get {
             return storage.userSession
         }
@@ -18,18 +18,22 @@ struct SessionService {
         }
     }
 
-    static func updateWith(city: City) {
-        SessionService.user = UserSession(authToken: SessionService.user?.authToken ?? "",
-                                          city: city)
+    static func updateWith(user: BaseResultWithIdAndName, city: City) {
+        guard let token = SessionService.session?.authToken
+            else { return }
+        SessionService.session = UserSession(authToken: token,
+                                             city: city,
+                                             user: user)
         NavigationService.reloadMainTabControllers()
     }
 
     static var isLoggedIn: Bool {
-        return user != nil
+        return session != nil
     }
 
     static func logout() {
-        SessionService.user = nil
+        SessionService.session = nil
+        CartService.localCart = nil
         NavigationService.reloadMainTabControllers()
     }
 

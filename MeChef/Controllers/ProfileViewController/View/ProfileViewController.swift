@@ -31,13 +31,13 @@ class ProfileViewController: BaseStatefulController<User> {
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        nameLabel.text = profileViewModel.result?.name
-        lastNameLabel.text = profileViewModel.result?.lastname
-        emailLabel.text = profileViewModel.result?.email
-        cityLabel.text = profileViewModel.result?.city.name
-        guard let userCity = profileViewModel.result?.city
-            else { return }
-        SessionService.updateWith(city: userCity)
+        nameLabel.text = profileViewModel.result.name
+        lastNameLabel.text = profileViewModel.result.lastname
+        emailLabel.text = profileViewModel.result.email
+        cityLabel.text = profileViewModel.result.city.name
+        SessionService.updateWith(user: BaseResultWithIdAndName(id: profileViewModel.result.id,
+                                                                name: profileViewModel.result.name),
+                                  city: profileViewModel.result.city)
     }
 
     override func onLoadingState() {

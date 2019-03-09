@@ -16,4 +16,5 @@ target 'MeChef' do
   pod 'SwiftLint'
   pod 'StatefulViewController'
   pod 'LeadKit'
+  pod 'IQKeyboardManagerSwift'
 end

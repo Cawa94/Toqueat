@@ -11,8 +11,8 @@ public extension Alamofire.SessionManager {
 
 class NetworkService {
 
-    static let baseUrl = "http://169.254.41.83:3000/" // OFFICE
-    //static let baseUrl = "http://169.254.123.205:3000/" // HOME
+    //static let baseUrl = "http://169.254.150.99:3000/" // OFFICE
+    static let baseUrl = "http://192.168.1.33:3000/" // HOME
 
     // Alamofire Settings
     var defaultTimeoutInterval: TimeInterval = 20.0
@@ -31,7 +31,7 @@ class NetworkService {
     }
 
     var currentCityParameter: Parameters {
-        guard let userCityId = SessionService.user?.city?.id
+        guard let userCityId = SessionService.session?.city?.id
             else { return [:] }
         return ["city_id": userCityId]
     }
