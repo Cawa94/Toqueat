@@ -9,7 +9,6 @@ struct Constants {
 class BaseTableViewModel<ResultType, ElementType>: BaseStatefulViewModel<ResultType> {
 
     var elements: [ElementType] = []
-    var placeholderElements: [ElementType] = []
 
 }
 
@@ -20,7 +19,7 @@ extension BaseTableViewModel {
     }
 
     func elementAt(_ index: Int) -> ElementType {
-        return hasContent ? elements[index] : placeholderElements[index]
+        return elements[index]
     }
 
 }

@@ -11,10 +11,6 @@ class DishesViewController: BaseTableViewController<[Dish], Dish> {
 
     private let disposeBag = DisposeBag()
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,15 +21,34 @@ class DishesViewController: BaseTableViewController<[Dish], Dish> {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
                                                  for: indexPath)
-        configure(cell, at: indexPath)
+        configure(cell, at: indexPath, isLoading: dishesViewModel.isLoading)
         return cell
     }
 
-    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
+        if isLoading {
+            configureWithPlaceholders(cell, at: indexPath)
+        } else {
+            configureWithContent(cell, at: indexPath)
+        }
+    }
+
+    private func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let dishCell as DishTableViewCell:
+            dishCell.configureWithLoading(true)
+        default:
+            break
+        }
+    }
+
+    private func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let dishCell as DishTableViewCell:
             let dish = dishesViewModel.elementAt(indexPath.row)
-            dishCell.configureWith(dish)
+            let viewModel = DishTableViewModel(dish: dish,
+                                               chefName: dish.chef?.name)
+            dishCell.configureWithLoading( contentViewModel: viewModel)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     NavigationService.pushDishViewController(dishId: dish.id)
@@ -44,10 +59,16 @@ class DishesViewController: BaseTableViewController<[Dish], Dish> {
         }
     }
 
+    // MARK: - UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        dishesViewModel.elements = dishesViewModel.result ?? []
+        dishesViewModel.elements = dishesViewModel.result
         super.onResultsState()
     }
 

@@ -12,10 +12,6 @@ class ChefsViewController: BaseTableViewController<[Chef], Chef> {
 
     private let disposeBag = DisposeBag()
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,15 +23,33 @@ class ChefsViewController: BaseTableViewController<[Chef], Chef> {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChefTableViewCell",
                                                  for: indexPath)
-        configure(cell, at: indexPath)
+        configure(cell, at: indexPath, isLoading: chefsViewModel.isLoading)
         return cell
     }
 
-    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
+        if isLoading {
+            configureWithPlaceholders(cell, at: indexPath)
+        } else {
+            configureWithContent(cell, at: indexPath)
+        }
+    }
+
+    private func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let chefCell as ChefTableViewCell:
+            chefCell.configureWithLoading(true)
+        default:
+            break
+        }
+    }
+
+    private func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let chefCell as ChefTableViewCell:
             let chef = chefsViewModel.elementAt(indexPath.row)
-            chefCell.configureWith(chef)
+            let viewModel = ChefTableViewModel(chef: chef)
+            chefCell.configureWithLoading(contentViewModel: viewModel)
             chefCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     NavigationService.pushChefViewController(chefId: chef.id)
@@ -49,7 +63,7 @@ class ChefsViewController: BaseTableViewController<[Chef], Chef> {
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        chefsViewModel.elements = chefsViewModel.result ?? []
+        chefsViewModel.elements = chefsViewModel.result
         super.onResultsState()
     }
 

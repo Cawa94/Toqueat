@@ -10,7 +10,7 @@ struct CartService {
         // Singleton
     }
 
-    static var localCart: Cart? {
+    static var localCart: Order? {
         get {
             return storage.localCart
         }

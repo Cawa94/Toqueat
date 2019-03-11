@@ -1,11 +1,13 @@
 import UIKit
 import RxSwift
+import Nuke
 
 class DishViewController: BaseStatefulController<Dish> {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var chefNameLabel: UILabel!
+    @IBOutlet weak var dishImageView: UIImageView!
 
     var dishViewModel: DishViewModel! {
         didSet {
@@ -14,10 +16,6 @@ class DishViewController: BaseStatefulController<Dish> {
     }
 
     private let disposeBag = DisposeBag()
-
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
 
     @IBAction func addToCartAction(_ sender: Any) {
         CartService.addToCart(product: BaseResultWithIdAndName(id: dishViewModel.result.id,
@@ -28,15 +26,19 @@ class DishViewController: BaseStatefulController<Dish> {
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        nameLabel.text = dishViewModel.result.name
-        descriptionLabel.text = dishViewModel.result.description
-        chefNameLabel.text = "Chef: \(dishViewModel.result.chef.name)"
+        nameLabel.text = dishViewModel.dishName
+        descriptionLabel.text = dishViewModel.dishDescription
+        chefNameLabel.text = "Chef: \(dishViewModel.chefName)"
+        if let imageUrl = dishViewModel.imageUrl {
+            Nuke.loadImage(with: imageUrl, into: dishImageView)
+            dishImageView.contentMode = .scaleAspectFill
+        }
     }
 
     override func onLoadingState() {
-        nameLabel.text = "LOADING"
-        descriptionLabel.text = "LOADING"
-        chefNameLabel.text = "LOADING"
+        nameLabel.text = dishViewModel.dishName
+        descriptionLabel.text = dishViewModel.dishDescription
+        chefNameLabel.text = "Chef: \(dishViewModel.chefName)"
     }
 
 }

@@ -17,10 +17,6 @@ class ProfileViewController: BaseStatefulController<User> {
 
     private let disposeBag = DisposeBag()
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
     @IBAction func performLogout(_ sender: Any) {
         SessionService.logout()
         DispatchQueue.main.async {

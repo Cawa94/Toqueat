@@ -19,11 +19,7 @@ class RegisterViewController: BaseStatefulController<[City]>,
     }
 
     private let disposeBag = DisposeBag()
-    let cityPicker = UIPickerView()
-
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+    private let cityPicker = UIPickerView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +56,7 @@ class RegisterViewController: BaseStatefulController<[City]>,
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        registerViewModel.cities = registerViewModel.result ?? []
+        registerViewModel.cities = registerViewModel.result
     }
 
     // MARK: - UIPickerViewDataSource

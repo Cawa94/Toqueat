@@ -21,6 +21,8 @@ class BaseTableViewController<ResultType, ElementType>: BaseStatefulController<R
         }
     }
 
+    // MARK: - UITableViewDelegate
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewModel.numberOfItems(for: section)
     }

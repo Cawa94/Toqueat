@@ -8,7 +8,7 @@ private extension String {
 
 extension UserDefaults {
 
-    var localCart: Cart? {
+    var localCart: Order? {
         get {
             return try? object(forKey: .localCartKey)
         }

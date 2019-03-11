@@ -17,4 +17,5 @@ target 'MeChef' do
   pod 'StatefulViewController'
   pod 'LeadKit'
   pod 'IQKeyboardManagerSwift'
+  pod 'Nuke'
 end

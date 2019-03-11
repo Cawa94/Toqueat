@@ -29,6 +29,11 @@
 		DA9E074E222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9E074D222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift */; };
 		DA9E0750222E71250094A69D /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9E074F222E71250094A69D /* SessionService.swift */; };
 		DAA8CD30222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA8CD2F222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift */; };
+		DAAD192D2236E95400543AE0 /* Dish+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD192C2236E95400543AE0 /* Dish+Extensions.swift */; };
+		DAAD19302236EC8600543AE0 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD192F2236EC8600543AE0 /* UIView+Extensions.swift */; };
+		DAAD193322371D9400543AE0 /* PlaceholderConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD193222371D9400543AE0 /* PlaceholderConfigurable.swift */; };
+		DAAD193522371E5100543AE0 /* DishTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD193422371E5100543AE0 /* DishTableViewModel.swift */; };
+		DAAD1937223728BD00543AE0 /* ChefTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD1936223728BD00543AE0 /* ChefTableViewModel.swift */; };
 		DAAFED6E222E592B00F8F1BE /* UsersRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAFED6D222E592B00F8F1BE /* UsersRequests.swift */; };
 		DAC99464222BE680000282F1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC99463222BE680000282F1 /* UIColor+Extensions.swift */; };
 		DAC99467222BE7CE000282F1 /* NavigationService+DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC99466222BE7CE000282F1 /* NavigationService+DishesViewController.swift */; };
@@ -97,6 +102,11 @@
 		DA9E074D222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+MappableDataTypes.swift"; sourceTree = "<group>"; };
 		DA9E074F222E71250094A69D /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		DAA8CD2F222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+MainTabViewController.swift"; sourceTree = "<group>"; };
+		DAAD192C2236E95400543AE0 /* Dish+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dish+Extensions.swift"; sourceTree = "<group>"; };
+		DAAD192F2236EC8600543AE0 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		DAAD193222371D9400543AE0 /* PlaceholderConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderConfigurable.swift; sourceTree = "<group>"; };
+		DAAD193422371E5100543AE0 /* DishTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishTableViewModel.swift; sourceTree = "<group>"; };
+		DAAD1936223728BD00543AE0 /* ChefTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefTableViewModel.swift; sourceTree = "<group>"; };
 		DAAFED6D222E592B00F8F1BE /* UsersRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRequests.swift; sourceTree = "<group>"; };
 		DAC99463222BE680000282F1 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		DAC99466222BE7CE000282F1 /* NavigationService+DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+DishesViewController.swift"; sourceTree = "<group>"; };
@@ -187,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				DA8208B522343717002E6743 /* Cart+Extensions.swift */,
+				DAAD192C2236E95400543AE0 /* Dish+Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -264,6 +275,22 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
+		DAAD192E2236EC6E00543AE0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DAAD192F2236EC8600543AE0 /* UIView+Extensions.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DAAD193122371D7300543AE0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DAAD193222371D9400543AE0 /* PlaceholderConfigurable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		DAC99462222BE621000282F1 /* Appearance */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				DAC99472222BE97C000282F1 /* DishTableViewCell.swift */,
+				DAAD193422371E5100543AE0 /* DishTableViewModel.swift */,
 				DAC99473222BE97C000282F1 /* DishTableViewCell.xib */,
 			);
 			path = Dish;
@@ -485,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				DAF4FE31222AD82200F208DB /* ChefTableViewCell.swift */,
+				DAAD1936223728BD00543AE0 /* ChefTableViewModel.swift */,
 				DAF4FE32222AD82200F208DB /* ChefTableViewCell.xib */,
 			);
 			path = Chef;
@@ -513,14 +542,15 @@
 			isa = PBXGroup;
 			children = (
 				DAFA9B822228907200B2CD4D /* Info.plist */,
-				DAFA9B742228907100B2CD4D /* AppDelegate.swift */,
-				DAFA9B7D2228907200B2CD4D /* Assets.xcassets */,
 				DAFA9B7F2228907200B2CD4D /* LaunchScreen.storyboard */,
 				DAFA9B7A2228907100B2CD4D /* Main.storyboard */,
+				DAFA9B742228907100B2CD4D /* AppDelegate.swift */,
+				DAFA9B7D2228907200B2CD4D /* Assets.xcassets */,
 				DAC99462222BE621000282F1 /* Appearance */,
 				DAFA9BA62228915400B2CD4D /* Cells */,
 				DAFA9BA52228914E00B2CD4D /* Controllers */,
 				DAFD0970222981DC00F1255A /* Extensions */,
+				DAAD193122371D7300543AE0 /* Protocols */,
 				DAFA9BA42228914100B2CD4D /* Service */,
 			);
 			path = MeChef;
@@ -574,6 +604,7 @@
 		DAFD0970222981DC00F1255A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DAAD192E2236EC6E00543AE0 /* Common */,
 				DA8208B422343708002E6743 /* Models */,
 				DA9E074A222E6DE80094A69D /* UserDefaults */,
 				DAF4FE29222AD2C500F208DB /* AppDelegate+Extensions.swift */,
@@ -722,6 +753,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LeadKit/LeadKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
@@ -738,6 +770,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeadKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
@@ -789,6 +822,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAAD193322371D9400543AE0 /* PlaceholderConfigurable.swift in Sources */,
 				DAC9946C222BE7F3000282F1 /* DishesViewController.swift in Sources */,
 				DADFF2D8222EC42700BB6404 /* BaseStatefulViewModel.swift in Sources */,
 				DA57E4DD222C571F0086B5DA /* ChefViewModel.swift in Sources */,
@@ -799,6 +833,7 @@
 				DAF4FE22222AD02700F208DB /* ChefsViewController.swift in Sources */,
 				DAF4FE25222AD03A00F208DB /* ChefsViewModel.swift in Sources */,
 				DADF5A26222AAE460064DB75 /* RequestError.swift in Sources */,
+				DAAD19302236EC8600543AE0 /* UIView+Extensions.swift in Sources */,
 				DA979BEE222C914F00D452B9 /* ProfileViewController.swift in Sources */,
 				DAFA9B752228907100B2CD4D /* AppDelegate.swift in Sources */,
 				DAF4FE2A222AD2C500F208DB /* AppDelegate+Extensions.swift in Sources */,
@@ -820,8 +855,11 @@
 				DA9E0749222E6D910094A69D /* UserDefaults+UserSession.swift in Sources */,
 				DA8208B12234270A002E6743 /* CartService.swift in Sources */,
 				DAFD09782229903E00F1255A /* DishesRequests.swift in Sources */,
+				DAAD192D2236E95400543AE0 /* Dish+Extensions.swift in Sources */,
 				DA84549F222D1EA80052A8D2 /* LoginViewController.swift in Sources */,
+				DAAD193522371E5100543AE0 /* DishTableViewModel.swift in Sources */,
 				DA9E074E222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift in Sources */,
+				DAAD1937223728BD00543AE0 /* ChefTableViewModel.swift in Sources */,
 				DA8454A4222D1F8A0052A8D2 /* LoginViewModel.swift in Sources */,
 				DAC99467222BE7CE000282F1 /* NavigationService+DishesViewController.swift in Sources */,
 				DADFF2E6222ED89200BB6404 /* BaseTableViewModel.swift in Sources */,

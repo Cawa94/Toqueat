@@ -1,12 +1,12 @@
-extension Cart {
+extension Order {
 
-    func copyWith(products: [BaseResultWithIdAndName]) -> Cart? {
+    func copyWith(products: [BaseResultWithIdAndName]) -> Order? {
         guard let cart = CartService.localCart
             else { return nil }
-        return Cart(id: cart.id,
-                    userId: cart.userId,
-                    products: cart.products,
-                    deliverySlot: cart.deliverySlot)
+        return Order(id: cart.id,
+                     userId: cart.userId,
+                     products: cart.products,
+                     deliverySlot: cart.deliverySlot)
     }
 
 }

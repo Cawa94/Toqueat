@@ -3,14 +3,21 @@ import StatefulViewController
 import RxSwift
 import RxCocoa
 
-class BaseStatefulController<ResultType>: UIViewController, StatefulViewController {
+class BaseStatefulController<ResultType>: UIViewController, StatefulViewController,
+    UIGestureRecognizerDelegate {
 
     private let disposeBag = DisposeBag()
     typealias ViewModelType = BaseStatefulViewModel<ResultType>
     var viewModel: ViewModelType!
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 
         setupInitialViewState()
 

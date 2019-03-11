@@ -18,34 +18,68 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chef name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KB5-rz-wGs">
-                        <rect key="frame" x="26" y="11.5" width="228" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ricette: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="po4-Pw-vxZ">
-                        <rect key="frame" x="259" y="11.5" width="90" height="21"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bM7-oM-4Ed">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chef name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KB5-rz-wGs">
+                                <rect key="frame" x="10" y="11.5" width="83.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ricette: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="po4-Pw-vxZ">
+                                <rect key="frame" x="275" y="11.5" width="90" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="D20-ek-HHt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="90" id="D20-ek-HHt"/>
+                            <constraint firstItem="KB5-rz-wGs" firstAttribute="centerY" secondItem="bM7-oM-4Ed" secondAttribute="centerY" id="8uF-Hd-D7p"/>
+                            <constraint firstItem="po4-Pw-vxZ" firstAttribute="centerY" secondItem="bM7-oM-4Ed" secondAttribute="centerY" id="Lna-wn-TUk"/>
+                            <constraint firstAttribute="trailing" secondItem="po4-Pw-vxZ" secondAttribute="trailing" constant="10" id="SjE-QP-IL1"/>
+                            <constraint firstItem="KB5-rz-wGs" firstAttribute="leading" secondItem="bM7-oM-4Ed" secondAttribute="leading" constant="10" id="hdq-fT-R6E"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGw-um-8w8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaI-Zc-Kx8">
+                                <rect key="frame" x="144" y="11.5" width="87" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PaI-Zc-Kx8" firstAttribute="centerY" secondItem="dGw-um-8w8" secondAttribute="centerY" id="8Fx-Fo-OfN"/>
+                            <constraint firstItem="PaI-Zc-Kx8" firstAttribute="centerX" secondItem="dGw-um-8w8" secondAttribute="centerX" id="bHu-p5-e8j"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="KB5-rz-wGs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="0Ys-d5-hzL"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="po4-Pw-vxZ" secondAttribute="trailing" constant="10" id="0xj-k5-VdK"/>
-                    <constraint firstItem="po4-Pw-vxZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="IzB-QT-0G2"/>
-                    <constraint firstItem="KB5-rz-wGs" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wLr-Vs-ZHR"/>
-                    <constraint firstItem="po4-Pw-vxZ" firstAttribute="leading" secondItem="KB5-rz-wGs" secondAttribute="trailing" constant="5" id="x6q-bA-w0X"/>
+                    <constraint firstItem="dGw-um-8w8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="D9K-zM-R0n"/>
+                    <constraint firstAttribute="bottom" secondItem="bM7-oM-4Ed" secondAttribute="bottom" id="Ppr-Zx-zxh"/>
+                    <constraint firstAttribute="trailing" secondItem="bM7-oM-4Ed" secondAttribute="trailing" id="R1W-Wz-JXO"/>
+                    <constraint firstItem="dGw-um-8w8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cNN-i3-uPZ"/>
+                    <constraint firstItem="bM7-oM-4Ed" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="f8g-38-f8H"/>
+                    <constraint firstAttribute="trailing" secondItem="dGw-um-8w8" secondAttribute="trailing" id="fa2-lY-G5n"/>
+                    <constraint firstAttribute="bottom" secondItem="dGw-um-8w8" secondAttribute="bottom" id="oi2-Re-Bm5"/>
+                    <constraint firstItem="bM7-oM-4Ed" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wUA-4g-NlY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="contentContainerViewOutlet" destination="bM7-oM-4Ed" id="ZcI-pE-KcT"/>
                 <outlet property="nameLabel" destination="KB5-rz-wGs" id="t8i-tV-MAQ"/>
+                <outlet property="placeholderContainerViewOutlet" destination="dGw-um-8w8" id="mxg-O3-AJz"/>
                 <outlet property="recipesNumberLabel" destination="po4-Pw-vxZ" id="wfJ-j7-LHL"/>
             </connections>
+            <point key="canvasLocation" x="124" y="-32"/>
         </tableViewCell>
     </objects>
 </document>
