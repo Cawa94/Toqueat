@@ -15,7 +15,6 @@
 		DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */; };
 		DA8208AF22341178002E6743 /* UserDefaults+LocalCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208AE22341178002E6743 /* UserDefaults+LocalCart.swift */; };
 		DA8208B12234270A002E6743 /* CartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208B02234270A002E6743 /* CartService.swift */; };
-		DA8208B3223427AE002E6743 /* CartRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208B2223427AE002E6743 /* CartRequests.swift */; };
 		DA8208B622343717002E6743 /* Cart+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208B522343717002E6743 /* Cart+Extensions.swift */; };
 		DA84549F222D1EA80052A8D2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA84549D222D1EA80052A8D2 /* LoginViewController.swift */; };
 		DA8454A0222D1EA80052A8D2 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA84549E222D1EA80052A8D2 /* LoginViewController.xib */; };
@@ -68,6 +67,12 @@
 		DAF4FE33222AD82200F208DB /* ChefTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE31222AD82200F208DB /* ChefTableViewCell.swift */; };
 		DAF4FE34222AD82200F208DB /* ChefTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF4FE32222AD82200F208DB /* ChefTableViewCell.xib */; };
 		DAF4FE36222ADA7000F208DB /* ChefsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE35222ADA7000F208DB /* ChefsRequests.swift */; };
+		DAF86AF02237BEF300070B76 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF86AEE2237BEF300070B76 /* CartViewController.swift */; };
+		DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF86AEF2237BEF300070B76 /* CartViewController.xib */; };
+		DAF86AF32237BF1500070B76 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF86AF22237BF1500070B76 /* CartViewModel.swift */; };
+		DAF86AF52237BF5000070B76 /* CartViewController+NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF86AF42237BF5000070B76 /* CartViewController+NavigationService.swift */; };
+		DAF86AF72237F44100070B76 /* Order+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF86AF62237F44100070B76 /* Order+Extensions.swift */; };
+		DAF86AF92237F48400070B76 /* OrderRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF86AF82237F48400070B76 /* OrderRequests.swift */; };
 		DAFA9B752228907100B2CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B742228907100B2CD4D /* AppDelegate.swift */; };
 		DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFA9B7A2228907100B2CD4D /* Main.storyboard */; };
 		DAFA9B7E2228907200B2CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAFA9B7D2228907200B2CD4D /* Assets.xcassets */; };
@@ -88,7 +93,6 @@
 		DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefViewController.swift"; sourceTree = "<group>"; };
 		DA8208AE22341178002E6743 /* UserDefaults+LocalCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+LocalCart.swift"; sourceTree = "<group>"; };
 		DA8208B02234270A002E6743 /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
-		DA8208B2223427AE002E6743 /* CartRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRequests.swift; sourceTree = "<group>"; };
 		DA8208B522343717002E6743 /* Cart+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+Extensions.swift"; sourceTree = "<group>"; };
 		DA84549D222D1EA80052A8D2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DA84549E222D1EA80052A8D2 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -141,6 +145,12 @@
 		DAF4FE31222AD82200F208DB /* ChefTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefTableViewCell.swift; sourceTree = "<group>"; };
 		DAF4FE32222AD82200F208DB /* ChefTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefTableViewCell.xib; sourceTree = "<group>"; };
 		DAF4FE35222ADA7000F208DB /* ChefsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefsRequests.swift; sourceTree = "<group>"; };
+		DAF86AEE2237BEF300070B76 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		DAF86AEF2237BEF300070B76 /* CartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartViewController.xib; sourceTree = "<group>"; };
+		DAF86AF22237BF1500070B76 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		DAF86AF42237BF5000070B76 /* CartViewController+NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CartViewController+NavigationService.swift"; sourceTree = "<group>"; };
+		DAF86AF62237F44100070B76 /* Order+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+Extensions.swift"; sourceTree = "<group>"; };
+		DAF86AF82237F48400070B76 /* OrderRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRequests.swift; sourceTree = "<group>"; };
 		DAFA9B712228907100B2CD4D /* MeChef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeChef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFA9B742228907100B2CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAFA9B7B2228907100B2CD4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,6 +208,7 @@
 			children = (
 				DA8208B522343717002E6743 /* Cart+Extensions.swift */,
 				DAAD192C2236E95400543AE0 /* Dish+Extensions.swift */,
+				DAF86AF62237F44100070B76 /* Order+Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -519,6 +530,33 @@
 			path = Chef;
 			sourceTree = "<group>";
 		};
+		DAF86AEB2237BEAC00070B76 /* CartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DAF86AF42237BF5000070B76 /* CartViewController+NavigationService.swift */,
+				DAF86AED2237BEC400070B76 /* View */,
+				DAF86AEC2237BEBC00070B76 /* ViewModel */,
+			);
+			path = CartViewController;
+			sourceTree = "<group>";
+		};
+		DAF86AEC2237BEBC00070B76 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DAF86AF22237BF1500070B76 /* CartViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DAF86AED2237BEC400070B76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DAF86AEE2237BEF300070B76 /* CartViewController.swift */,
+				DAF86AEF2237BEF300070B76 /* CartViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DAFA9B682228907100B2CD4D = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +610,7 @@
 			children = (
 				DADFF2D2222EC26900BB6404 /* BaseStatefulController */,
 				DADFF2E2222ED87200BB6404 /* BaseTableViewController */,
+				DAF86AEB2237BEAC00070B76 /* CartViewController */,
 				DAF4FE1A222ACF8D00F208DB /* ChefsViewController */,
 				DA57E4D8222C56CA0086B5DA /* ChefViewController */,
 				DAC99465222BE7B2000282F1 /* DishesViewController */,
@@ -628,10 +667,10 @@
 		DAFD09732229870600F1255A /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				DA8208B2223427AE002E6743 /* CartRequests.swift */,
 				DAF4FE35222ADA7000F208DB /* ChefsRequests.swift */,
 				DA454777222FDDB100237F6D /* CitiesRequests.swift */,
 				DAFD09772229903E00F1255A /* DishesRequests.swift */,
+				DAF86AF82237F48400070B76 /* OrderRequests.swift */,
 				DAAFED6D222E592B00F8F1BE /* UsersRequests.swift */,
 			);
 			path = Requests;
@@ -713,6 +752,7 @@
 				DAF4FE34222AD82200F208DB /* ChefTableViewCell.xib in Resources */,
 				DAFA9B7E2228907200B2CD4D /* Assets.xcassets in Resources */,
 				DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */,
+				DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */,
 				DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */,
 				DAC9946D222BE7F3000282F1 /* DishesViewController.xib in Resources */,
 				DADFF2C4222E848000BB6404 /* DishViewController.xib in Resources */,
@@ -826,7 +866,6 @@
 				DAC9946C222BE7F3000282F1 /* DishesViewController.swift in Sources */,
 				DADFF2D8222EC42700BB6404 /* BaseStatefulViewModel.swift in Sources */,
 				DA57E4DD222C571F0086B5DA /* ChefViewModel.swift in Sources */,
-				DA8208B3223427AE002E6743 /* CartRequests.swift in Sources */,
 				DA8454A2222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift in Sources */,
 				DADFF2DA222ED1C400BB6404 /* NetworkService+Extensions.swift in Sources */,
 				DA979BE9222C912600D452B9 /* NavigationService+ProfileViewController.swift in Sources */,
@@ -834,6 +873,7 @@
 				DAF4FE25222AD03A00F208DB /* ChefsViewModel.swift in Sources */,
 				DADF5A26222AAE460064DB75 /* RequestError.swift in Sources */,
 				DAAD19302236EC8600543AE0 /* UIView+Extensions.swift in Sources */,
+				DAF86AF72237F44100070B76 /* Order+Extensions.swift in Sources */,
 				DA979BEE222C914F00D452B9 /* ProfileViewController.swift in Sources */,
 				DAFA9B752228907100B2CD4D /* AppDelegate.swift in Sources */,
 				DAF4FE2A222AD2C500F208DB /* AppDelegate+Extensions.swift in Sources */,
@@ -850,10 +890,12 @@
 				DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */,
 				DA979BEB222C914100D452B9 /* ProfileViewModel.swift in Sources */,
 				DAFD096B22297AA400F1255A /* NetworkService.swift in Sources */,
+				DAF86AF02237BEF300070B76 /* CartViewController.swift in Sources */,
 				DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */,
 				DAA8CD30222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift in Sources */,
 				DA9E0749222E6D910094A69D /* UserDefaults+UserSession.swift in Sources */,
 				DA8208B12234270A002E6743 /* CartService.swift in Sources */,
+				DAF86AF52237BF5000070B76 /* CartViewController+NavigationService.swift in Sources */,
 				DAFD09782229903E00F1255A /* DishesRequests.swift in Sources */,
 				DAAD192D2236E95400543AE0 /* Dish+Extensions.swift in Sources */,
 				DA84549F222D1EA80052A8D2 /* LoginViewController.swift in Sources */,
@@ -861,6 +903,7 @@
 				DA9E074E222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift in Sources */,
 				DAAD1937223728BD00543AE0 /* ChefTableViewModel.swift in Sources */,
 				DA8454A4222D1F8A0052A8D2 /* LoginViewModel.swift in Sources */,
+				DAF86AF32237BF1500070B76 /* CartViewModel.swift in Sources */,
 				DAC99467222BE7CE000282F1 /* NavigationService+DishesViewController.swift in Sources */,
 				DADFF2E6222ED89200BB6404 /* BaseTableViewModel.swift in Sources */,
 				DA9E0750222E71250094A69D /* SessionService.swift in Sources */,
@@ -874,6 +917,7 @@
 				DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */,
 				DADFF2D1222E888700BB6404 /* NavigationService+RegisterViewController.swift in Sources */,
 				DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */,
+				DAF86AF92237F48400070B76 /* OrderRequests.swift in Sources */,
 				DAAFED6E222E592B00F8F1BE /* UsersRequests.swift in Sources */,
 				DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */,
 				DAFD096F2229816C00F1255A /* Models.swift in Sources */,

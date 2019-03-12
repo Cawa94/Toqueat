@@ -8,6 +8,8 @@ class DishViewController: BaseStatefulController<Dish> {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var chefNameLabel: UILabel!
     @IBOutlet weak var dishImageView: UIImageView!
+    @IBOutlet weak var openCartButton: UIButton!
+    @IBOutlet weak var removeFromCartButton: UIButton!
 
     var dishViewModel: DishViewModel! {
         didSet {
@@ -17,10 +19,41 @@ class DishViewController: BaseStatefulController<Dish> {
 
     private let disposeBag = DisposeBag()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        CartService.localCartDriver
+            .map { $0?.products.isEmpty ?? true }
+            .drive(self.openCartButton.rx.isHidden)
+            .disposed(by: disposeBag)
+
+        CartService.localCartDriver
+            .map { !($0?.products.contains(where: { $0 == self.dishViewModel.dishId }) ?? false) }
+            .drive(self.removeFromCartButton.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
+
     @IBAction func addToCartAction(_ sender: Any) {
-        CartService.addToCart(product: BaseResultWithIdAndName(id: dishViewModel.result.id,
-                                                               name: dishViewModel.result.name))
-        debugPrint("CART PRODUCTS: \(CartService.localCart?.products.map { $0.name } ?? ["Unknown"])")
+        if let currentChef = CartService.localCart?.chefId, currentChef != dishViewModel.chefId {
+            presentAlertWith(title: "WARNING", message: "You're gonna lose all your products",
+                             actions: [UIAlertAction(title: "Proceed", style: .default, handler: { _ in
+                                CartService.clearCart()
+                                CartService.addToCart(self.dishViewModel.result.id, chefId: self.dishViewModel.chefId)
+                             }),
+                                       UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
+            return
+        }
+        CartService.addToCart(dishViewModel.result.id, chefId: dishViewModel.chefId)
+    }
+
+    @IBAction func removeFromCartAction(_ sender: Any) {
+        CartService.removeFromCart(dishViewModel.result.id)
+    }
+
+    @IBAction func openCartAction(_ sender: Any) {
+        guard let userId = SessionService.session?.user?.id
+            else { return }
+        NavigationService.pushCartViewController(userId: userId)
     }
 
     // MARK: - StatefulViewController related methods

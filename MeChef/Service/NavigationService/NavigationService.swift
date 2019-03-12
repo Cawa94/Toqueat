@@ -13,7 +13,7 @@ struct NavigationService {
     }
 
     private static var mainViewController: MainTabViewController? {
-        return appWindow.rootViewController as? MainTabViewController
+        return rootNavigationController?.viewControllers.first as? MainTabViewController
     }
 
     private static var rootNavigationController: UINavigationController? {
@@ -82,6 +82,11 @@ extension NavigationService {
     static func pushRegisterViewController() {
         let registerController = registerViewController()
         push(viewController: registerController, animated: true)
+    }
+
+    static func pushCartViewController(userId: Int64) {
+        let cartController = cartViewController(userId: userId)
+        rootNavigationController?.pushViewController(cartController, animated: true)
     }
 
 }

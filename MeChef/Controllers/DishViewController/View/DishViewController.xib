@@ -16,6 +16,8 @@
                 <outlet property="descriptionLabel" destination="NPP-Uy-oA4" id="myy-Uz-wzs"/>
                 <outlet property="dishImageView" destination="wQH-0U-GQP" id="z87-Cd-41K"/>
                 <outlet property="nameLabel" destination="cpc-H8-mhh" id="Ylh-yZ-Ca3"/>
+                <outlet property="openCartButton" destination="wla-PP-XM1" id="6pm-IX-u1Q"/>
+                <outlet property="removeFromCartButton" destination="Edc-7H-ea2" id="j32-jF-nJQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,10 +27,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZV-2B-uHF">
-                    <rect key="frame" x="149" y="597" width="77" height="30"/>
+                    <rect key="frame" x="30" y="455.5" width="77" height="30"/>
                     <state key="normal" title="Add to cart"/>
                     <connections>
                         <action selector="addToCartAction:" destination="-1" eventType="touchUpInside" id="7aW-Jl-bud"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wla-PP-XM1">
+                    <rect key="frame" x="152" y="597" width="71" height="30"/>
+                    <state key="normal" title="Open Cart"/>
+                    <connections>
+                        <action selector="openCartAction:" destination="-1" eventType="touchUpInside" id="cvQ-Tb-GAK"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wQH-0U-GQP">
@@ -60,22 +69,35 @@
                         </label>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edc-7H-ea2">
+                    <rect key="frame" x="223" y="455.5" width="122" height="30"/>
+                    <state key="normal" title="Remove from cart">
+                        <color key="titleColor" red="1" green="0.028078071959999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="removeFromCartAction:" destination="-1" eventType="touchUpInside" id="iKl-aO-U3a"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VKj-lk-zcZ" secondAttribute="trailing" constant="10" id="1ix-05-RCI"/>
                 <constraint firstItem="VKj-lk-zcZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="43v-bl-SlJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VKj-lk-zcZ" secondAttribute="trailing" constant="10" id="6Ec-ax-WkP"/>
+                <constraint firstItem="Edc-7H-ea2" firstAttribute="centerY" secondItem="mZV-2B-uHF" secondAttribute="centerY" id="7P0-K6-SHI"/>
+                <constraint firstItem="mZV-2B-uHF" firstAttribute="top" secondItem="VKj-lk-zcZ" secondAttribute="bottom" constant="40" id="BVS-A7-awF"/>
                 <constraint firstItem="wQH-0U-GQP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EUu-8v-Svf"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mZV-2B-uHF" secondAttribute="bottom" constant="40" id="KH4-qH-UzJ"/>
                 <constraint firstItem="VKj-lk-zcZ" firstAttribute="top" secondItem="wQH-0U-GQP" secondAttribute="bottom" constant="20" id="Ngy-Ka-o29"/>
                 <constraint firstItem="wQH-0U-GQP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Nm1-U8-O2a"/>
-                <constraint firstItem="mZV-2B-uHF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ODW-gi-RyV"/>
+                <constraint firstItem="wla-PP-XM1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="R2m-47-uFa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Edc-7H-ea2" secondAttribute="trailing" constant="30" id="Rfm-qY-Xld"/>
+                <constraint firstItem="mZV-2B-uHF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="dOX-nF-Xhl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wQH-0U-GQP" secondAttribute="trailing" id="loJ-qC-Bat"/>
                 <constraint firstItem="VKj-lk-zcZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="w6o-5w-DER"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wla-PP-XM1" secondAttribute="bottom" constant="40" id="xV8-HY-pKv"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="132" y="154.27286356821591"/>
+            <point key="canvasLocation" x="-284" y="127"/>
         </view>
     </objects>
 </document>
