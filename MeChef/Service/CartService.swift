@@ -34,7 +34,7 @@ struct CartService {
     static func getCartOrCreateNew() {
         guard let userId = SessionService.session?.user?.id
             else { return }
-        NetworkService.shared.getOrderWith(id: userId)
+        NetworkService.shared.getOrderWith(orderId: userId)
             .subscribe(onSuccess: { order in
                 localCart = order.localCart
                 debugPrint("CHEF ID: \(localCart?.chefId ?? -1)")
@@ -90,7 +90,7 @@ struct CartService {
             let products = localCart?.products,
             let chefId = localCart?.chefId
             else { return }
-        NetworkService.shared.updateOrderFor(userId, with: products, chefId: chefId)
+        NetworkService.shared.updateOrder(userId, with: products, chefId: chefId)
             .subscribe()
             .disposed(by: disposeBag)
     }

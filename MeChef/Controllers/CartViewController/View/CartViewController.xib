@@ -28,22 +28,31 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oo2-O8-5fb">
-                    <rect key="frame" x="0.0" y="141" width="375" height="526"/>
+                    <rect key="frame" x="0.0" y="141" width="375" height="446"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLD-mA-vaf">
+                    <rect key="frame" x="116.5" y="612" width="142" height="30"/>
+                    <state key="normal" title="Proceed to checkout"/>
+                    <connections>
+                        <action selector="startCheckoutAction:" destination="-1" eventType="touchUpInside" id="NsI-tM-1mz"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Oo2-O8-5fb" firstAttribute="top" secondItem="wkl-rX-sJR" secondAttribute="bottom" constant="50" id="54l-D8-AGZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wkl-rX-sJR" secondAttribute="trailing" constant="10" id="7hC-1V-FPk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="OLD-mA-vaf" secondAttribute="bottom" constant="25" id="ECO-Pm-3XQ"/>
+                <constraint firstItem="OLD-mA-vaf" firstAttribute="top" secondItem="Oo2-O8-5fb" secondAttribute="bottom" constant="25" id="HTi-zw-DHY"/>
                 <constraint firstItem="wkl-rX-sJR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Idl-3v-aSc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oo2-O8-5fb" secondAttribute="trailing" id="Sj6-k7-6oE"/>
+                <constraint firstItem="OLD-mA-vaf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="br9-35-pd0"/>
                 <constraint firstItem="Oo2-O8-5fb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="t2M-3I-5WE"/>
                 <constraint firstItem="wkl-rX-sJR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="wpA-1m-SoN"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Oo2-O8-5fb" secondAttribute="bottom" id="zFZ-1v-9NH"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-42" y="147"/>
+            <point key="canvasLocation" x="-42.399999999999999" y="146.17691154422789"/>
         </view>
     </objects>
 </document>

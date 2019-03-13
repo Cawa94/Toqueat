@@ -18,4 +18,5 @@ target 'MeChef' do
   pod 'LeadKit'
   pod 'IQKeyboardManagerSwift'
   pod 'Nuke'
+  pod 'RxOptional'
 end

@@ -89,4 +89,20 @@ extension NavigationService {
         rootNavigationController?.pushViewController(cartController, animated: true)
     }
 
+    static func pushCheckoutViewController(userId: Int64) {
+        let checkoutController = checkoutViewController(userId: userId)
+        rootNavigationController?.pushViewController(checkoutController, animated: true)
+    }
+
+    static func presentDeliverySlots(controller: DeliverySlotsViewController) {
+        controller.modalPresentationStyle = .overCurrentContext
+        rootNavigationController?.topVisibleViewController.present(controller,
+                                                                   animated: true,
+                                                                   completion: nil)
+    }
+
+    static func dismissDeliverySlotsController() {
+        rootNavigationController?.topVisibleViewController.dismiss(animated: true)
+    }
+
 }

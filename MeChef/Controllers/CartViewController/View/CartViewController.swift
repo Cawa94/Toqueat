@@ -18,6 +18,14 @@ class CartViewController: BaseTableViewController<Order, Dish> {
                            forCellReuseIdentifier: "DishTableViewCell")
     }
 
+    @IBAction func startCheckoutAction(_ sender: Any) {
+        guard let userId = SessionService.session?.user?.id
+            else { return }
+        NavigationService.pushCheckoutViewController(userId: userId)
+    }
+
+    // MARK: - UITableViewDelegate
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
                                                  for: indexPath)

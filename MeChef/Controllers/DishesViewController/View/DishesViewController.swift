@@ -18,6 +18,8 @@ class DishesViewController: BaseTableViewController<[Dish], Dish> {
                            forCellReuseIdentifier: "DishTableViewCell")
     }
 
+    // MARK: - UITableViewDelegate
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
                                                  for: indexPath)
@@ -58,8 +60,6 @@ class DishesViewController: BaseTableViewController<[Dish], Dish> {
             break
         }
     }
-
-    // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
