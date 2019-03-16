@@ -11,6 +11,10 @@ class LoginViewController: UIViewController {
     var viewModel: LoginViewModel!
     private let disposeBag = DisposeBag()
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     @IBAction func loginAction(_ sender: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text
             else { return }
@@ -18,15 +22,13 @@ class LoginViewController: UIViewController {
                                              password: password)
         NetworkService.shared.login(loginBody: bodyParameters)
             .flatMap { response -> Single<User> in
-                SessionService.session = UserSession(authToken: response.authToken, city: nil, user: nil)
+                SessionService.session = UserSession(authToken: response.authToken, user: nil)
                 return NetworkService.shared.getUserInfo()
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { user in
-                SessionService.updateWith(user: BaseResultWithIdAndName(id: user.id,
-                                                                        name: user.name),
-                                          city: user.city)
-                CartService.getCartOrCreateNew()
+                SessionService.updateWith(user: user)
+                CartService.localCart = .new
                 NavigationService.replaceLastTabItem()
             }, onError: { error in
                 debugPrint(error)

@@ -1,12 +1,23 @@
 import Foundation
 
-final class CheckoutViewModel: BaseStatefulViewModel<Order> {
+struct CheckoutViewModel {
 
-    var deliverySlot: DeliverySlot?
+    var cart: LocalCart
 
-    init(userId: Int64) {
-        let orderRequest = NetworkService.shared.getOrderWith(orderId: userId)
-        super.init(dataSource: orderRequest)
+}
+
+extension CheckoutViewModel {
+
+    var chefId: Int64? {
+        return cart.chefId
+    }
+
+    var elements: [LocalCartDish] {
+        return cart.dishes ?? []
+    }
+
+    func elementAt(_ index: Int) -> LocalCartDish {
+        return elements[index]
     }
 
 }

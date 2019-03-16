@@ -23,12 +23,12 @@ class DishViewController: BaseStatefulController<Dish> {
         super.viewDidLoad()
 
         CartService.localCartDriver
-            .map { $0?.products.isEmpty ?? true }
+            .map { $0?.dishes?.isEmpty ?? true }
             .drive(self.openCartButton.rx.isHidden)
             .disposed(by: disposeBag)
 
         CartService.localCartDriver
-            .map { !($0?.products.contains(where: { $0 == self.dishViewModel.dishId }) ?? false) }
+            .map { !($0?.dishes?.contains(where: { $0.id == self.dishViewModel.dishId }) ?? false) }
             .drive(self.removeFromCartButton.rx.isHidden)
             .disposed(by: disposeBag)
     }
@@ -38,22 +38,23 @@ class DishViewController: BaseStatefulController<Dish> {
             presentAlertWith(title: "WARNING", message: "You're gonna lose all your products",
                              actions: [UIAlertAction(title: "Proceed", style: .default, handler: { _ in
                                 CartService.clearCart()
-                                CartService.addToCart(self.dishViewModel.result.id, chefId: self.dishViewModel.chefId)
+                                CartService.addToCart(self.dishViewModel.localCartDish,
+                                                      chefId: self.dishViewModel.chefId)
                              }),
                                        UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
             return
         }
-        CartService.addToCart(dishViewModel.result.id, chefId: dishViewModel.chefId)
+        CartService.addToCart(dishViewModel.localCartDish, chefId: dishViewModel.chefId)
     }
 
     @IBAction func removeFromCartAction(_ sender: Any) {
-        CartService.removeFromCart(dishViewModel.result.id)
+        CartService.removeFromCart(dishViewModel.localCartDish)
     }
 
     @IBAction func openCartAction(_ sender: Any) {
-        guard let userId = SessionService.session?.user?.id
+        guard let cart = CartService.localCart
             else { return }
-        NavigationService.pushCartViewController(userId: userId)
+        NavigationService.pushCartViewController(cart: cart)
     }
 
     // MARK: - StatefulViewController related methods

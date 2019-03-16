@@ -31,68 +31,26 @@ struct CartService {
         return localCartVariable.asObservable()
     }
 
-    static func getCartOrCreateNew() {
-        guard let userId = SessionService.session?.user?.id
-            else { return }
-        NetworkService.shared.getOrderWith(orderId: userId)
-            .subscribe(onSuccess: { order in
-                localCart = order.localCart
-                debugPrint("CHEF ID: \(localCart?.chefId ?? -1)")
-                debugPrint("CART ID: \(localCart?.id ?? -1)")
-            }, onError: { _ in
-                createNewCart()
-            })
-            .disposed(by: disposeBag)
-    }
-
-    static func createNewCart() {
-        guard let userId = SessionService.session?.user?.id
-            else { return }
-        NetworkService.shared.createNewOrderWith(userId: userId)
-            .subscribe(onSuccess: { order in
-                localCart = order.localCart
-                debugPrint("NEWCART ID: \(localCart?.id ?? -1)")
-            }, onError: { error in
-                debugPrint(error)
-            })
-            .disposed(by: disposeBag)
-    }
-
-    static func addToCart(_ productId: Int64, chefId: Int64) {
-        guard let cart = localCart, !cart.products.contains(where: { $0 == productId })
-            else { return }
-        var newProducts = cart.products
-        newProducts.append(productId)
-        localCart = cart.copyWith(products: newProducts, chefId: chefId)
-        sendCartToServer()
-    }
-
-    static func removeFromCart(_ productId: Int64) {
+    static func addToCart(_ dish: LocalCartDish, chefId: Int64) {
         guard let cart = localCart
             else { return }
-        var newProducts = cart.products
-        newProducts.removeAll(where: { $0 == productId })
-        localCart = cart.copyWith(products: newProducts, chefId: localCart?.chefId)
-        sendCartToServer()
+        var newDishes = cart.dishes ?? []
+        newDishes.append(dish)
+        localCart = cart.copyWith(dishes: newDishes, chefId: chefId)
     }
 
-    static func clearCart(sendToServer: Bool = false) {
+    static func removeFromCart(_ dish: LocalCartDish) {
         guard let cart = localCart
             else { return }
-        localCart = cart.copyWith(products: [])
-        if sendToServer {
-            sendCartToServer()
-        }
+        var newDishes = cart.dishes ?? []
+        newDishes.removeAll(where: { $0.id == dish.id })
+        localCart = cart.copyWith(dishes: newDishes, chefId: localCart?.chefId)
     }
 
-    static func sendCartToServer() {
-        guard let userId = SessionService.session?.user?.id,
-            let products = localCart?.products,
-            let chefId = localCart?.chefId
+    static func clearCart() {
+        guard let cart = localCart
             else { return }
-        NetworkService.shared.updateOrder(userId, with: products, chefId: chefId)
-            .subscribe()
-            .disposed(by: disposeBag)
+        localCart = cart.copyWith(dishes: [])
     }
 
 }

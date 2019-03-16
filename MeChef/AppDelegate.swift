@@ -15,10 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        if SessionService.isLoggedIn {
-            CartService.getCartOrCreateNew()
-        }
-
         NavigationService.setRootController(controller:
             NavigationService.mainTabViewController().embedInNavigationController())
         IQKeyboardManager.shared.enable = true

@@ -1,8 +1,17 @@
-final class CartViewModel: BaseTableViewModel<Order, Dish> {
+struct CartViewModel {
 
-    init(userId: Int64) {
-        let orderRequest = NetworkService.shared.getOrderWith(orderId: userId)
-        super.init(dataSource: orderRequest)
+    let cart: LocalCart
+
+}
+
+extension CartViewModel {
+
+    var elements: [LocalCartDish] {
+        return cart.dishes ?? []
+    }
+
+    func elementAt(_ index: Int) -> LocalCartDish {
+        return elements[index]
     }
 
 }

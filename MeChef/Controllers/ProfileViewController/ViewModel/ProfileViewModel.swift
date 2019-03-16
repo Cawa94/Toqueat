@@ -6,3 +6,31 @@ final class ProfileViewModel: BaseStatefulViewModel<User> {
     }
 
 }
+
+extension ProfileViewModel {
+
+    var name: String {
+        return result.name
+    }
+
+    var lastname: String {
+        return result.lastname
+    }
+
+    var email: String {
+        return result.email
+    }
+
+    var address: String {
+        return result.address
+    }
+
+    var zipcode: String {
+        return result.zipcode
+    }
+
+    var city: String {
+        return result.city.name
+    }
+
+}

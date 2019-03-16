@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutViewController" customModule="MeChef" customModuleProvider="target">
             <connections>
+                <outlet property="addressLabel" destination="Wyv-Sl-JNs" id="yLS-tC-JD2"/>
                 <outlet property="deliverySlotLabel" destination="5vM-TV-jun" id="001-7G-fVs"/>
+                <outlet property="tableView" destination="YOY-mq-gjD" id="9ud-JQ-owb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,8 +30,29 @@
                         <action selector="selectDeliverySlotAction:" destination="-1" eventType="touchUpInside" id="PN2-3w-pDS"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a slot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vM-TV-jun">
-                    <rect key="frame" x="10" y="358.5" width="78" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYR-ho-HiO">
+                    <rect key="frame" x="263" y="318.5" width="102" height="30"/>
+                    <state key="normal" title="Select address"/>
+                    <connections>
+                        <action selector="selectAddressAction:" destination="-1" eventType="touchUpInside" id="gAK-dF-IFR"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a slot" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vM-TV-jun">
+                    <rect key="frame" x="10" y="358.5" width="169" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YOY-mq-gjD">
+                    <rect key="frame" x="0.0" y="20" width="375" height="278.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="fdb-fg-iP6"/>
+                        <outlet property="delegate" destination="-1" id="ew4-BU-GgH"/>
+                    </connections>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your address" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wyv-Sl-JNs">
+                    <rect key="frame" x="196.5" y="358.5" width="168.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -38,11 +61,22 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="5vM-TV-jun" firstAttribute="top" secondItem="nCc-Ix-Mq9" secondAttribute="bottom" constant="10" id="0B2-iG-kga"/>
+                <constraint firstItem="nCc-Ix-Mq9" firstAttribute="top" secondItem="YOY-mq-gjD" secondAttribute="bottom" constant="20" id="9GR-He-gYW"/>
                 <constraint firstItem="nCc-Ix-Mq9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="9MQ-Cr-9Vp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Wyv-Sl-JNs" secondAttribute="trailing" constant="10" id="DeY-Ce-cIS"/>
                 <constraint firstItem="nCc-Ix-Mq9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="GTa-eE-sxd"/>
+                <constraint firstItem="Wyv-Sl-JNs" firstAttribute="centerY" secondItem="5vM-TV-jun" secondAttribute="centerY" id="LJh-cr-fxI"/>
+                <constraint firstItem="YOY-mq-gjD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Pqn-VC-PW1"/>
+                <constraint firstItem="YOY-mq-gjD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="T8J-7B-4mW"/>
                 <constraint firstItem="5vM-TV-jun" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Y0Y-P2-cjV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CYR-ho-HiO" secondAttribute="trailing" constant="10" id="cQt-iy-Kv5"/>
+                <constraint firstItem="CYR-ho-HiO" firstAttribute="centerY" secondItem="nCc-Ix-Mq9" secondAttribute="centerY" id="fOg-5o-gUI"/>
+                <constraint firstItem="5vM-TV-jun" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.45" id="gBy-qg-Hag"/>
+                <constraint firstItem="Wyv-Sl-JNs" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.45" id="k1a-Nh-O0E"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YOY-mq-gjD" secondAttribute="trailing" id="sqI-7a-jId"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-265" y="54"/>
         </view>
     </objects>
 </document>

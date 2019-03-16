@@ -1,4 +1,5 @@
 import Foundation
+import SwiftDate
 
 final class DeliverySlotsViewModel: BaseStatefulViewModel<Chef> {
 
@@ -22,7 +23,13 @@ extension DeliverySlotsViewModel {
     func weekdayNameWith(weekdayId: Int64) -> String {
         guard !isLoading
             else { return "Unknown" }
-        return deliverySlots.first(where: { $0.weekdayId == weekdayId })?.weekday ?? "Unknown"
+        let calendar = Calendar(identifier: .gregorian)
+        let dayComponents = DateComponents(calendar: calendar, weekday: Int(weekdayId))
+        guard let weekdayDate = calendar.nextDate(after: Date(),
+                                                  matching: dayComponents,
+                                                  matchingPolicy: .nextTimePreservingSmallerComponents)
+            else { return "Unknown" }
+        return "\(weekdayDate.weekdayName(.short)) \(weekdayDate.day) \(weekdayDate.monthName(.short))"
     }
 
     func listOfHoursIdsFor(selectedIndex: Int) -> [Int64] {

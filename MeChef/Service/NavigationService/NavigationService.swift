@@ -84,13 +84,13 @@ extension NavigationService {
         push(viewController: registerController, animated: true)
     }
 
-    static func pushCartViewController(userId: Int64) {
-        let cartController = cartViewController(userId: userId)
+    static func pushCartViewController(cart: LocalCart) {
+        let cartController = cartViewController(cart: cart)
         rootNavigationController?.pushViewController(cartController, animated: true)
     }
 
-    static func pushCheckoutViewController(userId: Int64) {
-        let checkoutController = checkoutViewController(userId: userId)
+    static func pushCheckoutViewController(cart: LocalCart) {
+        let checkoutController = checkoutViewController(cart: cart)
         rootNavigationController?.pushViewController(checkoutController, animated: true)
     }
 
@@ -102,6 +102,17 @@ extension NavigationService {
     }
 
     static func dismissDeliverySlotsController() {
+        rootNavigationController?.topVisibleViewController.dismiss(animated: true)
+    }
+
+    static func presentAddress(controller: AddressViewController) {
+        controller.modalPresentationStyle = .overCurrentContext
+        rootNavigationController?.topVisibleViewController.present(controller,
+                                                                   animated: true,
+                                                                   completion: nil)
+    }
+
+    static func dismissAddressController() {
         rootNavigationController?.topVisibleViewController.dismiss(animated: true)
     }
 

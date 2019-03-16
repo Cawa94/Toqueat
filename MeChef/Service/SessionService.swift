@@ -18,11 +18,10 @@ struct SessionService {
         }
     }
 
-    static func updateWith(user: BaseResultWithIdAndName, city: City) {
+    static func updateWith(user: User) {
         guard let token = SessionService.session?.authToken
             else { return }
         SessionService.session = UserSession(authToken: token,
-                                             city: city,
                                              user: user)
         NavigationService.reloadMainTabControllers()
     }

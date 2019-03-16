@@ -8,7 +8,6 @@ class DishTableViewCell: UITableViewCell {
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
 
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var chefLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var dishImageView: UIImageView!
@@ -51,7 +50,7 @@ extension DishTableViewCell: PlaceholderConfigurable {
         self.viewModel = contentViewModel
 
         nameLabel.text = contentViewModel.dish.name
-        descriptionLabel.text = contentViewModel.dish.description
+        chefLabel.isHidden = contentViewModel.chefName == nil
         chefLabel.text = "Chef: \(contentViewModel.chefName ?? "Unknown")"
         priceLabel.text = "\(contentViewModel.dish.price) Euros"
         if let url = contentViewModel.dish.imageLink {

@@ -30,6 +30,10 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oo2-O8-5fb">
                     <rect key="frame" x="0.0" y="141" width="375" height="446"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="bEF-bX-LrB"/>
+                        <outlet property="delegate" destination="-1" id="E9v-tF-ZuN"/>
+                    </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLD-mA-vaf">
                     <rect key="frame" x="116.5" y="612" width="142" height="30"/>
@@ -52,7 +56,7 @@
                 <constraint firstItem="wkl-rX-sJR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="wpA-1m-SoN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-42.399999999999999" y="146.17691154422789"/>
+            <point key="canvasLocation" x="-326" y="167"/>
         </view>
     </objects>
 </document>

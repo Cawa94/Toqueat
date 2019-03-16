@@ -9,31 +9,18 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func createNewOrderWith(userId: Int64) -> Single<Order> {
-        let body = OrderCreateParameters(userId: userId)
+    func getUserLastOrder() -> Single<Order> {
+        let apiParameters = ApiRequestParameters(relativeUrl: "lastOrder")
+
+        return request(with: apiParameters)
+    }
+
+    func createNewOrderWith(parameters: OrderCreateParameters) -> Single<Order> {
+        let body = parameters
         let apiParameters = ApiRequestParameters(relativeUrl: "orders",
                                                  method: .post,
                                                  parameters: body.toJSON())
 
-        return request(with: apiParameters)
-    }
-
-    func updateOrder(_ orderId: Int64, with products: [Int64], chefId: Int64) -> Single<Order> {
-        let body = OrderUpdateParameters(dishes: products.map { LocalCartDish(id: $0) },
-                                         chefId: chefId)
-        let apiParameters = ApiRequestParameters(relativeUrl: "orders/\(orderId)",
-                                                 method: .patch,
-                                                 parameters: body.toJSON())
-
-        return request(with: apiParameters)
-    }
-
-    func updateOrder(_ orderId: Int64, slotId: Int64) -> Single<Order> {
-        let body = ["delivery_slot_id": slotId]
-        let apiParameters = ApiRequestParameters(relativeUrl: "orders/\(orderId)",
-            method: .patch,
-            parameters: body.toJSON())
-        
         return request(with: apiParameters)
     }
 

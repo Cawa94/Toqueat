@@ -15,9 +15,9 @@ class DeliverySlotsViewController: BaseStatefulController<Chef>,
     }
 
     private let disposeBag = DisposeBag()
-    private let deliverySlotVariable = Variable<DeliverySlot?>(nil)
+    private let deliverySlotVariable = Variable<String?>(nil)
 
-    public var deliverySlotDriver: Driver<DeliverySlot> {
+    public var deliverySlotDriver: Driver<String> {
         return deliverySlotVariable.asDriver().filterNil()
     }
 
@@ -63,8 +63,8 @@ class DeliverySlotsViewController: BaseStatefulController<Chef>,
             hourSelectedIndex = row
             let weekdayId = deliverySlotsViewModel.listOfWeekdaysIds[weekdaySelectedIndex]
             let hourId = hoursIds[hourSelectedIndex]
-            deliverySlotVariable.value = deliverySlotsViewModel.deliverySlots
-                .first(where: { $0.weekdayId == weekdayId && $0.hourId == hourId })
+            deliverySlotVariable.value = "\(deliverySlotsViewModel.weekdayNameWith(weekdayId: weekdayId))"
+                + " at \(deliverySlotsViewModel.hoursRangeWith(hourId: hourId, weekdayId: weekdayId))"
         }
     }
 
@@ -80,14 +80,12 @@ class DeliverySlotsViewController: BaseStatefulController<Chef>,
     // MARK: - Actions
 
     @IBAction func dismissAction(_ sender: Any) {
-        guard let slotId = deliverySlotVariable.value?.id
-            else { return }
-        NetworkService.shared.updateOrder(1, slotId: slotId)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { _ in
-                NavigationService.dismissDeliverySlotsController()
-            })
-            .disposed(by: disposeBag)
+        guard deliverySlotVariable.value != nil
+            else {
+                presentAlertWith(title: "WARNING", message: "Please select pick a delivery slot")
+                return
+            }
+        NavigationService.dismissDeliverySlotsController()
     }
 
 }

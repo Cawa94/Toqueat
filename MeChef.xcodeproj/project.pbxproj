@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2145203C138997320BA5897D /* Pods_MeChef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */; };
+		DA12672B223BC0170049215B /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA126729223BC0170049215B /* AddressTableViewCell.swift */; };
+		DA12672C223BC0170049215B /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA12672A223BC0170049215B /* AddressTableViewCell.xib */; };
 		DA454778222FDDB100237F6D /* CitiesRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA454777222FDDB100237F6D /* CitiesRequests.swift */; };
 		DA57E4DD222C571F0086B5DA /* ChefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4DC222C571F0086B5DA /* ChefViewModel.swift */; };
 		DA57E4E0222C57790086B5DA /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4DE222C57790086B5DA /* ChefViewController.swift */; };
@@ -15,7 +17,7 @@
 		DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */; };
 		DA8208AF22341178002E6743 /* UserDefaults+LocalCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208AE22341178002E6743 /* UserDefaults+LocalCart.swift */; };
 		DA8208B12234270A002E6743 /* CartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208B02234270A002E6743 /* CartService.swift */; };
-		DA8208B622343717002E6743 /* Cart+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208B522343717002E6743 /* Cart+Extensions.swift */; };
+		DA8208B622343717002E6743 /* LocalCart+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208B522343717002E6743 /* LocalCart+Extensions.swift */; };
 		DA84549F222D1EA80052A8D2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA84549D222D1EA80052A8D2 /* LoginViewController.swift */; };
 		DA8454A0222D1EA80052A8D2 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA84549E222D1EA80052A8D2 /* LoginViewController.xib */; };
 		DA8454A2222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8454A1222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift */; };
@@ -51,6 +53,10 @@
 		DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9946E222BE80B000282F1 /* DishesViewModel.swift */; };
 		DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC99472222BE97C000282F1 /* DishTableViewCell.swift */; };
 		DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC99473222BE97C000282F1 /* DishTableViewCell.xib */; };
+		DAD4B107223D1BAF009E6F84 /* LocalCartDish+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD4B106223D1BAF009E6F84 /* LocalCartDish+Extensions.swift */; };
+		DADD68C9223AB6BA00D65C7A /* NavigationService+AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD68C8223AB6BA00D65C7A /* NavigationService+AddressViewController.swift */; };
+		DADD68D0223AB7DE00D65C7A /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD68CE223AB7DE00D65C7A /* AddressViewController.swift */; };
+		DADD68D1223AB7DE00D65C7A /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DADD68CF223AB7DE00D65C7A /* AddressViewController.xib */; };
 		DADF5A26222AAE460064DB75 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADF5A25222AAE460064DB75 /* RequestError.swift */; };
 		DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADF5A27222AAE5A0064DB75 /* LeadKitError.swift */; };
 		DADFF2C0222E847300BB6404 /* DishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2BF222E847300BB6404 /* DishViewModel.swift */; };
@@ -96,6 +102,8 @@
 /* Begin PBXFileReference section */
 		68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeChef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D820362D14F07E8CE325649B /* Pods-MeChef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeChef.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeChef/Pods-MeChef.release.xcconfig"; sourceTree = "<group>"; };
+		DA126729223BC0170049215B /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
+		DA12672A223BC0170049215B /* AddressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressTableViewCell.xib; sourceTree = "<group>"; };
 		DA454777222FDDB100237F6D /* CitiesRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesRequests.swift; sourceTree = "<group>"; };
 		DA57E4DC222C571F0086B5DA /* ChefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefViewModel.swift; sourceTree = "<group>"; };
 		DA57E4DE222C57790086B5DA /* ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +111,7 @@
 		DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefViewController.swift"; sourceTree = "<group>"; };
 		DA8208AE22341178002E6743 /* UserDefaults+LocalCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+LocalCart.swift"; sourceTree = "<group>"; };
 		DA8208B02234270A002E6743 /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
-		DA8208B522343717002E6743 /* Cart+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cart+Extensions.swift"; sourceTree = "<group>"; };
+		DA8208B522343717002E6743 /* LocalCart+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCart+Extensions.swift"; sourceTree = "<group>"; };
 		DA84549D222D1EA80052A8D2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DA84549E222D1EA80052A8D2 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		DA8454A1222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+LoginViewController.swift"; sourceTree = "<group>"; };
@@ -139,6 +147,10 @@
 		DAC9946E222BE80B000282F1 /* DishesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewModel.swift; sourceTree = "<group>"; };
 		DAC99472222BE97C000282F1 /* DishTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishTableViewCell.swift; sourceTree = "<group>"; };
 		DAC99473222BE97C000282F1 /* DishTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishTableViewCell.xib; sourceTree = "<group>"; };
+		DAD4B106223D1BAF009E6F84 /* LocalCartDish+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCartDish+Extensions.swift"; sourceTree = "<group>"; };
+		DADD68C8223AB6BA00D65C7A /* NavigationService+AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+AddressViewController.swift"; sourceTree = "<group>"; };
+		DADD68CE223AB7DE00D65C7A /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
+		DADD68CF223AB7DE00D65C7A /* AddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
 		DADF5A25222AAE460064DB75 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		DADF5A27222AAE5A0064DB75 /* LeadKitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadKitError.swift; sourceTree = "<group>"; };
 		DADFF2BF222E847300BB6404 /* DishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishViewModel.swift; sourceTree = "<group>"; };
@@ -196,6 +208,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA126728223BBFFC0049215B /* AddressController */ = {
+			isa = PBXGroup;
+			children = (
+				DA126729223BC0170049215B /* AddressTableViewCell.swift */,
+				DA12672A223BC0170049215B /* AddressTableViewCell.xib */,
+			);
+			path = AddressController;
+			sourceTree = "<group>";
+		};
 		DA57E4D8222C56CA0086B5DA /* ChefViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,9 +247,10 @@
 		DA8208B422343708002E6743 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DA8208B522343717002E6743 /* Cart+Extensions.swift */,
 				DA93639C22395AF000DF8951 /* DeliverySlot+Extensions.swift */,
 				DAAD192C2236E95400543AE0 /* Dish+Extensions.swift */,
+				DA8208B522343717002E6743 /* LocalCart+Extensions.swift */,
+				DAD4B106223D1BAF009E6F84 /* LocalCartDish+Extensions.swift */,
 				DAF86AF62237F44100070B76 /* Order+Extensions.swift */,
 			);
 			path = Models;
@@ -429,6 +451,24 @@
 				DAC99473222BE97C000282F1 /* DishTableViewCell.xib */,
 			);
 			path = Dish;
+			sourceTree = "<group>";
+		};
+		DADD68C6223AB65A00D65C7A /* AddressViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DADD68C8223AB6BA00D65C7A /* NavigationService+AddressViewController.swift */,
+				DADD68C7223AB69700D65C7A /* View */,
+			);
+			path = AddressViewController;
+			sourceTree = "<group>";
+		};
+		DADD68C7223AB69700D65C7A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DADD68CE223AB7DE00D65C7A /* AddressViewController.swift */,
+				DADD68CF223AB7DE00D65C7A /* AddressViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DADF5A24222AAE370064DB75 /* Enums */ = {
@@ -684,6 +724,7 @@
 		DAFA9BA52228914E00B2CD4D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DADD68C6223AB65A00D65C7A /* AddressViewController */,
 				DADFF2D2222EC26900BB6404 /* BaseStatefulController */,
 				DADFF2E2222ED87200BB6404 /* BaseTableViewController */,
 				DAF86AEB2237BEAC00070B76 /* CartViewController */,
@@ -704,6 +745,7 @@
 		DAFA9BA62228915400B2CD4D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				DA126728223BBFFC0049215B /* AddressController */,
 				DAF4FE2F222AD7AD00F208DB /* ChefsController */,
 				DAC99470222BE95F000282F1 /* DishesController */,
 			);
@@ -835,10 +877,12 @@
 				DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */,
 				DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */,
 				DAC9946D222BE7F3000282F1 /* DishesViewController.xib in Resources */,
+				DA12672C223BC0170049215B /* AddressTableViewCell.xib in Resources */,
 				DADFF2C4222E848000BB6404 /* DishViewController.xib in Resources */,
 				DA979BEF222C914F00D452B9 /* ProfileViewController.xib in Resources */,
 				DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */,
 				DADFF2CD222E878C00BB6404 /* RegisterViewController.xib in Resources */,
+				DADD68D1223AB7DE00D65C7A /* AddressViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +988,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA12672B223BC0170049215B /* AddressTableViewCell.swift in Sources */,
 				DA9363AE223964F600DF8951 /* DeliverySlotsViewController.swift in Sources */,
 				DAAD193322371D9400543AE0 /* PlaceholderConfigurable.swift in Sources */,
 				DAC9946C222BE7F3000282F1 /* DishesViewController.swift in Sources */,
@@ -977,6 +1022,7 @@
 				DA979BEB222C914100D452B9 /* ProfileViewModel.swift in Sources */,
 				DAFD096B22297AA400F1255A /* NetworkService.swift in Sources */,
 				DAF86AF02237BEF300070B76 /* CartViewController.swift in Sources */,
+				DADD68D0223AB7DE00D65C7A /* AddressViewController.swift in Sources */,
 				DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */,
 				DAA8CD30222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift in Sources */,
 				DA9E0749222E6D910094A69D /* UserDefaults+UserSession.swift in Sources */,
@@ -998,14 +1044,16 @@
 				DAF4FE1F222ACFEF00F208DB /* NavigationService.swift in Sources */,
 				DADFF2E8222ED89600BB6404 /* BaseTableViewController.swift in Sources */,
 				DAF4FE33222AD82200F208DB /* ChefTableViewCell.swift in Sources */,
-				DA8208B622343717002E6743 /* Cart+Extensions.swift in Sources */,
+				DA8208B622343717002E6743 /* LocalCart+Extensions.swift in Sources */,
 				DA9363A122395F5E00DF8951 /* CheckoutViewController.swift in Sources */,
 				DA57E4E0222C57790086B5DA /* ChefViewController.swift in Sources */,
 				DADFF2C6222E84BB00BB6404 /* NavigationService+DishViewController.swift in Sources */,
 				DAF4FE2C222AD30F00F208DB /* UIViewController+Extensions.swift in Sources */,
+				DADD68C9223AB6BA00D65C7A /* NavigationService+AddressViewController.swift in Sources */,
 				DA9363B5223984E200DF8951 /* Array+Extensions.swift in Sources */,
 				DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */,
 				DADFF2D1222E888700BB6404 /* NavigationService+RegisterViewController.swift in Sources */,
+				DAD4B107223D1BAF009E6F84 /* LocalCartDish+Extensions.swift in Sources */,
 				DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */,
 				DAF86AF92237F48400070B76 /* OrderRequests.swift in Sources */,
 				DAAFED6E222E592B00F8F1BE /* UsersRequests.swift in Sources */,
