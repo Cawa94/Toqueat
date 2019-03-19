@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ProfileViewController: BaseStatefulController<User> {
+class ChefProfileViewController: BaseStatefulController<Chef> {
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -12,9 +12,9 @@ class ProfileViewController: BaseStatefulController<User> {
     @IBOutlet weak var zipcodeLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
 
-    var profileViewModel: ProfileViewModel! {
+    var chefProfileViewModel: ChefProfileViewModel! {
         didSet {
-            viewModel = profileViewModel
+            viewModel = chefProfileViewModel
         }
     }
 
@@ -30,13 +30,13 @@ class ProfileViewController: BaseStatefulController<User> {
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        welcomeLabel.text = "Ciao utente normale"
-        nameLabel.text = profileViewModel.name
-        lastNameLabel.text = profileViewModel.lastname
-        emailLabel.text = profileViewModel.email
-        addressLabel.text = profileViewModel.address
-        zipcodeLabel.text = profileViewModel.zipcode
-        cityLabel.text = profileViewModel.city
+        welcomeLabel.text = "Ciao Chef"
+        nameLabel.text = chefProfileViewModel.name
+        lastNameLabel.text = chefProfileViewModel.lastname
+        emailLabel.text = chefProfileViewModel.email
+        addressLabel.text = chefProfileViewModel.address
+        zipcodeLabel.text = chefProfileViewModel.zipcode
+        cityLabel.text = chefProfileViewModel.city
     }
 
     override func onLoadingState() {

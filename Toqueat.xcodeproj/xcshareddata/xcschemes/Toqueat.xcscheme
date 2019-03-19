@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DAFA9B702228907100B2CD4D"
-               BuildableName = "MeChef.app"
-               BlueprintName = "MeChef"
-               ReferencedContainer = "container:MeChef.xcodeproj">
+               BuildableName = "Toqueat.app"
+               BlueprintName = "Toqueat"
+               ReferencedContainer = "container:Toqueat.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DAFA9B702228907100B2CD4D"
-            BuildableName = "MeChef.app"
-            BlueprintName = "MeChef"
-            ReferencedContainer = "container:MeChef.xcodeproj">
+            BuildableName = "Toqueat.app"
+            BlueprintName = "Toqueat"
+            ReferencedContainer = "container:Toqueat.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DAFA9B702228907100B2CD4D"
-            BuildableName = "MeChef.app"
-            BlueprintName = "MeChef"
-            ReferencedContainer = "container:MeChef.xcodeproj">
+            BuildableName = "Toqueat.app"
+            BlueprintName = "Toqueat"
+            ReferencedContainer = "container:Toqueat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DAFA9B702228907100B2CD4D"
-            BuildableName = "MeChef.app"
-            BlueprintName = "MeChef"
-            ReferencedContainer = "container:MeChef.xcodeproj">
+            BuildableName = "Toqueat.app"
+            BlueprintName = "Toqueat"
+            ReferencedContainer = "container:Toqueat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -26,7 +26,8 @@ public struct ApiRequestParameters {
 
     static var commonHeaders: HTTPHeaders {
         if let authToken = SessionService.session?.authToken {
-            return ["Authorization": authToken]
+            return ["Authorization": authToken,
+                    "Is-Chef": "\(SessionService.isChef)"]
         } else {
             return [:]
         }
@@ -34,10 +35,11 @@ public struct ApiRequestParameters {
 
     init(relativeUrl: String, method: HTTPMethod = .get, parameters: Parameters? = nil) {
         let fullUrl = NetworkService.baseUrl + relativeUrl
+        let urlEncoding = URLEncoding(destination: .methodDependent, arrayEncoding: .brackets, boolEncoding: .literal)
         self.init(url: fullUrl,
                   method: method,
                   parameters: parameters,
-                  encoding: URLEncoding.default,
+                  encoding: urlEncoding,
                   headers: ApiRequestParameters.commonHeaders)
     }
 

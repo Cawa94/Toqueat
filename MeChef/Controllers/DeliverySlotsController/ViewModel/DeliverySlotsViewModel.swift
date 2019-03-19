@@ -1,13 +1,13 @@
 import Foundation
 import SwiftDate
 
-final class DeliverySlotsViewModel: BaseStatefulViewModel<Chef> {
+final class DeliverySlotsViewModel: BaseStatefulViewModel<[DeliverySlot]> {
 
     var deliverySlots: [DeliverySlot] = []
 
     init(chefId: Int64) {
-        let chefRequest = NetworkService.shared.getChefWith(id: chefId)
-        super.init(dataSource: chefRequest)
+        let slotsRequest = NetworkService.shared.getDeliverySlotFor(chefId: chefId)
+        super.init(dataSource: slotsRequest)
     }
 
 }

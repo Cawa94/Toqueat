@@ -3,8 +3,8 @@ import Alamofire
 
 extension NetworkService {
 
-    func getCityWith(id: Int64) -> Single<City> {
-        let apiParameters = ApiRequestParameters(relativeUrl: "cities/\(id)")
+    func getCityWith(cityId: Int64) -> Single<City> {
+        let apiParameters = ApiRequestParameters(relativeUrl: "cities/\(cityId)")
 
         return request(with: apiParameters)
     }

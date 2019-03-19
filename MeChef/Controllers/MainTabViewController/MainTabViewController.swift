@@ -9,23 +9,27 @@ class MainTabViewController: UITabBarController {
         UITabBar.appearance().barTintColor = .white
         UITabBar.appearance().backgroundColor = .white
 
-        let dishesController = NavigationService.dishesControllerTab()
+        if !SessionService.isChef {
+            let dishesController = NavigationService.dishesTab()
+            let chefsController = NavigationService.chefsTab()
+            let profileController = NavigationService.profileOrEmptyTab()
 
-        let chefsController = NavigationService.chefsControllerTab()
+            let viewControllerList = [ dishesController, chefsController, profileController ]
+            viewControllers = viewControllerList
+        } else if let chefId = SessionService.session?.chef?.id {
+            let chefDishesController = NavigationService.chefDishesTab(chefId: chefId)
+            let chefOrdersController = NavigationService.chefOrderTab(chefId: chefId)
+            let chefProfileController = NavigationService.chefProfileTab(chefId: chefId)
 
-        let profileController = NavigationService.loginOrProfileTab()
-
-        let viewControllerList = [ dishesController, chefsController, profileController ]
-        viewControllers = viewControllerList
+            let viewControllerList = [ chefDishesController, chefOrdersController, chefProfileController ]
+            viewControllers = viewControllerList
+        }
     }
 
-    func reloadDishesChefsControllers() {
-        viewControllers?[0] = NavigationService.dishesControllerTab()
-        viewControllers?[1] = NavigationService.chefsControllerTab()
-    }
-
-    func reloadProfileController() {
-        viewControllers?[2] = NavigationService.loginOrProfileTab()
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if (item == tabBar.items?.last) && !SessionService.isLoggedIn {
+            NavigationService.makeLoginRootController()
+        }
     }
 
 }

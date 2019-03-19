@@ -5,14 +5,14 @@ import ObjectMapper
 public extension Alamofire.SessionManager {
 
     /// The default acceptable range 200...299
-    static let acceptableStatusCodes = Array(200..<300)
+    static let acceptableStatusCodes = Array(200..<499)
 
 }
 
 class NetworkService {
 
-    static let baseUrl = "http://192.168.1.168:3000/" // Home
-    //static let baseUrl = "http://169.254.176.54:3000/" // Office
+    //static let baseUrl = "http://192.168.1.168:3000/" // Home
+    static let baseUrl = "http://169.254.88.156:3000/" // Office
 
     // Alamofire Settings
     var defaultTimeoutInterval: TimeInterval = 20.0

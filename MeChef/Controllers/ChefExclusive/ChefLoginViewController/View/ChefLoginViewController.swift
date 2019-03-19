@@ -1,7 +1,7 @@
 import UIKit
 import RxSwift
 
-class LoginViewController: UIViewController {
+class ChefLoginViewController: UIViewController {
 
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
@@ -17,15 +17,17 @@ class LoginViewController: UIViewController {
             else { return }
         let bodyParameters = LoginParameters(email: email,
                                              password: password,
-                                             isChef: false)
+                                             isChef: true)
         NetworkService.shared.login(loginBody: bodyParameters)
-            .flatMap { response -> Single<User> in
-                SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)
-                return NetworkService.shared.getUserInfo()
+            .flatMap { response -> Single<Chef> in
+                SessionService.session = UserSession(authToken: response.authToken,
+                                                     user: nil,
+                                                     chef: nil)
+                return NetworkService.shared.getChefWith(chefId: response.chefId ?? -1)
             }
             .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { user in
-                SessionService.updateWith(user: user)
+            .subscribe(onSuccess: { chef in
+                SessionService.updateWith(chef: chef)
                 CartService.localCart = .new
                 NavigationService.makeMainTabRootController()
             }, onError: { error in
@@ -34,17 +36,13 @@ class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    @IBAction func registerAction(_ sender: Any) {
-        NavigationService.pushRegisterViewController()
-    }
-
-    @IBAction func loginAsChefAction(_ sender: Any) {
-        NavigationService.makeChefLoginRootController()
+    @IBAction func standardLoginAction(_ sender: Any) {
+        NavigationService.makeLoginRootController()
     }
 
 }
 
-extension LoginViewController: UITextFieldDelegate {
+extension ChefLoginViewController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()

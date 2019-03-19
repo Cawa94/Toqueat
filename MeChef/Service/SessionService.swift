@@ -18,12 +18,24 @@ struct SessionService {
         }
     }
 
+    static var isChef: Bool {
+        return session?.chef != nil
+    }
+
     static func updateWith(user: User) {
         guard let token = SessionService.session?.authToken
             else { return }
         SessionService.session = UserSession(authToken: token,
-                                             user: user)
-        NavigationService.reloadMainTabControllers()
+                                             user: user,
+                                             chef: nil)
+    }
+
+    static func updateWith(chef: Chef) {
+        guard let token = SessionService.session?.authToken
+            else { return }
+        SessionService.session = UserSession(authToken: token,
+                                             user: nil,
+                                             chef: chef)
     }
 
     static var isLoggedIn: Bool {
@@ -31,9 +43,9 @@ struct SessionService {
     }
 
     static func logout() {
-        SessionService.session = nil
+        session = nil
         CartService.localCart = nil
-        NavigationService.reloadMainTabControllers()
+        NavigationService.makeLoginRootController()
     }
 
 }

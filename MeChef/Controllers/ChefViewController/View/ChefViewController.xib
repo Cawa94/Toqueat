@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChefViewController" customModule="MeChef" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChefViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
                 <outlet property="chefImageView" destination="416-Ai-kQs" id="btd-8d-aau"/>
                 <outlet property="chefNameLabel" destination="I1O-EQ-G6X" id="Iok-ir-5v7"/>
@@ -64,7 +64,7 @@
                 <constraint firstItem="I1O-EQ-G6X" firstAttribute="top" secondItem="416-Ai-kQs" secondAttribute="bottom" constant="20" id="wo8-ou-8RI"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-826" y="119"/>
+            <point key="canvasLocation" x="-1308" y="-81"/>
         </view>
     </objects>
 </document>

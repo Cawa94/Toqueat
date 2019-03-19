@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="MeChef" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
                 <outlet property="addressLabel" destination="xZA-nz-X1O" id="Pn2-Dg-fI3"/>
                 <outlet property="cityLabel" destination="BNl-GR-cak" id="BKA-pi-zAc"/>
@@ -18,6 +18,7 @@
                 <outlet property="lastNameLabel" destination="14M-16-oWz" id="gN6-Sq-wxs"/>
                 <outlet property="nameLabel" destination="ToW-Vm-X1T" id="n7g-vw-iJs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="welcomeLabel" destination="k9k-7T-sT5" id="ZOu-Z0-rqF"/>
                 <outlet property="zipcodeLabel" destination="xBw-VG-SBa" id="V2G-6K-DQ8"/>
             </connections>
         </placeholder>

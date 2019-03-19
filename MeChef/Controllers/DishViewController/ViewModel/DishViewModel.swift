@@ -6,7 +6,7 @@ final class DishViewModel: BaseStatefulViewModel<Dish> {
 
     init(dishId: Int64) {
         self.dishId = dishId
-        let dishRequest = NetworkService.shared.getDishWith(id: dishId)
+        let dishRequest = NetworkService.shared.getDishWith(dishId: dishId)
         super.init(dataSource: dishRequest)
     }
 

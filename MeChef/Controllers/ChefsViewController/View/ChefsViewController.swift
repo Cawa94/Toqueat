@@ -20,6 +20,10 @@ class ChefsViewController: BaseTableViewController<[Chef], Chef> {
 
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChefTableViewCell",
                                                  for: indexPath)

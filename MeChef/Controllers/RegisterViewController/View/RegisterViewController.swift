@@ -43,14 +43,14 @@ class RegisterViewController: BaseStatefulController<[City]>,
                                                         zipcode: zipcode)
         NetworkService.shared.register(registerParameters: registrationParameters)
             .flatMap { response -> Single<User> in
-                SessionService.session = UserSession(authToken: response.authToken, user: nil)
+                SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)
                 return NetworkService.shared.getUserInfo()
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { user in
                 SessionService.updateWith(user: user)
                 CartService.localCart = .new
-                NavigationService.replaceLastTabItem()
+                NavigationService.makeMainTabRootController()
             }, onError: { error in
                 debugPrint(error)
             })

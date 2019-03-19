@@ -2,17 +2,18 @@ import UIKit
 import RxSwift
 import Nuke
 
-class ChefTableViewCell: UITableViewCell {
+class ChefOrderTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var recipesNumberLabel: UILabel!
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var orderIdLabel: UILabel!
+    @IBOutlet weak var userIdLabel: UILabel!
+    @IBOutlet weak var deliveryLabel: UILabel!
+    @IBOutlet weak var dishesLabel: UILabel!
 
     var disposeBag = DisposeBag()
-    private var viewModel: ChefTableViewModel?
+    private var viewModel: ChefOrderTableViewModel?
 
     override func prepareForReuse() {
         self.disposeBag = DisposeBag()
@@ -24,9 +25,9 @@ class ChefTableViewCell: UITableViewCell {
 
 }
 
-extension ChefTableViewCell: PlaceholderConfigurable {
+extension ChefOrderTableViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = ChefTableViewModel
+    typealias ContentViewModelType = ChefOrderTableViewModel
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -37,7 +38,8 @@ extension ChefTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWithLoading(_ loading: Bool = false, contentViewModel: ChefTableViewModel? = nil) {
+    func configureWithLoading(_ loading: Bool = false,
+                              contentViewModel: ChefOrderTableViewModel? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -45,15 +47,13 @@ extension ChefTableViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: ChefTableViewModel) {
+    func configure(contentViewModel: ChefOrderTableViewModel) {
         self.viewModel = contentViewModel
 
-        nameLabel.text = contentViewModel.chef.name
-        recipesNumberLabel.text = "Ricette \(contentViewModel.chef.dishes?.count ?? 0)"
-        if let url = contentViewModel.chef.avatarLink {
-            Nuke.loadImage(with: url, into: avatarImageView)
-            avatarImageView.contentMode = .scaleAspectFill
-        }
+        orderIdLabel.text = "ID: \(contentViewModel.order.id)"
+        userIdLabel.text = "USER ID: \(contentViewModel.order.userId)"
+        deliveryLabel.text = "DELIVERY \(contentViewModel.delivery)"
+        dishesLabel.text = "DISHES COUNT: \(contentViewModel.order.dishes?.count ?? 0)"
     }
 
 }
