@@ -28,7 +28,6 @@ class ChefLoginViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { chef in
                 SessionService.updateWith(chef: chef)
-                CartService.localCart = .new
                 NavigationService.makeMainTabRootController()
             }, onError: { error in
                 debugPrint(error)

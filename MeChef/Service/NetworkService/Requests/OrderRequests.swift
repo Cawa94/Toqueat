@@ -16,7 +16,7 @@ extension NetworkService {
     }
 
     func createNewOrderWith(parameters: OrderCreateParameters) -> Single<Order> {
-        let body = parameters
+        let body = OrderBody(order: parameters)
         let apiParameters = ApiRequestParameters(relativeUrl: "orders",
                                                  method: .post,
                                                  parameters: body.toJSON())

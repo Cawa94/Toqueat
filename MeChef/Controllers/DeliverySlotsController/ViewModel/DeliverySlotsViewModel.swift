@@ -46,4 +46,9 @@ extension DeliverySlotsViewModel {
             .first(where: { $0.weekdayId == weekdayId && $0.hourId == hourId })?.hourRange ?? "Unknown"
     }
 
+    func getDeliverySlotIdWith(hourId: Int64, weekdayId: Int64) -> Int64 {
+        return deliverySlots
+            .first(where: { $0.weekdayId == weekdayId && $0.hourId == hourId })?.id ?? -1
+    }
+
 }

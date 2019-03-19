@@ -63,6 +63,8 @@ class DeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
             hourSelectedIndex = row
             let weekdayId = deliverySlotsViewModel.listOfWeekdaysIds[weekdaySelectedIndex]
             let hourId = hoursIds[hourSelectedIndex]
+            let deliverySlotId = deliverySlotsViewModel.getDeliverySlotIdWith(hourId: hourId, weekdayId: weekdayId)
+            CartService.localCart = CartService.localCart?.copyWith(deliverySlotId: deliverySlotId)
             deliverySlotVariable.value = "\(deliverySlotsViewModel.weekdayNameWith(weekdayId: weekdayId))"
                 + " at \(deliverySlotsViewModel.hoursRangeWith(hourId: hourId, weekdayId: weekdayId))"
         }

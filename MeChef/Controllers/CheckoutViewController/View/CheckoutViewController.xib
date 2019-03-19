@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutViewController" customModule="MeChef" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
                 <outlet property="addressLabel" destination="Wyv-Sl-JNs" id="yLS-tC-JD2"/>
                 <outlet property="deliverySlotLabel" destination="5vM-TV-jun" id="001-7G-fVs"/>
@@ -57,6 +57,13 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19T-VR-o39">
+                    <rect key="frame" x="132.5" y="517" width="110" height="30"/>
+                    <state key="normal" title="Complete Order"/>
+                    <connections>
+                        <action selector="placeOrder:" destination="-1" eventType="touchUpInside" id="TEZ-Kv-8EX"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -68,8 +75,10 @@
                 <constraint firstItem="Wyv-Sl-JNs" firstAttribute="centerY" secondItem="5vM-TV-jun" secondAttribute="centerY" id="LJh-cr-fxI"/>
                 <constraint firstItem="YOY-mq-gjD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Pqn-VC-PW1"/>
                 <constraint firstItem="YOY-mq-gjD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="T8J-7B-4mW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="19T-VR-o39" secondAttribute="bottom" constant="120" id="UAv-Ke-aBM"/>
                 <constraint firstItem="5vM-TV-jun" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Y0Y-P2-cjV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CYR-ho-HiO" secondAttribute="trailing" constant="10" id="cQt-iy-Kv5"/>
+                <constraint firstItem="19T-VR-o39" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dyX-wF-yPi"/>
                 <constraint firstItem="CYR-ho-HiO" firstAttribute="centerY" secondItem="nCc-Ix-Mq9" secondAttribute="centerY" id="fOg-5o-gUI"/>
                 <constraint firstItem="5vM-TV-jun" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.45" id="gBy-qg-Hag"/>
                 <constraint firstItem="Wyv-Sl-JNs" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.45" id="k1a-Nh-O0E"/>

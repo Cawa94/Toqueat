@@ -21,6 +21,8 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
                            forCellReuseIdentifier: "DishTableViewCell")
     }
 
+    // MARK: - Actions
+
     @IBAction func selectDeliverySlotAction(_ sender: Any) {
         guard let chefId = checkoutViewModel.chefId
             else { return }
@@ -40,6 +42,24 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
             .drive(addressLabel.rx.text)
             .disposed(by: disposeBag)
         NavigationService.presentAddress(controller: addressController)
+    }
+
+    @IBAction func placeOrder(_ sender: Any) {
+        guard let userId = SessionService.session?.user?.id,
+            let deliverySlotId = CartService.localCart?.deliverySlotId,
+            let dishes = CartService.localCart?.dishes,
+            let chefId = CartService.localCart?.chefId
+            else { return }
+        let orderParameters = OrderCreateParameters(userId: userId, dishes: dishes.map { $0.id },
+                                                    chefId: chefId, deliverySlotId: deliverySlotId,
+                                                    monthday: "")
+        NetworkService.shared.createNewOrderWith(parameters: orderParameters)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { order in
+                self.presentAlertWith(title: "YEAH", message: "Order placed with ID: \(order.id)")
+                CartService.localCart = .new
+            }, onError: { _ in })
+            .disposed(by: disposeBag)
     }
 
     // MARK: - UITableViewDelegate
