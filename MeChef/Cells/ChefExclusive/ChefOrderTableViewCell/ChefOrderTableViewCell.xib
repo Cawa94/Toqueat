@@ -12,18 +12,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ChefOrderTableViewCell" customModule="Toqueat" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="250" id="KGk-i7-Jjw" customClass="ChefOrderTableViewCell" customModule="Toqueat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="249.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMg-va-PI4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="249.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8N-9M-eVV">
-                                <rect key="frame" x="116.5" y="64.5" width="87" height="20.5"/>
+                                <rect key="frame" x="116.5" y="114.5" width="87" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,10 +36,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="33j-Pf-eWY">
-                        <rect key="frame" x="10" y="5" width="300" height="139.5"/>
+                        <rect key="frame" x="10" y="5" width="300" height="239.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="RZR-uV-V0h">
-                                <rect key="frame" x="5" y="5" width="290" height="115"/>
+                                <rect key="frame" x="5" y="5" width="290" height="228.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fks-NO-Yyv">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="20.5"/>
@@ -65,6 +65,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJg-jQ-OtW">
+                                        <rect key="frame" x="0.0" y="126" width="290" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7X-iy-Cto">
+                                        <rect key="frame" x="0.0" y="157.5" width="290" height="30"/>
+                                        <state key="normal" title="Confirm order">
+                                            <color key="titleColor" red="0.20784313730000001" green="0.56470588239999997" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EU8-ab-h53">
+                                        <rect key="frame" x="0.0" y="198.5" width="290" height="30"/>
+                                        <state key="normal" title="Cancel order">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -89,14 +107,17 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cancelOrderButton" destination="EU8-ab-h53" id="TMH-OP-cO7"/>
+                <outlet property="confirmOrderButton" destination="G7X-iy-Cto" id="aAT-2B-bEM"/>
                 <outlet property="contentContainerViewOutlet" destination="33j-Pf-eWY" id="7bi-bN-dn3"/>
                 <outlet property="deliveryLabel" destination="XZD-tN-pkr" id="Zyz-MX-mUJ"/>
                 <outlet property="dishesLabel" destination="i8l-lC-G2M" id="zQ8-3A-ABK"/>
                 <outlet property="orderIdLabel" destination="Fks-NO-Yyv" id="LTC-Lu-K5i"/>
                 <outlet property="placeholderContainerViewOutlet" destination="uMg-va-PI4" id="INA-Ex-XXJ"/>
+                <outlet property="stateLabel" destination="mJg-jQ-OtW" id="sQS-d6-ELH"/>
                 <outlet property="userIdLabel" destination="4VF-Lr-RG6" id="ece-4Z-i33"/>
             </connections>
-            <point key="canvasLocation" x="-21" y="37"/>
+            <point key="canvasLocation" x="-243.19999999999999" y="28.785607196401802"/>
         </tableViewCell>
     </objects>
 </document>

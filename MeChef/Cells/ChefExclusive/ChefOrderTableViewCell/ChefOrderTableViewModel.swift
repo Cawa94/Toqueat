@@ -1,3 +1,5 @@
+import Foundation
+
 struct ChefOrderTableViewModel {
 
     let order: Order
@@ -11,7 +13,9 @@ struct ChefOrderTableViewModel {
 extension ChefOrderTableViewModel {
 
     var delivery: String {
-        return "\(order.deliverySlot.deliveryTime) \(order.monthday ?? "")"
+        let date = order.deliveryDate
+        return "\(date.weekdayName(.default)) \(date.day) \(date.monthName(.default))"
+            + " at \(Calendar.current.component(.hour, from: date))"
     }
 
 }

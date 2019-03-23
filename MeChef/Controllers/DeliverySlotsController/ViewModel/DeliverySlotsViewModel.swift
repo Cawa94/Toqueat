@@ -1,5 +1,4 @@
 import Foundation
-import SwiftDate
 
 final class DeliverySlotsViewModel: BaseStatefulViewModel<[DeliverySlot]> {
 
@@ -49,6 +48,20 @@ extension DeliverySlotsViewModel {
     func getDeliverySlotIdWith(hourId: Int64, weekdayId: Int64) -> Int64 {
         return deliverySlots
             .first(where: { $0.weekdayId == weekdayId && $0.hourId == hourId })?.id ?? -1
+    }
+
+    func deliveryDate(weekdayId: Int64, hourId: Int64) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        let dayComponents = DateComponents(calendar: dateFormatter.calendar, weekday: Int(weekdayId))
+        let deliveryDay = dateFormatter.calendar.nextDate(after: Date(),
+                                                          matching: dayComponents,
+                                                          matchingPolicy: .nextTimePreservingSmallerComponents)
+        guard let deliveryDate = deliveryDay?.dateBySet(hour: Int(hourId) + 5, min: nil, secs: nil)
+            else { fatalError("Cannot create date") }
+
+        return deliveryDate
     }
 
 }

@@ -24,4 +24,22 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    func changeOrderStatusWith(orderId: Int64, state: String) -> Single<Order> {
+        let parameters = ["state": state]
+        let apiParameters = ApiRequestParameters(relativeUrl: "orders/\(orderId)/set_new_state",
+                                                 method: .patch,
+                                                 parameters: parameters)
+
+        return request(with: apiParameters)
+    }
+
+    func setStuartIdFor(orderId: Int64, stuartId: Int64) -> Single<Order> {
+        let parameters = ["stuart_id": stuartId]
+        let apiParameters = ApiRequestParameters(relativeUrl: "orders/\(orderId)/set_stuart_id",
+                                                 method: .patch,
+                                                 parameters: parameters)
+
+        return request(with: apiParameters)
+    }
+
 }

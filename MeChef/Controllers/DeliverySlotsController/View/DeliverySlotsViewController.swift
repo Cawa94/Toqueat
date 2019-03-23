@@ -63,8 +63,9 @@ class DeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
             hourSelectedIndex = row
             let weekdayId = deliverySlotsViewModel.listOfWeekdaysIds[weekdaySelectedIndex]
             let hourId = hoursIds[hourSelectedIndex]
-            let deliverySlotId = deliverySlotsViewModel.getDeliverySlotIdWith(hourId: hourId, weekdayId: weekdayId)
-            CartService.localCart = CartService.localCart?.copyWith(deliverySlotId: deliverySlotId)
+            guard let deliveryDate = deliverySlotsViewModel.deliveryDate(weekdayId: weekdayId, hourId: hourId)
+                else { return }
+            CartService.localCart = CartService.localCart?.copyWith(deliveryDate: deliveryDate)
             deliverySlotVariable.value = "\(deliverySlotsViewModel.weekdayNameWith(weekdayId: weekdayId))"
                 + " at \(deliverySlotsViewModel.hoursRangeWith(hourId: hourId, weekdayId: weekdayId))"
         }
@@ -84,7 +85,7 @@ class DeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
     @IBAction func dismissAction(_ sender: Any) {
         guard deliverySlotVariable.value != nil
             else {
-                presentAlertWith(title: "WARNING", message: "Please select pick a delivery slot")
+                presentAlertWith(title: "WARNING", message: "Please pick a delivery slot")
                 return
             }
         NavigationService.dismissDeliverySlotsController()

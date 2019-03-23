@@ -1,4 +1,6 @@
 import UIKit
+import RxSwift
+import MBProgressHUD
 
 extension UIViewController {
 
@@ -35,6 +37,30 @@ extension UIViewController {
             }
         }
         self.present(alert, animated: true, completion: nil)
+    }
+
+    typealias GetErrorTextClosure = (Error) -> String?
+
+    func hudOperationWithRetry<ResultType>(operationSingle: Single<ResultType>,
+                                           getErrorClosure: GetErrorTextClosure? = { _ in "" },
+                                           onSuccessClosure: ((ResultType) -> Void)?,
+                                           disposeBag: DisposeBag) {
+
+        let progressHud = MBProgressHUD.showAdded(to: AppDelegate.shared.appWindow, animated: true)
+
+        operationSingle
+            .observeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { result in
+                progressHud.mode = .customView
+                progressHud.customView = UIImageView(image: UIImage(named: "checked"))
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                    progressHud.hide(animated: true)
+                    onSuccessClosure?(result)
+                }
+            }, onError: { _ in
+                progressHud.hide(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 
 }

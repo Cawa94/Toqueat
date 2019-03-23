@@ -23,9 +23,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @IBAction func startCheckoutAction(_ sender: Any) {
-        guard let cart = CartService.localCart
+        guard let cart = CartService.localCart, let chefId = cart.chefId
             else { return }
-        NavigationService.pushCheckoutViewController(cart: cart)
+        NavigationService.pushCheckoutViewController(cart: cart, chefId: chefId)
     }
 
     // MARK: - UITableViewDelegate

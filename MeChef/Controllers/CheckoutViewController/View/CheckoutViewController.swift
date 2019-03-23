@@ -1,12 +1,17 @@
 import RxSwift
 
-class CheckoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
 
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var deliverySlotLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var deliveryPriceLabel: UILabel!
 
-    var checkoutViewModel: CheckoutViewModel!
+    var checkoutViewModel: CheckoutViewModel! {
+        didSet {
+            tableViewModel = checkoutViewModel
+        }
+    }
+
     private let disposeBag = DisposeBag()
 
     override var prefersStatusBarHidden: Bool {
@@ -19,44 +24,48 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
 
         tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "DishTableViewCell")
+        CartService.localCartDriver
+            .drive(onNext: { cart in
+                self.checkoutViewModel.getDeliveryCost(pickupAt: cart?.deliveryDate,
+                                                       userAddress: self.addressLabel.text ?? "",
+                                                       userComment: SessionService.session?.user?.apartment)
+                    .asDriver(onErrorJustReturn: "0.00 EUR")
+                    .drive(self.deliveryPriceLabel.rx.text)
+                    .disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Actions
 
     @IBAction func selectDeliverySlotAction(_ sender: Any) {
-        guard let chefId = checkoutViewModel.chefId
-            else { return }
-        let deliverySlotsController = NavigationService.deliverySlotsViewController(chefId: chefId)
+        let deliverySlotsController = NavigationService
+            .deliverySlotsViewController(chefId: checkoutViewModel.chefId)
         deliverySlotsController.deliverySlotDriver
             .drive(self.deliverySlotLabel.rx.text)
             .disposed(by: disposeBag)
         NavigationService.presentDeliverySlots(controller: deliverySlotsController)
     }
 
-    @IBAction func selectAddressAction(_ sender: Any) {
-        guard let city = SessionService.session?.user?.city.name
-            else { return }
-        let addressController = NavigationService.addressViewController(city: city)
-        addressController.selectedAddressDriver
-            .map { $0.fullAddress }
-            .drive(addressLabel.rx.text)
-            .disposed(by: disposeBag)
-        NavigationService.presentAddress(controller: addressController)
-    }
-
     @IBAction func placeOrder(_ sender: Any) {
         guard let userId = SessionService.session?.user?.id,
-            let deliverySlotId = CartService.localCart?.deliverySlotId,
+            let deliveryDate = CartService.localCart?.deliveryDate,
             let dishes = CartService.localCart?.dishes,
-            let chefId = CartService.localCart?.chefId
+            let chefId = CartService.localCart?.chefId,
+            let deliveryAddress = addressLabel.text
             else { return }
-        let orderParameters = OrderCreateParameters(userId: userId, dishes: dishes.map { $0.id },
-                                                    chefId: chefId, deliverySlotId: deliverySlotId,
-                                                    monthday: "")
+        let deliveryComment = SessionService.session?.user?.apartment
+        let orderParameters = OrderCreateParameters(userId: userId, dishIds: dishes.map { $0.id },
+                                                    chefId: chefId, deliveryDate: deliveryDate,
+                                                    deliveryAddress: deliveryAddress,
+                                                    deliveryComment: deliveryComment)
         NetworkService.shared.createNewOrderWith(parameters: orderParameters)
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { order in
-                self.presentAlertWith(title: "YEAH", message: "Order placed with ID: \(order.id)")
+                self.presentAlertWith(title: "YEAH", message: "Order placed with ID: \(order.id)",
+                    actions: [ UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                        NavigationService.dismissCartNavigationController()
+                    })])
                 CartService.localCart = .new
             }, onError: { _ in })
             .disposed(by: disposeBag)
@@ -64,15 +73,15 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
 
     // MARK: - UITableViewDelegate
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return checkoutViewModel.elements.count
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
                                                  for: indexPath)
         configure(cell, at: indexPath)
@@ -93,6 +102,13 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         default:
             break
         }
+    }
+
+    // MARK: - StatefulViewController related methods
+
+    override func onResultsState() {
+        checkoutViewModel.elements = checkoutViewModel.cart.dishes ?? []
+        super.onResultsState()
     }
 
 }

@@ -1,23 +1,39 @@
 import Foundation
+import RxSwift
 
-struct CheckoutViewModel {
+final class CheckoutViewModel: BaseTableViewModel<Chef, LocalCartDish> {
 
     var cart: LocalCart
+    var chefId: Int64
+
+    init(cart: LocalCart, chefId: Int64) {
+        self.cart = cart
+        self.chefId = chefId
+        let chefRequest = NetworkService.shared.getChefWith(chefId: chefId)
+        super.init(dataSource: chefRequest)
+    }
 
 }
 
 extension CheckoutViewModel {
 
-    var chefId: Int64? {
-        return cart.chefId
-    }
-
-    var elements: [LocalCartDish] {
-        return cart.dishes ?? []
-    }
-
-    func elementAt(_ index: Int) -> LocalCartDish {
-        return elements[index]
+    func getDeliveryCost(pickupAt: Date?,
+                         userAddress: String,
+                         userComment: String?) -> Single<String> {
+        guard !isLoading
+            else { return Single.just("0.00 EUR") }
+        let pickup = result.stuartLocation
+        let dropOff = StuartLocation(address: userAddress,
+                                     comment: userComment,
+                                     contact: nil,
+                                     packageType: "small",
+                                     packageDescription: "",
+                                     clientReference: nil)
+        let jobParameters = StuartJobParameters(pickupAt: pickupAt,
+                                                pickups: [pickup],
+                                                dropoffs: [dropOff],
+                                                transportType: nil)
+        return NetworkService.shared.getStuartJobPriceWith(jobParameters)
     }
 
 }

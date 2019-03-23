@@ -33,6 +33,14 @@ public struct ApiRequestParameters {
         }
     }
 
+    static var stuartHeaders: HTTPHeaders {
+        if let stuartAuthToken = StuartService.authToken {
+            return ["Authorization": "Bearer \(stuartAuthToken)"]
+        } else {
+            return [:]
+        }
+    }
+
     init(relativeUrl: String, method: HTTPMethod = .get, parameters: Parameters? = nil) {
         let fullUrl = NetworkService.baseUrl + relativeUrl
         let urlEncoding = URLEncoding(destination: .methodDependent, arrayEncoding: .brackets, boolEncoding: .literal)
@@ -41,6 +49,16 @@ public struct ApiRequestParameters {
                   parameters: parameters,
                   encoding: urlEncoding,
                   headers: ApiRequestParameters.commonHeaders)
+    }
+
+    init(stuartUrl: String, method: HTTPMethod = .get, parameters: Parameters? = nil) {
+        let fullUrl = StuartService.stuartBaseUrl + stuartUrl
+        let urlEncoding = URLEncoding(destination: .methodDependent, arrayEncoding: .brackets, boolEncoding: .literal)
+        self.init(url: fullUrl,
+                  method: method,
+                  parameters: parameters,
+                  encoding: urlEncoding,
+                  headers: ApiRequestParameters.stuartHeaders)
     }
 
 }

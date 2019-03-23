@@ -11,7 +11,7 @@ class AddressViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     private var request = MKLocalSearchCompleter()
     private var matchingItems: [String] = []
-    private let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     private let selectedAddressVariable = Variable<String?>(nil)
     private var initialLocation: CLLocation!
 

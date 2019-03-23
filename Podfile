@@ -6,7 +6,7 @@ platform :ios, '11.0'
 use_frameworks!
 inhibit_all_warnings!
 
-target 'MeChef' do
+target 'Toqueat' do
   pod 'Alamofire'
   pod 'RxGesture'
   pod 'RxSwift'
@@ -19,4 +19,5 @@ target 'MeChef' do
   pod 'IQKeyboardManagerSwift'
   pod 'Nuke'
   pod 'RxOptional'
+  pod 'MBProgressHUD'
 end

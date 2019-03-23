@@ -1,0 +1,38 @@
+import RxSwift
+import Alamofire
+
+extension NetworkService {
+
+    func getStuartToken() -> Single<String> {
+        let parameters = ["client_id": StuartService.clientID,
+                          "client_secret": StuartService.clientSecret,
+                          "scope": "api",
+                          "grant_type": "client_credentials"]
+        let apiParameters = ApiRequestParameters(stuartUrl: "oauth/token",
+                                                 method: .post,
+                                                 parameters: parameters)
+
+        return (request(with: apiParameters) as Single<StuartToken>)
+            .map { $0.accessToken }
+    }
+
+    func createStuartJobWith(_ jobParameters: StuartJobParameters) -> Single<StuartJob> {
+        let body = StuartJobBody(job: jobParameters)
+        let apiParameters = ApiRequestParameters(stuartUrl: "v2/jobs",
+                                                 method: .post,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
+    func getStuartJobPriceWith(_ jobParameters: StuartJobParameters) -> Single<String> {
+        let body = StuartJobBody(job: jobParameters)
+        let apiParameters = ApiRequestParameters(stuartUrl: "v2/jobs/pricing",
+                                                 method: .post,
+                                                 parameters: body.toJSON())
+
+        return (request(with: apiParameters) as Single<StuartJobPrice>)
+            .map { "\($0.amount) \($0.currency)" }
+    }
+
+}

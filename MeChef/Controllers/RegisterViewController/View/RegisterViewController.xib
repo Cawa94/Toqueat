@@ -10,14 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="MeChef" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
+                <outlet property="apartmentTextField" destination="LtN-Rb-1lm" id="Fku-Y1-c7b"/>
                 <outlet property="cityTextField" destination="4Pp-fC-QuT" id="R0j-AA-gle"/>
                 <outlet property="confirmPasswordTextField" destination="oGc-of-Dts" id="5uC-hs-NtN"/>
                 <outlet property="emailTextField" destination="xeA-Qa-qCo" id="JSd-Sf-aMW"/>
                 <outlet property="lastnameTextField" destination="w2W-G7-kLQ" id="RiQ-l4-ygl"/>
                 <outlet property="nameTextField" destination="5Bb-g6-Pjj" id="3wg-oP-nM0"/>
-                <outlet property="numberTextField" destination="LtN-Rb-1lm" id="tDN-w6-3y7"/>
                 <outlet property="passwordTextField" destination="uUN-sM-4TH" id="gvl-ci-d9c"/>
                 <outlet property="registerButton" destination="TI4-Da-b3C" id="0bJ-aO-1eS"/>
                 <outlet property="streetTextField" destination="a2e-al-zVe" id="zwX-WP-98V"/>
@@ -132,7 +132,7 @@
                 <constraint firstItem="bXX-3t-ybO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="wmP-Hd-33i"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-244" y="29"/>
+            <point key="canvasLocation" x="-401" y="15"/>
         </view>
     </objects>
 </document>

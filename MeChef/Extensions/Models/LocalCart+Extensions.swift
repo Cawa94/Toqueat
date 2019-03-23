@@ -1,22 +1,21 @@
+import Foundation
+
 extension LocalCart {
 
     static let new = LocalCart(dishes: nil,
                                chefId: nil,
-                               deliverySlotId: nil,
-                               monthday: nil)
+                               deliveryDate: nil)
 
     func copyWith(dishes: [LocalCartDish], chefId: Int64? = nil) -> LocalCart? {
         return LocalCart(dishes: dishes,
                          chefId: chefId,
-                         deliverySlotId: deliverySlotId,
-                         monthday: monthday)
+                         deliveryDate: deliveryDate)
     }
 
-    func copyWith(deliverySlotId: Int64) -> LocalCart? {
+    func copyWith(deliveryDate: Date) -> LocalCart? {
         return LocalCart(dishes: dishes,
                          chefId: chefId,
-                         deliverySlotId: deliverySlotId,
-                         monthday: monthday)
+                         deliveryDate: deliveryDate)
     }
 
 }

@@ -99,8 +99,9 @@ extension NavigationService {
         rootNavigationController?.pushViewController(cartController, animated: true)
     }
 
-    static func pushCheckoutViewController(cart: LocalCart) {
-        let checkoutController = checkoutViewController(cart: cart)
+    static func pushCheckoutViewController(cart: LocalCart, chefId: Int64) {
+        let checkoutController = checkoutViewController(cart: cart,
+                                                        chefId: chefId)
         rootNavigationController?.pushViewController(checkoutController, animated: true)
     }
 
@@ -113,6 +114,10 @@ extension NavigationService {
 
     static func dismissDeliverySlotsController() {
         rootNavigationController?.topVisibleViewController.dismiss(animated: true)
+    }
+
+    static func dismissCartNavigationController() {
+        rootNavigationController?.popToRootViewController(animated: true)
     }
 
     static func presentAddress(controller: AddressViewController) {

@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
                 <outlet property="addressLabel" destination="Wyv-Sl-JNs" id="yLS-tC-JD2"/>
+                <outlet property="deliveryPriceLabel" destination="3Vc-N2-J1P" id="Mck-UU-i5G"/>
                 <outlet property="deliverySlotLabel" destination="5vM-TV-jun" id="001-7G-fVs"/>
                 <outlet property="tableView" destination="YOY-mq-gjD" id="9ud-JQ-owb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -33,9 +34,6 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYR-ho-HiO">
                     <rect key="frame" x="263" y="318.5" width="102" height="30"/>
                     <state key="normal" title="Select address"/>
-                    <connections>
-                        <action selector="selectAddressAction:" destination="-1" eventType="touchUpInside" id="gAK-dF-IFR"/>
-                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a slot" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vM-TV-jun">
                     <rect key="frame" x="10" y="358.5" width="169" height="20.5"/>
@@ -57,6 +55,12 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00 EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vc-N2-J1P">
+                    <rect key="frame" x="288.5" y="439" width="71.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19T-VR-o39">
                     <rect key="frame" x="132.5" y="517" width="110" height="30"/>
                     <state key="normal" title="Complete Order"/>
@@ -64,16 +68,26 @@
                         <action selector="placeOrder:" destination="-1" eventType="touchUpInside" id="TEZ-Kv-8EX"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery cost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3B5-zE-WTD">
+                    <rect key="frame" x="174.5" y="439" width="104" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="5vM-TV-jun" firstAttribute="top" secondItem="nCc-Ix-Mq9" secondAttribute="bottom" constant="10" id="0B2-iG-kga"/>
+                <constraint firstItem="3Vc-N2-J1P" firstAttribute="centerY" secondItem="3B5-zE-WTD" secondAttribute="centerY" id="539-OX-ilm"/>
                 <constraint firstItem="nCc-Ix-Mq9" firstAttribute="top" secondItem="YOY-mq-gjD" secondAttribute="bottom" constant="20" id="9GR-He-gYW"/>
                 <constraint firstItem="nCc-Ix-Mq9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="9MQ-Cr-9Vp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Wyv-Sl-JNs" secondAttribute="trailing" constant="10" id="DeY-Ce-cIS"/>
                 <constraint firstItem="nCc-Ix-Mq9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="GTa-eE-sxd"/>
                 <constraint firstItem="Wyv-Sl-JNs" firstAttribute="centerY" secondItem="5vM-TV-jun" secondAttribute="centerY" id="LJh-cr-fxI"/>
+                <constraint firstItem="3Vc-N2-J1P" firstAttribute="top" secondItem="Wyv-Sl-JNs" secondAttribute="bottom" constant="60" id="Lsu-hw-F1c"/>
+                <constraint firstItem="3Vc-N2-J1P" firstAttribute="leading" secondItem="3B5-zE-WTD" secondAttribute="trailing" constant="10" id="P3e-Rb-CmP"/>
                 <constraint firstItem="YOY-mq-gjD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Pqn-VC-PW1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3Vc-N2-J1P" secondAttribute="trailing" constant="15" id="R1T-AR-qew"/>
                 <constraint firstItem="YOY-mq-gjD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="T8J-7B-4mW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="19T-VR-o39" secondAttribute="bottom" constant="120" id="UAv-Ke-aBM"/>
                 <constraint firstItem="5vM-TV-jun" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Y0Y-P2-cjV"/>
@@ -85,7 +99,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YOY-mq-gjD" secondAttribute="trailing" id="sqI-7a-jId"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-265" y="54"/>
+            <point key="canvasLocation" x="-650" y="76"/>
         </view>
     </objects>
 </document>

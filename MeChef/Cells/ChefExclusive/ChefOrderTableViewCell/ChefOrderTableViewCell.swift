@@ -11,6 +11,9 @@ class ChefOrderTableViewCell: UITableViewCell {
     @IBOutlet weak var userIdLabel: UILabel!
     @IBOutlet weak var deliveryLabel: UILabel!
     @IBOutlet weak var dishesLabel: UILabel!
+    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var confirmOrderButton: UIButton!
+    @IBOutlet weak var cancelOrderButton: UIButton!
 
     var disposeBag = DisposeBag()
     private var viewModel: ChefOrderTableViewModel?
@@ -51,9 +54,12 @@ extension ChefOrderTableViewCell: PlaceholderConfigurable {
         self.viewModel = contentViewModel
 
         orderIdLabel.text = "ID: \(contentViewModel.order.id)"
-        userIdLabel.text = "USER ID: \(contentViewModel.order.userId)"
+        userIdLabel.text = "USER ID: \(contentViewModel.order.user.id)"
         deliveryLabel.text = "DELIVERY \(contentViewModel.delivery)"
-        dishesLabel.text = "DISHES COUNT: \(contentViewModel.order.dishes?.count ?? 0)"
+        dishesLabel.text = "DISHES COUNT: \(contentViewModel.order.dishes.count)"
+        stateLabel.text = "\(contentViewModel.order.state)"
+        stateLabel.textColor = contentViewModel.order.orderState == .scheduled
+            ? .green : .red
     }
 
 }

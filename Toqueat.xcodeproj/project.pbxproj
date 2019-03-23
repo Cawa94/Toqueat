@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E9828206DD279CED71DA80D /* Pods_Toqueat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BBD0A1A806B159D1E9D85E7 /* Pods_Toqueat.framework */; };
 		2145203C138997320BA5897D /* Pods_MeChef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */; };
 		DA12672B223BC0170049215B /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA126729223BC0170049215B /* AddressTableViewCell.swift */; };
 		DA12672C223BC0170049215B /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA12672A223BC0170049215B /* AddressTableViewCell.xib */; };
@@ -32,6 +33,10 @@
 		DA859D1322412198008481D2 /* ChefOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D1122412198008481D2 /* ChefOrderTableViewCell.swift */; };
 		DA859D1422412198008481D2 /* ChefOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA859D1222412198008481D2 /* ChefOrderTableViewCell.xib */; };
 		DA859D16224121C9008481D2 /* ChefOrderTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D15224121C9008481D2 /* ChefOrderTableViewModel.swift */; };
+		DA913C6D224643C4003D4700 /* StuartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913C6C224643C4003D4700 /* StuartService.swift */; };
+		DA913C6F2246444B003D4700 /* UserDefaults+StuartToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913C6E2246444B003D4700 /* UserDefaults+StuartToken.swift */; };
+		DA913C7322464505003D4700 /* StuartRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913C7222464505003D4700 /* StuartRequests.swift */; };
+		DA913C7522466801003D4700 /* User+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913C7422466801003D4700 /* User+Extensions.swift */; };
 		DA93639D22395AF000DF8951 /* DeliverySlot+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA93639C22395AF000DF8951 /* DeliverySlot+Extensions.swift */; };
 		DA9363A122395F5E00DF8951 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA93639F22395F5E00DF8951 /* CheckoutViewController.swift */; };
 		DA9363A222395F5E00DF8951 /* CheckoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9363A022395F5E00DF8951 /* CheckoutViewController.xib */; };
@@ -63,6 +68,7 @@
 		DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9946E222BE80B000282F1 /* DishesViewModel.swift */; };
 		DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC99472222BE97C000282F1 /* DishTableViewCell.swift */; };
 		DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC99473222BE97C000282F1 /* DishTableViewCell.xib */; };
+		DAD08B552245634E00F446C0 /* OrderStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD08B542245634E00F446C0 /* OrderStates.swift */; };
 		DAD4B107223D1BAF009E6F84 /* LocalCartDish+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD4B106223D1BAF009E6F84 /* LocalCartDish+Extensions.swift */; };
 		DADD68C9223AB6BA00D65C7A /* NavigationService+AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD68C8223AB6BA00D65C7A /* NavigationService+AddressViewController.swift */; };
 		DADD68D0223AB7DE00D65C7A /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD68CE223AB7DE00D65C7A /* AddressViewController.swift */; };
@@ -118,6 +124,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BBD0A1A806B159D1E9D85E7 /* Pods_Toqueat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Toqueat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		48180DD356B20E31B85C2A8F /* Pods-Toqueat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toqueat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Toqueat/Pods-Toqueat.release.xcconfig"; sourceTree = "<group>"; };
+		4CA9C2903915803288B358B5 /* Pods-Toqueat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toqueat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Toqueat/Pods-Toqueat.debug.xcconfig"; sourceTree = "<group>"; };
 		68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeChef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D820362D14F07E8CE325649B /* Pods-MeChef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeChef.release.xcconfig"; path = "Pods/Target Support Files/Pods-MeChef/Pods-MeChef.release.xcconfig"; sourceTree = "<group>"; };
 		DA126729223BC0170049215B /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +153,10 @@
 		DA859D1122412198008481D2 /* ChefOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrderTableViewCell.swift; sourceTree = "<group>"; };
 		DA859D1222412198008481D2 /* ChefOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefOrderTableViewCell.xib; sourceTree = "<group>"; };
 		DA859D15224121C9008481D2 /* ChefOrderTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrderTableViewModel.swift; sourceTree = "<group>"; };
+		DA913C6C224643C4003D4700 /* StuartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuartService.swift; sourceTree = "<group>"; };
+		DA913C6E2246444B003D4700 /* UserDefaults+StuartToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+StuartToken.swift"; sourceTree = "<group>"; };
+		DA913C7222464505003D4700 /* StuartRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuartRequests.swift; sourceTree = "<group>"; };
+		DA913C7422466801003D4700 /* User+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extensions.swift"; sourceTree = "<group>"; };
 		DA93639C22395AF000DF8951 /* DeliverySlot+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliverySlot+Extensions.swift"; sourceTree = "<group>"; };
 		DA93639F22395F5E00DF8951 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		DA9363A022395F5E00DF8951 /* CheckoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckoutViewController.xib; sourceTree = "<group>"; };
@@ -175,6 +188,7 @@
 		DAC9946E222BE80B000282F1 /* DishesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewModel.swift; sourceTree = "<group>"; };
 		DAC99472222BE97C000282F1 /* DishTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishTableViewCell.swift; sourceTree = "<group>"; };
 		DAC99473222BE97C000282F1 /* DishTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishTableViewCell.xib; sourceTree = "<group>"; };
+		DAD08B542245634E00F446C0 /* OrderStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStates.swift; sourceTree = "<group>"; };
 		DAD4B106223D1BAF009E6F84 /* LocalCartDish+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCartDish+Extensions.swift"; sourceTree = "<group>"; };
 		DADD68C8223AB6BA00D65C7A /* NavigationService+AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+AddressViewController.swift"; sourceTree = "<group>"; };
 		DADD68CE223AB7DE00D65C7A /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2145203C138997320BA5897D /* Pods_MeChef.framework in Frameworks */,
+				0E9828206DD279CED71DA80D /* Pods_Toqueat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,12 +316,13 @@
 		DA8208B422343708002E6743 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DA3D4219223E5F0800AB2A27 /* Chef+Extensions.swift */,
 				DA93639C22395AF000DF8951 /* DeliverySlot+Extensions.swift */,
 				DAAD192C2236E95400543AE0 /* Dish+Extensions.swift */,
 				DA8208B522343717002E6743 /* LocalCart+Extensions.swift */,
 				DAD4B106223D1BAF009E6F84 /* LocalCartDish+Extensions.swift */,
 				DAF86AF62237F44100070B76 /* Order+Extensions.swift */,
-				DA3D4219223E5F0800AB2A27 /* Chef+Extensions.swift */,
+				DA913C7422466801003D4700 /* User+Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -345,6 +361,15 @@
 				DA859D1222412198008481D2 /* ChefOrderTableViewCell.xib */,
 			);
 			path = ChefOrderTableViewCell;
+			sourceTree = "<group>";
+		};
+		DA913C70224644E2003D4700 /* StuartService */ = {
+			isa = PBXGroup;
+			children = (
+				DA913C6C224643C4003D4700 /* StuartService.swift */,
+				DA913C7222464505003D4700 /* StuartRequests.swift */,
+			);
+			path = StuartService;
 			sourceTree = "<group>";
 		};
 		DA93639E22395F2800DF8951 /* CheckoutViewController */ = {
@@ -406,6 +431,8 @@
 			children = (
 				F1E6713CA8F446E686381782 /* Pods-MeChef.debug.xcconfig */,
 				D820362D14F07E8CE325649B /* Pods-MeChef.release.xcconfig */,
+				4CA9C2903915803288B358B5 /* Pods-Toqueat.debug.xcconfig */,
+				48180DD356B20E31B85C2A8F /* Pods-Toqueat.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -442,6 +469,7 @@
 			children = (
 				DA9E074D222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift */,
 				DA8208AE22341178002E6743 /* UserDefaults+LocalCart.swift */,
+				DA913C6E2246444B003D4700 /* UserDefaults+StuartToken.swift */,
 				DA9E0748222E6D910094A69D /* UserDefaults+UserSession.swift */,
 			);
 			path = UserDefaults;
@@ -515,6 +543,14 @@
 				DAC99473222BE97C000282F1 /* DishTableViewCell.xib */,
 			);
 			path = Dish;
+			sourceTree = "<group>";
+		};
+		DAD08B532245632F00F446C0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DAD08B542245634E00F446C0 /* OrderStates.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		DADD68C6223AB65A00D65C7A /* AddressViewController */ = {
@@ -760,14 +796,15 @@
 			isa = PBXGroup;
 			children = (
 				DAFA9B822228907200B2CD4D /* Info.plist */,
-				DAFA9B7F2228907200B2CD4D /* LaunchScreen.storyboard */,
-				DAFA9B7A2228907100B2CD4D /* Main.storyboard */,
 				DAFA9B742228907100B2CD4D /* AppDelegate.swift */,
+				DAFA9B7A2228907100B2CD4D /* Main.storyboard */,
+				DAFA9B7F2228907200B2CD4D /* LaunchScreen.storyboard */,
 				DAFA9B7D2228907200B2CD4D /* Assets.xcassets */,
 				DAC99462222BE621000282F1 /* Appearance */,
 				DAFA9BA62228915400B2CD4D /* Cells */,
 				DAFA9BA52228914E00B2CD4D /* Controllers */,
 				DAFD0970222981DC00F1255A /* Extensions */,
+				DAD08B532245632F00F446C0 /* Models */,
 				DAAD193122371D7300543AE0 /* Protocols */,
 				DAFA9BA42228914100B2CD4D /* Service */,
 			);
@@ -781,6 +818,7 @@
 				DA9E074F222E71250094A69D /* SessionService.swift */,
 				DAF4FE1D222ACFDE00F208DB /* NavigationService */,
 				DAFD0972222986F700F1255A /* NetworkService */,
+				DA913C70224644E2003D4700 /* StuartService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -958,6 +996,7 @@
 			isa = PBXGroup;
 			children = (
 				68821EE02BE2B187393C88B2 /* Pods_MeChef.framework */,
+				0BBD0A1A806B159D1E9D85E7 /* Pods_Toqueat.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1063,7 +1102,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MeChef-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Toqueat-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1076,10 +1115,11 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MeChef/Pods-MeChef-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Toqueat/Pods-Toqueat-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LeadKit/LeadKit.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
@@ -1098,6 +1138,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeadKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
@@ -1113,7 +1154,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MeChef/Pods-MeChef-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Toqueat/Pods-Toqueat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DADF5A23222AABEE0064DB75 /* SwiftLint */ = {
@@ -1161,11 +1202,15 @@
 				DADFF2DA222ED1C400BB6404 /* NetworkService+Extensions.swift in Sources */,
 				DA979BE9222C912600D452B9 /* NavigationService+ProfileViewController.swift in Sources */,
 				DA3D421A223E5F0800AB2A27 /* Chef+Extensions.swift in Sources */,
+				DAD08B552245634E00F446C0 /* OrderStates.swift in Sources */,
 				DAF4FE22222AD02700F208DB /* ChefsViewController.swift in Sources */,
 				DAF4FE25222AD03A00F208DB /* ChefsViewModel.swift in Sources */,
 				DAFEB6112240E3FE00CABCF5 /* ChefDishesViewController.swift in Sources */,
+				DA913C6D224643C4003D4700 /* StuartService.swift in Sources */,
+				DA913C6F2246444B003D4700 /* UserDefaults+StuartToken.swift in Sources */,
 				DADF5A26222AAE460064DB75 /* RequestError.swift in Sources */,
 				DA9363A82239604600DF8951 /* CheckoutViewController+NavigationService.swift in Sources */,
+				DA913C7522466801003D4700 /* User+Extensions.swift in Sources */,
 				DA859D0C22411EAA008481D2 /* ChefOrdersViewModel.swift in Sources */,
 				DAAD19302236EC8600543AE0 /* UIView+Extensions.swift in Sources */,
 				DAF86AF72237F44100070B76 /* Order+Extensions.swift in Sources */,
@@ -1199,6 +1244,7 @@
 				DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */,
 				DAA8CD30222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift in Sources */,
 				DA9E0749222E6D910094A69D /* UserDefaults+UserSession.swift in Sources */,
+				DA913C7322464505003D4700 /* StuartRequests.swift in Sources */,
 				DA8208B12234270A002E6743 /* CartService.swift in Sources */,
 				DAF86AF52237BF5000070B76 /* CartViewController+NavigationService.swift in Sources */,
 				DAFD09782229903E00F1255A /* DishesRequests.swift in Sources */,
@@ -1379,17 +1425,14 @@
 		};
 		DAFA9B9C2228907300B2CD4D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1E6713CA8F446E686381782 /* Pods-MeChef.debug.xcconfig */;
+			baseConfigurationReference = 4CA9C2903915803288B358B5 /* Pods-Toqueat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1399,17 +1442,14 @@
 		};
 		DAFA9B9D2228907300B2CD4D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D820362D14F07E8CE325649B /* Pods-MeChef.release.xcconfig */;
+			baseConfigurationReference = 48180DD356B20E31B85C2A8F /* Pods-Toqueat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

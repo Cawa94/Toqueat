@@ -11,7 +11,7 @@ class RegisterViewController: BaseStatefulController<[City]>,
     @IBOutlet private weak var confirmPasswordTextField: UITextField!
     @IBOutlet private weak var cityTextField: UITextField!
     @IBOutlet private weak var streetTextField: UITextField!
-    @IBOutlet private weak var numberTextField: UITextField!
+    @IBOutlet private weak var apartmentTextField: UITextField!
     @IBOutlet private weak var zipcodeTextField: UITextField!
     @IBOutlet private weak var registerButton: UIButton!
 
@@ -34,13 +34,13 @@ class RegisterViewController: BaseStatefulController<[City]>,
         guard let name = nameTextField.text, let lastName = lastnameTextField.text,
             let email = emailTextField.text, let password = passwordTextField.text,
             let cityId = registerViewModel.cities.first(where: { $0.name == cityTextField.text })?.id,
-            let street = streetTextField.text, let number = numberTextField.text,
+            let street = streetTextField.text, let apartment = apartmentTextField.text,
             let zipcode = zipcodeTextField.text
             else { return }
         let registrationParameters = RegisterParameters(name: name, lastname: lastName,
                                                         email: email, password: password,
-                                                        cityId: cityId, address: "\(street), \(number)",
-                                                        zipcode: zipcode)
+                                                        cityId: cityId, address: street,
+                                                        zipcode: zipcode, apartment: apartment)
         NetworkService.shared.register(registerParameters: registrationParameters)
             .flatMap { response -> Single<User> in
                 SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)

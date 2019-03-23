@@ -48,7 +48,32 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
         case let orderCell as ChefOrderTableViewCell:
             let order = chefOrdersViewModel.elementAt(indexPath.row)
             let viewModel = ChefOrderTableViewModel(order: order)
-            orderCell.configureWithLoading( contentViewModel: viewModel)
+            orderCell.configureWithLoading(contentViewModel: viewModel)
+            orderCell.confirmOrderButton.rx.tap.subscribe(onNext: { _ in
+                guard let chefLocation = SessionService.session?.chef?.stuartLocation
+                    else { return }
+                let createStuartSingle = self.chefOrdersViewModel.createStuartJobWith(orderId: viewModel.order.id,
+                                                                                      chefLocation: chefLocation)
+                self.hudOperationWithRetry(operationSingle: createStuartSingle,
+                                           onSuccessClosure: { _ in
+                                                self.chefOrdersViewModel.reload()
+                                                self.presentAlertWith(title: "YEAH",
+                                                                      message: "Order scheduled")
+                                            },
+                                           disposeBag: self.disposeBag)
+                })
+                .disposed(by: orderCell.disposeBag)
+            orderCell.cancelOrderButton.rx.tap.subscribe(onNext: { _ in
+                self.chefOrdersViewModel.changeOrderStatusWith(orderId: viewModel.order.id,
+                                                               state: .canceled)
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onSuccess: { _ in
+                        self.presentAlertWith(title: "YEAH",
+                                              message: "Order scheduled")
+                    })
+                    .disposed(by: self.disposeBag)
+                })
+                .disposed(by: orderCell.disposeBag)
         default:
             break
         }
@@ -57,7 +82,7 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
     // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 250
     }
 
     // MARK: - StatefulViewController related methods
