@@ -54,11 +54,14 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
             let chefId = CartService.localCart?.chefId,
             let deliveryAddress = addressLabel.text
             else { return }
+        let dishesPrice = dishes.map { ($0.price as Decimal) }.reduce(0, +)
         let deliveryComment = SessionService.session?.user?.apartment
         let orderParameters = OrderCreateParameters(userId: userId, dishIds: dishes.map { $0.id },
                                                     chefId: chefId, deliveryDate: deliveryDate,
                                                     deliveryAddress: deliveryAddress,
-                                                    deliveryComment: deliveryComment)
+                                                    deliveryComment: deliveryComment,
+                                                    dishesPrice: NSDecimalNumber(decimal: dishesPrice),
+                                                    deliveryPrice: NSDecimalNumber(string: deliveryPriceLabel.text))
         NetworkService.shared.createNewOrderWith(parameters: orderParameters)
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { order in

@@ -35,4 +35,10 @@ extension NetworkService {
             .map { "\($0.amount) \($0.currency)" }
     }
 
+    func getStuartJobWith(_ jobId: Int64) -> Single<StuartJob> {
+        let apiParameters = ApiRequestParameters(stuartUrl: "v2/jobs/\(jobId)")
+
+        return request(with: apiParameters)
+    }
+
 }

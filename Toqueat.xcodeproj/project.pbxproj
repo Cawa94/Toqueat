@@ -61,6 +61,18 @@
 		DAAD193522371E5100543AE0 /* DishTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD193422371E5100543AE0 /* DishTableViewModel.swift */; };
 		DAAD1937223728BD00543AE0 /* ChefTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD1936223728BD00543AE0 /* ChefTableViewModel.swift */; };
 		DAAFED6E222E592B00F8F1BE /* UsersRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAFED6D222E592B00F8F1BE /* UsersRequests.swift */; };
+		DAB2716E2247B6D8005C0915 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB2716C2247B6D8005C0915 /* OrdersViewController.swift */; };
+		DAB2716F2247B6D8005C0915 /* OrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB2716D2247B6D8005C0915 /* OrdersViewController.xib */; };
+		DAB271712247B6E2005C0915 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271702247B6E2005C0915 /* OrdersViewModel.swift */; };
+		DAB271732247B87F005C0915 /* NavigationService+OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271722247B87F005C0915 /* NavigationService+OrdersViewController.swift */; };
+		DAB271772247BBD6005C0915 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271752247BBD6005C0915 /* OrderTableViewCell.swift */; };
+		DAB271782247BBD6005C0915 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB271762247BBD6005C0915 /* OrderTableViewCell.xib */; };
+		DAB2717A2247BBF6005C0915 /* OrderTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271792247BBF6005C0915 /* OrderTableViewModel.swift */; };
+		DAB271802247E213005C0915 /* TrackOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB2717E2247E213005C0915 /* TrackOrderViewController.swift */; };
+		DAB271812247E213005C0915 /* TrackOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB2717F2247E213005C0915 /* TrackOrderViewController.xib */; };
+		DAB271832247E223005C0915 /* TrackOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271822247E223005C0915 /* TrackOrderViewModel.swift */; };
+		DAB271852247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271842247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift */; };
+		DAB271882247EEA9005C0915 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271872247EEA9005C0915 /* MapPoint.swift */; };
 		DAC99464222BE680000282F1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC99463222BE680000282F1 /* UIColor+Extensions.swift */; };
 		DAC99467222BE7CE000282F1 /* NavigationService+DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC99466222BE7CE000282F1 /* NavigationService+DishesViewController.swift */; };
 		DAC9946C222BE7F3000282F1 /* DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9946A222BE7F3000282F1 /* DishesViewController.swift */; };
@@ -88,6 +100,13 @@
 		DADFF2DA222ED1C400BB6404 /* NetworkService+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2D9222ED1C400BB6404 /* NetworkService+Extensions.swift */; };
 		DADFF2E6222ED89200BB6404 /* BaseTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2E5222ED89200BB6404 /* BaseTableViewModel.swift */; };
 		DADFF2E8222ED89600BB6404 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADFF2E7222ED89600BB6404 /* BaseTableViewController.swift */; };
+		DAE902C0224937C500743D6A /* ObservableConvertibleType+AsDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE902BF224937C500743D6A /* ObservableConvertibleType+AsDriver.swift */; };
+		DAE902C622494BF900743D6A /* ChefDeliverySlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE902C422494BF900743D6A /* ChefDeliverySlotsViewController.swift */; };
+		DAE902C722494BF900743D6A /* ChefDeliverySlotsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE902C522494BF900743D6A /* ChefDeliverySlotsViewController.xib */; };
+		DAE902C922494C0500743D6A /* ChefDeliverySlotsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE902C822494C0500743D6A /* ChefDeliverySlotsViewModel.swift */; };
+		DAE902CB22494C1E00743D6A /* NavigationService+ChefDeliverySlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE902CA22494C1E00743D6A /* NavigationService+ChefDeliverySlotsViewController.swift */; };
+		DAE902CF22494D8F00743D6A /* DeliverySlotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE902CD22494D8F00743D6A /* DeliverySlotCollectionViewCell.swift */; };
+		DAE902D022494D8F00743D6A /* DeliverySlotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAE902CE22494D8F00743D6A /* DeliverySlotCollectionViewCell.xib */; };
 		DAF4FE1F222ACFEF00F208DB /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE1E222ACFEF00F208DB /* NavigationService.swift */; };
 		DAF4FE22222AD02700F208DB /* ChefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE20222AD02700F208DB /* ChefsViewController.swift */; };
 		DAF4FE23222AD02700F208DB /* ChefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF4FE21222AD02700F208DB /* ChefsViewController.xib */; };
@@ -181,6 +200,18 @@
 		DAAD193422371E5100543AE0 /* DishTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishTableViewModel.swift; sourceTree = "<group>"; };
 		DAAD1936223728BD00543AE0 /* ChefTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefTableViewModel.swift; sourceTree = "<group>"; };
 		DAAFED6D222E592B00F8F1BE /* UsersRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRequests.swift; sourceTree = "<group>"; };
+		DAB2716C2247B6D8005C0915 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		DAB2716D2247B6D8005C0915 /* OrdersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersViewController.xib; sourceTree = "<group>"; };
+		DAB271702247B6E2005C0915 /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
+		DAB271722247B87F005C0915 /* NavigationService+OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+OrdersViewController.swift"; sourceTree = "<group>"; };
+		DAB271752247BBD6005C0915 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		DAB271762247BBD6005C0915 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		DAB271792247BBF6005C0915 /* OrderTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewModel.swift; sourceTree = "<group>"; };
+		DAB2717E2247E213005C0915 /* TrackOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderViewController.swift; sourceTree = "<group>"; };
+		DAB2717F2247E213005C0915 /* TrackOrderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackOrderViewController.xib; sourceTree = "<group>"; };
+		DAB271822247E223005C0915 /* TrackOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderViewModel.swift; sourceTree = "<group>"; };
+		DAB271842247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+TrackOrderViewController.swift"; sourceTree = "<group>"; };
+		DAB271872247EEA9005C0915 /* MapPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		DAC99463222BE680000282F1 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		DAC99466222BE7CE000282F1 /* NavigationService+DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+DishesViewController.swift"; sourceTree = "<group>"; };
 		DAC9946A222BE7F3000282F1 /* DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +239,13 @@
 		DADFF2D9222ED1C400BB6404 /* NetworkService+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkService+Extensions.swift"; sourceTree = "<group>"; };
 		DADFF2E5222ED89200BB6404 /* BaseTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewModel.swift; sourceTree = "<group>"; };
 		DADFF2E7222ED89600BB6404 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		DAE902BF224937C500743D6A /* ObservableConvertibleType+AsDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+AsDriver.swift"; sourceTree = "<group>"; };
+		DAE902C422494BF900743D6A /* ChefDeliverySlotsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefDeliverySlotsViewController.swift; sourceTree = "<group>"; };
+		DAE902C522494BF900743D6A /* ChefDeliverySlotsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefDeliverySlotsViewController.xib; sourceTree = "<group>"; };
+		DAE902C822494C0500743D6A /* ChefDeliverySlotsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefDeliverySlotsViewModel.swift; sourceTree = "<group>"; };
+		DAE902CA22494C1E00743D6A /* NavigationService+ChefDeliverySlotsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefDeliverySlotsViewController.swift"; sourceTree = "<group>"; };
+		DAE902CD22494D8F00743D6A /* DeliverySlotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverySlotCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAE902CE22494D8F00743D6A /* DeliverySlotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliverySlotCollectionViewCell.xib; sourceTree = "<group>"; };
 		DAF4FE1E222ACFEF00F208DB /* NavigationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
 		DAF4FE20222AD02700F208DB /* ChefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefsViewController.swift; sourceTree = "<group>"; };
 		DAF4FE21222AD02700F208DB /* ChefsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefsViewController.xib; sourceTree = "<group>"; };
@@ -259,13 +297,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DA126728223BBFFC0049215B /* AddressController */ = {
+		DA126728223BBFFC0049215B /* AddressTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				DA126729223BC0170049215B /* AddressTableViewCell.swift */,
 				DA12672A223BC0170049215B /* AddressTableViewCell.xib */,
 			);
-			path = AddressController;
+			path = AddressTableViewCell;
 			sourceTree = "<group>";
 		};
 		DA57E4D8222C56CA0086B5DA /* ChefViewController */ = {
@@ -345,12 +383,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		DA859D0F2241215C008481D2 /* ChefExclusive */ = {
+		DA859D0F2241215C008481D2 /* AChefExclusive */ = {
 			isa = PBXGroup;
 			children = (
+				DAE902CC22494D6D00743D6A /* DeliverySlotCollectionViewCell */,
 				DA859D102241216B008481D2 /* ChefOrderTableViewCell */,
 			);
-			path = ChefExclusive;
+			path = AChefExclusive;
 			sourceTree = "<group>";
 		};
 		DA859D102241216B008481D2 /* ChefOrderTableViewCell */ = {
@@ -492,6 +531,78 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		DAB271692247B5C8005C0915 /* OrdersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DAB271722247B87F005C0915 /* NavigationService+OrdersViewController.swift */,
+				DAB2716A2247B5DA005C0915 /* View */,
+				DAB2716B2247B5DE005C0915 /* ViewModel */,
+			);
+			path = OrdersViewController;
+			sourceTree = "<group>";
+		};
+		DAB2716A2247B5DA005C0915 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DAB2716C2247B6D8005C0915 /* OrdersViewController.swift */,
+				DAB2716D2247B6D8005C0915 /* OrdersViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DAB2716B2247B5DE005C0915 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DAB271702247B6E2005C0915 /* OrdersViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DAB271742247BBAB005C0915 /* OrderTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DAB271752247BBD6005C0915 /* OrderTableViewCell.swift */,
+				DAB271792247BBF6005C0915 /* OrderTableViewModel.swift */,
+				DAB271762247BBD6005C0915 /* OrderTableViewCell.xib */,
+			);
+			path = OrderTableViewCell;
+			sourceTree = "<group>";
+		};
+		DAB2717B2247E1B0005C0915 /* TrackOrderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DAB271842247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift */,
+				DAB2717D2247E1F8005C0915 /* View */,
+				DAB2717C2247E1F4005C0915 /* ViewModel */,
+			);
+			path = TrackOrderViewController;
+			sourceTree = "<group>";
+		};
+		DAB2717C2247E1F4005C0915 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DAB271822247E223005C0915 /* TrackOrderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DAB2717D2247E1F8005C0915 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DAB2717E2247E213005C0915 /* TrackOrderViewController.swift */,
+				DAB2717F2247E213005C0915 /* TrackOrderViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DAB271862247EE70005C0915 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DAB271872247EEA9005C0915 /* MapPoint.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		DAC99462222BE621000282F1 /* Appearance */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,30 +638,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		DAC99470222BE95F000282F1 /* DishesController */ = {
-			isa = PBXGroup;
-			children = (
-				DAC99471222BE96A000282F1 /* Dish */,
-			);
-			path = DishesController;
-			sourceTree = "<group>";
-		};
-		DAC99471222BE96A000282F1 /* Dish */ = {
+		DAC99471222BE96A000282F1 /* DishTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				DAC99472222BE97C000282F1 /* DishTableViewCell.swift */,
 				DAAD193422371E5100543AE0 /* DishTableViewModel.swift */,
 				DAC99473222BE97C000282F1 /* DishTableViewCell.xib */,
 			);
-			path = Dish;
+			path = DishTableViewCell;
 			sourceTree = "<group>";
 		};
-		DAD08B532245632F00F446C0 /* Models */ = {
+		DAD08B532245632F00F446C0 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
 				DAD08B542245634E00F446C0 /* OrderStates.swift */,
 			);
-			path = Models;
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		DADD68C6223AB65A00D65C7A /* AddressViewController */ = {
@@ -684,6 +787,50 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		DAE902BE224937A800743D6A /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				DAE902BF224937C500743D6A /* ObservableConvertibleType+AsDriver.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
+		DAE902C122494BCD00743D6A /* ChefDeliverySlotsController */ = {
+			isa = PBXGroup;
+			children = (
+				DAE902CA22494C1E00743D6A /* NavigationService+ChefDeliverySlotsViewController.swift */,
+				DAE902C322494BE800743D6A /* View */,
+				DAE902C222494BE200743D6A /* ViewModel */,
+			);
+			path = ChefDeliverySlotsController;
+			sourceTree = "<group>";
+		};
+		DAE902C222494BE200743D6A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DAE902C822494C0500743D6A /* ChefDeliverySlotsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DAE902C322494BE800743D6A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DAE902C422494BF900743D6A /* ChefDeliverySlotsViewController.swift */,
+				DAE902C522494BF900743D6A /* ChefDeliverySlotsViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DAE902CC22494D6D00743D6A /* DeliverySlotCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DAE902CD22494D8F00743D6A /* DeliverySlotCollectionViewCell.swift */,
+				DAE902CE22494D8F00743D6A /* DeliverySlotCollectionViewCell.xib */,
+			);
+			path = DeliverySlotCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		DAF4FE1A222ACF8D00F208DB /* ChefsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,22 +875,14 @@
 			path = MainTabViewController;
 			sourceTree = "<group>";
 		};
-		DAF4FE2F222AD7AD00F208DB /* ChefsController */ = {
-			isa = PBXGroup;
-			children = (
-				DAF4FE30222AD7E200F208DB /* Chef */,
-			);
-			path = ChefsController;
-			sourceTree = "<group>";
-		};
-		DAF4FE30222AD7E200F208DB /* Chef */ = {
+		DAF4FE30222AD7E200F208DB /* ChefTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				DAF4FE31222AD82200F208DB /* ChefTableViewCell.swift */,
 				DAAD1936223728BD00543AE0 /* ChefTableViewModel.swift */,
 				DAF4FE32222AD82200F208DB /* ChefTableViewCell.xib */,
 			);
-			path = Chef;
+			path = ChefTableViewCell;
 			sourceTree = "<group>";
 		};
 		DAF86AEB2237BEAC00070B76 /* CartViewController */ = {
@@ -804,7 +943,8 @@
 				DAFA9BA62228915400B2CD4D /* Cells */,
 				DAFA9BA52228914E00B2CD4D /* Controllers */,
 				DAFD0970222981DC00F1255A /* Extensions */,
-				DAD08B532245632F00F446C0 /* Models */,
+				DAD08B532245632F00F446C0 /* Enums */,
+				DAB271862247EE70005C0915 /* Models */,
 				DAAD193122371D7300543AE0 /* Protocols */,
 				DAFA9BA42228914100B2CD4D /* Service */,
 			);
@@ -826,7 +966,7 @@
 		DAFA9BA52228914E00B2CD4D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DAFEB5FC2240D62300CABCF5 /* ChefExclusive */,
+				DAFEB5FC2240D62300CABCF5 /* AChefExclusive */,
 				DADD68C6223AB65A00D65C7A /* AddressViewController */,
 				DADFF2D2222EC26900BB6404 /* BaseStatefulController */,
 				DADFF2E2222ED87200BB6404 /* BaseTableViewController */,
@@ -839,8 +979,10 @@
 				DADFF2BC222E845200BB6404 /* DishViewController */,
 				DA84549A222D1E880052A8D2 /* LoginViewController */,
 				DAF4FE26222AD06900F208DB /* MainTabViewController */,
+				DAB271692247B5C8005C0915 /* OrdersViewController */,
 				DA979BDB222C8AFC00D452B9 /* ProfileViewController */,
 				DADFF2C7222E876800BB6404 /* RegisterViewController */,
+				DAB2717B2247E1B0005C0915 /* TrackOrderViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -848,10 +990,11 @@
 		DAFA9BA62228915400B2CD4D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				DA859D0F2241215C008481D2 /* ChefExclusive */,
-				DA126728223BBFFC0049215B /* AddressController */,
-				DAF4FE2F222AD7AD00F208DB /* ChefsController */,
-				DAC99470222BE95F000282F1 /* DishesController */,
+				DA859D0F2241215C008481D2 /* AChefExclusive */,
+				DA126728223BBFFC0049215B /* AddressTableViewCell */,
+				DAF4FE30222AD7E200F208DB /* ChefTableViewCell */,
+				DAC99471222BE96A000282F1 /* DishTableViewCell */,
+				DAB271742247BBAB005C0915 /* OrderTableViewCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -867,6 +1010,7 @@
 		DAFD0970222981DC00F1255A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DAE902BE224937A800743D6A /* Rx */,
 				DAAD192E2236EC6E00543AE0 /* Common */,
 				DA8208B422343708002E6743 /* Models */,
 				DA9E074A222E6DE80094A69D /* UserDefaults */,
@@ -910,15 +1054,16 @@
 			path = ChefProfileViewController;
 			sourceTree = "<group>";
 		};
-		DAFEB5FC2240D62300CABCF5 /* ChefExclusive */ = {
+		DAFEB5FC2240D62300CABCF5 /* AChefExclusive */ = {
 			isa = PBXGroup;
 			children = (
+				DAE902C122494BCD00743D6A /* ChefDeliverySlotsController */,
 				DAFEB6072240E2F900CABCF5 /* ChefDishesViewController */,
 				DA785667223FF96F001BB354 /* ChefLoginViewController */,
 				DAFEB6082240E32F00CABCF5 /* ChefOrdersViewController */,
 				DAFEB5FB2240D61500CABCF5 /* ChefProfileViewController */,
 			);
-			path = ChefExclusive;
+			path = AChefExclusive;
 			sourceTree = "<group>";
 		};
 		DAFEB5FD2240D63F00CABCF5 /* View */ = {
@@ -1066,8 +1211,10 @@
 				DAFEB6022240D65A00CABCF5 /* ChefProfileViewController.xib in Resources */,
 				DA78566D223FF9A0001BB354 /* ChefLoginViewController.xib in Resources */,
 				DA8454A0222D1EA80052A8D2 /* LoginViewController.xib in Resources */,
+				DAB2716F2247B6D8005C0915 /* OrdersViewController.xib in Resources */,
 				DAF4FE23222AD02700F208DB /* ChefsViewController.xib in Resources */,
 				DAFA9B812228907200B2CD4D /* LaunchScreen.storyboard in Resources */,
+				DAB271782247BBD6005C0915 /* OrderTableViewCell.xib in Resources */,
 				DAF4FE34222AD82200F208DB /* ChefTableViewCell.xib in Resources */,
 				DA9363AF223964F600DF8951 /* DeliverySlotsViewController.xib in Resources */,
 				DAFA9B7E2228907200B2CD4D /* Assets.xcassets in Resources */,
@@ -1075,15 +1222,18 @@
 				DA9363A222395F5E00DF8951 /* CheckoutViewController.xib in Resources */,
 				DA859D1422412198008481D2 /* ChefOrderTableViewCell.xib in Resources */,
 				DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */,
+				DAE902C722494BF900743D6A /* ChefDeliverySlotsViewController.xib in Resources */,
 				DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */,
 				DAC9946D222BE7F3000282F1 /* DishesViewController.xib in Resources */,
 				DA12672C223BC0170049215B /* AddressTableViewCell.xib in Resources */,
 				DA859D0A22411E9C008481D2 /* ChefOrdersViewController.xib in Resources */,
 				DADFF2C4222E848000BB6404 /* DishViewController.xib in Resources */,
+				DAB271812247E213005C0915 /* TrackOrderViewController.xib in Resources */,
 				DA979BEF222C914F00D452B9 /* ProfileViewController.xib in Resources */,
 				DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */,
 				DADFF2CD222E878C00BB6404 /* RegisterViewController.xib in Resources */,
 				DAFEB6122240E3FE00CABCF5 /* ChefDishesViewController.xib in Resources */,
+				DAE902D022494D8F00743D6A /* DeliverySlotCollectionViewCell.xib in Resources */,
 				DADD68D1223AB7DE00D65C7A /* AddressViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1195,18 +1345,22 @@
 				DA12672B223BC0170049215B /* AddressTableViewCell.swift in Sources */,
 				DA9363AE223964F600DF8951 /* DeliverySlotsViewController.swift in Sources */,
 				DAAD193322371D9400543AE0 /* PlaceholderConfigurable.swift in Sources */,
+				DAB271712247B6E2005C0915 /* OrdersViewModel.swift in Sources */,
 				DAC9946C222BE7F3000282F1 /* DishesViewController.swift in Sources */,
 				DADFF2D8222EC42700BB6404 /* BaseStatefulViewModel.swift in Sources */,
 				DA57E4DD222C571F0086B5DA /* ChefViewModel.swift in Sources */,
 				DA8454A2222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift in Sources */,
 				DADFF2DA222ED1C400BB6404 /* NetworkService+Extensions.swift in Sources */,
+				DAB271802247E213005C0915 /* TrackOrderViewController.swift in Sources */,
 				DA979BE9222C912600D452B9 /* NavigationService+ProfileViewController.swift in Sources */,
 				DA3D421A223E5F0800AB2A27 /* Chef+Extensions.swift in Sources */,
 				DAD08B552245634E00F446C0 /* OrderStates.swift in Sources */,
+				DAB271852247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift in Sources */,
 				DAF4FE22222AD02700F208DB /* ChefsViewController.swift in Sources */,
 				DAF4FE25222AD03A00F208DB /* ChefsViewModel.swift in Sources */,
 				DAFEB6112240E3FE00CABCF5 /* ChefDishesViewController.swift in Sources */,
 				DA913C6D224643C4003D4700 /* StuartService.swift in Sources */,
+				DAE902CB22494C1E00743D6A /* NavigationService+ChefDeliverySlotsViewController.swift in Sources */,
 				DA913C6F2246444B003D4700 /* UserDefaults+StuartToken.swift in Sources */,
 				DADF5A26222AAE460064DB75 /* RequestError.swift in Sources */,
 				DA9363A82239604600DF8951 /* CheckoutViewController+NavigationService.swift in Sources */,
@@ -1221,6 +1375,7 @@
 				DA859D16224121C9008481D2 /* ChefOrderTableViewModel.swift in Sources */,
 				DAF4FE2A222AD2C500F208DB /* AppDelegate+Extensions.swift in Sources */,
 				DA859D0E22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift in Sources */,
+				DAB271772247BBD6005C0915 /* OrderTableViewCell.swift in Sources */,
 				DAFEB6042240D66500CABCF5 /* ChefProfileViewModel.swift in Sources */,
 				DAF4FE2E222AD35C00F208DB /* NavigationService+ChefsViewController.swift in Sources */,
 				DADFF2CC222E878C00BB6404 /* RegisterViewController.swift in Sources */,
@@ -1229,6 +1384,7 @@
 				DADFF2C3222E848000BB6404 /* DishViewController.swift in Sources */,
 				DAFEB6012240D65A00CABCF5 /* ChefProfileViewController.swift in Sources */,
 				DAFEB6142240E49300CABCF5 /* NavigationService+ChefDishesViewController.swift in Sources */,
+				DAE902C622494BF900743D6A /* ChefDeliverySlotsViewController.swift in Sources */,
 				DA454778222FDDB100237F6D /* CitiesRequests.swift in Sources */,
 				DA9363A622395F8B00DF8951 /* CheckoutViewModel.swift in Sources */,
 				DA9363B32239657700DF8951 /* DeliverySlotsViewController+NavigationService.swift in Sources */,
@@ -1242,8 +1398,11 @@
 				DAF86AF02237BEF300070B76 /* CartViewController.swift in Sources */,
 				DADD68D0223AB7DE00D65C7A /* AddressViewController.swift in Sources */,
 				DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */,
+				DAB2717A2247BBF6005C0915 /* OrderTableViewModel.swift in Sources */,
+				DAB271732247B87F005C0915 /* NavigationService+OrdersViewController.swift in Sources */,
 				DAA8CD30222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift in Sources */,
 				DA9E0749222E6D910094A69D /* UserDefaults+UserSession.swift in Sources */,
+				DAE902CF22494D8F00743D6A /* DeliverySlotCollectionViewCell.swift in Sources */,
 				DA913C7322464505003D4700 /* StuartRequests.swift in Sources */,
 				DA8208B12234270A002E6743 /* CartService.swift in Sources */,
 				DAF86AF52237BF5000070B76 /* CartViewController+NavigationService.swift in Sources */,
@@ -1257,7 +1416,9 @@
 				DAC99467222BE7CE000282F1 /* NavigationService+DishesViewController.swift in Sources */,
 				DADFF2E6222ED89200BB6404 /* BaseTableViewModel.swift in Sources */,
 				DA9E0750222E71250094A69D /* SessionService.swift in Sources */,
+				DAE902C922494C0500743D6A /* ChefDeliverySlotsViewModel.swift in Sources */,
 				DA9363B12239650700DF8951 /* DeliverySlotsViewModel.swift in Sources */,
+				DAB271832247E223005C0915 /* TrackOrderViewModel.swift in Sources */,
 				DA93639D22395AF000DF8951 /* DeliverySlot+Extensions.swift in Sources */,
 				DAF4FE1F222ACFEF00F208DB /* NavigationService.swift in Sources */,
 				DADFF2E8222ED89600BB6404 /* BaseTableViewController.swift in Sources */,
@@ -1275,13 +1436,16 @@
 				DADFF2D1222E888700BB6404 /* NavigationService+RegisterViewController.swift in Sources */,
 				DAD4B107223D1BAF009E6F84 /* LocalCartDish+Extensions.swift in Sources */,
 				DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */,
+				DAE902C0224937C500743D6A /* ObservableConvertibleType+AsDriver.swift in Sources */,
 				DAF86AF92237F48400070B76 /* OrderRequests.swift in Sources */,
 				DAAFED6E222E592B00F8F1BE /* UsersRequests.swift in Sources */,
 				DAFEB6062240D6D900CABCF5 /* NavigationService+ChefProfileViewController.swift in Sources */,
 				DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */,
+				DAB2716E2247B6D8005C0915 /* OrdersViewController.swift in Sources */,
 				DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */,
 				DAFD096F2229816C00F1255A /* Models.swift in Sources */,
 				DAF4FE36222ADA7000F208DB /* ChefsRequests.swift in Sources */,
+				DAB271882247EEA9005C0915 /* MapPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1432,7 +1596,10 @@
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1449,7 +1616,10 @@
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

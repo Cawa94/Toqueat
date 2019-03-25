@@ -9,6 +9,10 @@ final class ProfileViewModel: BaseStatefulViewModel<User> {
 
 extension ProfileViewModel {
 
+    var userId: Int64 {
+        return result.id
+    }
+
     var name: String {
         return result.name
     }

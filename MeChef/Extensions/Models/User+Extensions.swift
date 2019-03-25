@@ -7,7 +7,8 @@ extension BaseUser {
                              lastname: lastname,
                              phone: nil,
                              email: email,
-                             company: nil)
+                             company: nil,
+                             companyName: nil)
     }
 
 }

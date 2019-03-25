@@ -15,7 +15,8 @@ extension Chef {
                              lastname: "",
                              phone: nil,
                              email: email,
-                             company: nil)
+                             company: nil,
+                             companyName: nil)
     }
 
     var stuartLocation: StuartLocation {

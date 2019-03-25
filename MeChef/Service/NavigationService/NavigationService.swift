@@ -94,6 +94,18 @@ extension NavigationService {
         push(viewController: registerController, animated: true)
     }
 
+    static func pushOrdersViewController(userId: Int64) {
+        let ordersController = ordersViewController(userId: userId)
+        push(viewController: ordersController, animated: true)
+    }
+
+    static func pushTrackOrderViewController(orderId: Int64,
+                                             stuartId: Int64?) {
+        let trackOrderController = trackOrderViewController(orderId: orderId,
+                                                            stuartId: stuartId)
+        push(viewController: trackOrderController, animated: true)
+    }
+
     static func pushCartViewController(cart: LocalCart) {
         let cartController = cartViewController(cart: cart)
         rootNavigationController?.pushViewController(cartController, animated: true)
@@ -156,6 +168,11 @@ extension NavigationService {
                          image: UIImage(named: "user_icon_off")?.withRenderingMode(.alwaysOriginal),
                          selectedImage: UIImage(named: "user_icon_on")?.withRenderingMode(.alwaysOriginal))
         return chefProfileController
+    }
+
+    static func pushDeliverySlotsViewController(chefId: Int64) {
+        let deliverySlotsController = chefDeliverySlotsViewController(chefId: chefId)
+        push(viewController: deliverySlotsController, animated: true)
     }
 
 }

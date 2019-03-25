@@ -75,19 +75,28 @@
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHz-Mg-q4Z">
-                    <rect key="frame" x="163.5" y="388.5" width="48" height="30"/>
+                    <rect key="frame" x="163.5" y="587" width="48" height="30"/>
                     <state key="normal" title="Logout"/>
                     <connections>
                         <action selector="performLogout:" destination="-1" eventType="touchUpInside" id="6UW-ON-cHY"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4J-hx-9eA">
+                    <rect key="frame" x="141.5" y="388.5" width="92" height="30"/>
+                    <state key="normal" title="Delivery slots"/>
+                    <connections>
+                        <action selector="deliverySlotsAction:" destination="-1" eventType="touchUpInside" id="xbe-UQ-dxc"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="lHz-Mg-q4Z" firstAttribute="top" secondItem="shP-BA-9Dc" secondAttribute="bottom" constant="50" id="BaC-q7-y07"/>
+                <constraint firstItem="w4J-hx-9eA" firstAttribute="top" secondItem="shP-BA-9Dc" secondAttribute="bottom" constant="50" id="0P7-x1-FSl"/>
                 <constraint firstItem="shP-BA-9Dc" firstAttribute="top" secondItem="z4O-4V-OMU" secondAttribute="bottom" constant="20" id="D8d-hn-bpq"/>
                 <constraint firstItem="lHz-Mg-q4Z" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DVq-wk-381"/>
                 <constraint firstItem="z4O-4V-OMU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="Kkr-Cf-VYc"/>
+                <constraint firstItem="w4J-hx-9eA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XED-mk-AlQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="lHz-Mg-q4Z" secondAttribute="bottom" constant="50" id="Yal-sn-o4w"/>
                 <constraint firstItem="shP-BA-9Dc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="bYz-WD-aPd"/>
                 <constraint firstItem="z4O-4V-OMU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="o34-g2-HSF"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="shP-BA-9Dc" secondAttribute="trailing" constant="10" id="tfp-d9-Tmo"/>

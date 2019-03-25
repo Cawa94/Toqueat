@@ -74,8 +74,15 @@
                         </label>
                     </subviews>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1b-RU-Rxb">
+                    <rect key="frame" x="145.5" y="348.5" width="84" height="30"/>
+                    <state key="normal" title="View Orders"/>
+                    <connections>
+                        <action selector="viewOrdersAction:" destination="-1" eventType="touchUpInside" id="A3N-0S-p5r"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3H-gp-Xvn">
-                    <rect key="frame" x="163.5" y="368.5" width="48" height="30"/>
+                    <rect key="frame" x="163.5" y="587" width="48" height="30"/>
                     <state key="normal" title="Logout"/>
                     <connections>
                         <action selector="performLogout:" destination="-1" eventType="touchUpInside" id="RTa-pJ-N3B"/>
@@ -87,13 +94,15 @@
                 <constraint firstItem="k9k-7T-sT5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7LN-DW-QaH"/>
                 <constraint firstItem="k9k-7T-sT5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="Jig-bv-Jse"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="I1u-KA-qld" secondAttribute="trailing" constant="10" id="Trd-js-3XA"/>
+                <constraint firstItem="l1b-RU-Rxb" firstAttribute="top" secondItem="I1u-KA-qld" secondAttribute="bottom" constant="30" id="XVq-7N-3uv"/>
                 <constraint firstItem="Z3H-gp-Xvn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="b8e-lw-oED"/>
                 <constraint firstItem="I1u-KA-qld" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="cIK-6k-Kcw"/>
                 <constraint firstItem="I1u-KA-qld" firstAttribute="top" secondItem="k9k-7T-sT5" secondAttribute="bottom" constant="20" id="oVk-aB-9HH"/>
-                <constraint firstItem="Z3H-gp-Xvn" firstAttribute="top" secondItem="I1u-KA-qld" secondAttribute="bottom" constant="50" id="znB-Ae-TaU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Z3H-gp-Xvn" secondAttribute="bottom" constant="50" id="tnQ-lL-so2"/>
+                <constraint firstItem="l1b-RU-Rxb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xHX-EB-4ea"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-572" y="63"/>
+            <point key="canvasLocation" x="-786.39999999999998" y="20.239880059970016"/>
         </view>
     </objects>
 </document>

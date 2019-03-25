@@ -25,9 +25,7 @@ extension NetworkService {
     }
 
     func getOrdersFor(chefId: Int64) -> Single<[Order]> {
-        let parameters = ["chef_id": chefId]
-        let apiParameters = ApiRequestParameters(relativeUrl: "chefOrders",
-                                                 parameters: parameters)
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/orders")
 
         return (request(with: apiParameters) as Single<OrdersResponse>)
             .map { $0.orders }

@@ -20,6 +20,12 @@ class ProfileViewController: BaseStatefulController<User> {
 
     private let disposeBag = DisposeBag()
 
+    @IBAction func viewOrdersAction(_ sender: Any) {
+        guard !profileViewModel.isLoading
+            else { return }
+        NavigationService.pushOrdersViewController(userId: profileViewModel.userId)
+    }
+
     @IBAction func performLogout(_ sender: Any) {
         SessionService.logout()
         DispatchQueue.main.async {

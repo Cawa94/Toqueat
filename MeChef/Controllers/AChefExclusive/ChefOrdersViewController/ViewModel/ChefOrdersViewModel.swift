@@ -25,7 +25,7 @@ extension ChefOrdersViewModel {
                                              packageType: "small",
                                              packageDescription: "",
                                              clientReference: nil)
-                let jobParameters = StuartJobParameters(pickupAt: order.deliveryDate,
+                let jobParameters = StuartJobParameters(pickupAt: nil /*order.deliveryDate*/,
                                                         pickups: [chefLocation],
                                                         dropoffs: [dropOff],
                                                         transportType: nil)
