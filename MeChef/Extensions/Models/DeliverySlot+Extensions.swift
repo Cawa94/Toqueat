@@ -44,4 +44,12 @@ extension DeliverySlot {
         return "\(weekday) at \(hourRange)"
     }
 
+    static func weekdayWithIndex(_ index: Int) -> String {
+        return weekdayTable[Int64(index)] ?? "Unknown"
+    }
+
+    static func hoursRangeWithIndex(_ index: Int) -> String {
+        return hoursTable[Int64(index)] ?? "Unknown"
+    }
+
 }

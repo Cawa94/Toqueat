@@ -70,7 +70,7 @@ extension NavigationService {
     }
 
     static func makeLoginRootController() {
-        let loginController = loginViewController().embedInNavigationController()
+        let loginController = loginViewController()
         appWindow.changeRootController(controller: loginController)
     }
 
@@ -145,6 +145,7 @@ extension NavigationService {
 
     static func chefDishesTab(chefId: Int64) -> UIViewController {
         let chefDishesController = NavigationService.chefDishesViewController(chefId: chefId)
+            .embedInNavigationController()
         chefDishesController.tabBarItem =
             UITabBarItem(title: "Dishes",
                          image: UIImage(named: "dish_icon_off")?.withRenderingMode(.alwaysOriginal),
@@ -154,6 +155,7 @@ extension NavigationService {
 
     static func chefOrderTab(chefId: Int64) -> UIViewController {
         let chefsController = NavigationService.chefOrdersViewController(chefId: chefId)
+            .embedInNavigationController()
         chefsController.tabBarItem =
             UITabBarItem(title: "Orders",
                          image: UIImage(named: "chef_icon_off")?.withRenderingMode(.alwaysOriginal),
@@ -163,6 +165,7 @@ extension NavigationService {
 
     static func chefProfileTab(chefId: Int64) -> UIViewController {
         let chefProfileController = NavigationService.chefProfileViewController(chefId: chefId)
+            .embedInNavigationController()
         chefProfileController.tabBarItem =
             UITabBarItem(title: "Profile",
                          image: UIImage(named: "user_icon_off")?.withRenderingMode(.alwaysOriginal),
@@ -170,7 +173,7 @@ extension NavigationService {
         return chefProfileController
     }
 
-    static func pushDeliverySlotsViewController(chefId: Int64) {
+    static func pushChefDeliverySlotsViewController(chefId: Int64) {
         let deliverySlotsController = chefDeliverySlotsViewController(chefId: chefId)
         push(viewController: deliverySlotsController, animated: true)
     }

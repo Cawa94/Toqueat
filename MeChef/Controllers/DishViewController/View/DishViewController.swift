@@ -33,6 +33,8 @@ class DishViewController: BaseStatefulController<Dish> {
             .disposed(by: disposeBag)
     }
 
+    // MARK: - Actions
+
     @IBAction func addToCartAction(_ sender: Any) {
         if let currentChef = CartService.localCart?.chefId, currentChef != dishViewModel.chefId {
             presentAlertWith(title: "WARNING", message: "You're gonna lose all your products",
@@ -49,6 +51,10 @@ class DishViewController: BaseStatefulController<Dish> {
 
     @IBAction func removeFromCartAction(_ sender: Any) {
         CartService.removeFromCart(dishViewModel.localCartDish)
+    }
+
+    @IBAction func showChefAvailabilityAction(_ sender: Any) {
+        NavigationService.pushChefDeliverySlotsViewController(chefId: dishViewModel.chefId)
     }
 
     @IBAction func openCartAction(_ sender: Any) {

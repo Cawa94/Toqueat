@@ -21,7 +21,7 @@ class ChefProfileViewController: BaseStatefulController<Chef> {
     private let disposeBag = DisposeBag()
 
     @IBAction func deliverySlotsAction(_ sender: Any) {
-        NavigationService.pushDeliverySlotsViewController(chefId: chefProfileViewModel.result.id)
+        NavigationService.pushChefDeliverySlotsViewController(chefId: chefProfileViewModel.result.id)
     }
 
     @IBAction func performLogout(_ sender: Any) {

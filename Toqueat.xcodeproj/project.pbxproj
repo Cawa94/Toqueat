@@ -17,6 +17,7 @@
 		DA57E4E0222C57790086B5DA /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4DE222C57790086B5DA /* ChefViewController.swift */; };
 		DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57E4DF222C57790086B5DA /* ChefViewController.xib */; };
 		DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */; };
+		DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */; };
 		DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */; };
 		DA78566D223FF9A0001BB354 /* ChefLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78566B223FF9A0001BB354 /* ChefLoginViewController.xib */; };
 		DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78566E223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift */; };
@@ -156,6 +157,7 @@
 		DA57E4DE222C57790086B5DA /* ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
 		DA57E4DF222C57790086B5DA /* ChefViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefViewController.xib; sourceTree = "<group>"; };
 		DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefViewController.swift"; sourceTree = "<group>"; };
+		DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyGridCollectionViewLayout.swift; sourceTree = "<group>"; };
 		DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefLoginViewController.swift; sourceTree = "<group>"; };
 		DA78566B223FF9A0001BB354 /* ChefLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefLoginViewController.xib; sourceTree = "<group>"; };
 		DA78566E223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefLoginViewController.swift"; sourceTree = "<group>"; };
@@ -809,6 +811,7 @@
 			isa = PBXGroup;
 			children = (
 				DAE902C822494C0500743D6A /* ChefDeliverySlotsViewModel.swift */,
+				DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1373,6 +1376,7 @@
 				DA859D1322412198008481D2 /* ChefOrderTableViewCell.swift in Sources */,
 				DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */,
 				DA859D16224121C9008481D2 /* ChefOrderTableViewModel.swift in Sources */,
+				DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */,
 				DAF4FE2A222AD2C500F208DB /* AppDelegate+Extensions.swift in Sources */,
 				DA859D0E22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift in Sources */,
 				DAB271772247BBD6005C0915 /* OrderTableViewCell.swift in Sources */,

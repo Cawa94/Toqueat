@@ -2,9 +2,12 @@ import UIKit
 
 class DeliverySlotCollectionViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var titleLabel: UILabel!
+
+    static let reuseID = "DeliverySlotCollectionViewCell"
+
+    override func prepareForReuse() {
+        self.backgroundColor = .white
     }
 
 }
