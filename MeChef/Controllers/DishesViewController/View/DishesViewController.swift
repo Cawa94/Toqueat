@@ -1,7 +1,10 @@
 import UIKit
 import RxSwift
 
-class DishesViewController: BaseTableViewController<[Dish], Dish> {
+class DishesViewController: BaseTableViewController<[Dish], Dish>,
+    UISearchBarDelegate {
+
+    @IBOutlet weak var searchBarContainerView: UIView!
 
     var dishesViewModel: DishesViewModel! {
         didSet {
@@ -10,9 +13,23 @@ class DishesViewController: BaseTableViewController<[Dish], Dish> {
     }
 
     private let disposeBag = DisposeBag()
+    private lazy var searchBar: UISearchBar = .toqueatSearchBar
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        searchBarContainerView.addSubview(searchBar)
+        searchBar.placeholder = "Search dishes"
+        searchBar.delegate = self
+        searchBar.rx
+            .text
+            .orEmpty
+            .asDriver(onErrorJustReturn: "")
+            .skip(1)
+            .drive(onNext: { _ in
+                debugPrint("START SEARCHING...")
+            })
+            .disposed(by: disposeBag)
 
         tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "DishTableViewCell")
@@ -49,7 +66,7 @@ class DishesViewController: BaseTableViewController<[Dish], Dish> {
         case let dishCell as DishTableViewCell:
             let dish = dishesViewModel.elementAt(indexPath.row)
             let viewModel = DishTableViewModel(dish: dish,
-                                               chefName: dish.chef?.name)
+                                               chef: dish.chef)
             dishCell.configureWithLoading( contentViewModel: viewModel)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
@@ -62,7 +79,13 @@ class DishesViewController: BaseTableViewController<[Dish], Dish> {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 220
+    }
+
+    // MARK: - UISearchBarDelegate
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 
     // MARK: - StatefulViewController related methods

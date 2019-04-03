@@ -2,7 +2,7 @@ import RxSwift
 import RxCocoa
 import LeadKit
 
-struct Constants {
+private struct Constants {
     static var placeholderElements = 4
 }
 

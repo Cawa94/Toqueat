@@ -1,12 +1,12 @@
 struct DishTableViewModel {
 
     let dish: Dish
-    let chefName: String?
+    let chef: BaseChef?
 
     init(dish: Dish,
-         chefName: String?) {
+         chef: BaseChef?) {
         self.dish = dish
-        self.chefName = chefName
+        self.chef = chef
     }
 
 }

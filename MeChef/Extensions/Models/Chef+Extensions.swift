@@ -1,6 +1,6 @@
 import Foundation
 
-extension Chef {
+extension BaseChef {
 
     var avatarLink: URL? {
         if let avatarUrl = avatarUrl {
@@ -9,6 +9,10 @@ extension Chef {
             return nil
         }
     }
+
+}
+
+extension Chef {
 
     var stuartContact: StuartContact {
         return StuartContact(firstname: name,

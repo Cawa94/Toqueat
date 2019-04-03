@@ -7,6 +7,7 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
     @IBOutlet weak var chefNameLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var chefImageView: UIImageView!
+    @IBOutlet weak var closeButton: UIButton!
 
     var chefViewModel: ChefViewModel! {
         didSet {
@@ -27,6 +28,10 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
 
     @IBAction func showChefAvailabilityAction(_ sender: Any) {
         NavigationService.pushChefDeliverySlotsViewController(chefId: chefViewModel.result.id)
+    }
+
+    @IBAction func closeAction(_ sender: Any) {
+        NavigationService.popNavigationTopController()
     }
 
     // MARK: - UITableViewDelegate
@@ -60,7 +65,7 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
         case let dishCell as DishTableViewCell:
             let dish = chefViewModel.elementAt(indexPath.row)
             let viewModel = DishTableViewModel(dish: dish,
-                                               chefName: dish.chef?.name)
+                                               chef: nil)
             dishCell.configureWithLoading( contentViewModel: viewModel)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
@@ -73,7 +78,7 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 220
     }
 
     // MARK: - StatefulViewController related methods

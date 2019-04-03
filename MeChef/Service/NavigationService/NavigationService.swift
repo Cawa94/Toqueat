@@ -79,9 +79,11 @@ extension NavigationService {
         appWindow.changeRootController(controller: chefLoginController)
     }
 
-    static func pushChefViewController(chefId: Int64) {
-        let chefController = chefViewController(chefId: chefId)
-        push(viewController: chefController, animated: true)
+    static func pushChefViewController(_ controller: ChefViewController) {
+        /*rootNavigationController?.topVisibleViewController.present(controller,
+                                                                   animated: true,
+                                                                   completion: nil)*/
+        push(viewController: controller, animated: true)
     }
 
     static func pushDishViewController(dishId: Int64) {
@@ -89,9 +91,9 @@ extension NavigationService {
         push(viewController: dishController, animated: true)
     }
 
-    static func pushRegisterViewController() {
-        let registerController = registerViewController()
-        push(viewController: registerController, animated: true)
+    static func makeRegisterRootController() {
+        let registerController = registerViewController().embedInNavigationController()
+        appWindow.changeRootController(controller: registerController)
     }
 
     static func pushOrdersViewController(userId: Int64) {
@@ -124,8 +126,12 @@ extension NavigationService {
                                                                    completion: nil)
     }
 
-    static func dismissDeliverySlotsController() {
+    static func dismissTopController() {
         rootNavigationController?.topVisibleViewController.dismiss(animated: true)
+    }
+
+    static func popNavigationTopController() {
+        navigationController?.popViewController(animated: true)
     }
 
     static func dismissCartNavigationController() {
@@ -137,10 +143,6 @@ extension NavigationService {
         rootNavigationController?.topVisibleViewController.present(controller,
                                                                    animated: true,
                                                                    completion: nil)
-    }
-
-    static func dismissAddressController() {
-        rootNavigationController?.topVisibleViewController.dismiss(animated: true)
     }
 
     static func chefDishesTab(chefId: Int64) -> UIViewController {

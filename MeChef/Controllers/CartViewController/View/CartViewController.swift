@@ -35,7 +35,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 220
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,7 +54,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         case let dishCell as DishTableViewCell:
             let dish = cartViewModel.elementAt(indexPath.row)
             let viewModel = DishTableViewModel(dish: dish.asDish,
-                                               chefName: nil)
+                                               chef: nil)
             dishCell.configureWithLoading( contentViewModel: viewModel)
         default:
             break

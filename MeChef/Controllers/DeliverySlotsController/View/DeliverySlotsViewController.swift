@@ -88,7 +88,7 @@ class DeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
                 presentAlertWith(title: "WARNING", message: "Please pick a delivery slot")
                 return
             }
-        NavigationService.dismissDeliverySlotsController()
+        NavigationService.dismissTopController()
     }
 
 }

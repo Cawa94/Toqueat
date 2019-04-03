@@ -31,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="bXX-3t-ybO">
-                    <rect key="frame" x="10" y="57.5" width="355" height="552"/>
+                    <rect key="frame" x="10" y="28.5" width="355" height="610"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Test" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Bb-g6-Pjj">
                             <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
@@ -121,6 +121,13 @@
                                 <action selector="performRegistration:" destination="-1" eventType="touchUpInside" id="zKL-9W-jHW"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4Y-lt-Dzs">
+                            <rect key="frame" x="0.0" y="580" width="355" height="30"/>
+                            <state key="normal" title="Already registered"/>
+                            <connections>
+                                <action selector="backToLogin:" destination="-1" eventType="touchUpInside" id="AQY-pC-IEf"/>
+                            </connections>
+                        </button>
                     </subviews>
                 </stackView>
             </subviews>
@@ -132,7 +139,7 @@
                 <constraint firstItem="bXX-3t-ybO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="wmP-Hd-33i"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-401" y="15"/>
+            <point key="canvasLocation" x="-569" y="15"/>
         </view>
     </objects>
 </document>

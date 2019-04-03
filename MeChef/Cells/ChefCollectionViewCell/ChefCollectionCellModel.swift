@@ -1,4 +1,4 @@
-struct ChefTableViewModel {
+struct ChefCollectionCellModel {
 
     let chef: Chef
 

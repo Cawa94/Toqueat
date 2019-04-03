@@ -10,9 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChefsViewController" customModule="MeChef" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChefsViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="ap0-4M-6QA" id="PrS-C5-bcj"/>
+                <outlet property="collectionView" destination="mYL-Le-FW7" id="ZPj-lx-pUQ"/>
+                <outlet property="searchBarContainerView" destination="seK-3z-vOX" id="gx2-4o-5S3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,20 +22,40 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ap0-4M-6QA">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mYL-Le-FW7">
+                    <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tableView>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ns6-ea-9Zk">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Gfh-3V-Yq2"/>
+                        <outlet property="delegate" destination="-1" id="aUt-25-OR1"/>
+                    </connections>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seK-3z-vOX">
+                    <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="8tY-hw-lSf"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ap0-4M-6QA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Bri-Tj-Ijd"/>
-                <constraint firstItem="ap0-4M-6QA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Kqc-5K-oMh"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ap0-4M-6QA" secondAttribute="trailing" id="Z8D-kH-CgL"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ap0-4M-6QA" secondAttribute="bottom" id="mV6-EM-4sG"/>
+                <constraint firstItem="seK-3z-vOX" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="C5V-g3-rNd"/>
+                <constraint firstItem="seK-3z-vOX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jpe-Ku-LtR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mYL-Le-FW7" secondAttribute="trailing" id="NmI-VO-1uf"/>
+                <constraint firstItem="mYL-Le-FW7" firstAttribute="top" secondItem="seK-3z-vOX" secondAttribute="bottom" id="P4Z-Mm-RTW"/>
+                <constraint firstItem="mYL-Le-FW7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TXq-7r-6tt"/>
+                <constraint firstItem="seK-3z-vOX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="n2Y-mv-3WS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mYL-Le-FW7" secondAttribute="bottom" id="taj-Ay-UH2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-508" y="79"/>
+            <point key="canvasLocation" x="-508" y="78.710644677661179"/>
         </view>
     </objects>
 </document>

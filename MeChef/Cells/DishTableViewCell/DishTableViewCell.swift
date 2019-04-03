@@ -8,7 +8,7 @@ class DishTableViewCell: UITableViewCell {
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
 
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var chefLabel: UILabel!
+    @IBOutlet private weak var chefImageView: UIImageView!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var dishImageView: UIImageView!
 
@@ -20,7 +20,11 @@ class DishTableViewCell: UITableViewCell {
     }
 
     override func awakeFromNib() {
-        contentContainerView.roundCorners(radii: 15)
+        dishImageView.clipsToBounds = true
+        /*contentContainerViewOutlet.roundCorners(radii: 0,
+                                                borderWidth: 0.5,
+                                                borderColor: .lightGray)*/
+        chefImageView.roundCorners(radii: 17.5, borderWidth: 2.0, borderColor: .white)
     }
 
 }
@@ -50,12 +54,16 @@ extension DishTableViewCell: PlaceholderConfigurable {
         self.viewModel = contentViewModel
 
         nameLabel.text = contentViewModel.dish.name
-        chefLabel.isHidden = contentViewModel.chefName == nil
-        chefLabel.text = "Chef: \(contentViewModel.chefName ?? "Unknown")"
-        priceLabel.text = "\(contentViewModel.dish.price) Euros"
+        priceLabel.text = "$\(contentViewModel.dish.price)"
         if let url = contentViewModel.dish.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)
             dishImageView.contentMode = .scaleAspectFill
+        }
+        if let chefUrl = contentViewModel.chef?.avatarLink {
+            Nuke.loadImage(with: chefUrl, into: chefImageView)
+            chefImageView.contentMode = .scaleAspectFill
+        } else {
+            chefImageView.isHidden = true
         }
     }
 

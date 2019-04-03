@@ -57,6 +57,10 @@ class RegisterViewController: BaseStatefulController<[City]>,
             .disposed(by: disposeBag)
     }
 
+    @IBAction func backToLogin(_ sender: Any) {
+        NavigationService.makeLoginRootController()
+    }
+
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {

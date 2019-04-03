@@ -81,7 +81,7 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 220
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,7 +100,7 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
         case let dishCell as DishTableViewCell:
             let dish = checkoutViewModel.elementAt(indexPath.row)
             let viewModel = DishTableViewModel(dish: dish.asDish,
-                                               chefName: nil)
+                                               chef: nil)
             dishCell.configureWithLoading( contentViewModel: viewModel)
         default:
             break

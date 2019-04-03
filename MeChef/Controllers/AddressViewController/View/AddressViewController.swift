@@ -4,7 +4,7 @@ import RxSwift
 import RxCocoa
 
 class AddressViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
-    MKLocalSearchCompleterDelegate {
+    MKLocalSearchCompleterDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBarContainerView: UIView!
@@ -14,6 +14,7 @@ class AddressViewController: UIViewController, UITableViewDelegate, UITableViewD
     let disposeBag = DisposeBag()
     private let selectedAddressVariable = Variable<String?>(nil)
     private var initialLocation: CLLocation!
+    private lazy var searchBar: UISearchBar = .toqueatSearchBar
 
     public var selectedAddressDriver: Driver<String> {
         return selectedAddressVariable.asDriver().filterNil()
@@ -29,14 +30,11 @@ class AddressViewController: UIViewController, UITableViewDelegate, UITableViewD
         return map
     }
 
-    private lazy var searchBar = {
-        UISearchBar()
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         searchBarContainerView.addSubview(searchBar)
+        searchBar.delegate = self
         searchBar.autoresizingMask = [
             .flexibleWidth,
             .flexibleHeight
@@ -88,7 +86,7 @@ class AddressViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedAddressVariable.value = matchingItems[indexPath.row]
-        NavigationService.dismissAddressController()
+        NavigationService.dismissTopController()
     }
 
     // MARK: - MKLocalSearchCompleterDelegate
@@ -100,6 +98,12 @@ class AddressViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         matchingItems = addresses.uniqueElements
         self.tableView.reloadData()
+    }
+
+    // MARK: - UISearchBarDelegate
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 
 }

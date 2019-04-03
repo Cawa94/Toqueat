@@ -60,7 +60,6 @@
 		DAAD19302236EC8600543AE0 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD192F2236EC8600543AE0 /* UIView+Extensions.swift */; };
 		DAAD193322371D9400543AE0 /* PlaceholderConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD193222371D9400543AE0 /* PlaceholderConfigurable.swift */; };
 		DAAD193522371E5100543AE0 /* DishTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD193422371E5100543AE0 /* DishTableViewModel.swift */; };
-		DAAD1937223728BD00543AE0 /* ChefTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD1936223728BD00543AE0 /* ChefTableViewModel.swift */; };
 		DAAFED6E222E592B00F8F1BE /* UsersRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAFED6D222E592B00F8F1BE /* UsersRequests.swift */; };
 		DAB2716E2247B6D8005C0915 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB2716C2247B6D8005C0915 /* OrdersViewController.swift */; };
 		DAB2716F2247B6D8005C0915 /* OrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB2716D2247B6D8005C0915 /* OrdersViewController.xib */; };
@@ -74,6 +73,10 @@
 		DAB271832247E223005C0915 /* TrackOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271822247E223005C0915 /* TrackOrderViewModel.swift */; };
 		DAB271852247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271842247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift */; };
 		DAB271882247EEA9005C0915 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271872247EEA9005C0915 /* MapPoint.swift */; };
+		DABC32182254EFEB0001757E /* ChefCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC32162254EFEB0001757E /* ChefCollectionViewCell.swift */; };
+		DABC32192254EFEB0001757E /* ChefCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABC32172254EFEB0001757E /* ChefCollectionViewCell.xib */; };
+		DABC321D2254F1FE0001757E /* ChefCollectionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC321C2254F1FE0001757E /* ChefCollectionCellModel.swift */; };
+		DABC321F2254F95F0001757E /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC321E2254F95F0001757E /* AnimationController.swift */; };
 		DAC99464222BE680000282F1 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC99463222BE680000282F1 /* UIColor+Extensions.swift */; };
 		DAC99467222BE7CE000282F1 /* NavigationService+DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC99466222BE7CE000282F1 /* NavigationService+DishesViewController.swift */; };
 		DAC9946C222BE7F3000282F1 /* DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC9946A222BE7F3000282F1 /* DishesViewController.swift */; };
@@ -83,6 +86,7 @@
 		DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC99473222BE97C000282F1 /* DishTableViewCell.xib */; };
 		DAD08B552245634E00F446C0 /* OrderStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD08B542245634E00F446C0 /* OrderStates.swift */; };
 		DAD4B107223D1BAF009E6F84 /* LocalCartDish+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD4B106223D1BAF009E6F84 /* LocalCartDish+Extensions.swift */; };
+		DAD69168225526FE00E823C0 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD69167225526FE00E823C0 /* UISearchBar+Extensions.swift */; };
 		DADD68C9223AB6BA00D65C7A /* NavigationService+AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD68C8223AB6BA00D65C7A /* NavigationService+AddressViewController.swift */; };
 		DADD68D0223AB7DE00D65C7A /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADD68CE223AB7DE00D65C7A /* AddressViewController.swift */; };
 		DADD68D1223AB7DE00D65C7A /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DADD68CF223AB7DE00D65C7A /* AddressViewController.xib */; };
@@ -116,8 +120,6 @@
 		DAF4FE2A222AD2C500F208DB /* AppDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE29222AD2C500F208DB /* AppDelegate+Extensions.swift */; };
 		DAF4FE2C222AD30F00F208DB /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE2B222AD30F00F208DB /* UIViewController+Extensions.swift */; };
 		DAF4FE2E222AD35C00F208DB /* NavigationService+ChefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE2D222AD35C00F208DB /* NavigationService+ChefsViewController.swift */; };
-		DAF4FE33222AD82200F208DB /* ChefTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE31222AD82200F208DB /* ChefTableViewCell.swift */; };
-		DAF4FE34222AD82200F208DB /* ChefTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF4FE32222AD82200F208DB /* ChefTableViewCell.xib */; };
 		DAF4FE36222ADA7000F208DB /* ChefsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4FE35222ADA7000F208DB /* ChefsRequests.swift */; };
 		DAF86AF02237BEF300070B76 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF86AEE2237BEF300070B76 /* CartViewController.swift */; };
 		DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF86AEF2237BEF300070B76 /* CartViewController.xib */; };
@@ -200,7 +202,6 @@
 		DAAD192F2236EC8600543AE0 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		DAAD193222371D9400543AE0 /* PlaceholderConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderConfigurable.swift; sourceTree = "<group>"; };
 		DAAD193422371E5100543AE0 /* DishTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishTableViewModel.swift; sourceTree = "<group>"; };
-		DAAD1936223728BD00543AE0 /* ChefTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefTableViewModel.swift; sourceTree = "<group>"; };
 		DAAFED6D222E592B00F8F1BE /* UsersRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRequests.swift; sourceTree = "<group>"; };
 		DAB2716C2247B6D8005C0915 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		DAB2716D2247B6D8005C0915 /* OrdersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersViewController.xib; sourceTree = "<group>"; };
@@ -214,6 +215,10 @@
 		DAB271822247E223005C0915 /* TrackOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderViewModel.swift; sourceTree = "<group>"; };
 		DAB271842247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+TrackOrderViewController.swift"; sourceTree = "<group>"; };
 		DAB271872247EEA9005C0915 /* MapPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
+		DABC32162254EFEB0001757E /* ChefCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefCollectionViewCell.swift; sourceTree = "<group>"; };
+		DABC32172254EFEB0001757E /* ChefCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefCollectionViewCell.xib; sourceTree = "<group>"; };
+		DABC321C2254F1FE0001757E /* ChefCollectionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefCollectionCellModel.swift; sourceTree = "<group>"; };
+		DABC321E2254F95F0001757E /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		DAC99463222BE680000282F1 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		DAC99466222BE7CE000282F1 /* NavigationService+DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+DishesViewController.swift"; sourceTree = "<group>"; };
 		DAC9946A222BE7F3000282F1 /* DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +228,7 @@
 		DAC99473222BE97C000282F1 /* DishTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishTableViewCell.xib; sourceTree = "<group>"; };
 		DAD08B542245634E00F446C0 /* OrderStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStates.swift; sourceTree = "<group>"; };
 		DAD4B106223D1BAF009E6F84 /* LocalCartDish+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCartDish+Extensions.swift"; sourceTree = "<group>"; };
+		DAD69167225526FE00E823C0 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		DADD68C8223AB6BA00D65C7A /* NavigationService+AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+AddressViewController.swift"; sourceTree = "<group>"; };
 		DADD68CE223AB7DE00D65C7A /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
 		DADD68CF223AB7DE00D65C7A /* AddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
@@ -256,8 +262,6 @@
 		DAF4FE29222AD2C500F208DB /* AppDelegate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extensions.swift"; sourceTree = "<group>"; };
 		DAF4FE2B222AD30F00F208DB /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		DAF4FE2D222AD35C00F208DB /* NavigationService+ChefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefsViewController.swift"; sourceTree = "<group>"; };
-		DAF4FE31222AD82200F208DB /* ChefTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefTableViewCell.swift; sourceTree = "<group>"; };
-		DAF4FE32222AD82200F208DB /* ChefTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefTableViewCell.xib; sourceTree = "<group>"; };
 		DAF4FE35222ADA7000F208DB /* ChefsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefsRequests.swift; sourceTree = "<group>"; };
 		DAF86AEE2237BEF300070B76 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		DAF86AEF2237BEF300070B76 /* CartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartViewController.xib; sourceTree = "<group>"; };
@@ -519,8 +523,9 @@
 		DAAD192E2236EC6E00543AE0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				DAAD192F2236EC8600543AE0 /* UIView+Extensions.swift */,
 				DA9363B4223984E200DF8951 /* Array+Extensions.swift */,
+				DAD69167225526FE00E823C0 /* UISearchBar+Extensions.swift */,
+				DAAD192F2236EC8600543AE0 /* UIView+Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -603,6 +608,16 @@
 				DAB271872247EEA9005C0915 /* MapPoint.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DABC32152254EFD00001757E /* ChefCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DABC32162254EFEB0001757E /* ChefCollectionViewCell.swift */,
+				DABC321C2254F1FE0001757E /* ChefCollectionCellModel.swift */,
+				DABC32172254EFEB0001757E /* ChefCollectionViewCell.xib */,
+			);
+			path = ChefCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		DAC99462222BE621000282F1 /* Appearance */ = {
@@ -864,6 +879,7 @@
 		DAF4FE1D222ACFDE00F208DB /* NavigationService */ = {
 			isa = PBXGroup;
 			children = (
+				DABC321E2254F95F0001757E /* AnimationController.swift */,
 				DAF4FE1E222ACFEF00F208DB /* NavigationService.swift */,
 			);
 			path = NavigationService;
@@ -876,16 +892,6 @@
 				DAA8CD2F222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift */,
 			);
 			path = MainTabViewController;
-			sourceTree = "<group>";
-		};
-		DAF4FE30222AD7E200F208DB /* ChefTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				DAF4FE31222AD82200F208DB /* ChefTableViewCell.swift */,
-				DAAD1936223728BD00543AE0 /* ChefTableViewModel.swift */,
-				DAF4FE32222AD82200F208DB /* ChefTableViewCell.xib */,
-			);
-			path = ChefTableViewCell;
 			sourceTree = "<group>";
 		};
 		DAF86AEB2237BEAC00070B76 /* CartViewController */ = {
@@ -995,7 +1001,7 @@
 			children = (
 				DA859D0F2241215C008481D2 /* AChefExclusive */,
 				DA126728223BBFFC0049215B /* AddressTableViewCell */,
-				DAF4FE30222AD7E200F208DB /* ChefTableViewCell */,
+				DABC32152254EFD00001757E /* ChefCollectionViewCell */,
 				DAC99471222BE96A000282F1 /* DishTableViewCell */,
 				DAB271742247BBAB005C0915 /* OrderTableViewCell */,
 			);
@@ -1218,7 +1224,6 @@
 				DAF4FE23222AD02700F208DB /* ChefsViewController.xib in Resources */,
 				DAFA9B812228907200B2CD4D /* LaunchScreen.storyboard in Resources */,
 				DAB271782247BBD6005C0915 /* OrderTableViewCell.xib in Resources */,
-				DAF4FE34222AD82200F208DB /* ChefTableViewCell.xib in Resources */,
 				DA9363AF223964F600DF8951 /* DeliverySlotsViewController.xib in Resources */,
 				DAFA9B7E2228907200B2CD4D /* Assets.xcassets in Resources */,
 				DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */,
@@ -1235,6 +1240,7 @@
 				DA979BEF222C914F00D452B9 /* ProfileViewController.xib in Resources */,
 				DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */,
 				DADFF2CD222E878C00BB6404 /* RegisterViewController.xib in Resources */,
+				DABC32192254EFEB0001757E /* ChefCollectionViewCell.xib in Resources */,
 				DAFEB6122240E3FE00CABCF5 /* ChefDishesViewController.xib in Resources */,
 				DAE902D022494D8F00743D6A /* DeliverySlotCollectionViewCell.xib in Resources */,
 				DADD68D1223AB7DE00D65C7A /* AddressViewController.xib in Resources */,
@@ -1358,6 +1364,7 @@
 				DA979BE9222C912600D452B9 /* NavigationService+ProfileViewController.swift in Sources */,
 				DA3D421A223E5F0800AB2A27 /* Chef+Extensions.swift in Sources */,
 				DAD08B552245634E00F446C0 /* OrderStates.swift in Sources */,
+				DABC321D2254F1FE0001757E /* ChefCollectionCellModel.swift in Sources */,
 				DAB271852247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift in Sources */,
 				DAF4FE22222AD02700F208DB /* ChefsViewController.swift in Sources */,
 				DAF4FE25222AD03A00F208DB /* ChefsViewModel.swift in Sources */,
@@ -1374,6 +1381,7 @@
 				DA979BEE222C914F00D452B9 /* ProfileViewController.swift in Sources */,
 				DAFA9B752228907100B2CD4D /* AppDelegate.swift in Sources */,
 				DA859D1322412198008481D2 /* ChefOrderTableViewCell.swift in Sources */,
+				DABC321F2254F95F0001757E /* AnimationController.swift in Sources */,
 				DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */,
 				DA859D16224121C9008481D2 /* ChefOrderTableViewModel.swift in Sources */,
 				DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */,
@@ -1395,6 +1403,7 @@
 				DAC99464222BE680000282F1 /* UIColor+Extensions.swift in Sources */,
 				DADFF2D4222EC29500BB6404 /* BaseStatefulController.swift in Sources */,
 				DADFF2C0222E847300BB6404 /* DishViewModel.swift in Sources */,
+				DAD69168225526FE00E823C0 /* UISearchBar+Extensions.swift in Sources */,
 				DADFF2CF222E885A00BB6404 /* RegisterViewModel.swift in Sources */,
 				DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */,
 				DA979BEB222C914100D452B9 /* ProfileViewModel.swift in Sources */,
@@ -1415,7 +1424,6 @@
 				DA84549F222D1EA80052A8D2 /* LoginViewController.swift in Sources */,
 				DAAD193522371E5100543AE0 /* DishTableViewModel.swift in Sources */,
 				DA9E074E222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift in Sources */,
-				DAAD1937223728BD00543AE0 /* ChefTableViewModel.swift in Sources */,
 				DAF86AF32237BF1500070B76 /* CartViewModel.swift in Sources */,
 				DAC99467222BE7CE000282F1 /* NavigationService+DishesViewController.swift in Sources */,
 				DADFF2E6222ED89200BB6404 /* BaseTableViewModel.swift in Sources */,
@@ -1426,7 +1434,6 @@
 				DA93639D22395AF000DF8951 /* DeliverySlot+Extensions.swift in Sources */,
 				DAF4FE1F222ACFEF00F208DB /* NavigationService.swift in Sources */,
 				DADFF2E8222ED89600BB6404 /* BaseTableViewController.swift in Sources */,
-				DAF4FE33222AD82200F208DB /* ChefTableViewCell.swift in Sources */,
 				DA859D0922411E9C008481D2 /* ChefOrdersViewController.swift in Sources */,
 				DA8208B622343717002E6743 /* LocalCart+Extensions.swift in Sources */,
 				DA9363A122395F5E00DF8951 /* CheckoutViewController.swift in Sources */,
@@ -1437,6 +1444,7 @@
 				DADD68C9223AB6BA00D65C7A /* NavigationService+AddressViewController.swift in Sources */,
 				DA9363B5223984E200DF8951 /* Array+Extensions.swift in Sources */,
 				DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */,
+				DABC32182254EFEB0001757E /* ChefCollectionViewCell.swift in Sources */,
 				DADFF2D1222E888700BB6404 /* NavigationService+RegisterViewController.swift in Sources */,
 				DAD4B107223D1BAF009E6F84 /* LocalCartDish+Extensions.swift in Sources */,
 				DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */,
@@ -1607,7 +1615,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1627,7 +1635,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

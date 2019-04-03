@@ -48,7 +48,7 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
         case let dishCell as DishTableViewCell:
             let dish = chefDishesViewModel.elementAt(indexPath.row)
             let viewModel = DishTableViewModel(dish: dish,
-                                               chefName: dish.chef?.name)
+                                               chef: dish.chef)
             dishCell.configureWithLoading( contentViewModel: viewModel)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
@@ -63,7 +63,7 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
     // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 220
     }
 
     // MARK: - StatefulViewController related methods

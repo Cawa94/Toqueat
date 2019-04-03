@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func registerAction(_ sender: Any) {
-        NavigationService.pushRegisterViewController()
+        NavigationService.makeRegisterRootController()
     }
 
     @IBAction func loginAsChefAction(_ sender: Any) {
