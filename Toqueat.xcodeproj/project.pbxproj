@@ -18,6 +18,10 @@
 		DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57E4DF222C57790086B5DA /* ChefViewController.xib */; };
 		DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */; };
 		DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */; };
+		DA69D0EE225BB5DD00231E3E /* ChefDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA69D0ED225BB5DD00231E3E /* ChefDetailsView.swift */; };
+		DA69D0F0225BB69D00231E3E /* ChefDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA69D0EF225BB69D00231E3E /* ChefDetailsView.xib */; };
+		DA69D0F4225BD6B600231E3E /* DishTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA69D0F2225BD6B600231E3E /* DishTypeCollectionViewCell.swift */; };
+		DA69D0F5225BD6B600231E3E /* DishTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA69D0F3225BD6B600231E3E /* DishTypeCollectionViewCell.xib */; };
 		DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */; };
 		DA78566D223FF9A0001BB354 /* ChefLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78566B223FF9A0001BB354 /* ChefLoginViewController.xib */; };
 		DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78566E223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift */; };
@@ -160,6 +164,10 @@
 		DA57E4DF222C57790086B5DA /* ChefViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefViewController.xib; sourceTree = "<group>"; };
 		DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefViewController.swift"; sourceTree = "<group>"; };
 		DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyGridCollectionViewLayout.swift; sourceTree = "<group>"; };
+		DA69D0ED225BB5DD00231E3E /* ChefDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefDetailsView.swift; sourceTree = "<group>"; };
+		DA69D0EF225BB69D00231E3E /* ChefDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefDetailsView.xib; sourceTree = "<group>"; };
+		DA69D0F2225BD6B600231E3E /* DishTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishTypeCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA69D0F3225BD6B600231E3E /* DishTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishTypeCollectionViewCell.xib; sourceTree = "<group>"; };
 		DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefLoginViewController.swift; sourceTree = "<group>"; };
 		DA78566B223FF9A0001BB354 /* ChefLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefLoginViewController.xib; sourceTree = "<group>"; };
 		DA78566E223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefLoginViewController.swift"; sourceTree = "<group>"; };
@@ -337,6 +345,24 @@
 				DA57E4DC222C571F0086B5DA /* ChefViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DA69D0EC225BB5B800231E3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA69D0ED225BB5DD00231E3E /* ChefDetailsView.swift */,
+				DA69D0EF225BB69D00231E3E /* ChefDetailsView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DA69D0F1225BD69B00231E3E /* DishTypeCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DA69D0F2225BD6B600231E3E /* DishTypeCollectionViewCell.swift */,
+				DA69D0F3225BD6B600231E3E /* DishTypeCollectionViewCell.xib */,
+			);
+			path = DishTypeCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		DA785667223FF96F001BB354 /* ChefLoginViewController */ = {
@@ -956,6 +982,7 @@
 				DAB271862247EE70005C0915 /* Models */,
 				DAAD193122371D7300543AE0 /* Protocols */,
 				DAFA9BA42228914100B2CD4D /* Service */,
+				DA69D0EC225BB5B800231E3E /* Views */,
 			);
 			path = MeChef;
 			sourceTree = "<group>";
@@ -1003,6 +1030,7 @@
 				DA126728223BBFFC0049215B /* AddressTableViewCell */,
 				DABC32152254EFD00001757E /* ChefCollectionViewCell */,
 				DAC99471222BE96A000282F1 /* DishTableViewCell */,
+				DA69D0F1225BD69B00231E3E /* DishTypeCollectionViewCell */,
 				DAB271742247BBAB005C0915 /* OrderTableViewCell */,
 			);
 			path = Cells;
@@ -1230,6 +1258,7 @@
 				DA9363A222395F5E00DF8951 /* CheckoutViewController.xib in Resources */,
 				DA859D1422412198008481D2 /* ChefOrderTableViewCell.xib in Resources */,
 				DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */,
+				DA69D0F5225BD6B600231E3E /* DishTypeCollectionViewCell.xib in Resources */,
 				DAE902C722494BF900743D6A /* ChefDeliverySlotsViewController.xib in Resources */,
 				DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */,
 				DAC9946D222BE7F3000282F1 /* DishesViewController.xib in Resources */,
@@ -1240,6 +1269,7 @@
 				DA979BEF222C914F00D452B9 /* ProfileViewController.xib in Resources */,
 				DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */,
 				DADFF2CD222E878C00BB6404 /* RegisterViewController.xib in Resources */,
+				DA69D0F0225BB69D00231E3E /* ChefDetailsView.xib in Resources */,
 				DABC32192254EFEB0001757E /* ChefCollectionViewCell.xib in Resources */,
 				DAFEB6122240E3FE00CABCF5 /* ChefDishesViewController.xib in Resources */,
 				DAE902D022494D8F00743D6A /* DeliverySlotCollectionViewCell.xib in Resources */,
@@ -1402,6 +1432,7 @@
 				DA9363B32239657700DF8951 /* DeliverySlotsViewController+NavigationService.swift in Sources */,
 				DAC99464222BE680000282F1 /* UIColor+Extensions.swift in Sources */,
 				DADFF2D4222EC29500BB6404 /* BaseStatefulController.swift in Sources */,
+				DA69D0EE225BB5DD00231E3E /* ChefDetailsView.swift in Sources */,
 				DADFF2C0222E847300BB6404 /* DishViewModel.swift in Sources */,
 				DAD69168225526FE00E823C0 /* UISearchBar+Extensions.swift in Sources */,
 				DADFF2CF222E885A00BB6404 /* RegisterViewModel.swift in Sources */,
@@ -1453,6 +1484,7 @@
 				DAAFED6E222E592B00F8F1BE /* UsersRequests.swift in Sources */,
 				DAFEB6062240D6D900CABCF5 /* NavigationService+ChefProfileViewController.swift in Sources */,
 				DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */,
+				DA69D0F4225BD6B600231E3E /* DishTypeCollectionViewCell.swift in Sources */,
 				DAB2716E2247B6D8005C0915 /* OrdersViewController.swift in Sources */,
 				DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */,
 				DAFD096F2229816C00F1255A /* Models.swift in Sources */,

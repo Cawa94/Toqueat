@@ -35,6 +35,14 @@ class BaseTableViewController<ResultType, ElementType>: BaseStatefulController<R
         return UITableViewCell()
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
@@ -48,5 +56,9 @@ class BaseTableViewController<ResultType, ElementType>: BaseStatefulController<R
     override func onEmptyState() {
         self.tableView.reloadData()
     }
+
+    // MARK: - UIScrollViewDelegate
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {}
 
 }

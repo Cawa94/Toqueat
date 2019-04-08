@@ -2,9 +2,12 @@ import UIKit
 import RxSwift
 
 class DishesViewController: BaseTableViewController<[Dish], Dish>,
-    UISearchBarDelegate {
+    UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet weak var searchBarContainerView: UIView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var searchBarContainerView: UIView!
+    @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
 
     var dishesViewModel: DishesViewModel! {
         didSet {
@@ -33,6 +36,9 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
 
         tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "DishTableViewCell")
+        let nib = UINib(nibName: "DishTypeCollectionViewCell", bundle: nil)
+        collectionView.register(nib,
+                                forCellWithReuseIdentifier: "DishTypeCollectionViewCell")
     }
 
     // MARK: - UITableViewDelegate
@@ -88,11 +94,46 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
         searchBar.resignFirstResponder()
     }
 
+    // MARK: - Collection view data source and delegate methods
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return dishesViewModel.dishesTypes.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
+        -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DishTypeCollectionViewCell",
+                                                          for: indexPath)
+            configureWithContent(cell, at: indexPath)
+            return cell
+    }
+
+    private func configureWithContent(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let typeCell as DishTypeCollectionViewCell:
+            let dishType = dishesViewModel.dishesTypes[indexPath.row]
+            typeCell.configureWith(dishType)
+        default:
+            break
+        }
+    }
+
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
         dishesViewModel.elements = dishesViewModel.result
         super.onResultsState()
+    }
+
+    override func viewDidLayoutSubviews() {
+        tableViewHeightConstraint.constant = tableView.contentSize.height
+        contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
+            + 70
     }
 
 }
