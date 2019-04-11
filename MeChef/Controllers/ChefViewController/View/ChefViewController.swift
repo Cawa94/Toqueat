@@ -5,7 +5,7 @@ import Nuke
 class ChefViewController: BaseTableViewController<Chef, Dish> {
 
     @IBOutlet private weak var headerView: UIView!
-    @IBOutlet private weak var chefDetailsView: ChefDetailsView!
+    @IBOutlet private weak var chefDetailsTableView: IntrinsicTableView!
     @IBOutlet private weak var chefImageView: UIImageView!
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var chefDetailsHeightConstraint: NSLayoutConstraint!
@@ -24,18 +24,16 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        chefDetailsView.roundCorners(radii: 15.0)
+        chefDetailsTableView.roundCorners(radii: 15.0)
         chefImageView.roundOnly(corners: [.bottomLeft, .bottomRight], cornerRadii: 30.0)
 
         tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "DishTableViewCell")
+        chefDetailsTableView.register(UINib(nibName: "ChefDetailsTableViewCell", bundle: nil),
+                                      forCellReuseIdentifier: "ChefDetailsTableViewCell")
     }
 
     // MARK: - Actions
-
-    @IBAction func showChefAvailabilityAction(_ sender: Any) {
-        NavigationService.pushChefDeliverySlotsViewController(chefId: chefViewModel.result.id)
-    }
 
     @IBAction func closeAction(_ sender: Any) {
         NavigationService.popNavigationTopController()
@@ -43,37 +41,44 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
 
     // MARK: - UITableViewDelegate
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == self.tableView {
+            return tableViewModel.numberOfItems(for: section)
+        }
+        return 1
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
+        var cell: UITableViewCell
+        if tableView == self.tableView {
+            cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
                                                  for: indexPath)
+        } else {
+            cell = chefDetailsTableView.dequeueReusableCell(withIdentifier: "ChefDetailsTableViewCell",
+                                                            for: indexPath)
+        }
         configure(cell, at: indexPath, isLoading: chefViewModel.isLoading)
         return cell
     }
 
-    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
-        if isLoading {
-            configureWithPlaceholders(cell, at: indexPath)
-        } else {
-            configureWithContent(cell, at: indexPath)
-        }
-    }
-
-    private func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let dishCell as DishTableViewCell:
-            dishCell.configureWithLoading(true)
+            dishCell.configureWith(loading: true)
+        case let chefDetailsCell as ChefDetailsTableViewCell:
+            chefDetailsCell.configureWith(loading: true)
         default:
             break
         }
     }
 
-    private func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let dishCell as DishTableViewCell:
             let dish = chefViewModel.elementAt(indexPath.row)
             let viewModel = DishTableViewModel(dish: dish,
                                                chef: nil)
-            dishCell.configureWithLoading( contentViewModel: viewModel)
+            dishCell.configureWith(contentViewModel: viewModel)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     NavigationService.pushDishViewController(dishId: dish.id)
@@ -84,30 +89,55 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
                     self.viewDidLayoutSubviews()
                 }
             }
+        case let chefDetailsCell as ChefDetailsTableViewCell:
+            let chef = chefViewModel.result
+            chefDetailsCell.configureWith(contentViewModel: chef)
+            chefDetailsCell.instaButton.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    guard let instaUrl = URL(string: "https://www.instagram.com/ewelina_happymamas/")
+                        else { return }
+                    NavigationService.presentSafariController(url: instaUrl)
+                })
+                .disposed(by: chefDetailsCell.disposeBag)
+            chefDetailsCell.availabButton.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    NavigationService.pushChefDeliverySlotsViewController(chefId: self.chefViewModel.result.id)
+                })
+                .disposed(by: chefDetailsCell.disposeBag)
         default:
             break
         }
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        if tableView == self.tableView {
+            return 220
+        }
+        return UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        if tableView == self.tableView {
+            return 50
+        }
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let  headerCell = UITableViewCell()
-        headerCell.textLabel?.text = "My dishes"
-        headerCell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
-        return headerCell
+        if tableView == self.tableView {
+            let  headerCell = UITableViewCell()
+            headerCell.textLabel?.text = "My dishes"
+            headerCell.textLabel?.textColor = .darkGrayColor
+            headerCell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
+            return headerCell
+        }
+        return nil
     }
 
     // MARK: - StatefulViewController related methods
 
     override func onLoadingState() {
-        chefDetailsView.configureWith(loading: true)
+        chefDetailsTableView.reloadData()
         super.onLoadingState()
     }
 
@@ -117,13 +147,14 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
             chefImageView.contentMode = .scaleAspectFill
         }
         chefViewModel.elements = chefViewModel.result.dishes ?? []
-        chefDetailsView.configureWith(contentViewModel: chefViewModel.result)
+        chefDetailsTableView.reloadData()
         navigationTitle.text = "\(chefViewModel.result.name) \(chefViewModel.result.lastname)"
         super.onResultsState()
     }
 
     override func viewDidLayoutSubviews() {
         tableViewHeightConstraint.constant = tableView.contentSize.height
+        chefDetailsHeightConstraint.constant = chefDetailsTableView.contentSize.height
         contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
             + 190 + chefDetailsHeightConstraint.constant + 30
     }

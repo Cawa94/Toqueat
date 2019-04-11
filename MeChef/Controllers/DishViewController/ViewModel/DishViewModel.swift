@@ -14,16 +14,10 @@ final class DishViewModel: BaseStatefulViewModel<Dish> {
 
 extension DishViewModel {
 
-    var dishName: String {
-        return isLoading ? "LOADING" : result.name
-    }
-
-    var dishDescription: String {
-        return isLoading ? "LOADING" : result.description
-    }
-
-    var chefName: String {
-        return isLoading ? "LOADING" : result.chef?.name ?? "Unknown"
+    var baseChef: BaseChef? {
+        guard let chefId = result.chef?.id, let chefName = result.chef?.name
+            else { return nil }
+        return BaseChef(avatarUrl: result.chef?.avatarUrl, id: chefId, name: chefName)
     }
 
     var chefId: Int64 {

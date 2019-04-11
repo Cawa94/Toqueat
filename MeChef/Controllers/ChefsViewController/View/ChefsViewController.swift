@@ -4,10 +4,12 @@ import RxGesture
 
 class ChefsViewController: BaseStatefulController<[Chef]>,
     UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,
-    UIViewControllerTransitioningDelegate, UISearchBarDelegate {
+    UISearchBarDelegate {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var searchBarContainerView: UIView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var searchBarContainerView: UIView!
+    @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
 
     var chefsViewModel: ChefsViewModel! {
         didSet {
@@ -17,12 +19,12 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
 
     private let disposeBag = DisposeBag()
     private var selectedIndex: IndexPath?
-    private let animationController = AnimationController()
     private lazy var searchBar: UISearchBar = .toqueatSearchBar
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchBar.frame = searchBarContainerView.bounds
         searchBarContainerView.addSubview(searchBar)
         searchBar.placeholder = "Search chef"
         searchBar.delegate = self
@@ -39,6 +41,10 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
         let nib = UINib(nibName: ChefCollectionViewCell.reuseID, bundle: nil)
         collectionView.register(nib,
                                 forCellWithReuseIdentifier: ChefCollectionViewCell.reuseID)
+    }
+
+    @IBAction func profileAction(_ sender: Any) {
+        NavigationService.presentProfileController()
     }
 
     // MARK: - Collection view data source and delegate methods
@@ -71,7 +77,7 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
     private func configureWithPlaceholders(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
         switch cell {
         case let chefCell as ChefCollectionViewCell:
-            chefCell.configureWithLoading(true)
+            chefCell.configureWith(loading: true)
         default:
             break
         }
@@ -81,14 +87,11 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
         switch cell {
         case let chefCell as ChefCollectionViewCell:
             let chef = chefsViewModel.elementAt(indexPath.row)
-            let viewModel = ChefCollectionCellModel(chef: chef)
-            chefCell.configureWithLoading(contentViewModel: viewModel)
+            chefCell.configureWith(contentViewModel: chef)
             chefCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     self.selectedIndex = indexPath
-                    self.animationController.originCornerRadius = chefCell.cornerRadius
                     let chefController = NavigationService.chefViewController(chefId: chef.id)
-                    chefController.transitioningDelegate = self
                     NavigationService.pushChefViewController(chefController)
                 })
                 .disposed(by: chefCell.disposeBag)
@@ -105,7 +108,7 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
         let width = columnWidth - (ChefsViewModel.Constants.horizontalSpacingBetweenCells
             / CGFloat(ChefsViewModel.Constants.numberOfColumns))
 
-        return CGSize(width: width, height: 250)
+        return CGSize(width: width, height: ChefsViewModel.Constants.cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -125,8 +128,17 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
     override func onResultsState() {
         chefsViewModel.elements = chefsViewModel.result
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            self.collectionView.reloadData {
+                self.viewDidLayoutSubviews()
+            }
         }
+    }
+
+    override func viewDidLayoutSubviews() {
+        collectionViewHeightConstraint.constant = collectionView.contentSize.height
+        contentViewHeightConstraint.constant = collectionViewHeightConstraint.constant
+            + 56
+        self.view.layoutIfNeeded()
     }
 
     // MARK: - UISearchBarDelegate
@@ -135,29 +147,15 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
         searchBar.resignFirstResponder()
     }
 
-    // MARK: - UIViewControllerTransitioningDelegate
+}
 
-    func animationController(forPresented presented: UIViewController,
-                             presenting: UIViewController,
-                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
-            /*guard let selectedIndex = selectedIndex,
-                let selectedCell = collectionView.cellForItem(at: selectedIndex) as? ChefCollectionViewCell
-                else { return nil }
-            animationController.originFrame = CGRect(x: selectedCell.frame.origin.x + selectedCell.avatarFrame.origin.x,
-                                                     y: selectedCell.frame.origin.y + selectedCell.avatarFrame.origin.y,
-                                                     width: selectedCell.avatarFrame.size.width,
-                                                     height: selectedCell.avatarFrame.size.height)
-            animationController.presenting = true
-            return animationController*/
-    }
+// swiftlint:disable all
+extension UICollectionView {
 
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
-        /*
-        animationController.presenting = false
-        return animationController
-         */
+    func reloadData(completion: @escaping () -> Void) {
+        UIView.animate(withDuration: 0, animations: { self.reloadData() }) { _ in
+            completion()
+        }
     }
 
 }

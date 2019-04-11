@@ -26,30 +26,22 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
         return cell
     }
 
-    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
-        if isLoading {
-            configureWithPlaceholders(cell, at: indexPath)
-        } else {
-            configureWithContent(cell, at: indexPath)
-        }
-    }
-
-    private func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let dishCell as DishTableViewCell:
-            dishCell.configureWithLoading(true)
+            dishCell.configureWith(loading: true)
         default:
             break
         }
     }
 
-    private func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let dishCell as DishTableViewCell:
             let dish = chefDishesViewModel.elementAt(indexPath.row)
             let viewModel = DishTableViewModel(dish: dish,
                                                chef: dish.chef)
-            dishCell.configureWithLoading( contentViewModel: viewModel)
+            dishCell.configureWith(contentViewModel: viewModel)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     NavigationService.pushDishViewController(dishId: dish.id)

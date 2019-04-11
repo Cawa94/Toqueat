@@ -2,10 +2,10 @@ import UIKit
 
 extension NavigationService {
 
-    static func cartViewController(cart: LocalCart) -> CartViewController {
+    static func cartViewController() -> CartViewController {
         let controller = CartViewController(nibName: CartViewController.xibName,
                                             bundle: nil)
-        let viewModel = CartViewModel(cart: cart)
+        let viewModel = CartViewModel()
 
         controller.cartViewModel = viewModel
         return controller

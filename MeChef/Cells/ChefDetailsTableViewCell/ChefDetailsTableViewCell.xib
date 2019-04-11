@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChefDetailsTableViewCell" id="KGk-i7-Jjw" customClass="ChefDetailsTableViewCell" customModule="Toqueat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="345" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="345" height="199.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLc-YA-8BD">
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="199.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCY-kj-Po5">
+                                <rect key="frame" x="15" y="15" width="270" height="26.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
+                                <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVw-MA-Qa5">
+                                <rect key="frame" x="295" y="11" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="LOc-Ig-Usb"/>
+                                    <constraint firstAttribute="width" secondItem="bVw-MA-Qa5" secondAttribute="height" multiplier="1:1" id="wEz-J9-sTV"/>
+                                </constraints>
+                                <state key="normal" image="instagram">
+                                    <color key="titleColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5p-gF-Lbf">
+                                <rect key="frame" x="15" y="44.5" width="270" height="15.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="749" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9B-RA-wEW">
+                                <rect key="frame" x="15" y="70" width="315" height="17.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVp-cj-OTU">
+                                <rect key="frame" x="15" y="160.5" width="141" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="qlF-Vj-jas"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title=" Check availability" image="calendar">
+                                    <color key="titleColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YCY-kj-Po5" firstAttribute="leading" secondItem="xLc-YA-8BD" secondAttribute="leading" constant="15" id="HNm-fW-9z8"/>
+                            <constraint firstItem="k5p-gF-Lbf" firstAttribute="top" secondItem="YCY-kj-Po5" secondAttribute="bottom" constant="3" id="Lpl-nb-afg"/>
+                            <constraint firstItem="YCY-kj-Po5" firstAttribute="top" secondItem="xLc-YA-8BD" secondAttribute="top" constant="15" id="Moo-hy-WLL"/>
+                            <constraint firstItem="k5p-gF-Lbf" firstAttribute="leading" secondItem="YCY-kj-Po5" secondAttribute="leading" id="PIg-BR-Mje"/>
+                            <constraint firstAttribute="bottom" secondItem="LVp-cj-OTU" secondAttribute="bottom" constant="15" id="U3x-sX-6e0"/>
+                            <constraint firstItem="bVw-MA-Qa5" firstAttribute="leading" secondItem="YCY-kj-Po5" secondAttribute="trailing" constant="10" id="VOc-nu-AIH"/>
+                            <constraint firstItem="f9B-RA-wEW" firstAttribute="top" secondItem="k5p-gF-Lbf" secondAttribute="bottom" constant="10" id="VVL-sw-gy4"/>
+                            <constraint firstItem="bVw-MA-Qa5" firstAttribute="centerY" secondItem="YCY-kj-Po5" secondAttribute="centerY" id="azw-wn-Wjt"/>
+                            <constraint firstAttribute="trailing" secondItem="bVw-MA-Qa5" secondAttribute="trailing" constant="15" id="cDD-lM-TW0"/>
+                            <constraint firstItem="LVp-cj-OTU" firstAttribute="leading" secondItem="xLc-YA-8BD" secondAttribute="leading" constant="15" id="cRQ-oG-Dv9"/>
+                            <constraint firstItem="f9B-RA-wEW" firstAttribute="leading" secondItem="xLc-YA-8BD" secondAttribute="leading" constant="15" id="ejh-px-CGf"/>
+                            <constraint firstItem="k5p-gF-Lbf" firstAttribute="trailing" secondItem="YCY-kj-Po5" secondAttribute="trailing" id="llT-qa-cKG"/>
+                            <constraint firstAttribute="trailing" secondItem="f9B-RA-wEW" secondAttribute="trailing" constant="15" id="t5e-71-RTI"/>
+                            <constraint firstItem="LVp-cj-OTU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="f9B-RA-wEW" secondAttribute="bottom" constant="20" id="u3c-hD-4gj"/>
+                        </constraints>
+                    </view>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVH-TY-Y3A">
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="199.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAb-BQ-puP">
+                                <rect key="frame" x="129" y="89.5" width="87" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AAb-BQ-puP" firstAttribute="centerX" secondItem="lVH-TY-Y3A" secondAttribute="centerX" id="Ks7-8W-4uj"/>
+                            <constraint firstItem="AAb-BQ-puP" firstAttribute="centerY" secondItem="lVH-TY-Y3A" secondAttribute="centerY" id="hxS-dK-NlV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="lVH-TY-Y3A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0tW-EN-tIj"/>
+                    <constraint firstAttribute="bottom" secondItem="lVH-TY-Y3A" secondAttribute="bottom" id="P5I-yA-02W"/>
+                    <constraint firstAttribute="trailing" secondItem="xLc-YA-8BD" secondAttribute="trailing" id="Pyz-V7-pD9"/>
+                    <constraint firstAttribute="bottom" secondItem="xLc-YA-8BD" secondAttribute="bottom" id="bfz-kz-Fz6"/>
+                    <constraint firstItem="xLc-YA-8BD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hDG-nC-MFr"/>
+                    <constraint firstAttribute="trailing" secondItem="lVH-TY-Y3A" secondAttribute="trailing" id="haZ-ps-SYU"/>
+                    <constraint firstItem="xLc-YA-8BD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xO4-kv-Cxs"/>
+                    <constraint firstItem="lVH-TY-Y3A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yqr-gj-rUv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="availabilityButton" destination="LVp-cj-OTU" id="7TY-l2-JnD"/>
+                <outlet property="cityLabel" destination="k5p-gF-Lbf" id="nd3-9k-QcR"/>
+                <outlet property="contentContainerViewOutlet" destination="xLc-YA-8BD" id="vol-tE-eCm"/>
+                <outlet property="instagramButton" destination="bVw-MA-Qa5" id="VP0-Jn-zIH"/>
+                <outlet property="nameLabel" destination="YCY-kj-Po5" id="lTW-jA-tsO"/>
+                <outlet property="placeholderContainerViewOutlet" destination="lVH-TY-Y3A" id="6wO-Gj-Glu"/>
+                <outlet property="presentationLabel" destination="f9B-RA-wEW" id="pGg-bU-XYt"/>
+            </connections>
+            <point key="canvasLocation" x="-25" y="35"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="calendar" width="24" height="24"/>
+        <image name="instagram" width="64" height="64"/>
+    </resources>
+</document>

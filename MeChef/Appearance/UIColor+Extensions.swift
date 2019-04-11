@@ -4,9 +4,11 @@ extension UIColor {
 
     //Gray
     static let mainGrayColor  = UIColor(hex6: 0x7B7878)
+    static let darkGrayColor  = UIColor(hex6: 0x434343)
 
     //Orange
-    static let mainOrangeColor  = UIColor(hex6: 0xFF8400)
+    static let mainOrangeColor         = UIColor(hex6: 0xF26E01)
+    static let highlightedOrangeColor  = UIColor(hex6: 0xFF8400)
 
 }
 

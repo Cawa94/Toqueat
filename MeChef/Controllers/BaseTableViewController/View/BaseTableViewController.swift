@@ -43,6 +43,18 @@ class BaseTableViewController<ResultType, ElementType>: BaseStatefulController<R
         return nil
     }
 
+    func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
+        if isLoading {
+            configureWithPlaceholders(cell, at: indexPath)
+        } else {
+            configureWithContent(cell, at: indexPath)
+        }
+    }
+
+    func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {}
+
+    func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {}
+
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
@@ -56,9 +68,5 @@ class BaseTableViewController<ResultType, ElementType>: BaseStatefulController<R
     override func onEmptyState() {
         self.tableView.reloadData()
     }
-
-    // MARK: - UIScrollViewDelegate
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {}
 
 }

@@ -4,7 +4,7 @@ import RxSwift
 import RxCocoa
 
 class BaseStatefulController<ResultType>: UIViewController, StatefulViewController,
-    UIGestureRecognizerDelegate {
+    UIGestureRecognizerDelegate, UIScrollViewDelegate {
 
     private let disposeBag = DisposeBag()
     typealias ViewModelType = BaseStatefulViewModel<ResultType>
@@ -62,5 +62,9 @@ class BaseStatefulController<ResultType>: UIViewController, StatefulViewControll
         startLoading()
         viewModel.reload()
     }
+
+    // MARK: - UIScrollViewDelegate
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {}
 
 }

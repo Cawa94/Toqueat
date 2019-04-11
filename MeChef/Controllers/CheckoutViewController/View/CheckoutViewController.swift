@@ -51,7 +51,7 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
         guard let userId = SessionService.session?.user?.id,
             let deliveryDate = CartService.localCart?.deliveryDate,
             let dishes = CartService.localCart?.dishes,
-            let chefId = CartService.localCart?.chefId,
+            let chefId = CartService.localCart?.chef?.id,
             let deliveryAddress = addressLabel.text
             else { return }
         let dishesPrice = dishes.map { ($0.price as Decimal) }.reduce(0, +)
@@ -95,13 +95,13 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
         configureWithContent(cell, at: indexPath)
     }
 
-    private func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let dishCell as DishTableViewCell:
             let dish = checkoutViewModel.elementAt(indexPath.row)
             let viewModel = DishTableViewModel(dish: dish.asDish,
                                                chef: nil)
-            dishCell.configureWithLoading( contentViewModel: viewModel)
+            dishCell.configureWith(contentViewModel: viewModel)
         default:
             break
         }

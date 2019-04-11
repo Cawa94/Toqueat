@@ -33,6 +33,10 @@ class ProfileViewController: BaseStatefulController<User> {
         }
     }
 
+    @IBAction func closeProfileAction(_ sender: Any) {
+        NavigationService.dismissTopController()
+    }
+
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {

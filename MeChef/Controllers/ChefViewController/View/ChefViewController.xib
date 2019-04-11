@@ -12,8 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChefViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
-                <outlet property="chefDetailsHeightConstraint" destination="pUi-FB-lPB" id="rcS-Ug-Wyf"/>
-                <outlet property="chefDetailsView" destination="dER-K1-DQg" id="Dvs-b2-Fgu"/>
+                <outlet property="chefDetailsHeightConstraint" destination="dWd-2p-OG1" id="rnA-gL-3Fr"/>
+                <outlet property="chefDetailsTableView" destination="4Rn-GL-OjU" id="rHE-EV-bzY"/>
                 <outlet property="chefImageView" destination="Wfy-hx-zDE" id="Gpe-SH-4Fl"/>
                 <outlet property="contentViewHeightConstraint" destination="4C9-Rd-cS4" id="vPi-6H-NTV"/>
                 <outlet property="headerView" destination="4ep-Uc-Nih" id="f6a-DM-B2A"/>
@@ -59,6 +59,17 @@
                                         <constraint firstAttribute="height" constant="190" id="S5D-XR-yoG"/>
                                     </constraints>
                                 </view>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Rn-GL-OjU" customClass="IntrinsicTableView" customModule="Toqueat" customModuleProvider="target">
+                                    <rect key="frame" x="15" y="195" width="345" height="200"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="200" id="dWd-2p-OG1"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="B4h-XK-ZG1"/>
+                                        <outlet property="delegate" destination="-1" id="Ul2-Eq-bY5"/>
+                                    </connections>
+                                </tableView>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fll-bK-OFc">
                                     <rect key="frame" x="0.0" y="410" width="375" height="255"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,27 +78,20 @@
                                     </constraints>
                                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dER-K1-DQg" customClass="ChefDetailsView" customModule="Toqueat" customModuleProvider="target">
-                                    <rect key="frame" x="15" y="195" width="345" height="200"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="200" id="pUi-FB-lPB"/>
-                                    </constraints>
-                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="665" id="4C9-Rd-cS4"/>
+                                <constraint firstItem="4Rn-GL-OjU" firstAttribute="top" secondItem="xVa-1S-NUX" secondAttribute="bottom" constant="5" id="7t5-N2-ryL"/>
                                 <constraint firstAttribute="trailing" secondItem="Fll-bK-OFc" secondAttribute="trailing" id="Cfe-kU-XoR"/>
-                                <constraint firstItem="Fll-bK-OFc" firstAttribute="top" secondItem="dER-K1-DQg" secondAttribute="bottom" constant="15" id="JrZ-sm-irT"/>
-                                <constraint firstAttribute="trailing" secondItem="dER-K1-DQg" secondAttribute="trailing" constant="15" id="OIU-Wp-B5C"/>
-                                <constraint firstItem="dER-K1-DQg" firstAttribute="top" secondItem="xVa-1S-NUX" secondAttribute="bottom" constant="5" id="YTg-6i-JuV"/>
                                 <constraint firstAttribute="trailing" secondItem="xVa-1S-NUX" secondAttribute="trailing" id="ZF2-oP-kPe"/>
                                 <constraint firstItem="Fll-bK-OFc" firstAttribute="leading" secondItem="UNT-NA-3gk" secondAttribute="leading" id="bYk-jU-cV1"/>
                                 <constraint firstAttribute="bottom" secondItem="Fll-bK-OFc" secondAttribute="bottom" id="dKG-Jl-1Z6"/>
                                 <constraint firstItem="xVa-1S-NUX" firstAttribute="leading" secondItem="UNT-NA-3gk" secondAttribute="leading" id="e2E-ZK-E6Z"/>
+                                <constraint firstItem="Fll-bK-OFc" firstAttribute="top" secondItem="4Rn-GL-OjU" secondAttribute="bottom" constant="15" id="eus-vx-zHJ"/>
+                                <constraint firstItem="4Rn-GL-OjU" firstAttribute="leading" secondItem="UNT-NA-3gk" secondAttribute="leading" constant="15" id="hMC-dh-WGM"/>
+                                <constraint firstAttribute="trailing" secondItem="4Rn-GL-OjU" secondAttribute="trailing" constant="15" id="jxe-Q6-0hx"/>
                                 <constraint firstItem="xVa-1S-NUX" firstAttribute="top" secondItem="UNT-NA-3gk" secondAttribute="top" id="oQi-F9-Woz"/>
-                                <constraint firstItem="dER-K1-DQg" firstAttribute="leading" secondItem="UNT-NA-3gk" secondAttribute="leading" constant="15" id="qtj-M1-nMy"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -110,7 +114,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHy-r3-kja">
                     <rect key="frame" x="161.5" y="25" width="52" height="24"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                    <color key="textColor" red="1" green="0.51764705879999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -131,7 +135,7 @@
                 <constraint firstItem="K3B-P8-VE2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sJZ-Jc-QbJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-2332" y="-85"/>
+            <point key="canvasLocation" x="-2674" y="-118"/>
         </view>
     </objects>
 </document>

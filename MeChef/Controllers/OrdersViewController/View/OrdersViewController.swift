@@ -26,29 +26,21 @@ class OrdersViewController: BaseTableViewController<[Order], Order> {
         return cell
     }
 
-    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
-        if isLoading {
-            configureWithPlaceholders(cell, at: indexPath)
-        } else {
-            configureWithContent(cell, at: indexPath)
-        }
-    }
-
-    private func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let orderCell as OrderTableViewCell:
-            orderCell.configureWithLoading(true)
+            orderCell.configureWith(loading: true)
         default:
             break
         }
     }
 
-    private func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let orderCell as OrderTableViewCell:
             let order = ordersViewModel.elementAt(indexPath.row)
             let viewModel = OrderTableViewModel(order: order)
-            orderCell.configureWithLoading(contentViewModel: viewModel)
+            orderCell.configureWith(contentViewModel: viewModel)
             orderCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     NavigationService.pushTrackOrderViewController(orderId: order.id,

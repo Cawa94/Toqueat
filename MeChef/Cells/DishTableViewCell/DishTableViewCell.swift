@@ -21,10 +21,8 @@ class DishTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         dishImageView.clipsToBounds = true
-        /*contentContainerViewOutlet.roundCorners(radii: 0,
-                                                borderWidth: 0.5,
-                                                borderColor: .lightGray)*/
-        chefImageView.roundCorners(radii: 17.5, borderWidth: 2.0, borderColor: .white)
+        chefImageView.roundCorners(radii: chefImageView.frame.width/2,
+                                   borderWidth: 2.0, borderColor: .white)
     }
 
 }
@@ -42,7 +40,7 @@ extension DishTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWithLoading(_ loading: Bool = false, contentViewModel: DishTableViewModel? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: DishTableViewModel? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {

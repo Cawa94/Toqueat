@@ -4,7 +4,8 @@ import RxSwift
 class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
     UIGestureRecognizerDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var checkoutButton: RoundedButton!
 
     var cartViewModel: CartViewModel!
     private let disposeBag = DisposeBag()
@@ -18,28 +19,55 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 
-        tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
-                           forCellReuseIdentifier: "DishTableViewCell")
+        let checkoutModel = RoundedButtonViewModel(title: "Order now", type: .defaultOrange)
+        checkoutButton.configure(with: checkoutModel)
+
+        tableView.register(UINib(nibName: "CartDishTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "CartDishTableViewCell")
+        tableView.register(UINib(nibName: "CartHeaderView", bundle: nil),
+                           forHeaderFooterViewReuseIdentifier: "CartHeaderView")
+
+        CartService.localCartDriver.drive(onNext: { localCart in
+            self.cartViewModel.cart = localCart
+            self.tableView.reloadData()
+        }).disposed(by: disposeBag)
     }
 
     @IBAction func startCheckoutAction(_ sender: Any) {
-        guard let cart = CartService.localCart, let chefId = cart.chefId
+        guard let cart = CartService.localCart, let chefId = cart.chef?.id
             else { return }
         NavigationService.pushCheckoutViewController(cart: cart, chefId: chefId)
     }
 
     // MARK: - UITableViewDelegate
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerCell = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: "CartHeaderView") as? CartHeaderView,
+            let chef = cartViewModel.chef
+            else { return nil }
+        headerCell.configure(chef: chef)
+        return headerCell
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cartViewModel.elements.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return 120
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CartDishTableViewCell",
                                                  for: indexPath)
         configure(cell, at: indexPath)
         return cell
@@ -51,11 +79,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
-        case let dishCell as DishTableViewCell:
+        case let dishCell as CartDishTableViewCell:
             let dish = cartViewModel.elementAt(indexPath.row)
-            let viewModel = DishTableViewModel(dish: dish.asDish,
-                                               chef: nil)
-            dishCell.configureWithLoading( contentViewModel: viewModel)
+            dishCell.configureWith(contentViewModel: dish)
         default:
             break
         }

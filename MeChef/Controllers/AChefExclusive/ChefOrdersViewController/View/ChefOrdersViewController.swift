@@ -26,29 +26,21 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
         return cell
     }
 
-    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
-        if isLoading {
-            configureWithPlaceholders(cell, at: indexPath)
-        } else {
-            configureWithContent(cell, at: indexPath)
-        }
-    }
-
-    private func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let orderCell as ChefOrderTableViewCell:
-            orderCell.configureWithLoading(true)
+            orderCell.configureWith(loading: true)
         default:
             break
         }
     }
 
-    private func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let orderCell as ChefOrderTableViewCell:
             let order = chefOrdersViewModel.elementAt(indexPath.row)
             let viewModel = ChefOrderTableViewModel(order: order)
-            orderCell.configureWithLoading(contentViewModel: viewModel)
+            orderCell.configureWith(contentViewModel: viewModel)
             orderCell.confirmOrderButton.rx.tap.subscribe(onNext: { _ in
                 guard let chefLocation = SessionService.session?.chef?.stuartLocation
                     else { return }

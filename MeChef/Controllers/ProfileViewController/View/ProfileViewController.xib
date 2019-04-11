@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -88,11 +88,20 @@
                         <action selector="performLogout:" destination="-1" eventType="touchUpInside" id="RTa-pJ-N3B"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTx-8r-9LX">
+                    <rect key="frame" x="10" y="35" width="39" height="30"/>
+                    <state key="normal" title="Close"/>
+                    <connections>
+                        <action selector="closeProfileAction:" destination="-1" eventType="touchUpInside" id="sI2-Sa-Xhe"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="k9k-7T-sT5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7LN-DW-QaH"/>
                 <constraint firstItem="k9k-7T-sT5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="Jig-bv-Jse"/>
+                <constraint firstItem="FTx-8r-9LX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="KX2-47-T3e"/>
+                <constraint firstItem="FTx-8r-9LX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="TCD-Un-SFc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="I1u-KA-qld" secondAttribute="trailing" constant="10" id="Trd-js-3XA"/>
                 <constraint firstItem="l1b-RU-Rxb" firstAttribute="top" secondItem="I1u-KA-qld" secondAttribute="bottom" constant="30" id="XVq-7N-3uv"/>
                 <constraint firstItem="Z3H-gp-Xvn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="b8e-lw-oED"/>

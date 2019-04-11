@@ -7,6 +7,7 @@ final class ChefsViewModel: BaseStatefulViewModel<[Chef]> {
         static let placeholderElements = 6
         static let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         static let horizontalSpacingBetweenCells: CGFloat = 10
+        static let cellHeight: CGFloat = 230
     }
 
     init() {

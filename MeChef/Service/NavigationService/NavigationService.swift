@@ -1,4 +1,5 @@
 import UIKit
+import SafariServices
 
 struct NavigationService {
 
@@ -50,18 +51,24 @@ extension NavigationService {
         return chefsController
     }
 
-    static func profileOrEmptyTab() -> UIViewController {
-        var profileController: UIViewController
+    static func cartTab() -> UIViewController {
+        let cartController = NavigationService.cartViewController().embedInNavigationController()
+        cartController.tabBarItem =
+            UITabBarItem(title: "Cart",
+                         image: UIImage(named: "cart_icon_off")?.withRenderingMode(.alwaysOriginal),
+                         selectedImage: UIImage(named: "cart_icon_on")?.withRenderingMode(.alwaysOriginal))
+        return cartController
+    }
+
+    static func presentProfileController() {
         if SessionService.isLoggedIn {
-            profileController = profileViewController().embedInNavigationController()
+            let profileController = profileViewController().embedInNavigationController()
+            rootNavigationController?.topVisibleViewController.present(profileController,
+                                                                       animated: true,
+                                                                       completion: nil)
         } else {
-            profileController = UIViewController()
+            makeLoginRootController()
         }
-        profileController.tabBarItem =
-            UITabBarItem(title: "Profile",
-                         image: UIImage(named: "user_icon_off")?.withRenderingMode(.alwaysOriginal),
-                         selectedImage: UIImage(named: "user_icon_on")?.withRenderingMode(.alwaysOriginal))
-        return profileController
     }
 
     static func makeMainTabRootController() {
@@ -106,11 +113,6 @@ extension NavigationService {
         let trackOrderController = trackOrderViewController(orderId: orderId,
                                                             stuartId: stuartId)
         push(viewController: trackOrderController, animated: true)
-    }
-
-    static func pushCartViewController(cart: LocalCart) {
-        let cartController = cartViewController(cart: cart)
-        rootNavigationController?.pushViewController(cartController, animated: true)
     }
 
     static func pushCheckoutViewController(cart: LocalCart, chefId: Int64) {
@@ -178,6 +180,11 @@ extension NavigationService {
     static func pushChefDeliverySlotsViewController(chefId: Int64) {
         let deliverySlotsController = chefDeliverySlotsViewController(chefId: chefId)
         push(viewController: deliverySlotsController, animated: true)
+    }
+
+    static func presentSafariController(url: URL) {
+        let safariController = SFSafariViewController(url: url)
+        navigationController?.present(safariController, animated: true, completion: nil)
     }
 
 }

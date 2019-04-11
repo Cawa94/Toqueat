@@ -31,12 +31,12 @@ struct CartService {
         return localCartVariable.asObservable()
     }
 
-    static func addToCart(_ dish: LocalCartDish, chefId: Int64) {
+    static func addToCart(_ dish: LocalCartDish, chef: BaseChef) {
         guard let cart = localCart
             else { return }
         var newDishes = cart.dishes ?? []
         newDishes.append(dish)
-        localCart = cart.copyWith(dishes: newDishes, chefId: chefId)
+        localCart = cart.copyWith(dishes: newDishes, chef: chef)
     }
 
     static func removeFromCart(_ dish: LocalCartDish) {
@@ -44,7 +44,7 @@ struct CartService {
             else { return }
         var newDishes = cart.dishes ?? []
         newDishes.removeAll(where: { $0.id == dish.id })
-        localCart = cart.copyWith(dishes: newDishes, chefId: localCart?.chefId)
+        localCart = cart.copyWith(dishes: newDishes, chef: localCart?.chef)
     }
 
     static func clearCart() {

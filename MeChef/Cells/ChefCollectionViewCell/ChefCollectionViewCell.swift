@@ -8,15 +8,11 @@ class ChefCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var lastnameLabel: UILabel!
-    @IBOutlet weak var recipesNumberLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
 
     static let reuseID = "ChefCollectionViewCell"
     var disposeBag = DisposeBag()
-    var cornerRadius: CGFloat = 0.0
-    var avatarFrame: CGRect = .zero
-    private var viewModel: ChefCollectionCellModel?
+    private var viewModel: Chef?
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -25,17 +21,15 @@ class ChefCollectionViewCell: UICollectionViewCell {
     }
 
     override func awakeFromNib() {
-        cornerRadius = self.avatarImageView.frame.width/2
         avatarImageView.roundCorners(radii: self.avatarImageView.frame.width/2,
                                      borderWidth: 2.0, borderColor: .mainOrangeColor)
-        avatarFrame = avatarImageView.frame
     }
 
 }
 
 extension ChefCollectionViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = ChefCollectionCellModel
+    typealias ContentViewModelType = Chef
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -46,7 +40,7 @@ extension ChefCollectionViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWithLoading(_ loading: Bool = false, contentViewModel: ChefCollectionCellModel? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: Chef? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -54,13 +48,11 @@ extension ChefCollectionViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: ChefCollectionCellModel) {
+    func configure(contentViewModel: Chef) {
         self.viewModel = contentViewModel
 
-        nameLabel.text = contentViewModel.chef.name
-        lastnameLabel.text = contentViewModel.chef.lastname
-        recipesNumberLabel.text = "Ricette \(contentViewModel.chef.dishes?.count ?? 0)"
-        if let url = contentViewModel.chef.avatarLink {
+        nameLabel.text = "\(contentViewModel.name) \(contentViewModel.lastname)"
+        if let url = contentViewModel.avatarLink {
             Nuke.loadImage(with: url, into: avatarImageView)
             avatarImageView.contentMode = .scaleAspectFill
         } else {

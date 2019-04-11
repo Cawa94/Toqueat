@@ -41,8 +41,7 @@ extension ChefOrderTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWithLoading(_ loading: Bool = false,
-                              contentViewModel: ChefOrderTableViewModel? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: ChefOrderTableViewModel? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {

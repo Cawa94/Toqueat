@@ -1,17 +1,21 @@
 struct CartViewModel {
 
-    let cart: LocalCart
+    var cart: LocalCart? = CartService.localCart
 
 }
 
 extension CartViewModel {
 
     var elements: [LocalCartDish] {
-        return cart.dishes ?? []
+        return cart?.dishes ?? []
     }
 
     func elementAt(_ index: Int) -> LocalCartDish {
         return elements[index]
+    }
+
+    var chef: BaseChef? {
+        return cart?.chef
     }
 
 }

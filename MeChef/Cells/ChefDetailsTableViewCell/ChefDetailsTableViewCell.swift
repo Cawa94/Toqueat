@@ -1,8 +1,8 @@
 import UIKit
+import RxSwift
 
-final class ChefDetailsView: UIView {
+final class ChefDetailsTableViewCell: UITableViewCell {
 
-    @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
@@ -12,29 +12,24 @@ final class ChefDetailsView: UIView {
     @IBOutlet private weak var instagramButton: UIButton!
 
     var viewModel: Chef?
+    var disposeBag = DisposeBag()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
+    public var instaButton: UIButton {
+        return instagramButton
     }
 
-    func commonInit() {
-        Bundle.main.loadNibNamed("ChefDetailsView",
-                                 owner: self,
-                                 options: nil)
-        addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    public var availabButton: UIButton {
+        return availabilityButton
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
 
 }
 
-extension ChefDetailsView: PlaceholderConfigurable {
+extension ChefDetailsTableViewCell: PlaceholderConfigurable {
 
     typealias ContentViewModelType = Chef
     typealias PlaceholderViewModelType = Void
@@ -61,7 +56,9 @@ extension ChefDetailsView: PlaceholderConfigurable {
         nameLabel.text = "\(contentViewModel.name) \(contentViewModel.lastname)"
         cityLabel.text = contentViewModel.city.name
         presentationLabel.text = "Sono una chef esperta che sa fare tutti i piatti "
-            + "del mondo e sono sempre buonissimi"
+            + "del mondo e sono sempre buonissimi. Ho iniziato a cucinare quando ero molto piccola"
+            + " e sono diventa una chef in Italia. Le mie specialità sono i bozeis bozeis"
+            + " e la coda di Narantxa."
     }
 
 }

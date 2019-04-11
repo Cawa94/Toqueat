@@ -39,8 +39,7 @@ extension OrderTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWithLoading(_ loading: Bool = false,
-                              contentViewModel: OrderTableViewModel? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: OrderTableViewModel? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
