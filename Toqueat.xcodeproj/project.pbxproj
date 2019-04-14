@@ -17,6 +17,10 @@
 		DA0328C0225CF00A001FBE14 /* ChefBaseInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0328BE225CF00A001FBE14 /* ChefBaseInfoTableViewCell.xib */; };
 		DA12672B223BC0170049215B /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA126729223BC0170049215B /* AddressTableViewCell.swift */; };
 		DA12672C223BC0170049215B /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA12672A223BC0170049215B /* AddressTableViewCell.xib */; };
+		DA1CC82F2260CDB300992BB7 /* RobotoSlab-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAA0BEED225F555F00C70B54 /* RobotoSlab-Bold.ttf */; };
+		DA1CC8302260CDB300992BB7 /* RobotoSlab-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAA0BEEB225F555E00C70B54 /* RobotoSlab-Light.ttf */; };
+		DA1CC8312260CDB300992BB7 /* RobotoSlab-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAA0BEEE225F555F00C70B54 /* RobotoSlab-Regular.ttf */; };
+		DA1CC8322260CDB300992BB7 /* RobotoSlab-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAA0BEEC225F555F00C70B54 /* RobotoSlab-Thin.ttf */; };
 		DA3D421A223E5F0800AB2A27 /* Chef+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3D4219223E5F0800AB2A27 /* Chef+Extensions.swift */; };
 		DA454778222FDDB100237F6D /* CitiesRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA454777222FDDB100237F6D /* CitiesRequests.swift */; };
 		DA57E4DD222C571F0086B5DA /* ChefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4DC222C571F0086B5DA /* ChefViewModel.swift */; };
@@ -42,6 +46,10 @@
 		DA859D1322412198008481D2 /* ChefOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D1122412198008481D2 /* ChefOrderTableViewCell.swift */; };
 		DA859D1422412198008481D2 /* ChefOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA859D1222412198008481D2 /* ChefOrderTableViewCell.xib */; };
 		DA859D16224121C9008481D2 /* ChefOrderTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D15224121C9008481D2 /* ChefOrderTableViewModel.swift */; };
+		DA8B7037226232E8002DBF1A /* UserBaseInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7035226232E8002DBF1A /* UserBaseInfoTableViewCell.swift */; };
+		DA8B7038226232E8002DBF1A /* UserBaseInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA8B7036226232E8002DBF1A /* UserBaseInfoTableViewCell.xib */; };
+		DA8B703B22623995002DBF1A /* UserBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B703922623995002DBF1A /* UserBarTableViewCell.swift */; };
+		DA8B703C22623995002DBF1A /* UserBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA8B703A22623995002DBF1A /* UserBarTableViewCell.xib */; };
 		DA913C6D224643C4003D4700 /* StuartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913C6C224643C4003D4700 /* StuartService.swift */; };
 		DA913C6F2246444B003D4700 /* UserDefaults+StuartToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913C6E2246444B003D4700 /* UserDefaults+StuartToken.swift */; };
 		DA913C7322464505003D4700 /* StuartRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913C7222464505003D4700 /* StuartRequests.swift */; };
@@ -199,6 +207,10 @@
 		DA859D1122412198008481D2 /* ChefOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrderTableViewCell.swift; sourceTree = "<group>"; };
 		DA859D1222412198008481D2 /* ChefOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefOrderTableViewCell.xib; sourceTree = "<group>"; };
 		DA859D15224121C9008481D2 /* ChefOrderTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrderTableViewModel.swift; sourceTree = "<group>"; };
+		DA8B7035226232E8002DBF1A /* UserBaseInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBaseInfoTableViewCell.swift; sourceTree = "<group>"; };
+		DA8B7036226232E8002DBF1A /* UserBaseInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBaseInfoTableViewCell.xib; sourceTree = "<group>"; };
+		DA8B703922623995002DBF1A /* UserBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBarTableViewCell.swift; sourceTree = "<group>"; };
+		DA8B703A22623995002DBF1A /* UserBarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBarTableViewCell.xib; sourceTree = "<group>"; };
 		DA913C6C224643C4003D4700 /* StuartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuartService.swift; sourceTree = "<group>"; };
 		DA913C6E2246444B003D4700 /* UserDefaults+StuartToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+StuartToken.swift"; sourceTree = "<group>"; };
 		DA913C7222464505003D4700 /* StuartRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuartRequests.swift; sourceTree = "<group>"; };
@@ -484,6 +496,33 @@
 				DA859D1222412198008481D2 /* ChefOrderTableViewCell.xib */,
 			);
 			path = ChefOrderTableViewCell;
+			sourceTree = "<group>";
+		};
+		DA8B703222623176002DBF1A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DA8B703422623265002DBF1A /* UserBarTableViewCell */,
+				DA8B703322623180002DBF1A /* UserBaseInfoTableViewCell */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		DA8B703322623180002DBF1A /* UserBaseInfoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DA8B7035226232E8002DBF1A /* UserBaseInfoTableViewCell.swift */,
+				DA8B7036226232E8002DBF1A /* UserBaseInfoTableViewCell.xib */,
+			);
+			path = UserBaseInfoTableViewCell;
+			sourceTree = "<group>";
+		};
+		DA8B703422623265002DBF1A /* UserBarTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DA8B703922623995002DBF1A /* UserBarTableViewCell.swift */,
+				DA8B703A22623995002DBF1A /* UserBarTableViewCell.xib */,
+			);
+			path = UserBarTableViewCell;
 			sourceTree = "<group>";
 		};
 		DA913C70224644E2003D4700 /* StuartService */ = {
@@ -797,6 +836,34 @@
 				DAD08B542245634E00F446C0 /* OrderStates.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		DAD2B72B22639C19004286A7 /* Chef */ = {
+			isa = PBXGroup;
+			children = (
+				DA0328BC225CEF56001FBE14 /* ChefBaseInfoTableViewCell */,
+				DABC32152254EFD00001757E /* ChefCollectionViewCell */,
+				DA0328B7225CD4AA001FBE14 /* ChefDetailsTableViewCell */,
+			);
+			path = Chef;
+			sourceTree = "<group>";
+		};
+		DAD2B72C22639C25004286A7 /* Dish */ = {
+			isa = PBXGroup;
+			children = (
+				DA0328B2225CD221001FBE14 /* DishDetailsTableViewCell */,
+				DAC99471222BE96A000282F1 /* DishTableViewCell */,
+				DA69D0F1225BD69B00231E3E /* DishTypeCollectionViewCell */,
+			);
+			path = Dish;
+			sourceTree = "<group>";
+		};
+		DAD2B72D22639C40004286A7 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				DACB01D9225F89DA008093F3 /* CartDishTableViewCell */,
+			);
+			path = Cart;
 			sourceTree = "<group>";
 		};
 		DAD89AD9225DEB89000664E2 /* RoundedButton */ = {
@@ -1135,16 +1202,13 @@
 		DAFA9BA62228915400B2CD4D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				DAD2B72D22639C40004286A7 /* Cart */,
 				DA859D0F2241215C008481D2 /* AChefExclusive */,
 				DA126728223BBFFC0049215B /* AddressTableViewCell */,
-				DACB01D9225F89DA008093F3 /* CartDishTableViewCell */,
-				DA0328BC225CEF56001FBE14 /* ChefBaseInfoTableViewCell */,
-				DABC32152254EFD00001757E /* ChefCollectionViewCell */,
-				DA0328B7225CD4AA001FBE14 /* ChefDetailsTableViewCell */,
-				DA0328B2225CD221001FBE14 /* DishDetailsTableViewCell */,
-				DAC99471222BE96A000282F1 /* DishTableViewCell */,
-				DA69D0F1225BD69B00231E3E /* DishTypeCollectionViewCell */,
+				DAD2B72B22639C19004286A7 /* Chef */,
+				DAD2B72C22639C25004286A7 /* Dish */,
 				DAB271742247BBAB005C0915 /* OrderTableViewCell */,
+				DA8B703222623176002DBF1A /* Profile */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1358,7 +1422,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAFEB6022240D65A00CABCF5 /* ChefProfileViewController.xib in Resources */,
+				DA1CC8302260CDB300992BB7 /* RobotoSlab-Light.ttf in Resources */,
 				DA78566D223FF9A0001BB354 /* ChefLoginViewController.xib in Resources */,
+				DA1CC82F2260CDB300992BB7 /* RobotoSlab-Bold.ttf in Resources */,
 				DA0328BB225CD4C2001FBE14 /* ChefDetailsTableViewCell.xib in Resources */,
 				DA8454A0222D1EA80052A8D2 /* LoginViewController.xib in Resources */,
 				DAB2716F2247B6D8005C0915 /* OrdersViewController.xib in Resources */,
@@ -1366,7 +1432,9 @@
 				DAFA9B812228907200B2CD4D /* LaunchScreen.storyboard in Resources */,
 				DAB271782247BBD6005C0915 /* OrderTableViewCell.xib in Resources */,
 				DA9363AF223964F600DF8951 /* DeliverySlotsViewController.xib in Resources */,
+				DA1CC8322260CDB300992BB7 /* RobotoSlab-Thin.ttf in Resources */,
 				DAFA9B7E2228907200B2CD4D /* Assets.xcassets in Resources */,
+				DA1CC8312260CDB300992BB7 /* RobotoSlab-Regular.ttf in Resources */,
 				DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */,
 				DA9363A222395F5E00DF8951 /* CheckoutViewController.xib in Resources */,
 				DA859D1422412198008481D2 /* ChefOrderTableViewCell.xib in Resources */,
@@ -1374,6 +1442,7 @@
 				DA0328B6225CD235001FBE14 /* DishDetailsTableViewCell.xib in Resources */,
 				DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */,
 				DA69D0F5225BD6B600231E3E /* DishTypeCollectionViewCell.xib in Resources */,
+				DA8B703C22623995002DBF1A /* UserBarTableViewCell.xib in Resources */,
 				DAE902C722494BF900743D6A /* ChefDeliverySlotsViewController.xib in Resources */,
 				DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */,
 				DAC9946D222BE7F3000282F1 /* DishesViewController.xib in Resources */,
@@ -1384,6 +1453,7 @@
 				DA979BEF222C914F00D452B9 /* ProfileViewController.xib in Resources */,
 				DA0328C0225CF00A001FBE14 /* ChefBaseInfoTableViewCell.xib in Resources */,
 				DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */,
+				DA8B7038226232E8002DBF1A /* UserBaseInfoTableViewCell.xib in Resources */,
 				DADFF2CD222E878C00BB6404 /* RegisterViewController.xib in Resources */,
 				DABC32192254EFEB0001757E /* ChefCollectionViewCell.xib in Resources */,
 				DAFEB6122240E3FE00CABCF5 /* ChefDishesViewController.xib in Resources */,
@@ -1545,6 +1615,7 @@
 				DA8208AF22341178002E6743 /* UserDefaults+LocalCart.swift in Sources */,
 				DAF4FE28222AD0AB00F208DB /* MainTabViewController.swift in Sources */,
 				DADFF2C3222E848000BB6404 /* DishViewController.swift in Sources */,
+				DA8B703B22623995002DBF1A /* UserBarTableViewCell.swift in Sources */,
 				DAFEB6012240D65A00CABCF5 /* ChefProfileViewController.swift in Sources */,
 				DAFEB6142240E49300CABCF5 /* NavigationService+ChefDishesViewController.swift in Sources */,
 				DAE902C622494BF900743D6A /* ChefDeliverySlotsViewController.swift in Sources */,
@@ -1556,6 +1627,7 @@
 				DADFF2C0222E847300BB6404 /* DishViewModel.swift in Sources */,
 				DAD69168225526FE00E823C0 /* UISearchBar+Extensions.swift in Sources */,
 				DADFF2CF222E885A00BB6404 /* RegisterViewModel.swift in Sources */,
+				DA8B7037226232E8002DBF1A /* UserBaseInfoTableViewCell.swift in Sources */,
 				DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */,
 				DA979BEB222C914100D452B9 /* ProfileViewModel.swift in Sources */,
 				DAFD096B22297AA400F1255A /* NetworkService.swift in Sources */,

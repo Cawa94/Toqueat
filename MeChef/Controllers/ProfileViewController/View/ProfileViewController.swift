@@ -2,15 +2,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ProfileViewController: BaseStatefulController<User> {
+class ProfileViewController: BaseStatefulController<User>,
+    UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var lastNameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var zipcodeLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet private weak var tableView: UITableView!
 
     var profileViewModel: ProfileViewModel! {
         didSet {
@@ -20,42 +15,179 @@ class ProfileViewController: BaseStatefulController<User> {
 
     private let disposeBag = DisposeBag()
 
-    @IBAction func viewOrdersAction(_ sender: Any) {
-        guard !profileViewModel.isLoading
-            else { return }
-        NavigationService.pushOrdersViewController(userId: profileViewModel.userId)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView.register(UINib(nibName: "UserBaseInfoTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "UserBaseInfoTableViewCell")
+        tableView.register(UINib(nibName: "UserBarTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "UserBarTableViewCell")
     }
 
-    @IBAction func performLogout(_ sender: Any) {
-        SessionService.logout()
-        DispatchQueue.main.async {
-            NavigationService.makeLoginRootController()
+    override func configureNavigationBar() {
+        navigationController?.isNavigationBarHidden = false
+        title = "Profile"
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = .mainOrangeColor
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.mainOrangeColor]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done",
+                                                           style: .done,
+                                                           target: self,
+                                                           action: #selector(closeProfile))
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain, target: nil, action: nil)
+    }
+
+    @objc func closeProfile() {
+        NavigationService.dismissTopController()
+    }
+
+    // MARK: - UITableViewDelegate
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 4
+        case 2:
+            return 1
+        default:
+            return 1
         }
     }
 
-    @IBAction func closeProfileAction(_ sender: Any) {
-        NavigationService.dismissTopController()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell
+        switch indexPath.section {
+        case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "UserBaseInfoTableViewCell",
+                                                 for: indexPath)
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: "UserBarTableViewCell",
+                                                 for: indexPath)
+        }
+        configure(cell, at: indexPath, isLoading: profileViewModel.isLoading)
+        return cell
+    }
+
+    func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
+        if isLoading {
+            configureWithPlaceholders(cell, at: indexPath)
+        } else {
+            configureWithContent(cell, at: indexPath)
+        }
+    }
+
+    func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let baseInfoCell as UserBaseInfoTableViewCell:
+            baseInfoCell.configureWith(loading: true)
+        default:
+            break
+        }
+    }
+
+    // swiftlint:disable all
+    func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let baseInfoCell as UserBaseInfoTableViewCell:
+            let viewModel = profileViewModel.baseUser
+            baseInfoCell.configureWith(contentViewModel: viewModel)
+        case let barCell as UserBarTableViewCell:
+            let viewModel: UserBarViewModel
+            switch indexPath.section {
+            case 1:
+                switch indexPath.row {
+                case 0:
+                    viewModel = UserBarViewModel(option: "My Orders")
+                case 1:
+                    viewModel = UserBarViewModel(option: "Delivery Address")
+                case 2:
+                    viewModel = UserBarViewModel(option: "Payment Methods")
+                case 3:
+                    viewModel = UserBarViewModel(option: "Notifications")
+                default:
+                    viewModel = UserBarViewModel(option: "Unknown")
+                }
+            case 2:
+                viewModel = UserBarViewModel(option: "Log out", arrowHidden: true)
+            default:
+                viewModel = UserBarViewModel(option: "Unknown")
+            }
+            barCell.configureWith(contentViewModel: viewModel)
+        default:
+            break
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 90
+        default:
+            return 60
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 30
+        case 1:
+            return 40
+        default:
+            return 50
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = UITableViewCell()
+        headerCell.backgroundColor = .placeholderPampasColor
+        return headerCell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !profileViewModel.isLoading
+            else { return }
+        switch indexPath.section {
+        case 0:
+            break // Show User Details
+        case 1:
+            switch indexPath.row {
+            case 0:
+                NavigationService.pushOrdersViewController(userId: profileViewModel.result.id)
+            case 1:
+                break // Show Delivery Addresses
+            case 2:
+                break // Show Payment Methods
+            case 3:
+                break // Show Notifications
+            default:
+                break
+            }
+        default:
+            SessionService.logout()
+            DispatchQueue.main.async {
+                NavigationService.makeLoginRootController()
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        welcomeLabel.text = "Ciao utente normale"
-        nameLabel.text = profileViewModel.name
-        lastNameLabel.text = profileViewModel.lastname
-        emailLabel.text = profileViewModel.email
-        addressLabel.text = profileViewModel.address
-        zipcodeLabel.text = profileViewModel.zipcode
-        cityLabel.text = profileViewModel.city
+        tableView.reloadData()
     }
 
     override func onLoadingState() {
-        nameLabel.text = "LOADING"
-        lastNameLabel.text = "LOADING"
-        emailLabel.text = "LOADING"
-        addressLabel.text = "LOADING"
-        zipcodeLabel.text = "LOADING"
-        cityLabel.text = "LOADING"
+        tableView.reloadData()
     }
 
 }

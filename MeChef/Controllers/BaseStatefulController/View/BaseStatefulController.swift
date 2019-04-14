@@ -20,11 +20,14 @@ class BaseStatefulController<ResultType>: UIViewController, StatefulViewControll
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 
         setupInitialViewState()
+        configureNavigationBar()
 
         viewModel.loadingStateDriver
             .drive(stateChanged)
             .disposed(by: disposeBag)
     }
+
+    func configureNavigationBar() {}
 
     var stateChanged: Binder<ViewModelType.LoadingState> {
         return Binder(self) { base, value in

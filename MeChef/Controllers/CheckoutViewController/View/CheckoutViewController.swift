@@ -4,7 +4,10 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
 
     @IBOutlet weak var deliverySlotLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var dishesPriceLabel: UILabel!
     @IBOutlet weak var deliveryPriceLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var completeOrderButton: RoundedButton!
 
     var checkoutViewModel: CheckoutViewModel! {
         didSet {
@@ -22,18 +25,50 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
         super.viewDidLoad()
         addressLabel.text = SessionService.session?.user?.address.fullAddress
 
-        tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
-                           forCellReuseIdentifier: "DishTableViewCell")
+        tableView.register(UINib(nibName: "CartDishTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "CartDishTableViewCell")
+        let completeOrderModel = RoundedButtonViewModel(title: "Complete Order", type: .squeezedOrange)
+        completeOrderButton.configure(with: completeOrderModel)
+
         CartService.localCartDriver
             .drive(onNext: { cart in
                 self.checkoutViewModel.getDeliveryCost(pickupAt: cart?.deliveryDate,
                                                        userAddress: self.addressLabel.text ?? "",
                                                        userComment: SessionService.session?.user?.apartment)
-                    .asDriver(onErrorJustReturn: "0.00 EUR")
-                    .drive(self.deliveryPriceLabel.rx.text)
+                    .asDriver(onErrorJustReturn: 0.00)
+                    .drive(onNext: { deliveryCost in
+                        let newTotal = (CartService.localCart?.total ?? 0.00).adding(deliveryCost)
+                        self.deliveryPriceLabel.text = "€\(deliveryCost)"
+                        self.totalPriceLabel.text = "€\(newTotal)"
+                    })
                     .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+
+    override func configureNavigationBar() {
+        navigationController?.isNavigationBarHidden = false
+        title = "Checkout"
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = .mainOrangeColor
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.mainOrangeColor]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(closeCheckout))
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain, target: nil, action: nil)
+    }
+
+    @objc func closeCheckout() {
+        NavigationService.popNavigationTopController()
     }
 
     // MARK: - Actions
@@ -81,11 +116,11 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return 100
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CartDishTableViewCell",
                                                  for: indexPath)
         configure(cell, at: indexPath)
         return cell
@@ -97,11 +132,9 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
 
     override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
-        case let dishCell as DishTableViewCell:
+        case let dishCell as CartDishTableViewCell:
             let dish = checkoutViewModel.elementAt(indexPath.row)
-            let viewModel = DishTableViewModel(dish: dish.asDish,
-                                               chef: nil)
-            dishCell.configureWith(contentViewModel: viewModel)
+            dishCell.configureWith(contentViewModel: dish)
         default:
             break
         }
@@ -111,6 +144,8 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
 
     override func onResultsState() {
         checkoutViewModel.elements = checkoutViewModel.cart.dishes ?? []
+        dishesPriceLabel.text = "€\(CartService.localCart?.total ?? 0.00)"
+        totalPriceLabel.text = "€\(CartService.localCart?.total ?? 0.00)"
         super.onResultsState()
     }
 

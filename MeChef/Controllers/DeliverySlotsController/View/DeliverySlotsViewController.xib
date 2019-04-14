@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeliverySlotsViewController" customModule="MeChef" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeliverySlotsViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
+                <outlet property="doneButton" destination="2fz-NP-DMS" id="TrK-e3-dHu"/>
                 <outlet property="hourPicker" destination="l5U-6A-T5u" id="0se-rJ-fCQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weekdayPicker" destination="hBX-pi-kw4" id="EJk-aF-SPc"/>
+                <outlet property="whiteView" destination="0v7-5G-tKu" id="PAG-wO-YIg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,41 +24,64 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBX-pi-kw4">
-                    <rect key="frame" x="0.0" y="70" width="187.5" height="216"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="2gv-qX-vqO"/>
-                        <outlet property="delegate" destination="-1" id="CuU-tZ-FeI"/>
-                    </connections>
-                </pickerView>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5U-6A-T5u">
-                    <rect key="frame" x="187.5" y="70" width="187.5" height="216"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="cZK-4K-oda"/>
-                        <outlet property="delegate" destination="-1" id="jV0-Cs-Lbc"/>
-                    </connections>
-                </pickerView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fz-NP-DMS">
-                    <rect key="frame" x="167" y="487" width="41" height="30"/>
-                    <state key="normal" title="Done!"/>
-                    <connections>
-                        <action selector="dismissAction:" destination="-1" eventType="touchUpInside" id="cwS-cX-oFj"/>
-                    </connections>
-                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0v7-5G-tKu">
+                    <rect key="frame" x="15" y="342" width="345" height="295"/>
+                    <subviews>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBX-pi-kw4">
+                            <rect key="frame" x="0.0" y="10" width="172.5" height="220"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="2gv-qX-vqO"/>
+                                <outlet property="delegate" destination="-1" id="CuU-tZ-FeI"/>
+                            </connections>
+                        </pickerView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fz-NP-DMS" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
+                            <rect key="frame" x="10" y="240" width="325" height="40"/>
+                            <color key="backgroundColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="6Wv-aQ-joj"/>
+                            </constraints>
+                            <state key="normal" title="Done!">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="dismissAction:" destination="-1" eventType="touchUpInside" id="cwS-cX-oFj"/>
+                            </connections>
+                        </button>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5U-6A-T5u">
+                            <rect key="frame" x="172.5" y="10" width="172.5" height="220"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="cZK-4K-oda"/>
+                                <outlet property="delegate" destination="-1" id="jV0-Cs-Lbc"/>
+                            </connections>
+                        </pickerView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="hBX-pi-kw4" firstAttribute="top" secondItem="0v7-5G-tKu" secondAttribute="top" constant="10" id="76P-sw-awd"/>
+                        <constraint firstAttribute="trailing" secondItem="l5U-6A-T5u" secondAttribute="trailing" id="AzR-77-Vgu"/>
+                        <constraint firstAttribute="height" constant="295" id="C9G-Ht-rZk"/>
+                        <constraint firstItem="2fz-NP-DMS" firstAttribute="top" secondItem="hBX-pi-kw4" secondAttribute="bottom" constant="10" id="Da7-yG-kfZ"/>
+                        <constraint firstAttribute="trailing" secondItem="2fz-NP-DMS" secondAttribute="trailing" constant="10" id="Pfb-Hp-xCc"/>
+                        <constraint firstItem="l5U-6A-T5u" firstAttribute="width" secondItem="hBX-pi-kw4" secondAttribute="width" id="TB0-2G-DJD"/>
+                        <constraint firstAttribute="bottom" secondItem="2fz-NP-DMS" secondAttribute="bottom" constant="15" id="VAB-2y-17V"/>
+                        <constraint firstItem="2fz-NP-DMS" firstAttribute="leading" secondItem="0v7-5G-tKu" secondAttribute="leading" constant="10" id="d6h-bf-T64"/>
+                        <constraint firstItem="hBX-pi-kw4" firstAttribute="width" secondItem="0v7-5G-tKu" secondAttribute="width" multiplier="0.5" id="mEK-Ys-5HA"/>
+                        <constraint firstItem="hBX-pi-kw4" firstAttribute="leading" secondItem="0v7-5G-tKu" secondAttribute="leading" id="n43-hI-a5M"/>
+                        <constraint firstItem="l5U-6A-T5u" firstAttribute="top" secondItem="0v7-5G-tKu" secondAttribute="top" constant="10" id="ofC-hd-ilj"/>
+                        <constraint firstItem="2fz-NP-DMS" firstAttribute="top" secondItem="l5U-6A-T5u" secondAttribute="bottom" constant="10" id="vDD-DC-nLd"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="hBX-pi-kw4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DgK-2M-kvz"/>
-                <constraint firstItem="l5U-6A-T5u" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="FCG-kH-Cfr"/>
-                <constraint firstItem="hBX-pi-kw4" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.5" id="SRY-3M-bUo"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="2fz-NP-DMS" secondAttribute="bottom" constant="150" id="UaB-en-9TD"/>
-                <constraint firstItem="2fz-NP-DMS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XcW-oL-AGi"/>
-                <constraint firstItem="hBX-pi-kw4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="eqk-q4-LXu"/>
-                <constraint firstItem="l5U-6A-T5u" firstAttribute="width" secondItem="hBX-pi-kw4" secondAttribute="width" id="fqD-8P-XT1"/>
-                <constraint firstItem="l5U-6A-T5u" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="peQ-OI-cAm"/>
+                <constraint firstItem="0v7-5G-tKu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="JV2-Mq-dGp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0v7-5G-tKu" secondAttribute="bottom" constant="30" id="VnB-WF-838"/>
+                <constraint firstItem="0v7-5G-tKu" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-15" id="eAE-CS-9rb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-70" y="92"/>
+            <point key="canvasLocation" x="-71.200000000000003" y="91.304347826086968"/>
         </view>
     </objects>
 </document>

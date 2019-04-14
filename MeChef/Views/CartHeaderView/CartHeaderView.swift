@@ -6,8 +6,13 @@ class CartHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var chefAvailabilityButton: UIButton!
 
     var disposeBag = DisposeBag()
+
+    public var availabilityButton: UIButton {
+        return chefAvailabilityButton
+    }
 
     override func prepareForReuse() {
         super.prepareForReuse()

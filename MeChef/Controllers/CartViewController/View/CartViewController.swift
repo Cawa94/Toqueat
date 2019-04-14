@@ -6,12 +6,13 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var checkoutButton: RoundedButton!
+    @IBOutlet private weak var totalLabel: UILabel!
 
     var cartViewModel: CartViewModel!
     private let disposeBag = DisposeBag()
 
     override var prefersStatusBarHidden: Bool {
-        return true
+        return false
     }
 
     override func viewDidLoad() {
@@ -19,7 +20,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 
-        let checkoutModel = RoundedButtonViewModel(title: "Order now", type: .defaultOrange)
+        let checkoutModel = RoundedButtonViewModel(title: "", type: .defaultOrange)
         checkoutButton.configure(with: checkoutModel)
 
         tableView.register(UINib(nibName: "CartDishTableViewCell", bundle: nil),
@@ -29,8 +30,14 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         CartService.localCartDriver.drive(onNext: { localCart in
             self.cartViewModel.cart = localCart
+            self.totalLabel.text = "€\(localCart?.total ?? 0.00)"
             self.tableView.reloadData()
         }).disposed(by: disposeBag)
+
+    }
+
+    @IBAction func profileAction(_ sender: Any) {
+        NavigationService.presentProfileController()
     }
 
     @IBAction func startCheckoutAction(_ sender: Any) {
@@ -51,6 +58,11 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             let chef = cartViewModel.chef
             else { return nil }
         headerCell.configure(chef: chef)
+        headerCell.availabilityButton.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { _ in
+                NavigationService.pushChefDeliverySlotsViewController(chefId: chef.id)
+            })
+            .disposed(by: headerCell.disposeBag)
         return headerCell
     }
 
@@ -63,7 +75,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 100
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

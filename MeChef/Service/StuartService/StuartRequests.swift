@@ -25,14 +25,14 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func getStuartJobPriceWith(_ jobParameters: StuartJobParameters) -> Single<String> {
+    func getStuartJobPriceWith(_ jobParameters: StuartJobParameters) -> Single<NSDecimalNumber> {
         let body = StuartJobBody(job: jobParameters)
         let apiParameters = ApiRequestParameters(stuartUrl: "v2/jobs/pricing",
                                                  method: .post,
                                                  parameters: body.toJSON())
 
         return (request(with: apiParameters) as Single<StuartJobPrice>)
-            .map { "\($0.amount) \($0.currency)" }
+            .map { $0.amount }
     }
 
     func getStuartJobWith(_ jobId: Int64) -> Single<StuartJob> {

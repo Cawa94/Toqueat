@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="checkoutButton" destination="OLD-mA-vaf" id="xjU-L4-hFQ"/>
                 <outlet property="tableView" destination="Oo2-O8-5fb" id="haL-pg-tgh"/>
+                <outlet property="totalLabel" destination="Owk-Ac-kQt" id="8k6-Fc-hdA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,8 +23,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWC-1W-VBT">
+                    <rect key="frame" x="10" y="20" width="310" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyo-oz-S3T">
+                            <rect key="frame" x="15" y="7" width="290" height="46"/>
+                            <fontDescription key="fontDescription" name="Baskerville-BoldItalic" family="Baskerville" pointSize="40"/>
+                            <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="kyo-oz-S3T" firstAttribute="centerY" secondItem="IWC-1W-VBT" secondAttribute="centerY" id="338-zd-Nzr"/>
+                        <constraint firstItem="kyo-oz-S3T" firstAttribute="leading" secondItem="IWC-1W-VBT" secondAttribute="leading" constant="15" id="GeM-PM-NEG"/>
+                        <constraint firstAttribute="height" constant="60" id="fDT-Ck-iNl"/>
+                        <constraint firstAttribute="trailing" secondItem="kyo-oz-S3T" secondAttribute="trailing" constant="5" id="vYI-0J-BDL"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZg-tE-jGX">
+                    <rect key="frame" x="325" y="32.5" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="aZg-tE-jGX" secondAttribute="height" multiplier="1:1" id="SvM-Ry-19W"/>
+                        <constraint firstAttribute="width" constant="35" id="cfT-GU-mp5"/>
+                    </constraints>
+                    <state key="normal" image="profile"/>
+                    <connections>
+                        <action selector="profileAction:" destination="-1" eventType="touchUpInside" id="6Hi-Da-yUl"/>
+                    </connections>
+                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oo2-O8-5fb">
-                    <rect key="frame" x="0.0" y="20" width="375" height="547"/>
+                    <rect key="frame" x="0.0" y="95" width="375" height="472"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="bEF-bX-LrB"/>
@@ -32,27 +62,52 @@
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLD-mA-vaf" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
                     <rect key="frame" x="20" y="592" width="335" height="50"/>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="rap-C0-n2j"/>
                     </constraints>
-                    <state key="normal" title="Order now"/>
                     <connections>
                         <action selector="startCheckoutAction:" destination="-1" eventType="touchUpInside" id="NsI-tM-1mz"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEL-ps-k42">
+                    <rect key="frame" x="40" y="604" width="106.5" height="26.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owk-Ac-kQt">
+                    <rect key="frame" x="292.5" y="605.5" width="42.5" height="23"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Oo2-O8-5fb" firstAttribute="top" secondItem="IWC-1W-VBT" secondAttribute="bottom" constant="15" id="1AU-IV-8eh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="OLD-mA-vaf" secondAttribute="bottom" constant="25" id="ECO-Pm-3XQ"/>
                 <constraint firstItem="OLD-mA-vaf" firstAttribute="top" secondItem="Oo2-O8-5fb" secondAttribute="bottom" constant="25" id="HTi-zw-DHY"/>
-                <constraint firstItem="OLD-mA-vaf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Hof-fe-Mkj"/>
+                <constraint firstItem="IWC-1W-VBT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="J7C-2s-fRU"/>
+                <constraint firstItem="OLD-mA-vaf" firstAttribute="centerY" secondItem="gEL-ps-k42" secondAttribute="centerY" id="LET-4Q-4T1"/>
+                <constraint firstItem="gEL-ps-k42" firstAttribute="leading" secondItem="OLD-mA-vaf" secondAttribute="leading" constant="20" id="PXF-YZ-yBn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aZg-tE-jGX" secondAttribute="trailing" constant="15" id="QE1-pc-OEt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oo2-O8-5fb" secondAttribute="trailing" id="Sj6-k7-6oE"/>
+                <constraint firstItem="Owk-Ac-kQt" firstAttribute="trailing" secondItem="OLD-mA-vaf" secondAttribute="trailing" constant="-20" id="ZwM-3z-bh7"/>
+                <constraint firstItem="OLD-mA-vaf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="aEL-te-AUo"/>
+                <constraint firstItem="IWC-1W-VBT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aXP-tf-P6Q"/>
+                <constraint firstItem="aZg-tE-jGX" firstAttribute="centerY" secondItem="IWC-1W-VBT" secondAttribute="centerY" id="h1d-Rz-U1x"/>
+                <constraint firstItem="aZg-tE-jGX" firstAttribute="leading" secondItem="IWC-1W-VBT" secondAttribute="trailing" constant="5" id="hXM-BF-0aT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OLD-mA-vaf" secondAttribute="trailing" constant="20" id="iwZ-VG-buB"/>
-                <constraint firstItem="Oo2-O8-5fb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qjJ-8o-FZB"/>
                 <constraint firstItem="Oo2-O8-5fb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="t2M-3I-5WE"/>
+                <constraint firstItem="aZg-tE-jGX" firstAttribute="width" secondItem="aZg-tE-jGX" secondAttribute="height" multiplier="1:1" id="uzg-i9-Rnn"/>
+                <constraint firstItem="Owk-Ac-kQt" firstAttribute="centerY" secondItem="OLD-mA-vaf" secondAttribute="centerY" id="xxh-VE-pjD"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-961" y="184"/>
+            <point key="canvasLocation" x="-954.39999999999998" y="164.16791604197903"/>
         </view>
     </objects>
+    <resources>
+        <image name="profile" width="64" height="64"/>
+    </resources>
 </document>

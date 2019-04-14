@@ -19,9 +19,9 @@ extension CheckoutViewModel {
 
     func getDeliveryCost(pickupAt: Date?,
                          userAddress: String,
-                         userComment: String?) -> Single<String> {
+                         userComment: String?) -> Single<NSDecimalNumber> {
         guard !isLoading
-            else { return Single.just("0.00 EUR") }
+            else { return Single.just(0.00) }
         let pickup = result.stuartLocation
         let dropOff = StuartLocation(address: userAddress,
                                      comment: userComment,

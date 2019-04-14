@@ -18,4 +18,18 @@ extension LocalCart {
                          deliveryDate: deliveryDate)
     }
 
+    var total: NSDecimalNumber {
+        guard let dishes = dishes
+            else { return 0.00 }
+        return dishes.compactMap({ $0.price }).reduce(0, +)
+    }
+
+}
+
+extension NSDecimalNumber {
+
+    static func + (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
+        return lhs.adding(rhs)
+    }
+
 }

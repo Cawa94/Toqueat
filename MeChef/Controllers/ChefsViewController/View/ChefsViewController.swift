@@ -21,6 +21,10 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
     private var selectedIndex: IndexPath?
     private lazy var searchBar: UISearchBar = .toqueatSearchBar
 
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -137,7 +141,8 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
     override func viewDidLayoutSubviews() {
         collectionViewHeightConstraint.constant = collectionView.contentSize.height
         contentViewHeightConstraint.constant = collectionViewHeightConstraint.constant
-            + 56
+            + 60 // Chefs title
+            + 56 // searchBar
         self.view.layoutIfNeeded()
     }
 

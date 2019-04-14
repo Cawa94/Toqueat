@@ -28,6 +28,10 @@ class TrackOrderViewController: BaseStatefulController<TrackOrderViewModel.Order
         centerMapOnLocation(location: initialLocation)
     }
 
+    override func configureNavigationBar() {
+        title = "Track Order"
+    }
+
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
                                                   latitudinalMeters: regionRadius,

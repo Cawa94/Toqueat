@@ -5,8 +5,10 @@ import RxOptional
 class DeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
     UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet weak var whiteView: UIView!
     @IBOutlet weak var weekdayPicker: UIPickerView!
     @IBOutlet weak var hourPicker: UIPickerView!
+    @IBOutlet weak var doneButton: RoundedButton!
 
     var deliverySlotsViewModel: DeliverySlotsViewModel! {
         didSet {
@@ -24,6 +26,15 @@ class DeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
     var weekdaySelectedIndex = 0
     var hourSelectedIndex = 0
     var hoursIds: [Int64] = []
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let doneModel = RoundedButtonViewModel(title: "Done", type: .squeezedOrange)
+        doneButton.configure(with: doneModel)
+
+        whiteView.roundCorners(radii: 15.0)
+    }
 
     // MARK: - UIPickerViewDelegate - UIPickerViewDataSource
 

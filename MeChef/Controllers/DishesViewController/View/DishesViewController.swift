@@ -18,9 +18,14 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
     private let disposeBag = DisposeBag()
     private lazy var searchBar: UISearchBar = .toqueatSearchBar
 
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchBar.frame = searchBarContainerView.bounds
         searchBarContainerView.addSubview(searchBar)
         searchBar.placeholder = "Search dishes"
         searchBar.delegate = self
@@ -39,6 +44,10 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
         let nib = UINib(nibName: "DishTypeCollectionViewCell", bundle: nil)
         collectionView.register(nib,
                                 forCellWithReuseIdentifier: "DishTypeCollectionViewCell")
+    }
+
+    @IBAction func profileAction(_ sender: Any) {
+        NavigationService.presentProfileController()
     }
 
     // MARK: - UITableViewDelegate
@@ -125,7 +134,9 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
     override func viewDidLayoutSubviews() {
         tableViewHeightConstraint.constant = tableView.contentSize.height
         contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
-            + 70
+            + 60 // Dishes title
+            + 80 // searchBar
+            + 56 // filters collectionView
     }
 
 }

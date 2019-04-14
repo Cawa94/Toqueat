@@ -19,6 +19,12 @@ class OrdersViewController: BaseTableViewController<[Order], Order> {
                            forCellReuseIdentifier: "OrderTableViewCell")
     }
 
+    override func configureNavigationBar() {
+        title = "My Orders"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain, target: nil, action: nil)
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderTableViewCell",
                                                  for: indexPath)

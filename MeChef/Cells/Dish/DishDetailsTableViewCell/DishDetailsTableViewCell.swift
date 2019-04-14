@@ -56,7 +56,7 @@ extension DishDetailsTableViewCell: PlaceholderConfigurable {
 
         nameLabel.text = contentViewModel.name
         descriptionLabel.text = contentViewModel.description
-        priceLabel.text = "$\(contentViewModel.price)"
+        priceLabel.text = "€\(contentViewModel.price)"
         ingredientsLabel.text = "\u{2022} Pasta\n\u{2022} Pomodoro\n\u{2022} Basilico"
     }
 

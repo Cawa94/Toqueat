@@ -186,7 +186,7 @@ private extension RoundedButtonType {
             return state.orangeButtonAppearance(height: 40)
         case .squeezedOrange:
             return .init(backgroundColor: .mainOrangeColor,
-                         height: 40, cornerRadius: 45)
+                         height: 50, cornerRadius: 45)
         }
     }
 

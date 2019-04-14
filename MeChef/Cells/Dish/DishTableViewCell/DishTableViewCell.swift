@@ -2,17 +2,18 @@ import UIKit
 import RxSwift
 import Nuke
 
-class CartDishTableViewCell: UITableViewCell {
+class DishTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
 
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var chefImageView: UIImageView!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var dishImageView: UIImageView!
 
     var disposeBag = DisposeBag()
-    private var viewModel: LocalCartDish?
+    private var viewModel: DishTableViewModel?
 
     override func prepareForReuse() {
         self.disposeBag = DisposeBag()
@@ -20,14 +21,15 @@ class CartDishTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         dishImageView.clipsToBounds = true
-        dishImageView.roundCorners(radii: 5.0)
+        chefImageView.roundCorners(radii: chefImageView.frame.width/2,
+                                   borderWidth: 2.0, borderColor: .white)
     }
 
 }
 
-extension CartDishTableViewCell: PlaceholderConfigurable {
+extension DishTableViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = LocalCartDish
+    typealias ContentViewModelType = DishTableViewModel
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -38,7 +40,7 @@ extension CartDishTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWith(loading: Bool = false, contentViewModel: LocalCartDish? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: DishTableViewModel? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -46,14 +48,20 @@ extension CartDishTableViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: LocalCartDish) {
+    func configure(contentViewModel: DishTableViewModel) {
         self.viewModel = contentViewModel
 
-        nameLabel.text = contentViewModel.name
-        priceLabel.text = "$\(contentViewModel.price)"
-        if let url = contentViewModel.imageLink {
+        nameLabel.text = contentViewModel.dish.name
+        priceLabel.text = "€\(contentViewModel.dish.price)"
+        if let url = contentViewModel.dish.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)
             dishImageView.contentMode = .scaleAspectFill
+        }
+        if let chefUrl = contentViewModel.chef?.avatarLink {
+            Nuke.loadImage(with: chefUrl, into: chefImageView)
+            chefImageView.contentMode = .scaleAspectFill
+        } else {
+            chefImageView.isHidden = true
         }
     }
 
