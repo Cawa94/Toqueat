@@ -11,10 +11,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     var cartViewModel: CartViewModel!
     private let disposeBag = DisposeBag()
 
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

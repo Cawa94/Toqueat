@@ -17,10 +17,6 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
 
     private let disposeBag = DisposeBag()
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = SessionService.session?.user?.address.fullAddress
@@ -52,19 +48,13 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
     }
 
     override func configureNavigationBar() {
+        super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
         title = "Checkout"
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .mainOrangeColor
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.mainOrangeColor]
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(closeCheckout))
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
-                                                           style: .plain, target: nil, action: nil)
     }
 
     @objc func closeCheckout() {

@@ -6,7 +6,7 @@ extension UIFont {
         return fontWith(name: "HelveticaNeue", size: size)
     }
 
-    static func semiBoldFontOf(size: CGFloat) -> UIFont {
+    static func mediumFontOf(size: CGFloat) -> UIFont {
         return fontWith(name: "HelveticaNeue-Medium", size: size)
     }
 

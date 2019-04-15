@@ -21,10 +21,6 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
     private var selectedIndex: IndexPath?
     private lazy var searchBar: UISearchBar = .toqueatSearchBar
 
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

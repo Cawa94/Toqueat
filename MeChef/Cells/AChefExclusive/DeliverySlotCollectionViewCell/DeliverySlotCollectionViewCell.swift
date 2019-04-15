@@ -8,6 +8,7 @@ class DeliverySlotCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         self.backgroundColor = .white
+        titleLabel.textColor = .darkGrayColor
     }
 
 }

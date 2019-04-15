@@ -10,10 +10,6 @@ class BaseStatefulController<ResultType>: UIViewController, StatefulViewControll
     typealias ViewModelType = BaseStatefulViewModel<ResultType>
     var viewModel: ViewModelType!
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +23,14 @@ class BaseStatefulController<ResultType>: UIViewController, StatefulViewControll
             .disposed(by: disposeBag)
     }
 
-    func configureNavigationBar() {}
+    func configureNavigationBar() {
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = .mainOrangeColor
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.mainOrangeColor]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain, target: nil, action: nil)
+    }
 
     var stateChanged: Binder<ViewModelType.LoadingState> {
         return Binder(self) { base, value in

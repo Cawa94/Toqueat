@@ -26,8 +26,12 @@ extension ChefDeliverySlotsViewModel {
             && $0.hourId == (indexPath.section + 2) })
     }
 
-    func colorForAvailability(_ available: Bool) -> UIColor {
-        return available ? .green : .red
+    func cellColorForAvailability(_ available: Bool) -> UIColor {
+        return available ? .highlightedOrangeColor : .white
+    }
+
+    func textColorForAvailability(_ available: Bool) -> UIColor {
+        return available ? .white : .darkGrayColor
     }
 
 }

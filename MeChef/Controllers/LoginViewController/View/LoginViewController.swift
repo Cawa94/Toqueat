@@ -8,10 +8,6 @@ class LoginViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
     @IBAction func loginAction(_ sender: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text
             else { return }

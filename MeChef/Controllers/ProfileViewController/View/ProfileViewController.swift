@@ -25,18 +25,13 @@ class ProfileViewController: BaseStatefulController<User>,
     }
 
     override func configureNavigationBar() {
+        super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
         title = "Profile"
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .mainOrangeColor
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.mainOrangeColor]
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done",
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(closeProfile))
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
-                                                           style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(closeProfile))
     }
 
     @objc func closeProfile() {

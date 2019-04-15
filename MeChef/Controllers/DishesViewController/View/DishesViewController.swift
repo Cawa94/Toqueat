@@ -18,10 +18,6 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
     private let disposeBag = DisposeBag()
     private lazy var searchBar: UISearchBar = .toqueatSearchBar
 
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
