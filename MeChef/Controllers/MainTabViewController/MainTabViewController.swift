@@ -18,11 +18,10 @@ class MainTabViewController: UITabBarController {
 
             viewControllers = [ chefsController, dishesController, cartController ]
         } else if let chefId = SessionService.session?.chef?.id {
-            let chefDishesController = NavigationService.chefDishesTab(chefId: chefId)
             let chefOrdersController = NavigationService.chefOrderTab(chefId: chefId)
-            let chefProfileController = NavigationService.chefProfileTab(chefId: chefId)
+            let chefDishesController = NavigationService.chefDishesTab(chefId: chefId)
 
-            viewControllers = [ chefDishesController, chefOrdersController, chefProfileController ]
+            viewControllers = [ chefOrdersController, chefDishesController ]
         }
     }
 

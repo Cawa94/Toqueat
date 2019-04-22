@@ -87,9 +87,6 @@ extension NavigationService {
     }
 
     static func pushChefViewController(_ controller: ChefViewController) {
-        /*rootNavigationController?.topVisibleViewController.present(controller,
-                                                                   animated: true,
-                                                                   completion: nil)*/
         push(viewController: controller, animated: true)
     }
 
@@ -145,41 +142,6 @@ extension NavigationService {
         rootNavigationController?.topVisibleViewController.present(controller,
                                                                    animated: true,
                                                                    completion: nil)
-    }
-
-    static func chefDishesTab(chefId: Int64) -> UIViewController {
-        let chefDishesController = NavigationService.chefDishesViewController(chefId: chefId)
-            .embedInNavigationController()
-        chefDishesController.tabBarItem =
-            UITabBarItem(title: "Dishes",
-                         image: UIImage(named: "dish_icon_off")?.withRenderingMode(.alwaysOriginal),
-                         selectedImage: UIImage(named: "dish_icon_on")?.withRenderingMode(.alwaysOriginal))
-        return chefDishesController
-    }
-
-    static func chefOrderTab(chefId: Int64) -> UIViewController {
-        let chefsController = NavigationService.chefOrdersViewController(chefId: chefId)
-            .embedInNavigationController()
-        chefsController.tabBarItem =
-            UITabBarItem(title: "Orders",
-                         image: UIImage(named: "chef_icon_off")?.withRenderingMode(.alwaysOriginal),
-                         selectedImage: UIImage(named: "chef_icon_on")?.withRenderingMode(.alwaysOriginal))
-        return chefsController
-    }
-
-    static func chefProfileTab(chefId: Int64) -> UIViewController {
-        let chefProfileController = NavigationService.chefProfileViewController(chefId: chefId)
-            .embedInNavigationController()
-        chefProfileController.tabBarItem =
-            UITabBarItem(title: "Profile",
-                         image: UIImage(named: "user_icon_off")?.withRenderingMode(.alwaysOriginal),
-                         selectedImage: UIImage(named: "user_icon_on")?.withRenderingMode(.alwaysOriginal))
-        return chefProfileController
-    }
-
-    static func pushChefDeliverySlotsViewController(chefId: Int64) {
-        let deliverySlotsController = chefDeliverySlotsViewController(chefId: chefId)
-        push(viewController: deliverySlotsController, animated: true)
     }
 
     static func presentSafariController(url: URL) {

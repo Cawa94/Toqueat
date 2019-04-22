@@ -114,7 +114,7 @@
                 <outlet property="placeholderContainerViewOutlet" destination="5wg-8d-kdt" id="Z9b-Ll-zJV"/>
                 <outlet property="priceLabel" destination="TxZ-iS-R7H" id="xNg-JE-rqt"/>
             </connections>
-            <point key="canvasLocation" x="-436" y="115"/>
+            <point key="canvasLocation" x="-258" y="111"/>
         </tableViewCell>
     </objects>
 </document>

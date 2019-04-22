@@ -4,6 +4,9 @@ import Nuke
 
 class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
 
+    @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
+
     var chefOrdersViewModel: ChefOrdersViewModel! {
         didSet {
             tableViewModel = chefOrdersViewModel
@@ -17,6 +20,10 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
 
         tableView.register(UINib(nibName: "ChefOrderTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "ChefOrderTableViewCell")
+    }
+
+    @IBAction func profileAction(_ sender: Any) {
+        NavigationService.presentChefProfileController(chefId: chefOrdersViewModel.chefId)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,6 +89,12 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
     override func onResultsState() {
         chefOrdersViewModel.elements = chefOrdersViewModel.result
         super.onResultsState()
+    }
+
+    override func viewDidLayoutSubviews() {
+        tableViewHeightConstraint.constant = tableView.contentSize.height
+        contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
+            + 60 // Orders title
     }
 
 }

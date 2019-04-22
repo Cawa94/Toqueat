@@ -20,6 +20,20 @@ class ChefProfileViewController: BaseStatefulController<Chef> {
 
     private let disposeBag = DisposeBag()
 
+    override func configureNavigationBar() {
+        super.configureNavigationBar()
+        navigationController?.isNavigationBarHidden = false
+        title = "Profile"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(closeProfile))
+    }
+
+    @objc func closeProfile() {
+        NavigationService.dismissTopController()
+    }
+
     @IBAction func deliverySlotsAction(_ sender: Any) {
         NavigationService.pushChefDeliverySlotsViewController(chefId: chefProfileViewModel.result.id)
     }

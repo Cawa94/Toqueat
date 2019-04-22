@@ -31,4 +31,13 @@ extension NetworkService {
             .map { $0.orders }
     }
 
+    func searchChef(query: String) -> Single<[Chef]> {
+        let parameters = ["search": query] as Parameters
+        let apiParameters = ApiRequestParameters(relativeUrl: "searchChef",
+                                                 parameters: parameters + currentCityParameter)
+
+        return (request(with: apiParameters) as Single<ChefsResponse>)
+            .map { $0.chefs }
+    }
+
 }

@@ -44,20 +44,7 @@ class DishViewController: BaseStatefulController<Dish>,
                            forCellReuseIdentifier: "DishDetailsTableViewCell")
         tableView.register(UINib(nibName: "ChefBaseInfoTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "ChefBaseInfoTableViewCell")
-/*
-        CartService.localCartDriver
-            .map { $0?.dishes?.isEmpty ?? true }
-            .drive(onNext: { isEmpty in
-                if !isEmpty && self.openCartButtonTopConstraint.constant == 0 {
-                    self.openCartButtonTopConstraint.constant = Constants.cartTopConstraint
-                } else if isEmpty && self.openCartButtonTopConstraint.constant == Constants.cartTopConstraint {
-                    self.openCartButtonTopConstraint.constant = 0
-                }
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.view.layoutIfNeeded()
-                })
-            })
-            .disposed(by: disposeBag)*/
+
     }
 
     // MARK: - Actions
@@ -88,8 +75,10 @@ class DishViewController: BaseStatefulController<Dish>,
         tableView.reloadData()
         if let imageUrl = dishViewModel.imageUrl {
             Nuke.loadImage(with: imageUrl, into: dishImageView)
-            dishImageView.contentMode = .scaleAspectFill
+        } else {
+            dishImageView.image = UIImage(named: "dish_placeholder")
         }
+        dishImageView.contentMode = .scaleAspectFill
     }
 
     override func onLoadingState() {

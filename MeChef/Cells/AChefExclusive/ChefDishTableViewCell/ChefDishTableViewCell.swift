@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import Nuke
 
-class CartDishTableViewCell: UITableViewCell {
+class ChefDishTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
@@ -10,9 +10,15 @@ class CartDishTableViewCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var dishImageView: UIImageView!
+    @IBOutlet private weak var orderedLabel: UILabel!
+    @IBOutlet private weak var editButton: UIButton!
+
+    public var edit: UIButton {
+        return editButton
+    }
 
     var disposeBag = DisposeBag()
-    private var viewModel: LocalCartDish?
+    private var viewModel: Dish?
 
     override func prepareForReuse() {
         self.disposeBag = DisposeBag()
@@ -25,9 +31,9 @@ class CartDishTableViewCell: UITableViewCell {
 
 }
 
-extension CartDishTableViewCell: PlaceholderConfigurable {
+extension ChefDishTableViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = LocalCartDish
+    typealias ContentViewModelType = Dish
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -38,7 +44,7 @@ extension CartDishTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWith(loading: Bool = false, contentViewModel: LocalCartDish? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: Dish? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -46,11 +52,14 @@ extension CartDishTableViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: LocalCartDish) {
+    func configure(contentViewModel: Dish) {
         self.viewModel = contentViewModel
 
         nameLabel.text = contentViewModel.name
         priceLabel.text = "€\(contentViewModel.price)"
+        orderedLabel.attributedText = NSMutableAttributedString()
+            .bold("3", size: 16.0)
+            .normal(" orders", size: 16.0)
         if let url = contentViewModel.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)
         } else {

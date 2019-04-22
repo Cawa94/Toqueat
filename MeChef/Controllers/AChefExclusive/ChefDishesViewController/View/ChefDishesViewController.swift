@@ -4,6 +4,9 @@ import Nuke
 
 class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
 
+    @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
+
     var chefDishesViewModel: ChefDishesViewModel! {
         didSet {
             tableViewModel = chefDishesViewModel
@@ -15,13 +18,39 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
-                           forCellReuseIdentifier: "DishTableViewCell")
+        tableView.register(UINib(nibName: "ChefDishTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "ChefDishTableViewCell")
+        tableView.register(UINib(nibName: "AddDishTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "AddDishTableViewCell")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if NavigationService.reloadChefDishes {
+            chefDishesViewModel.reload()
+            NavigationService.reloadChefDishes = false
+        }
+    }
+
+    @IBAction func profileAction(_ sender: Any) {
+        NavigationService.presentChefProfileController(chefId: chefDishesViewModel.chefId)
+    }
+
+    // MARK: - UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return chefDishesViewModel.numberOfItems(for: section) + 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
+        let cell: UITableViewCell
+        if indexPath.row < (chefDishesViewModel.numberOfItems(for: indexPath.section)) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "ChefDishTableViewCell",
                                                  for: indexPath)
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "AddDishTableViewCell",
+                                                 for: indexPath)
+        }
         configure(cell, at: indexPath, isLoading: chefDishesViewModel.isLoading)
         return cell
     }
@@ -37,16 +66,30 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
 
     override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
-        case let dishCell as DishTableViewCell:
+        case let dishCell as ChefDishTableViewCell:
             let dish = chefDishesViewModel.elementAt(indexPath.row)
-            let viewModel = DishTableViewModel(dish: dish,
-                                               chef: dish.chef)
-            dishCell.configureWith(contentViewModel: viewModel)
+            dishCell.configureWith(contentViewModel: dish)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     NavigationService.pushDishViewController(dishId: dish.id)
                 })
                 .disposed(by: dishCell.disposeBag)
+            dishCell.edit.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    NavigationService.pushChefDishViewController(dish: dish,
+                                                                 chefId: self.chefDishesViewModel.chefId)
+                })
+                .disposed(by: dishCell.disposeBag)
+        case let addDishCell as AddDishTableViewCell:
+            addDishCell.addDish.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    NavigationService.pushChefDishViewController(dish: nil,
+                                                                 chefId: self.chefDishesViewModel.chefId)
+                })
+                .disposed(by: addDishCell.disposeBag)
+            DispatchQueue.main.async {
+                self.viewDidLayoutSubviews()
+            }
         default:
             break
         }
@@ -55,7 +98,7 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
     // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return 100
     }
 
     // MARK: - StatefulViewController related methods
@@ -63,6 +106,12 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
     override func onResultsState() {
         chefDishesViewModel.elements = chefDishesViewModel.result.dishes ?? []
         super.onResultsState()
+    }
+
+    override func viewDidLayoutSubviews() {
+        tableViewHeightConstraint.constant = tableView.contentSize.height
+        contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
+            + 60 // Dishes title
     }
 
 }

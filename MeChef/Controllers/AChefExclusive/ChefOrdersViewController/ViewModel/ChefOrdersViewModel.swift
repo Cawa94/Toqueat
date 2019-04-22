@@ -4,8 +4,10 @@ import RxSwift
 final class ChefOrdersViewModel: BaseTableViewModel<[Order], Order> {
 
     private let disposeBag = DisposeBag()
+    var chefId: Int64
 
     init(chefId: Int64) {
+        self.chefId = chefId
         let chefRequest = NetworkService.shared.getOrdersFor(chefId: chefId)
         super.init(dataSource: chefRequest)
     }

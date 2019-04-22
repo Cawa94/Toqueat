@@ -33,8 +33,17 @@ class ChefsViewController: BaseStatefulController<[Chef]>,
             .orEmpty
             .asDriver(onErrorJustReturn: "")
             .skip(1)
-            .drive(onNext: { _ in
-                debugPrint("START SEARCHING...")
+            .debounce(0.5)
+            .drive(onNext: { text in
+                NetworkService.shared.searchChef(query: text)
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onSuccess: { filteredChefs in
+                        self.chefsViewModel.elements = filteredChefs
+                        self.collectionView.reloadData {
+                            self.viewDidLayoutSubviews()
+                        }
+                    })
+                    .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
 

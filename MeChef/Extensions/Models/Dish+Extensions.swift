@@ -10,4 +10,13 @@ extension Dish {
         }
     }
 
+    static var new: Dish {
+        return Dish(description: "",
+                    chef: nil,
+                    price: 0.00,
+                    imageUrl: nil,
+                    id: -1,
+                    name: "")
+    }
+
 }

@@ -30,8 +30,15 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
             .orEmpty
             .asDriver(onErrorJustReturn: "")
             .skip(1)
-            .drive(onNext: { _ in
-                debugPrint("START SEARCHING...")
+            .debounce(0.5)
+            .drive(onNext: { text in
+                NetworkService.shared.searchDish(query: text)
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onSuccess: { filteredDishes in
+                        self.dishesViewModel.elements = filteredDishes
+                        self.tableView.reloadData()
+                    })
+                    .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
 

@@ -55,8 +55,10 @@ extension DishTableViewCell: PlaceholderConfigurable {
         priceLabel.text = "€\(contentViewModel.dish.price)"
         if let url = contentViewModel.dish.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)
-            dishImageView.contentMode = .scaleAspectFill
+        } else {
+            dishImageView.image = UIImage(named: "dish_placeholder")
         }
+        dishImageView.contentMode = .scaleAspectFill
         if let chefUrl = contentViewModel.chef?.avatarLink {
             Nuke.loadImage(with: chefUrl, into: chefImageView)
             chefImageView.contentMode = .scaleAspectFill
