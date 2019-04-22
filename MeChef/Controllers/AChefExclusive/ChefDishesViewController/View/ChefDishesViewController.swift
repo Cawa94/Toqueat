@@ -30,6 +30,7 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
             chefDishesViewModel.reload()
             NavigationService.reloadChefDishes = false
         }
+        navigationController?.isNavigationBarHidden = true
     }
 
     @IBAction func profileAction(_ sender: Any) {

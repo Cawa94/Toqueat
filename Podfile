@@ -16,6 +16,7 @@ target 'Toqueat' do
   pod 'SwiftLint'
   pod 'StatefulViewController'
   pod 'LeadKit'
+  pod 'LeadKitAdditions'
   pod 'IQKeyboardManagerSwift'
   pod 'Nuke'
   pod 'RxOptional'

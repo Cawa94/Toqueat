@@ -2,6 +2,10 @@ import UIKit
 import RxSwift
 import Nuke
 
+private extension CGFloat {
+    static let maxAvatarDimension: CGFloat = 1_080
+}
+
 class ChefDishViewController: UIViewController,
     UITextViewDelegate {
 
@@ -44,11 +48,6 @@ class ChefDishViewController: UIViewController,
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(dismissDish))
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        navigationController?.isNavigationBarHidden = true
     }
 
     @objc func dismissDish() {
@@ -112,7 +111,6 @@ class ChefDishViewController: UIViewController,
         if let dish = viewModel.dish {
             // Editing dish
             if let imageUrl = dish.imageLink {
-                cameraButton.isHidden = true
                 Nuke.loadImage(with: imageUrl, into: dishImageView)
                 dishImageView.contentMode = .scaleAspectFill
             }
@@ -136,6 +134,52 @@ class ChefDishViewController: UIViewController,
             ? descriptionTextView.contentSize.height : 300
         contentViewHeightConstraint.constant = descriptionViewHeightConstraint.constant
         + 600 // Content without description
+    }
+
+    @IBAction func pickImageAction(_ sender: Any) {
+        ImagePickerManager().pickImage(self) { image in
+            self.didPick(image: image)
+        }
+    }
+
+    func didPick(image: UIImage?) {
+        guard let image = image, let fixedImage = rotateImage(image: image)
+            else { return }
+
+        let imageSize = fixedImage.size
+        let imageWidth = imageSize.width
+        let imageHeight = imageSize.height
+        let maxSize = max(imageWidth, imageHeight)
+        let ratio = maxSize / min(maxSize, .maxAvatarDimension)
+        let newSize = CGSize(width: imageWidth / ratio, height: imageHeight / ratio)
+
+        guard let newSizeImage = fixedImage.support.resize(newSize: newSize)?.base,
+            let imageData = UIImage.jpegData(newSizeImage)(compressionQuality: 0.8)
+            else { return }
+
+        NetworkService.shared.uploadPicture(for: viewModel.dish?.id ?? 1,
+                                            imageData: imageData) { error in
+                                                if let error = error {
+                                                    debugPrint(error.localizedDescription)
+                                                } else {
+                                                    DispatchQueue.main.async {
+                                                        self.dishImageView.image = newSizeImage
+                                                        NavigationService.reloadChefDishes = true
+                                                    }
+                                                }
+        }
+    }
+
+    func rotateImage(image: UIImage) -> UIImage? {
+        if image.imageOrientation == UIImage.Orientation.up {
+            return image
+        }
+        UIGraphicsBeginImageContext(image.size)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+        guard let copy = UIGraphicsGetImageFromCurrentImageContext()
+            else { return nil }
+        UIGraphicsEndImageContext()
+        return copy
     }
 
 }

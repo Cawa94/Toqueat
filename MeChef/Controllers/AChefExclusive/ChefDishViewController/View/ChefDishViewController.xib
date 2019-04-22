@@ -50,6 +50,9 @@
                                     </constraints>
                                     <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="40"/>
                                     <state key="normal" image="camera"/>
+                                    <connections>
+                                        <action selector="pickImageAction:" destination="-1" eventType="touchUpInside" id="xgi-qF-JwW"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftC-Lg-AKn">
                                     <rect key="frame" x="10" y="300" width="37.5" height="16.5"/>
