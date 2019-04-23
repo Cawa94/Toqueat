@@ -50,7 +50,7 @@ class DishViewController: BaseStatefulController<Dish>,
     // MARK: - Actions
 
     func addToCartAction() {
-        guard let baseChef = self.dishViewModel.baseChef
+        guard let baseChef = self.dishViewModel.baseChef, !SessionService.isChef
             else { return }
         if let currentChef = CartService.localCart?.chef?.id, currentChef != dishViewModel.chefId {
             presentAlertWith(title: "WARNING", message: "You're gonna lose all your products",

@@ -54,10 +54,10 @@ extension ChefBaseInfoTableViewCell: PlaceholderConfigurable {
         nameLabel.attributedText = formattedChefString
         if let url = contentViewModel.avatarLink {
             Nuke.loadImage(with: url, into: avatarImageView)
-            avatarImageView.contentMode = .scaleAspectFill
         } else {
             avatarImageView.image = UIImage(named: "chef_placeholder")
         }
+        avatarImageView.contentMode = .scaleAspectFill
     }
 
 }

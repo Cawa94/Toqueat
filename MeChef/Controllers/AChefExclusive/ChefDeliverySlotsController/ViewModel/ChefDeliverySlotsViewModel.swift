@@ -3,7 +3,13 @@ import UIKit
 
 final class ChefDeliverySlotsViewModel: BaseStatefulViewModel<[DeliverySlot]> {
 
-    init(chefId: Int64) {
+    let chefId: Int64
+    let editable: Bool
+    var activeSlots: [DeliverySlot] = []
+
+    init(chefId: Int64, editable: Bool) {
+        self.chefId = chefId
+        self.editable = editable
         let chefRequest = NetworkService.shared.getDeliverySlotFor(chefId: chefId)
         super.init(dataSource: chefRequest)
     }
@@ -12,18 +18,25 @@ final class ChefDeliverySlotsViewModel: BaseStatefulViewModel<[DeliverySlot]> {
 
 extension ChefDeliverySlotsViewModel {
 
-    func elementAt(_ indexPath: IndexPath) -> String {
+    func elementAt(_ indexPath: IndexPath) -> DeliverySlot {
+        let deliverySlot = DeliverySlot.all[Int64(indexPath.row + 1)]?[indexPath.section - 1]
+            ?? DeliverySlot(id: -1, weekdayId: -1, hourId: -1)
+        debugPrint("\(deliverySlot.id)")
+        return deliverySlot
+    }
+
+    func elementTitleAt(_ indexPath: IndexPath) -> String {
         switch indexPath.section {
         case 0:
             return DeliverySlot.weekdayWithIndex(indexPath.row + 1)
         default:
-            return DeliverySlot.hoursRangeWithIndex(indexPath.section + 2)
+            return DeliverySlot.hoursRangeWithIndex(indexPath.section)
         }
     }
 
     func isAvailableAt(_ indexPath: IndexPath) -> Bool {
-        return result.contains(where: { $0.weekdayId == (indexPath.row + 1)
-            && $0.hourId == (indexPath.section + 2) })
+        return activeSlots.contains(where: { $0.weekdayId == (indexPath.row + 1)
+            && $0.hourId == (indexPath.section) })
     }
 
     func cellColorForAvailability(_ available: Bool) -> UIColor {
@@ -32,6 +45,16 @@ extension ChefDeliverySlotsViewModel {
 
     func textColorForAvailability(_ available: Bool) -> UIColor {
         return available ? .white : .darkGrayColor
+    }
+
+    func toggle(slot: DeliverySlot) {
+        if let activeSlot = activeSlots.enumerated().first(where: { $0.element.weekdayId == slot.weekdayId
+                                                                    && $0.element.hourId == slot.hourId }) {
+            activeSlots.remove(at: activeSlot.offset)
+        } else {
+            activeSlots.append(slot)
+        }
+        debugPrint(activeSlots.map { "\($0.id)" })
     }
 
 }

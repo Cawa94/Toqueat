@@ -2,6 +2,21 @@ import Foundation
 
 extension DeliverySlot {
 
+    static var all: [Int64: [DeliverySlot]] {
+        var index = Int64(1)
+        var allSlots: [Int64: [DeliverySlot]] = [:]
+        for day in weekdayTable.sorted(by: { $0.key < $1.key }) {
+            var daySlots: [DeliverySlot] = []
+            for hour in hoursTable.sorted(by: { $0.key < $1.key }) {
+                let slot = DeliverySlot(id: index, weekdayId: day.key, hourId: hour.key)
+                daySlots.append(slot)
+                index += 1
+            }
+            allSlots[day.key] = daySlots
+        }
+        return allSlots
+    }
+
     static let weekdayTable: [Int64: String] = [
         1: "Monday",
         2: "Tuesday",

@@ -5,8 +5,22 @@ class LoginViewController: UIViewController {
 
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var loginButton: RoundedButton!
+    @IBOutlet private weak var registerButton: RoundedButton!
 
     private let disposeBag = DisposeBag()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        emailTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        passwordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+
+        let loginModel = RoundedButtonViewModel(title: "Log in", type: .squeezedOrange)
+        loginButton.configure(with: loginModel)
+
+        let registerModel = RoundedButtonViewModel(title: "Register", type: .squeezedWhite)
+        registerButton.configure(with: registerModel)
+    }
 
     @IBAction func loginAction(_ sender: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text

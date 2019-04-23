@@ -58,13 +58,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRb-uX-xRl">
-                                <rect key="frame" x="315" y="39.5" width="50" height="50"/>
+                                <rect key="frame" x="265" y="57.5" width="100" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="gRb-uX-xRl" secondAttribute="height" multiplier="1:1" id="DHk-tk-773"/>
-                                    <constraint firstAttribute="width" constant="50" id="yZn-QT-h0n"/>
+                                    <constraint firstAttribute="width" constant="100" id="yZn-QT-h0n"/>
                                 </constraints>
-                                <inset key="contentEdgeInsets" minX="30" minY="30" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="edit"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="Preview">
+                                    <color key="titleColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="3 orders" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcn-L1-iba">
                                 <rect key="frame" x="133" y="30" width="59" height="19"/>
@@ -110,9 +111,7 @@
                 <outlet property="placeholderContainerViewOutlet" destination="3GS-x0-LbL" id="oXs-OE-d49"/>
                 <outlet property="priceLabel" destination="8Sv-MI-uVE" id="hBk-1w-F3S"/>
             </connections>
+            <point key="canvasLocation" x="-37" y="93"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="edit" width="64" height="64"/>
-    </resources>
 </document>

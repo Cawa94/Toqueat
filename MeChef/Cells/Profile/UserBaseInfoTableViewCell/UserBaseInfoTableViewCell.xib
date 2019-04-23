@@ -96,6 +96,7 @@
             <connections>
                 <outlet property="contentContainerViewOutlet" destination="ogK-Aq-8QE" id="aNv-qn-20H"/>
                 <outlet property="emailLabel" destination="TLT-uz-cWy" id="7fM-2j-HDb"/>
+                <outlet property="iconImageView" destination="p23-jH-hvQ" id="daJ-dA-LOx"/>
                 <outlet property="nameLabel" destination="N8k-B5-h7W" id="0op-9u-tGW"/>
                 <outlet property="placeholderContainerViewOutlet" destination="ySK-pn-WXE" id="yeL-3a-kbv"/>
             </connections>

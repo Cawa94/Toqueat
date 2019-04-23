@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChefLoginViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
-                <outlet property="emailTextField" destination="Gct-Lb-ZXQ" id="Gpg-nq-Usf"/>
-                <outlet property="passwordTextField" destination="PYb-tB-Q1f" id="kuD-Df-kBU"/>
+                <outlet property="emailTextField" destination="FoJ-9o-KRE" id="3AD-el-8mB"/>
+                <outlet property="loginButton" destination="j0w-jf-34O" id="WLS-Wg-ZfE"/>
+                <outlet property="passwordTextField" destination="EgM-TT-o4L" id="kM0-Td-BQB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,52 +23,89 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="R96-1N-Rel">
-                    <rect key="frame" x="10" y="197" width="355" height="273"/>
-                    <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ewelina.szpilska@gmail.com" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gct-Lb-ZXQ">
-                            <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
-                        </textField>
-                        <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PYb-tB-Q1f">
-                            <rect key="frame" x="0.0" y="58" width="355" height="30"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MbA-VA-wl2">
-                            <rect key="frame" x="0.0" y="116" width="355" height="30"/>
-                            <state key="normal" title="Login"/>
-                            <connections>
-                                <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="VnN-GQ-eBy"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you want to be a chef, please write an email at info@toqueat.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="th4-xY-u0l">
-                            <rect key="frame" x="0.0" y="174" width="355" height="41"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlJ-6A-sDM">
-                            <rect key="frame" x="0.0" y="243" width="355" height="30"/>
-                            <state key="normal" title="I am not a chef"/>
-                            <connections>
-                                <action selector="standardLoginAction:" destination="-1" eventType="touchUpInside" id="cDT-lz-QJg"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                </stackView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_screen" translatesAutoresizingMaskIntoConstraints="NO" id="Vd8-WB-uCj">
+                    <rect key="frame" x="127.5" y="60" width="120" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Vd8-WB-uCj" secondAttribute="height" multiplier="1:1" id="Tnf-nJ-hku"/>
+                        <constraint firstAttribute="width" constant="120" id="kxl-NY-v3z"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ewelina.szpilska@gmail.com" placeholder="Email" textAlignment="center" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FoJ-9o-KRE">
+                    <rect key="frame" x="10" y="280.5" width="355" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Chw-MU-dvW"/>
+                    </constraints>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toqueat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1P-kg-xzW">
+                    <rect key="frame" x="16" y="190" width="349" height="40.5"/>
+                    <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="35"/>
+                    <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EgM-TT-o4L">
+                    <rect key="frame" x="10" y="340.5" width="355" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="0Dv-U6-MHS"/>
+                    </constraints>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ux7-Lc-TSH">
+                    <rect key="frame" x="40" y="605" width="295" height="32"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                    <state key="normal" title="I am not a chef">
+                        <color key="titleColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="standardLoginAction:" destination="-1" eventType="touchUpInside" id="nQB-6r-4Ge"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0w-jf-34O" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
+                    <rect key="frame" x="40" y="410.5" width="295" height="30"/>
+                    <state key="normal" title="Login"/>
+                    <connections>
+                        <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="hNb-Jk-W30"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you would like to be a chef, please write an email at toqueat@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITN-G0-x9Q">
+                    <rect key="frame" x="10" y="465.5" width="355" height="35"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="R96-1N-Rel" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="C8L-YO-0FI"/>
-                <constraint firstItem="R96-1N-Rel" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="VUJ-ZM-7bi"/>
-                <constraint firstItem="R96-1N-Rel" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ZQf-8H-m30"/>
-                <constraint firstAttribute="trailing" secondItem="R96-1N-Rel" secondAttribute="trailing" constant="10" id="tK8-Ee-Mhc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EgM-TT-o4L" secondAttribute="trailing" constant="10" id="6aT-5N-7Lo"/>
+                <constraint firstItem="j0w-jf-34O" firstAttribute="top" secondItem="EgM-TT-o4L" secondAttribute="bottom" constant="30" id="7te-cn-x6d"/>
+                <constraint firstItem="Vd8-WB-uCj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="9J6-ec-xIC"/>
+                <constraint firstItem="EgM-TT-o4L" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="LBb-Eh-XRt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FoJ-9o-KRE" secondAttribute="trailing" constant="10" id="Npl-5j-Bo5"/>
+                <constraint firstItem="Vd8-WB-uCj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nyq-Ht-EOe"/>
+                <constraint firstItem="j0w-jf-34O" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="RtJ-Im-NL3"/>
+                <constraint firstItem="FoJ-9o-KRE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="b5h-hc-duc"/>
+                <constraint firstItem="P1P-kg-xzW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="cXo-xY-ryZ"/>
+                <constraint firstItem="Vd8-WB-uCj" firstAttribute="width" secondItem="Vd8-WB-uCj" secondAttribute="height" multiplier="1:1" id="d3b-sw-VE1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ITN-G0-x9Q" secondAttribute="trailing" constant="10" id="e4i-5Z-sIk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="P1P-kg-xzW" secondAttribute="trailing" constant="10" id="ghF-x7-ZjQ"/>
+                <constraint firstItem="EgM-TT-o4L" firstAttribute="top" secondItem="FoJ-9o-KRE" secondAttribute="bottom" constant="20" id="hIw-ap-QZr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ux7-Lc-TSH" secondAttribute="bottom" constant="30" id="jb0-V5-10H"/>
+                <constraint firstItem="ITN-G0-x9Q" firstAttribute="top" secondItem="j0w-jf-34O" secondAttribute="bottom" constant="25" id="mJW-Qd-mBh"/>
+                <constraint firstItem="ITN-G0-x9Q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="nSC-1q-Exq"/>
+                <constraint firstItem="FoJ-9o-KRE" firstAttribute="top" secondItem="P1P-kg-xzW" secondAttribute="bottom" constant="50" id="nVg-rR-UTd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ux7-Lc-TSH" secondAttribute="trailing" constant="40" id="qGy-Y1-dAa"/>
+                <constraint firstItem="P1P-kg-xzW" firstAttribute="top" secondItem="Vd8-WB-uCj" secondAttribute="bottom" constant="10" id="rwS-7B-116"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="j0w-jf-34O" secondAttribute="trailing" constant="40" id="yPG-LP-bpY"/>
+                <constraint firstItem="Ux7-Lc-TSH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="z0S-ER-fmB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
+    <resources>
+        <image name="splash_screen" width="512" height="512"/>
+    </resources>
 </document>

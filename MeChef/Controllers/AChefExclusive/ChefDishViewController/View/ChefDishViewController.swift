@@ -22,6 +22,7 @@ class ChefDishViewController: UIViewController,
 
     var placeholderLabel: UILabel!
     var viewModel: ChefDishViewModel!
+    var newImageData: Data?
 
     private let disposeBag = DisposeBag()
 
@@ -65,9 +66,16 @@ class ChefDishViewController: UIViewController,
                                                   price: price, chefId: "\(viewModel.chefId)")
         if let dish = viewModel.dish {
             NetworkService.shared.updateDishWith(parameters: dishParameters, dishId: dish.id)
+                .map { _ in
+                    if let newImage = self.newImageData {
+                        NetworkService.shared.uploadPicture(for: dish.id,
+                                                            imageData: newImage,
+                                                            completion: { _ in })
+                    }
+                }
                 .observeOn(MainScheduler.instance)
                 .subscribe(onSuccess: { _ in
-                    self.presentAlertWith(title: "YEAH", message: "Dish updated",
+                   self.presentAlertWith(title: "YEAH", message: "Dish updated",
                                           actions: [ UIAlertAction(title: "Ok", style: .default, handler: { _ in
                                             NavigationService.reloadChefDishes = true
                                             NavigationService.popNavigationTopController()
@@ -76,6 +84,13 @@ class ChefDishViewController: UIViewController,
                 .disposed(by: disposeBag)
         } else {
             NetworkService.shared.createNewDishWith(parameters: dishParameters)
+                .map { dish in
+                    if let newImage = self.newImageData {
+                        NetworkService.shared.uploadPicture(for: dish.id,
+                                                            imageData: newImage,
+                                                            completion: { _ in })
+                    }
+                }
                 .observeOn(MainScheduler.instance)
                 .subscribe(onSuccess: { _ in
                     self.presentAlertWith(title: "YEAH", message: "Dish created",
@@ -157,17 +172,8 @@ class ChefDishViewController: UIViewController,
             let imageData = UIImage.jpegData(newSizeImage)(compressionQuality: 0.8)
             else { return }
 
-        NetworkService.shared.uploadPicture(for: viewModel.dish?.id ?? 1,
-                                            imageData: imageData) { error in
-                                                if let error = error {
-                                                    debugPrint(error.localizedDescription)
-                                                } else {
-                                                    DispatchQueue.main.async {
-                                                        self.dishImageView.image = newSizeImage
-                                                        NavigationService.reloadChefDishes = true
-                                                    }
-                                                }
-        }
+        dishImageView.image = newSizeImage
+        newImageData = imageData
     }
 
     func rotateImage(image: UIImage) -> UIImage? {

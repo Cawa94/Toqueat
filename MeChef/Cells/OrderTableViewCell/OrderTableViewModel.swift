@@ -4,10 +4,6 @@ struct OrderTableViewModel {
 
     let order: Order
 
-    init(order: Order) {
-        self.order = order
-    }
-
 }
 
 extension OrderTableViewModel {

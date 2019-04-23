@@ -13,7 +13,7 @@ class RegisterViewController: BaseStatefulController<[City]>,
     @IBOutlet private weak var streetTextField: UITextField!
     @IBOutlet private weak var apartmentTextField: UITextField!
     @IBOutlet private weak var zipcodeTextField: UITextField!
-    @IBOutlet private weak var registerButton: UIButton!
+    @IBOutlet private weak var registerButton: RoundedButton!
 
     var registerViewModel: RegisterViewModel! {
         didSet {
@@ -26,8 +26,22 @@ class RegisterViewController: BaseStatefulController<[City]>,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        nameTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        lastnameTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        emailTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        passwordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        confirmPasswordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        cityTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        streetTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        apartmentTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        zipcodeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+
         cityTextField.inputView = cityPicker
         cityPicker.delegate = self
+
+        let registerModel = RoundedButtonViewModel(title: "Register", type: .squeezedOrange)
+        registerButton.configure(with: registerModel)
     }
 
     @IBAction func performRegistration(_ sender: Any) {

@@ -7,6 +7,7 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
 
     @IBOutlet private weak var availableColorView: UIView!
     @IBOutlet private weak var unavailableColorView: UIView!
+    @IBOutlet private weak var instructionsLabel: UILabel!
 
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -32,6 +33,9 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        instructionsLabel.text = chefDeliverySlotsViewModel.editable
+        ? "Here you can let people know when you're availble to deliver. Tap a slot to enable/disable it"
+        : "The chef will be available to deliver dishes only during this hours"
         availableColorView.roundCorners(radii: availableColorView.bounds.height/2)
         availableColorView.backgroundColor = .highlightedOrangeColor
         unavailableColorView.roundCorners(radii: unavailableColorView.bounds.height/2,
@@ -44,27 +48,52 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = !chefDeliverySlotsViewModel.editable
     }
 
     override func configureNavigationBar() {
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
         title = "Chef Availability"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(closeAvailability))
+        if !chefDeliverySlotsViewModel.editable {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(closeAvailability))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
+                                                                style: .done,
+                                                                target: self,
+                                                                action: #selector(saveAndClose))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
+                                                               style: .plain,
+                                                               target: self,
+                                                               action: #selector(closeAvailability))
+        }
     }
 
     @objc func closeAvailability() {
         NavigationService.popNavigationTopController()
     }
 
+    @objc func saveAndClose() {
+        let newDeliverySlots = chefDeliverySlotsViewModel.activeSlots.map { $0.id }
+        let updateSingle = NetworkService.shared.updateDeliverySlotsFor(chefId: chefDeliverySlotsViewModel.chefId,
+                                                                        slots: newDeliverySlots)
+
+        self.hudOperationWithRetry(operationSingle: updateSingle,
+                                   onSuccessClosure: { _ in
+                                    self.chefDeliverySlotsViewModel.reload()
+                                    self.presentAlertWith(title: "YEAH",
+                                                          message: "Slots updated")
+                                    },
+                                   disposeBag: self.disposeBag)
+    }
+
     // MARK: - Collection view data source and delegate methods
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 15 // hours ranges
+        return 17 // hours ranges
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -78,7 +107,7 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
             return UICollectionViewCell()
         }
 
-        cell.titleLabel.text = chefDeliverySlotsViewModel.elementAt(indexPath)
+        cell.titleLabel.text = chefDeliverySlotsViewModel.elementTitleAt(indexPath)
         if indexPath.section != 0 {
             let isAvailable = chefDeliverySlotsViewModel.isLoading
                 ? false : chefDeliverySlotsViewModel.isAvailableAt(indexPath)
@@ -99,9 +128,18 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
         return CGSize(width: 100, height: 40)
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let slot = chefDeliverySlotsViewModel.elementAt(indexPath)
+        chefDeliverySlotsViewModel.toggle(slot: slot)
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
+        chefDeliverySlotsViewModel.activeSlots = chefDeliverySlotsViewModel.result
         self.collectionView.reloadData()
     }
 

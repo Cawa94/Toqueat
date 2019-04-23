@@ -148,8 +148,10 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
     override func onResultsState() {
         if let avatarUrl = chefViewModel.avatarUrl {
             Nuke.loadImage(with: avatarUrl, into: chefImageView)
-            chefImageView.contentMode = .scaleAspectFill
+        } else {
+            chefImageView.image = UIImage(named: "chef_placeholder")
         }
+        chefImageView.contentMode = .scaleAspectFill
         chefViewModel.elements = chefViewModel.result.dishes ?? []
         chefDetailsTableView.reloadData()
         navigationTitle.text = "\(chefViewModel.result.name) \(chefViewModel.result.lastname)"

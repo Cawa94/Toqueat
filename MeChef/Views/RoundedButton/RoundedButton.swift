@@ -161,7 +161,7 @@ extension RoundedButton: AppearanceConfigurable {
 
         layer.borderColor = appearance.borderColor.cgColor
         layer.borderWidth = appearance.borderWidth
-        layer.cornerRadius = appearance.cornerRadius == 45 ? bounds.height / 2 : appearance.cornerRadius
+        layer.cornerRadius = appearance.cornerRadius == 45 ? 20 : appearance.cornerRadius
 
         contentHorizontalAlignment = appearance.align
 
@@ -186,7 +186,10 @@ private extension RoundedButtonType {
             return state.orangeButtonAppearance(height: 40)
         case .squeezedOrange:
             return .init(backgroundColor: .mainOrangeColor,
-                         height: 50, cornerRadius: 45)
+                         height: 40, cornerRadius: 45)
+        case .squeezedWhite:
+            return .init(backgroundColor: .white, borderColor: .mainOrangeColor,
+                         height: 40, cornerRadius: 45)
         }
     }
 

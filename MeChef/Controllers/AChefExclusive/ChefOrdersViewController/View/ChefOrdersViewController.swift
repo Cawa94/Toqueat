@@ -30,6 +30,11 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChefOrderTableViewCell",
                                                  for: indexPath)
         configure(cell, at: indexPath, isLoading: chefOrdersViewModel.isLoading)
+        if indexPath.row == chefOrdersViewModel.elements.count - 1 {
+            DispatchQueue.main.async {
+                self.viewDidLayoutSubviews()
+            }
+        }
         return cell
     }
 
@@ -48,7 +53,7 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
             let order = chefOrdersViewModel.elementAt(indexPath.row)
             let viewModel = ChefOrderTableViewModel(order: order)
             orderCell.configureWith(contentViewModel: viewModel)
-            orderCell.confirmOrderButton.rx.tap.subscribe(onNext: { _ in
+           /* orderCell.confirmOrderButton.rx.tap.subscribe(onNext: { _ in
                 guard let chefLocation = SessionService.session?.chef?.stuartLocation
                     else { return }
                 let createStuartSingle = self.chefOrdersViewModel.createStuartJobWith(orderId: viewModel.order.id,
@@ -68,11 +73,11 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
                     .observeOn(MainScheduler.instance)
                     .subscribe(onSuccess: { _ in
                         self.presentAlertWith(title: "YEAH",
-                                              message: "Order scheduled")
+                                              message: "Order canceled")
                     })
                     .disposed(by: self.disposeBag)
                 })
-                .disposed(by: orderCell.disposeBag)
+                .disposed(by: orderCell.disposeBag)*/
         default:
             break
         }
@@ -81,13 +86,13 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
     // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 100
     }
 
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        chefOrdersViewModel.elements = chefOrdersViewModel.result
+        chefOrdersViewModel.elements = chefOrdersViewModel.result.sorted(by: { $0.deliveryDate > $1.deliveryDate })
         super.onResultsState()
     }
 

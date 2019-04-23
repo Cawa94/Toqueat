@@ -92,7 +92,8 @@ class ProfileViewController: BaseStatefulController<User>,
     func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let baseInfoCell as UserBaseInfoTableViewCell:
-            let viewModel = profileViewModel.baseUser
+            let viewModel = UserBaseInfoCellViewModel(baseUser: profileViewModel.baseUser,
+                                                      isChef: false)
             baseInfoCell.configureWith(contentViewModel: viewModel)
         case let barCell as UserBarTableViewCell:
             let viewModel: UserBarViewModel

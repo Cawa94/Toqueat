@@ -7,11 +7,11 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
 
-    @IBOutlet weak var orderIdLabel: UILabel!
-    @IBOutlet weak var totalLabel: UILabel!
-    @IBOutlet weak var deliveryLabel: UILabel!
-    @IBOutlet weak var dishesLabel: UILabel!
-    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet private weak var chefImageView: UIImageView!
+    @IBOutlet private weak var chefLabel: UILabel!
+    @IBOutlet private weak var totalLabel: UILabel!
+    @IBOutlet private weak var deliveryLabel: UILabel!
+    @IBOutlet private weak var stateLabel: UILabel!
 
     var disposeBag = DisposeBag()
     private var viewModel: OrderTableViewModel?
@@ -21,7 +21,8 @@ class OrderTableViewCell: UITableViewCell {
     }
 
     override func awakeFromNib() {
-        contentContainerView.roundCorners(radii: 15)
+        chefImageView.roundCorners(radii: self.chefImageView.frame.width/2,
+                                   borderWidth: 1.0, borderColor: .mainOrangeColor)
     }
 
 }
@@ -50,13 +51,10 @@ extension OrderTableViewCell: PlaceholderConfigurable {
     func configure(contentViewModel: OrderTableViewModel) {
         self.viewModel = contentViewModel
 
-        orderIdLabel.text = "ID: \(contentViewModel.order.id)"
-        totalLabel.text = "TOTAL: \(contentViewModel.order.totalPrice)"
-        deliveryLabel.text = "DELIVERY \(contentViewModel.delivery)"
-        dishesLabel.text = "DISHES COUNT: \(contentViewModel.order.dishes.count)"
-        stateLabel.text = "\(contentViewModel.order.state)"
-        stateLabel.textColor = contentViewModel.order.orderState == .scheduled
-            ? .green : .red
+        chefLabel.text = contentViewModel.order.chef.name
+        totalLabel.text = String(format: "€%.2f", Double(truncating: contentViewModel.order.totalPrice))
+        deliveryLabel.text = "\(contentViewModel.delivery)"
+        stateLabel.text = "\(contentViewModel.order.state.capitalized)"
     }
 
 }

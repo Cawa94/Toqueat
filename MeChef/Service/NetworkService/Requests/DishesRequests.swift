@@ -50,37 +50,8 @@ extension NetworkService {
 
         return request(with: apiParameters)
     }
-/*
+
     // swiftlint:disable all
-    func uploadPicture(for dishId: Int64, imageData: Data) -> Single<Dish> {
-        let relativeUrl = "dishes/\(dishId)/update_image"
-        let fullUrl = URL(string: NetworkService.baseUrl + relativeUrl)!
-
-        return Single.deferredJust { () -> (request: URLRequest, formData: MultipartFormData) in
-            let formData = MultipartFormData()
-            let headers = [
-                "Content-Type": "multipart/form-data; boundary=\(formData.boundary)"
-                ] + ApiRequestParameters.commonHeaders
-
-            formData.append(imageData, withName: "dish_image", fileName: "dish_image", mimeType: "image/jpeg")
-            return (request: try urlRequest(.post,
-                                            fullUrl,
-                                            headers: headers),
-                    formData: formData)
-            }
-            .flatMap { [sessionManager] requestFormData in
-                sessionManager!.rx
-                    .upload(try requestFormData.formData.encode(), urlRequest: requestFormData.request)
-                    .flatMap { uploadRequest -> Observable<Dish> in
-                        uploadRequest.rx.apiResponse(decoder: JSONDecoder.init()).map { $0.model }
-                    }
-                    .map { response -> Dish in
-                        return response
-                    }
-                    .asSingle()
-        }
-    }
-*/
     func uploadPicture(for dishId: Int64, imageData: Data, completion: @escaping (_ error: Error?) -> Void) {
         let relativeUrl = "dishes/\(dishId)/update_image"
         let fullUrl = URL(string: NetworkService.baseUrl + relativeUrl)!

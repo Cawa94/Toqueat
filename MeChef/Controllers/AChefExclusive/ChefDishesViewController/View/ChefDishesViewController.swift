@@ -72,13 +72,13 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
             dishCell.configureWith(contentViewModel: dish)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
-                    NavigationService.pushDishViewController(dishId: dish.id)
+                    NavigationService.pushChefDishViewController(dish: dish,
+                                                                 chefId: self.chefDishesViewModel.chefId)
                 })
                 .disposed(by: dishCell.disposeBag)
             dishCell.edit.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
-                    NavigationService.pushChefDishViewController(dish: dish,
-                                                                 chefId: self.chefDishesViewModel.chefId)
+                    NavigationService.pushDishViewController(dishId: dish.id)
                 })
                 .disposed(by: dishCell.disposeBag)
         case let addDishCell as AddDishTableViewCell:

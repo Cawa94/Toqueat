@@ -1,19 +1,27 @@
 import UIKit
 
+struct UserBaseInfoCellViewModel {
+
+    let baseUser: BaseUser
+    let isChef: Bool
+
+}
+
 final class UserBaseInfoTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
+    @IBOutlet private weak var iconImageView: UIImageView!
 
-    var viewModel: BaseUser?
+    var viewModel: UserBaseInfoCellViewModel?
 
 }
 
 extension UserBaseInfoTableViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = BaseUser
+    typealias ContentViewModelType = UserBaseInfoCellViewModel
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -24,7 +32,7 @@ extension UserBaseInfoTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWith(loading: Bool = false, contentViewModel: BaseUser? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: UserBaseInfoCellViewModel? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -32,11 +40,12 @@ extension UserBaseInfoTableViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: BaseUser) {
+    func configure(contentViewModel: UserBaseInfoCellViewModel) {
         self.viewModel = contentViewModel
 
-        nameLabel.text = "\(contentViewModel.name) \(contentViewModel.lastname)"
-        emailLabel.text = contentViewModel.email
+        nameLabel.text = "\(contentViewModel.baseUser.name) \(contentViewModel.baseUser.lastname)"
+        emailLabel.text = contentViewModel.baseUser.email
+        iconImageView.image = UIImage(named: viewModel?.isChef ?? false ? "profile_chef_woman" : "profile")
     }
 
 }

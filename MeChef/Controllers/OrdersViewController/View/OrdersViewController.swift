@@ -61,13 +61,13 @@ class OrdersViewController: BaseTableViewController<[Order], Order> {
     // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160
+        return 100
     }
 
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        ordersViewModel.elements = ordersViewModel.result
+        ordersViewModel.elements = ordersViewModel.result.sorted(by: { $0.deliveryDate > $1.deliveryDate })
         super.onResultsState()
     }
 

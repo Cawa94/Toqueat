@@ -45,7 +45,6 @@ struct SessionService {
     static func logout() {
         session = nil
         CartService.localCart = nil
-        NavigationService.makeLoginRootController()
     }
 
 }

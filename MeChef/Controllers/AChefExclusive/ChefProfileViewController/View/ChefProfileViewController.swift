@@ -2,15 +2,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ChefProfileViewController: BaseStatefulController<Chef> {
+class ChefProfileViewController: BaseStatefulController<Chef>,
+    UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var lastNameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var zipcodeLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet private weak var tableView: UITableView!
 
     var chefProfileViewModel: ChefProfileViewModel! {
         didSet {
@@ -19,6 +14,15 @@ class ChefProfileViewController: BaseStatefulController<Chef> {
     }
 
     private let disposeBag = DisposeBag()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView.register(UINib(nibName: "UserBaseInfoTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "UserBaseInfoTableViewCell")
+        tableView.register(UINib(nibName: "UserBarTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: "UserBarTableViewCell")
+    }
 
     override func configureNavigationBar() {
         super.configureNavigationBar()
@@ -34,36 +38,153 @@ class ChefProfileViewController: BaseStatefulController<Chef> {
         NavigationService.dismissTopController()
     }
 
-    @IBAction func deliverySlotsAction(_ sender: Any) {
-        NavigationService.pushChefDeliverySlotsViewController(chefId: chefProfileViewModel.result.id)
+    // MARK: - UITableViewDelegate
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
     }
 
-    @IBAction func performLogout(_ sender: Any) {
-        SessionService.logout()
-        DispatchQueue.main.async {
-            NavigationService.makeLoginRootController()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 4
+        case 2:
+            return 1
+        default:
+            return 1
         }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell
+        switch indexPath.section {
+        case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "UserBaseInfoTableViewCell",
+                                                 for: indexPath)
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: "UserBarTableViewCell",
+                                                 for: indexPath)
+        }
+        configure(cell, at: indexPath, isLoading: chefProfileViewModel.isLoading)
+        return cell
+    }
+
+    func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
+        if isLoading {
+            configureWithPlaceholders(cell, at: indexPath)
+        } else {
+            configureWithContent(cell, at: indexPath)
+        }
+    }
+
+    func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let baseInfoCell as UserBaseInfoTableViewCell:
+            baseInfoCell.configureWith(loading: true)
+        default:
+            break
+        }
+    }
+
+    // swiftlint:disable all
+    func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let baseInfoCell as UserBaseInfoTableViewCell:
+            let viewModel = UserBaseInfoCellViewModel(baseUser: chefProfileViewModel.baseChef,
+                                                      isChef: true)
+            baseInfoCell.configureWith(contentViewModel: viewModel)
+        case let barCell as UserBarTableViewCell:
+            let viewModel: UserBarViewModel
+            switch indexPath.section {
+            case 1:
+                switch indexPath.row {
+                case 0:
+                    viewModel = UserBarViewModel(option: "My Delivery Slots")
+                case 1:
+                    viewModel = UserBarViewModel(option: "My Address")
+                case 2:
+                    viewModel = UserBarViewModel(option: "Payment Methods")
+                case 3:
+                    viewModel = UserBarViewModel(option: "Notifications")
+                default:
+                    viewModel = UserBarViewModel(option: "Unknown")
+                }
+            case 2:
+                viewModel = UserBarViewModel(option: "Log out", arrowHidden: true)
+            default:
+                viewModel = UserBarViewModel(option: "Unknown")
+            }
+            barCell.configureWith(contentViewModel: viewModel)
+        default:
+            break
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0:
+            return 90
+        default:
+            return 60
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 30
+        case 1:
+            return 40
+        default:
+            return 50
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = UITableViewCell()
+        headerCell.backgroundColor = .placeholderPampasColor
+        return headerCell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !chefProfileViewModel.isLoading
+            else { return }
+        switch indexPath.section {
+        case 0:
+        break // Show User Details
+        case 1:
+            switch indexPath.row {
+            case 0:
+                NavigationService.pushChefDeliverySlotsViewController(chefId: chefProfileViewModel.result.id,
+                                                                      editable: true)
+            case 1:
+            break // Show Delivery Addresses
+            case 2:
+            break // Show Payment Methods
+            case 3:
+            break // Show Notifications
+            default:
+                break
+            }
+        default:
+            SessionService.logout()
+            DispatchQueue.main.async {
+                NavigationService.makeLoginRootController()
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        welcomeLabel.text = "Ciao Chef"
-        nameLabel.text = chefProfileViewModel.name
-        lastNameLabel.text = chefProfileViewModel.lastname
-        emailLabel.text = chefProfileViewModel.email
-        addressLabel.text = chefProfileViewModel.address
-        zipcodeLabel.text = chefProfileViewModel.zipcode
-        cityLabel.text = chefProfileViewModel.city
+        tableView.reloadData()
     }
 
     override func onLoadingState() {
-        nameLabel.text = "LOADING"
-        lastNameLabel.text = "LOADING"
-        emailLabel.text = "LOADING"
-        addressLabel.text = "LOADING"
-        zipcodeLabel.text = "LOADING"
-        cityLabel.text = "LOADING"
+        tableView.reloadData()
     }
 
 }

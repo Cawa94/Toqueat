@@ -59,8 +59,9 @@ extension NavigationService {
         }
     }
 
-    static func pushChefDeliverySlotsViewController(chefId: Int64) {
-        let deliverySlotsController = chefDeliverySlotsViewController(chefId: chefId)
+    static func pushChefDeliverySlotsViewController(chefId: Int64, editable: Bool = false) {
+        let deliverySlotsController = chefDeliverySlotsViewController(chefId: chefId,
+                                                                      editable: editable)
         push(viewController: deliverySlotsController, animated: true)
     }
 

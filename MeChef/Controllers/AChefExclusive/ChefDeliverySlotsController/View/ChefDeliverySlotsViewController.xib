@@ -15,6 +15,7 @@
                 <outlet property="availableColorView" destination="WJ7-Wg-Ehz" id="nks-p1-yxT"/>
                 <outlet property="collectionView" destination="9hU-QF-Ah3" id="CVA-Hb-HUK"/>
                 <outlet property="gridLayout" destination="20G-XF-0hl" id="oAW-kq-aHK"/>
+                <outlet property="instructionsLabel" destination="cQU-Z6-hFt" id="Yzt-8f-GRF"/>
                 <outlet property="unavailableColorView" destination="Lle-WF-Vqy" id="xId-cj-yPi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -81,7 +82,7 @@
                 <constraint firstItem="9hU-QF-Ah3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FND-d0-ryX"/>
                 <constraint firstItem="WJ7-Wg-Ehz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="Ih7-EQ-vDx"/>
                 <constraint firstItem="Lle-WF-Vqy" firstAttribute="centerY" secondItem="WJ7-Wg-Ehz" secondAttribute="centerY" id="jYD-8I-DQL"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="9hU-QF-Ah3" secondAttribute="bottom" id="miZ-za-cq6"/>
+                <constraint firstAttribute="bottom" secondItem="9hU-QF-Ah3" secondAttribute="bottom" id="miZ-za-cq6"/>
                 <constraint firstItem="cQU-Z6-hFt" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="nsH-8E-ehU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9hU-QF-Ah3" secondAttribute="trailing" id="q9Q-Db-zPx"/>
                 <constraint firstItem="kLh-Dc-ToV" firstAttribute="centerY" secondItem="WJ7-Wg-Ehz" secondAttribute="centerY" id="qgc-rL-wnl"/>
@@ -92,7 +93,7 @@
                 <constraint firstItem="WJ7-Wg-Ehz" firstAttribute="top" secondItem="cQU-Z6-hFt" secondAttribute="bottom" constant="15" id="yyC-zo-eYu"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-1607.2" y="53.523238380809602"/>
+            <point key="canvasLocation" x="-2122" y="45"/>
         </view>
     </objects>
 </document>

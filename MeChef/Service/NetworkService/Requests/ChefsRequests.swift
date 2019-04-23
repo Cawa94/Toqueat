@@ -31,6 +31,16 @@ extension NetworkService {
             .map { $0.orders }
     }
 
+    func updateDeliverySlotsFor(chefId: Int64, slots: [Int64]) -> Single<[DeliverySlot]> {
+        let body = ChefUpdateDeliverySlots(deliverySlotIds: slots)
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/update_deliveryslots",
+                                                 method: .patch,
+                                                 parameters: body.toJSON())
+
+        return (request(with: apiParameters) as Single<DeliverySlotsResponse>)
+            .map { $0.deliverySlots }
+    }
+
     func searchChef(query: String) -> Single<[Chef]> {
         let parameters = ["search": query] as Parameters
         let apiParameters = ApiRequestParameters(relativeUrl: "searchChef",
