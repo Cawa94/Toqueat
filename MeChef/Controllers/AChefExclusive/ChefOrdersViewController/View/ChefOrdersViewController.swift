@@ -2,14 +2,25 @@ import UIKit
 import RxSwift
 import Nuke
 
-class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
+class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.ResultType>,
+    UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            collectionView.bounces = false
+        }
+    }
+
+    @IBOutlet weak var gridLayout: StickyGridCollectionViewLayout! {
+        didSet {
+            gridLayout.stickyRowsCount = 1
+            gridLayout.stickyColumnsCount = 0
+        }
+    }
 
     var chefOrdersViewModel: ChefOrdersViewModel! {
         didSet {
-            tableViewModel = chefOrdersViewModel
+            viewModel = chefOrdersViewModel
         }
     }
 
@@ -18,88 +29,90 @@ class ChefOrdersViewController: BaseTableViewController<[Order], Order> {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: "ChefOrderTableViewCell", bundle: nil),
-                           forCellReuseIdentifier: "ChefOrderTableViewCell")
+        let nib = UINib(nibName: DeliverySlotCollectionViewCell.reuseID, bundle: nil)
+        collectionView.register(nib,
+                                forCellWithReuseIdentifier: DeliverySlotCollectionViewCell.reuseID)
     }
 
     @IBAction func profileAction(_ sender: Any) {
         NavigationService.presentChefProfileController(chefId: chefOrdersViewModel.chefId)
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChefOrderTableViewCell",
-                                                 for: indexPath)
-        configure(cell, at: indexPath, isLoading: chefOrdersViewModel.isLoading)
-        if indexPath.row == chefOrdersViewModel.elements.count - 1 {
-            DispatchQueue.main.async {
-                self.viewDidLayoutSubviews()
-            }
+    // MARK: - Collection view data source and delegate methods
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 17 // hours ranges
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 7 // weekdays
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DeliverySlotCollectionViewCell.reuseID,
+                                                            for: indexPath) as? DeliverySlotCollectionViewCell else {
+                                                                return UICollectionViewCell()
         }
+
+        cell.titleLabel.text = chefOrdersViewModel.elementTitleAt(indexPath)
+        if indexPath.section != 0 {
+            let isAvailable = chefOrdersViewModel.isLoading
+                ? false : chefOrdersViewModel.isAvailableAt(indexPath)
+            cell.titleLabel.font = isAvailable ? .mediumFontOf(size: 14) : .regularFontOf(size: 14)
+            cell.backgroundColor = chefOrdersViewModel.cellColorForHours
+            cell.titleLabel.textColor = chefOrdersViewModel.textColorForAvailability(isAvailable)
+            cell.drawBorders(isWeekday: false)
+        } else {
+            cell.titleLabel.font = .boldFontOf(size: 16)
+            cell.backgroundColor = chefOrdersViewModel.cellColorForWeekdays
+            cell.titleLabel.textColor = chefOrdersViewModel.textColorForWeekdays
+            cell.drawBorders(isWeekday: true)
+        }
+
         return cell
     }
 
-    override func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
-        switch cell {
-        case let orderCell as ChefOrderTableViewCell:
-            orderCell.configureWith(loading: true)
-        default:
-            break
-        }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 40)
     }
 
-    override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
-        switch cell {
-        case let orderCell as ChefOrderTableViewCell:
-            let order = chefOrdersViewModel.elementAt(indexPath.row)
-            let viewModel = ChefOrderTableViewModel(order: order)
-            orderCell.configureWith(contentViewModel: viewModel)
-           /* orderCell.confirmOrderButton.rx.tap.subscribe(onNext: { _ in
-                guard let chefLocation = SessionService.session?.chef?.stuartLocation
-                    else { return }
-                let createStuartSingle = self.chefOrdersViewModel.createStuartJobWith(orderId: viewModel.order.id,
-                                                                                      chefLocation: chefLocation)
-                self.hudOperationWithRetry(operationSingle: createStuartSingle,
-                                           onSuccessClosure: { _ in
-                                                self.chefOrdersViewModel.reload()
-                                                self.presentAlertWith(title: "YEAH",
-                                                                      message: "Order scheduled")
-                                            },
-                                           disposeBag: self.disposeBag)
-                })
-                .disposed(by: orderCell.disposeBag)
-            orderCell.cancelOrderButton.rx.tap.subscribe(onNext: { _ in
-                self.chefOrdersViewModel.changeOrderStatusWith(orderId: viewModel.order.id,
-                                                               state: .canceled)
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onSuccess: { _ in
-                        self.presentAlertWith(title: "YEAH",
-                                              message: "Order canceled")
-                    })
-                    .disposed(by: self.disposeBag)
-                })
-                .disposed(by: orderCell.disposeBag)*/
-        default:
-            break
-        }
-    }
-
-    // MARK: - UITableViewDelegate
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     }
 
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        chefOrdersViewModel.elements = chefOrdersViewModel.result.sorted(by: { $0.deliveryDate > $1.deliveryDate })
-        super.onResultsState()
-    }
-
-    override func viewDidLayoutSubviews() {
-        tableViewHeightConstraint.constant = tableView.contentSize.height
-        contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
-            + 60 // Orders title
+        chefOrdersViewModel.chefSlots = chefOrdersViewModel.result.deliverySlots
+        self.collectionView.reloadData()
     }
 
 }
+
+/* orderCell.confirmOrderButton.rx.tap.subscribe(onNext: { _ in
+ guard let chefLocation = SessionService.session?.chef?.stuartLocation
+ else { return }
+ let createStuartSingle = self.chefOrdersViewModel.createStuartJobWith(orderId: viewModel.order.id,
+ chefLocation: chefLocation)
+ self.hudOperationWithRetry(operationSingle: createStuartSingle,
+ onSuccessClosure: { _ in
+ self.chefOrdersViewModel.reload()
+ self.presentAlertWith(title: "YEAH",
+ message: "Order scheduled")
+ },
+ disposeBag: self.disposeBag)
+ })
+ .disposed(by: orderCell.disposeBag)
+ orderCell.cancelOrderButton.rx.tap.subscribe(onNext: { _ in
+ self.chefOrdersViewModel.changeOrderStatusWith(orderId: viewModel.order.id,
+ state: .canceled)
+ .observeOn(MainScheduler.instance)
+ .subscribe(onSuccess: { _ in
+ self.presentAlertWith(title: "YEAH",
+ message: "Order canceled")
+ })
+ .disposed(by: self.disposeBag)
+ })
+ .disposed(by: orderCell.disposeBag)*/

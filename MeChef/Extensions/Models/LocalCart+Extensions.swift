@@ -4,18 +4,21 @@ extension LocalCart {
 
     static let new = LocalCart(dishes: nil,
                                chef: nil,
-                               deliveryDate: nil)
+                               deliveryDate: nil,
+                               deliverySlotId: nil)
 
     func copyWith(dishes: [LocalCartDish], chef: BaseChef? = nil) -> LocalCart? {
         return LocalCart(dishes: dishes,
                          chef: chef,
-                         deliveryDate: deliveryDate)
+                         deliveryDate: deliveryDate,
+                         deliverySlotId: deliverySlotId)
     }
 
-    func copyWith(deliveryDate: Date) -> LocalCart? {
+    func copyWith(deliveryDate: Date, deliverySlotId: Int64) -> LocalCart? {
         return LocalCart(dishes: dishes,
                          chef: chef,
-                         deliveryDate: deliveryDate)
+                         deliveryDate: deliveryDate,
+                         deliverySlotId: deliverySlotId)
     }
 
     var total: NSDecimalNumber {

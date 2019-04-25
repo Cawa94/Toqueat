@@ -74,6 +74,7 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
 
     @IBAction func placeOrder(_ sender: Any) {
         guard let userId = SessionService.session?.user?.id,
+            let deliverySlotId = CartService.localCart?.deliverySlotId,
             let deliveryDate = CartService.localCart?.deliveryDate,
             let dishes = CartService.localCart?.dishes,
             let chefId = CartService.localCart?.chef?.id,
@@ -83,6 +84,7 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
         let deliveryComment = SessionService.session?.user?.apartment
         let orderParameters = OrderCreateParameters(userId: userId, dishIds: dishes.map { $0.id },
                                                     chefId: chefId, deliveryDate: deliveryDate,
+                                                    deliverySlotId: deliverySlotId,
                                                     deliveryAddress: deliveryAddress,
                                                     deliveryComment: deliveryComment,
                                                     dishesPrice: NSDecimalNumber(decimal: dishesPrice),

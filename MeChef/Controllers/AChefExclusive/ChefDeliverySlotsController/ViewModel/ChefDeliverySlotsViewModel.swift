@@ -21,7 +21,6 @@ extension ChefDeliverySlotsViewModel {
     func elementAt(_ indexPath: IndexPath) -> DeliverySlot {
         let deliverySlot = DeliverySlot.all[Int64(indexPath.row + 1)]?[indexPath.section - 1]
             ?? DeliverySlot(id: -1, weekdayId: -1, hourId: -1)
-        debugPrint("\(deliverySlot.id)")
         return deliverySlot
     }
 
