@@ -2,7 +2,7 @@ import RxSwift
 import RxCocoa
 import RxOptional
 
-class DeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
+class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel.ResultType>,
     UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var whiteView: UIView!
@@ -87,7 +87,7 @@ class DeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        deliverySlotsViewModel.deliverySlots = deliverySlotsViewModel.result
+        deliverySlotsViewModel.deliverySlots = deliverySlotsViewModel.result.deliverySlots
         weekdayPicker.reloadAllComponents()
         hoursIds = deliverySlotsViewModel.listOfHoursIdsFor(selectedIndex: weekdaySelectedIndex)
         hourPicker.reloadAllComponents()

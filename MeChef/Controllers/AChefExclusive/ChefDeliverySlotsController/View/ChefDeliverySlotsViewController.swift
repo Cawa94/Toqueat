@@ -129,10 +129,12 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let slot = chefDeliverySlotsViewModel.elementAt(indexPath)
-        chefDeliverySlotsViewModel.toggle(slot: slot)
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+        if chefDeliverySlotsViewModel.editable {
+            let slot = chefDeliverySlotsViewModel.elementAt(indexPath)
+            chefDeliverySlotsViewModel.toggle(slot: slot)
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
 

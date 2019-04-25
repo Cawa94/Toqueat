@@ -1,6 +1,6 @@
 import RxSwift
 
-class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
+class CheckoutViewController: BaseStatefulController<Chef> {
 
     @IBOutlet weak var deliverySlotLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -11,18 +11,17 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
 
     var checkoutViewModel: CheckoutViewModel! {
         didSet {
-            tableViewModel = checkoutViewModel
+            viewModel = checkoutViewModel
         }
     }
 
     private let disposeBag = DisposeBag()
+    private var deliveryCost: NSDecimalNumber?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addressLabel.text = SessionService.session?.user?.address.fullAddress
 
-        tableView.register(UINib(nibName: "CartDishTableViewCell", bundle: nil),
-                           forCellReuseIdentifier: "CartDishTableViewCell")
         let completeOrderModel = RoundedButtonViewModel(title: "Complete Order", type: .squeezedOrange)
         completeOrderButton.configure(with: completeOrderModel)
 
@@ -33,6 +32,7 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
                                                        userComment: SessionService.session?.user?.apartment)
                     .asDriver(onErrorJustReturn: 0.00)
                     .drive(onNext: { deliveryCost in
+                        self.deliveryCost = deliveryCost
                         let newTotal = (CartService.localCart?.total ?? 0.00).adding(deliveryCost)
                         self.deliveryPriceLabel.text = "€\(deliveryCost)"
                         self.totalPriceLabel.text = "€\(newTotal)"
@@ -78,7 +78,8 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
             let deliveryDate = CartService.localCart?.deliveryDate,
             let dishes = CartService.localCart?.dishes,
             let chefId = CartService.localCart?.chef?.id,
-            let deliveryAddress = addressLabel.text
+            let deliveryAddress = addressLabel.text,
+            let deliveryCost = deliveryCost
             else { return }
         let dishesPrice = dishes.map { ($0.price as Decimal) }.reduce(0, +)
         let deliveryComment = SessionService.session?.user?.apartment
@@ -88,7 +89,7 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
                                                     deliveryAddress: deliveryAddress,
                                                     deliveryComment: deliveryComment,
                                                     dishesPrice: NSDecimalNumber(decimal: dishesPrice),
-                                                    deliveryPrice: NSDecimalNumber(string: deliveryPriceLabel.text))
+                                                    deliveryPrice: deliveryCost)
         NetworkService.shared.createNewOrderWith(parameters: orderParameters)
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { order in
@@ -101,41 +102,9 @@ class CheckoutViewController: BaseTableViewController<Chef, LocalCartDish> {
             .disposed(by: disposeBag)
     }
 
-    // MARK: - UITableViewDelegate
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return checkoutViewModel.elements.count
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CartDishTableViewCell",
-                                                 for: indexPath)
-        configure(cell, at: indexPath)
-        return cell
-    }
-
-    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
-        configureWithContent(cell, at: indexPath)
-    }
-
-    override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
-        switch cell {
-        case let dishCell as CartDishTableViewCell:
-            let dish = checkoutViewModel.elementAt(indexPath.row)
-            dishCell.configureWith(contentViewModel: dish)
-        default:
-            break
-        }
-    }
-
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        checkoutViewModel.elements = checkoutViewModel.cart.dishes ?? []
         dishesPriceLabel.text = "€\(CartService.localCart?.total ?? 0.00)"
         totalPriceLabel.text = "€\(CartService.localCart?.total ?? 0.00)"
         super.onResultsState()

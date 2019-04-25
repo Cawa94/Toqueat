@@ -8,24 +8,25 @@ final class DishDetailsTableViewCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var ingredientsLabel: UILabel!
-    @IBOutlet private weak var priceLabel: UILabel!
-    @IBOutlet private weak var addToBasketButton: RoundedButton!
+    @IBOutlet private weak var addToCartView: AddToCartView!
 
     var viewModel: Dish?
     var disposeBag = DisposeBag()
 
     public var addToCartButton: UIButton {
-        return addToBasketButton
+        return addToCartView.addButton
+    }
+
+    public var addOneToCartButton: UIButton {
+        return addToCartView.addOne
+    }
+
+    public var removeOneFromCartButton: UIButton {
+        return addToCartView.removeOne
     }
 
     override func prepareForReuse() {
         self.disposeBag = DisposeBag()
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        let addToCartModel = RoundedButtonViewModel(title: "", type: .defaultOrange)
-        addToBasketButton.configure(with: addToCartModel)
     }
 
 }
@@ -56,7 +57,8 @@ extension DishDetailsTableViewCell: PlaceholderConfigurable {
 
         nameLabel.text = contentViewModel.name
         descriptionLabel.text = contentViewModel.description
-        priceLabel.text = "€\(contentViewModel.price)"
+        let addButtonModel = AddToCartViewModel(dish: contentViewModel)
+        addToCartView.configureWith(addButtonModel)
         ingredientsLabel.text = "\u{2022} Pasta\n\u{2022} Pomodoro\n\u{2022} Basilico"
     }
 

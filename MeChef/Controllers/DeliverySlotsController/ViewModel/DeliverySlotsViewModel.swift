@@ -1,12 +1,25 @@
 import Foundation
+import SwiftDate
+import RxSwift
 
-final class DeliverySlotsViewModel: BaseStatefulViewModel<[DeliverySlot]> {
+final class DeliverySlotsViewModel: BaseStatefulViewModel<DeliverySlotsViewModel.ResultType> {
+
+    struct ResultType {
+        let orders: [Order]
+        let deliverySlots: [DeliverySlot]
+    }
 
     var deliverySlots: [DeliverySlot] = []
+    var today = DateInRegion().dateAt(.startOfDay)
 
     init(chefId: Int64) {
+        let ordersRequest = NetworkService.shared.getOrdersFor(chefId: chefId)
         let slotsRequest = NetworkService.shared.getDeliverySlotFor(chefId: chefId)
-        super.init(dataSource: slotsRequest)
+
+        let zippedRequest = Single.zip(ordersRequest, slotsRequest, resultSelector: {
+            ResultType(orders: $0, deliverySlots: $1)
+        })
+        super.init(dataSource: zippedRequest)
     }
 
 }
@@ -16,18 +29,20 @@ extension DeliverySlotsViewModel {
     var listOfWeekdaysIds: [Int64] {
         guard !isLoading
             else { return [] }
-        return deliverySlots.map { $0.weekdayId }.uniqueElements
+        let availableWeekdays = deliverySlots.map { $0.weekdayId }.uniqueElements
+        let firstDay = today.weekdayOrdinal
+        var tempWeekdays = DeliverySlot.weekdayTable.map { $0.key }.sorted(by: { $0 < $1 })
+        let toMoveDays = tempWeekdays[0...firstDay - 2]
+        tempWeekdays.removeSubrange(0...firstDay - 2)
+        tempWeekdays.append(contentsOf: toMoveDays)
+        tempWeekdays = tempWeekdays.filter { availableWeekdays.contains($0) }
+        return tempWeekdays
     }
 
     func weekdayNameWith(weekdayId: Int64) -> String {
         guard !isLoading
             else { return "Unknown" }
-        let calendar = Calendar(identifier: .gregorian)
-        let dayComponents = DateComponents(calendar: calendar, weekday: Int(weekdayId))
-        guard let weekdayDate = calendar.nextDate(after: Date(),
-                                                  matching: dayComponents,
-                                                  matchingPolicy: .nextTimePreservingSmallerComponents)
-            else { return "Unknown" }
+        let weekdayDate = Date.today().next(weekdayId, considerToday: true)
         return "\(weekdayDate.weekdayName(.short)) \(weekdayDate.day) \(weekdayDate.monthName(.short))"
     }
 
@@ -36,6 +51,8 @@ extension DeliverySlotsViewModel {
             else { return [] }
         return deliverySlots
             .filter { $0.weekdayId == listOfWeekdaysIds[selectedIndex] }.map { $0.hourId }
+            .sorted(by: { $0 < $1 })
+            .uniqueElements
     }
 
     func hoursRangeWith(hourId: Int64, weekdayId: Int64) -> String {

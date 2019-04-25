@@ -2,8 +2,8 @@ import Foundation
 
 extension Order {
 
-    var orderState: OrderStates {
-        return OrderStates.getStateFrom(state)
+    var orderState: OrderState {
+        return OrderState.getStateFrom(state)
     }
 
 }

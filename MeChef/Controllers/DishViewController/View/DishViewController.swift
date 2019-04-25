@@ -5,10 +5,6 @@ import Nuke
 class DishViewController: BaseStatefulController<Dish>,
     UITableViewDelegate, UITableViewDataSource {
 
-    enum Constants {
-        static let cartTopConstraint: CGFloat = 60
-    }
-
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
@@ -58,15 +54,25 @@ class DishViewController: BaseStatefulController<Dish>,
                                 CartService.clearCart()
                                 CartService.addToCart(self.dishViewModel.localCartDish,
                                                       chef: baseChef)
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                }
                              }),
                                        UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
             return
+        } else {
+            CartService.addToCart(dishViewModel.localCartDish, chef: baseChef)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-        CartService.addToCart(dishViewModel.localCartDish, chef: baseChef)
     }
 
-    @IBAction func removeFromCartAction(_ sender: Any) {
+    func removeFromCartAction() {
         CartService.removeFromCart(dishViewModel.localCartDish)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - StatefulViewController related methods
@@ -156,6 +162,16 @@ class DishViewController: BaseStatefulController<Dish>,
             dishCell.addToCartButton.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     self.addToCartAction()
+                })
+                .disposed(by: dishCell.disposeBag)
+            dishCell.addOneToCartButton.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    self.addToCartAction()
+                })
+                .disposed(by: dishCell.disposeBag)
+            dishCell.removeOneFromCartButton.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    self.removeFromCartAction()
                 })
                 .disposed(by: dishCell.disposeBag)
         case let chefCell as ChefBaseInfoTableViewCell:

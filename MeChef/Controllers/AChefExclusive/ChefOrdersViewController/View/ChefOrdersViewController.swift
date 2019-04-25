@@ -34,6 +34,15 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
                                 forCellWithReuseIdentifier: DeliverySlotCollectionViewCell.reuseID)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if NavigationService.reloadChefOrders {
+            chefOrdersViewModel.reload()
+            NavigationService.reloadChefOrders = false
+        }
+        navigationController?.isNavigationBarHidden = true
+    }
+
     @IBAction func profileAction(_ sender: Any) {
         NavigationService.presentChefProfileController(chefId: chefOrdersViewModel.chefId)
     }
@@ -57,11 +66,17 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
 
         cell.titleLabel.text = chefOrdersViewModel.elementTitleAt(indexPath)
         if indexPath.section != 0 {
-            let isAvailable = chefOrdersViewModel.isLoading
-                ? false : chefOrdersViewModel.isAvailableAt(indexPath)
-            cell.titleLabel.font = isAvailable ? .mediumFontOf(size: 14) : .regularFontOf(size: 14)
-            cell.backgroundColor = chefOrdersViewModel.cellColorForHours
-            cell.titleLabel.textColor = chefOrdersViewModel.textColorForAvailability(isAvailable)
+            if let order = chefOrdersViewModel.orderAt(indexPath) {
+                cell.titleLabel.font = .mediumFontOf(size: 14)
+                cell.backgroundColor = chefOrdersViewModel.cellColorForOrder(state: order.orderState)
+                cell.titleLabel.textColor = chefOrdersViewModel.textColorForOrderCell(state: order.orderState)
+            } else {
+                let isAvailable = chefOrdersViewModel.isLoading
+                    ? false : chefOrdersViewModel.isAvailableAt(indexPath)
+                cell.titleLabel.font = isAvailable ? .mediumFontOf(size: 14) : .regularFontOf(size: 14)
+                cell.backgroundColor = chefOrdersViewModel.cellColorForHours
+                cell.titleLabel.textColor = chefOrdersViewModel.textColorForAvailability(isAvailable)
+            }
             cell.drawBorders(isWeekday: false)
         } else {
             cell.titleLabel.font = .boldFontOf(size: 16)
@@ -80,6 +95,9 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let order = chefOrdersViewModel.orderAt(indexPath) {
+            NavigationService.pushChefOrderDetailsViewController(order: order)
+        }
     }
 
     // MARK: - StatefulViewController related methods
@@ -90,29 +108,3 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
     }
 
 }
-
-/* orderCell.confirmOrderButton.rx.tap.subscribe(onNext: { _ in
- guard let chefLocation = SessionService.session?.chef?.stuartLocation
- else { return }
- let createStuartSingle = self.chefOrdersViewModel.createStuartJobWith(orderId: viewModel.order.id,
- chefLocation: chefLocation)
- self.hudOperationWithRetry(operationSingle: createStuartSingle,
- onSuccessClosure: { _ in
- self.chefOrdersViewModel.reload()
- self.presentAlertWith(title: "YEAH",
- message: "Order scheduled")
- },
- disposeBag: self.disposeBag)
- })
- .disposed(by: orderCell.disposeBag)
- orderCell.cancelOrderButton.rx.tap.subscribe(onNext: { _ in
- self.chefOrdersViewModel.changeOrderStatusWith(orderId: viewModel.order.id,
- state: .canceled)
- .observeOn(MainScheduler.instance)
- .subscribe(onSuccess: { _ in
- self.presentAlertWith(title: "YEAH",
- message: "Order canceled")
- })
- .disposed(by: self.disposeBag)
- })
- .disposed(by: orderCell.disposeBag)*/

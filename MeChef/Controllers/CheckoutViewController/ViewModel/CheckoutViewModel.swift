@@ -1,7 +1,7 @@
 import Foundation
 import RxSwift
 
-final class CheckoutViewModel: BaseTableViewModel<Chef, LocalCartDish> {
+final class CheckoutViewModel: BaseStatefulViewModel<Chef> {
 
     var cart: LocalCart
     var chefId: Int64

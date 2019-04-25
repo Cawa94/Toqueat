@@ -29,6 +29,18 @@
 		DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57E4DF222C57790086B5DA /* ChefViewController.xib */; };
 		DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */; };
 		DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */; };
+		DA636D7C2271E45D00DA2A70 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D7A2271E45D00DA2A70 /* OrderDetailsViewController.swift */; };
+		DA636D7D2271E45D00DA2A70 /* OrderDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA636D7B2271E45D00DA2A70 /* OrderDetailsViewController.xib */; };
+		DA636D7F2271E4C900DA2A70 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D7E2271E4C900DA2A70 /* OrderDetailsViewModel.swift */; };
+		DA636D812271E74800DA2A70 /* NavigationService+OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D802271E74800DA2A70 /* NavigationService+OrderDetailsViewController.swift */; };
+		DA636D862271E90100DA2A70 /* NavigationService+ChefOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D852271E90100DA2A70 /* NavigationService+ChefOrderDetailsViewController.swift */; };
+		DA636D892271E91200DA2A70 /* ChefOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D872271E91200DA2A70 /* ChefOrderDetailsViewController.swift */; };
+		DA636D8A2271E91200DA2A70 /* ChefOrderDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA636D882271E91200DA2A70 /* ChefOrderDetailsViewController.xib */; };
+		DA636D8C2271E91E00DA2A70 /* ChefOrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D8B2271E91E00DA2A70 /* ChefOrderDetailsViewModel.swift */; };
+		DA636D8E2271F2BA00DA2A70 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D8D2271F2BA00DA2A70 /* Date+Extensions.swift */; };
+		DA636D912271FD8B00DA2A70 /* AddToCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D902271FD8B00DA2A70 /* AddToCartView.swift */; };
+		DA636D932271FD9800DA2A70 /* AddToCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D922271FD9800DA2A70 /* AddToCartViewModel.swift */; };
+		DA636D952271FDA100DA2A70 /* AddToCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA636D942271FDA100DA2A70 /* AddToCartView.xib */; };
 		DA69D0F4225BD6B600231E3E /* DishTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA69D0F2225BD6B600231E3E /* DishTypeCollectionViewCell.swift */; };
 		DA69D0F5225BD6B600231E3E /* DishTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA69D0F3225BD6B600231E3E /* DishTypeCollectionViewCell.xib */; };
 		DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */; };
@@ -201,6 +213,18 @@
 		DA57E4DF222C57790086B5DA /* ChefViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefViewController.xib; sourceTree = "<group>"; };
 		DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefViewController.swift"; sourceTree = "<group>"; };
 		DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyGridCollectionViewLayout.swift; sourceTree = "<group>"; };
+		DA636D7A2271E45D00DA2A70 /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
+		DA636D7B2271E45D00DA2A70 /* OrderDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsViewController.xib; sourceTree = "<group>"; };
+		DA636D7E2271E4C900DA2A70 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
+		DA636D802271E74800DA2A70 /* NavigationService+OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+OrderDetailsViewController.swift"; sourceTree = "<group>"; };
+		DA636D852271E90100DA2A70 /* NavigationService+ChefOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefOrderDetailsViewController.swift"; sourceTree = "<group>"; };
+		DA636D872271E91200DA2A70 /* ChefOrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrderDetailsViewController.swift; sourceTree = "<group>"; };
+		DA636D882271E91200DA2A70 /* ChefOrderDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefOrderDetailsViewController.xib; sourceTree = "<group>"; };
+		DA636D8B2271E91E00DA2A70 /* ChefOrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrderDetailsViewModel.swift; sourceTree = "<group>"; };
+		DA636D8D2271F2BA00DA2A70 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		DA636D902271FD8B00DA2A70 /* AddToCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartView.swift; sourceTree = "<group>"; };
+		DA636D922271FD9800DA2A70 /* AddToCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartViewModel.swift; sourceTree = "<group>"; };
+		DA636D942271FDA100DA2A70 /* AddToCartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddToCartView.xib; sourceTree = "<group>"; };
 		DA69D0F2225BD6B600231E3E /* DishTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA69D0F3225BD6B600231E3E /* DishTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishTypeCollectionViewCell.xib; sourceTree = "<group>"; };
 		DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefLoginViewController.swift; sourceTree = "<group>"; };
@@ -433,9 +457,74 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		DA636D772271E3CA00DA2A70 /* OrderDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DA636D802271E74800DA2A70 /* NavigationService+OrderDetailsViewController.swift */,
+				DA636D792271E40200DA2A70 /* View */,
+				DA636D782271E3FD00DA2A70 /* ViewModel */,
+			);
+			path = OrderDetailsViewController;
+			sourceTree = "<group>";
+		};
+		DA636D782271E3FD00DA2A70 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA636D7E2271E4C900DA2A70 /* OrderDetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DA636D792271E40200DA2A70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DA636D7A2271E45D00DA2A70 /* OrderDetailsViewController.swift */,
+				DA636D7B2271E45D00DA2A70 /* OrderDetailsViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DA636D822271E8DF00DA2A70 /* ChefOrderDetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DA636D852271E90100DA2A70 /* NavigationService+ChefOrderDetailsViewController.swift */,
+				DA636D842271E8F200DA2A70 /* View */,
+				DA636D832271E8ED00DA2A70 /* ViewModel */,
+			);
+			path = ChefOrderDetailsViewController;
+			sourceTree = "<group>";
+		};
+		DA636D832271E8ED00DA2A70 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA636D8B2271E91E00DA2A70 /* ChefOrderDetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DA636D842271E8F200DA2A70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DA636D872271E91200DA2A70 /* ChefOrderDetailsViewController.swift */,
+				DA636D882271E91200DA2A70 /* ChefOrderDetailsViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DA636D8F2271FD5E00DA2A70 /* AddToCartView */ = {
+			isa = PBXGroup;
+			children = (
+				DA636D902271FD8B00DA2A70 /* AddToCartView.swift */,
+				DA636D922271FD9800DA2A70 /* AddToCartViewModel.swift */,
+				DA636D942271FDA100DA2A70 /* AddToCartView.xib */,
+			);
+			path = AddToCartView;
+			sourceTree = "<group>";
+		};
 		DA69D0EC225BB5B800231E3E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DA636D8F2271FD5E00DA2A70 /* AddToCartView */,
 				DACB01DE225F8EFE008093F3 /* CartHeaderView */,
 				DAD89AD9225DEB89000664E2 /* RoundedButton */,
 			);
@@ -693,6 +782,7 @@
 			isa = PBXGroup;
 			children = (
 				DA9363B4223984E200DF8951 /* Array+Extensions.swift */,
+				DA636D8D2271F2BA00DA2A70 /* Date+Extensions.swift */,
 				DA3BC0C6226CA39F0045A352 /* Dictionary+Extensions.swift */,
 				DAD89AE0225DF676000664E2 /* String+Extensions.swift */,
 				DAD69167225526FE00E823C0 /* UISearchBar+Extensions.swift */,
@@ -1263,6 +1353,7 @@
 				DADFF2BC222E845200BB6404 /* DishViewController */,
 				DA84549A222D1E880052A8D2 /* LoginViewController */,
 				DAF4FE26222AD06900F208DB /* MainTabViewController */,
+				DA636D772271E3CA00DA2A70 /* OrderDetailsViewController */,
 				DAB271692247B5C8005C0915 /* OrdersViewController */,
 				DA979BDB222C8AFC00D452B9 /* ProfileViewController */,
 				DADFF2C7222E876800BB6404 /* RegisterViewController */,
@@ -1347,6 +1438,7 @@
 				DAFEB6072240E2F900CABCF5 /* ChefDishesViewController */,
 				DAF9C99F226CE0DC00AD4248 /* ChefDishViewController */,
 				DA785667223FF96F001BB354 /* ChefLoginViewController */,
+				DA636D822271E8DF00DA2A70 /* ChefOrderDetailsViewController */,
 				DAFEB6082240E32F00CABCF5 /* ChefOrdersViewController */,
 				DAFEB5FB2240D61500CABCF5 /* ChefProfileViewController */,
 			);
@@ -1511,6 +1603,7 @@
 				DA1CC8312260CDB300992BB7 /* RobotoSlab-Regular.ttf in Resources */,
 				DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */,
 				DA9363A222395F5E00DF8951 /* CheckoutViewController.xib in Resources */,
+				DA636D952271FDA100DA2A70 /* AddToCartView.xib in Resources */,
 				DA859D1422412198008481D2 /* ChefOrderTableViewCell.xib in Resources */,
 				DACB01E2225F8F80008093F3 /* CartHeaderView.xib in Resources */,
 				DA0328B6225CD235001FBE14 /* DishDetailsTableViewCell.xib in Resources */,
@@ -1530,7 +1623,9 @@
 				DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */,
 				DA8B7038226232E8002DBF1A /* UserBaseInfoTableViewCell.xib in Resources */,
 				DADFF2CD222E878C00BB6404 /* RegisterViewController.xib in Resources */,
+				DA636D7D2271E45D00DA2A70 /* OrderDetailsViewController.xib in Resources */,
 				DABC32192254EFEB0001757E /* ChefCollectionViewCell.xib in Resources */,
+				DA636D8A2271E91200DA2A70 /* ChefOrderDetailsViewController.xib in Resources */,
 				DAFEB6122240E3FE00CABCF5 /* ChefDishesViewController.xib in Resources */,
 				DAE902D022494D8F00743D6A /* DeliverySlotCollectionViewCell.xib in Resources */,
 				DAF9C999226CC82000AD4248 /* AddDishTableViewCell.xib in Resources */,
@@ -1673,6 +1768,7 @@
 				DAFEB6112240E3FE00CABCF5 /* ChefDishesViewController.swift in Sources */,
 				DA913C6D224643C4003D4700 /* StuartService.swift in Sources */,
 				DAE902CB22494C1E00743D6A /* NavigationService+ChefDeliverySlotsViewController.swift in Sources */,
+				DA636D912271FD8B00DA2A70 /* AddToCartView.swift in Sources */,
 				DA913C6F2246444B003D4700 /* UserDefaults+StuartToken.swift in Sources */,
 				DADF5A26222AAE460064DB75 /* RequestError.swift in Sources */,
 				DA9363A82239604600DF8951 /* CheckoutViewController+NavigationService.swift in Sources */,
@@ -1689,6 +1785,7 @@
 				DA859D1322412198008481D2 /* ChefOrderTableViewCell.swift in Sources */,
 				DABC321F2254F95F0001757E /* AnimationController.swift in Sources */,
 				DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */,
+				DA636D862271E90100DA2A70 /* NavigationService+ChefOrderDetailsViewController.swift in Sources */,
 				DA859D16224121C9008481D2 /* ChefOrderTableViewModel.swift in Sources */,
 				DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */,
 				DAF4FE2A222AD2C500F208DB /* AppDelegate+Extensions.swift in Sources */,
@@ -1706,6 +1803,7 @@
 				DAFEB6012240D65A00CABCF5 /* ChefProfileViewController.swift in Sources */,
 				DAFEB6142240E49300CABCF5 /* NavigationService+ChefDishesViewController.swift in Sources */,
 				DAE902C622494BF900743D6A /* ChefDeliverySlotsViewController.swift in Sources */,
+				DA636D892271E91200DA2A70 /* ChefOrderDetailsViewController.swift in Sources */,
 				DA454778222FDDB100237F6D /* CitiesRequests.swift in Sources */,
 				DA9363A622395F8B00DF8951 /* CheckoutViewModel.swift in Sources */,
 				DA9363B32239657700DF8951 /* DeliverySlotsViewController+NavigationService.swift in Sources */,
@@ -1714,6 +1812,7 @@
 				DADFF2C0222E847300BB6404 /* DishViewModel.swift in Sources */,
 				DAD69168225526FE00E823C0 /* UISearchBar+Extensions.swift in Sources */,
 				DADFF2CF222E885A00BB6404 /* RegisterViewModel.swift in Sources */,
+				DA636D8E2271F2BA00DA2A70 /* Date+Extensions.swift in Sources */,
 				DA8B7037226232E8002DBF1A /* UserBaseInfoTableViewCell.swift in Sources */,
 				DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */,
 				DA979BEB222C914100D452B9 /* ProfileViewModel.swift in Sources */,
@@ -1739,8 +1838,10 @@
 				DA9E074E222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift in Sources */,
 				DAF86AF32237BF1500070B76 /* CartViewModel.swift in Sources */,
 				DA0328B1225CD148001FBE14 /* IntrinsicTableView.swift in Sources */,
+				DA636D7F2271E4C900DA2A70 /* OrderDetailsViewModel.swift in Sources */,
 				DAC99467222BE7CE000282F1 /* NavigationService+DishesViewController.swift in Sources */,
 				DADFF2E6222ED89200BB6404 /* BaseTableViewModel.swift in Sources */,
+				DA636D932271FD9800DA2A70 /* AddToCartViewModel.swift in Sources */,
 				DA9E0750222E71250094A69D /* SessionService.swift in Sources */,
 				DAE902C922494C0500743D6A /* ChefDeliverySlotsViewModel.swift in Sources */,
 				DA9363B12239650700DF8951 /* DeliverySlotsViewModel.swift in Sources */,
@@ -1753,6 +1854,7 @@
 				DA8208B622343717002E6743 /* LocalCart+Extensions.swift in Sources */,
 				DA9363A122395F5E00DF8951 /* CheckoutViewController.swift in Sources */,
 				DA57E4E0222C57790086B5DA /* ChefViewController.swift in Sources */,
+				DA636D8C2271E91E00DA2A70 /* ChefOrderDetailsViewModel.swift in Sources */,
 				DADFF2C6222E84BB00BB6404 /* NavigationService+DishViewController.swift in Sources */,
 				DAF4FE2C222AD30F00F208DB /* UIViewController+Extensions.swift in Sources */,
 				DAFEB60E2240E3D300CABCF5 /* ChefDishesViewModel.swift in Sources */,
@@ -1760,6 +1862,7 @@
 				DA9363B5223984E200DF8951 /* Array+Extensions.swift in Sources */,
 				DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */,
 				DABC32182254EFEB0001757E /* ChefCollectionViewCell.swift in Sources */,
+				DA636D812271E74800DA2A70 /* NavigationService+OrderDetailsViewController.swift in Sources */,
 				DADFF2D1222E888700BB6404 /* NavigationService+RegisterViewController.swift in Sources */,
 				DAD4B107223D1BAF009E6F84 /* LocalCartDish+Extensions.swift in Sources */,
 				DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */,
@@ -1773,6 +1876,7 @@
 				DAF9C9A9226CE15200AD4248 /* NavigationService+ChefDishViewController.swift in Sources */,
 				DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */,
 				DA69D0F4225BD6B600231E3E /* DishTypeCollectionViewCell.swift in Sources */,
+				DA636D7C2271E45D00DA2A70 /* OrderDetailsViewController.swift in Sources */,
 				DAB2716E2247B6D8005C0915 /* OrdersViewController.swift in Sources */,
 				DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */,
 				DAF9C998226CC82000AD4248 /* AddDishTableViewCell.swift in Sources */,
@@ -1930,7 +2034,10 @@
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1947,7 +2054,10 @@
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

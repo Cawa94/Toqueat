@@ -37,13 +37,16 @@ struct CartService {
         var newDishes = cart.dishes ?? []
         newDishes.append(dish)
         localCart = cart.copyWith(dishes: newDishes, chef: chef)
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.impactOccurred()
     }
 
     static func removeFromCart(_ dish: LocalCartDish) {
-        guard let cart = localCart
+        guard let cart = localCart, let dishes = cart.dishes,
+        let dishToRemove = dishes.enumerated().first(where: { $0.element.id == dish.id })
             else { return }
-        var newDishes = cart.dishes ?? []
-        newDishes.removeAll(where: { $0.id == dish.id })
+        var newDishes = dishes
+        newDishes.remove(at: dishToRemove.offset)
         localCart = cart.copyWith(dishes: newDishes, chef: localCart?.chef)
     }
 

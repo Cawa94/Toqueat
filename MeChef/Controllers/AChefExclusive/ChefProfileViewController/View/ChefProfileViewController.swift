@@ -101,11 +101,11 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
             case 1:
                 switch indexPath.row {
                 case 0:
-                    viewModel = UserBarViewModel(option: "My Delivery Slots")
+                    viewModel = UserBarViewModel(option: "My Availability")
                 case 1:
                     viewModel = UserBarViewModel(option: "My Address")
                 case 2:
-                    viewModel = UserBarViewModel(option: "Payment Methods")
+                    viewModel = UserBarViewModel(option: "My Orders")
                 case 3:
                     viewModel = UserBarViewModel(option: "Notifications")
                 default:

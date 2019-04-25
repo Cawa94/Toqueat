@@ -27,6 +27,7 @@ extension NavigationService {
 extension NavigationService {
 
     static var reloadChefDishes = false
+    static var reloadChefOrders = false
 
     static func chefDishesTab(chefId: Int64) -> UIViewController {
         let chefDishesController = NavigationService.chefDishesViewController(chefId: chefId)
@@ -68,6 +69,11 @@ extension NavigationService {
     static func pushChefDishViewController(dish: Dish?, chefId: Int64) {
         let dishController = chefDishViewController(dish: dish, chefId: chefId)
         push(viewController: dishController, animated: true)
+    }
+
+    static func pushChefOrderDetailsViewController(order: Order) {
+        let orderDetailsController = chefOrderDetailsViewController(order: order)
+        push(viewController: orderDetailsController, animated: true)
     }
 
 }

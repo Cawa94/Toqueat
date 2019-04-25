@@ -1,4 +1,4 @@
-enum OrderStates: String {
+enum OrderState: String {
 
     case waitingForConfirmation
     case scheduled
@@ -6,7 +6,7 @@ enum OrderStates: String {
     case delivered
     case canceled
 
-    static func getStateFrom(_ string: String) -> OrderStates {
+    static func getStateFrom(_ string: String) -> OrderState {
         switch string {
         case "waiting for confirmation":
             return .waitingForConfirmation
