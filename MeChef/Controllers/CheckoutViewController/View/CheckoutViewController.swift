@@ -1,8 +1,9 @@
 import RxSwift
 
-class CheckoutViewController: BaseStatefulController<Chef> {
+class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultType> {
 
-    @IBOutlet weak var deliverySlotLabel: UILabel!
+    @IBOutlet weak var headerView: CartHeaderView!
+    @IBOutlet weak var deliveryDateLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dishesPriceLabel: UILabel!
     @IBOutlet weak var deliveryPriceLabel: UILabel!
@@ -16,35 +17,14 @@ class CheckoutViewController: BaseStatefulController<Chef> {
     }
 
     private let disposeBag = DisposeBag()
-    private var deliveryCost: NSDecimalNumber?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        deliveryDateLabel.text = CartService.localCart?.deliveryDate?.toFormat("dd MMM 'at' HH:mm")
         addressLabel.text = SessionService.session?.user?.address.fullAddress
 
         let completeOrderModel = RoundedButtonViewModel(title: "Complete Order", type: .squeezedOrange)
         completeOrderButton.configure(with: completeOrderModel)
-
-        CartService.localCartDriver
-            .drive(onNext: { cart in
-                self.checkoutViewModel.getDeliveryCost(pickupAt: cart?.deliveryDate,
-                                                       userAddress: self.addressLabel.text ?? "",
-                                                       userComment: SessionService.session?.user?.apartment)
-                    .asDriver(onErrorJustReturn: 0.00)
-                    .drive(onNext: { deliveryCost in
-                        self.deliveryCost = deliveryCost
-                        let newTotal = (CartService.localCart?.total ?? 0.00).adding(deliveryCost)
-                        self.deliveryPriceLabel.text = "€\(deliveryCost)"
-                        self.totalPriceLabel.text = "€\(newTotal)"
-                    })
-                    .disposed(by: self.disposeBag)
-            })
-            .disposed(by: disposeBag)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        navigationController?.isNavigationBarHidden = true
     }
 
     override func configureNavigationBar() {
@@ -63,23 +43,13 @@ class CheckoutViewController: BaseStatefulController<Chef> {
 
     // MARK: - Actions
 
-    @IBAction func selectDeliverySlotAction(_ sender: Any) {
-        let deliverySlotsController = NavigationService
-            .deliverySlotsViewController(chefId: checkoutViewModel.chefId)
-        deliverySlotsController.deliverySlotDriver
-            .drive(self.deliverySlotLabel.rx.text)
-            .disposed(by: disposeBag)
-        NavigationService.presentDeliverySlots(controller: deliverySlotsController)
-    }
-
     @IBAction func placeOrder(_ sender: Any) {
         guard let userId = SessionService.session?.user?.id,
             let deliverySlotId = CartService.localCart?.deliverySlotId,
             let deliveryDate = CartService.localCart?.deliveryDate,
             let dishes = CartService.localCart?.dishes,
             let chefId = CartService.localCart?.chef?.id,
-            let deliveryAddress = addressLabel.text,
-            let deliveryCost = deliveryCost
+            let deliveryAddress = addressLabel.text
             else { return }
         let dishesPrice = dishes.map { ($0.price as Decimal) }.reduce(0, +)
         let deliveryComment = SessionService.session?.user?.apartment
@@ -89,7 +59,7 @@ class CheckoutViewController: BaseStatefulController<Chef> {
                                                     deliveryAddress: deliveryAddress,
                                                     deliveryComment: deliveryComment,
                                                     dishesPrice: NSDecimalNumber(decimal: dishesPrice),
-                                                    deliveryPrice: deliveryCost)
+                                                    deliveryPrice: checkoutViewModel.result.deliveryCost)
         NetworkService.shared.createNewOrderWith(parameters: orderParameters)
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { order in
@@ -98,15 +68,18 @@ class CheckoutViewController: BaseStatefulController<Chef> {
                         NavigationService.dismissCartNavigationController()
                     })])
                 CartService.localCart = .new
-            }, onError: { _ in })
+            })
             .disposed(by: disposeBag)
     }
 
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
+        headerView.configure(chef: checkoutViewModel.result.chef)
+        let newTotal = (CartService.localCart?.total ?? 0.00).adding(checkoutViewModel.result.deliveryCost)
+        deliveryPriceLabel.text = "€\(checkoutViewModel.result.deliveryCost)"
         dishesPriceLabel.text = "€\(CartService.localCart?.total ?? 0.00)"
-        totalPriceLabel.text = "€\(CartService.localCart?.total ?? 0.00)"
+        totalPriceLabel.text = "€\(newTotal)"
         super.onResultsState()
     }
 

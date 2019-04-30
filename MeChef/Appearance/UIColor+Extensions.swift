@@ -3,10 +3,12 @@ import UIKit
 extension UIColor {
 
     //Gray
-    static let mainGrayColor          = UIColor(hex6: 0x7B7878)
-    static let darkGrayColor          = UIColor(hex6: 0x434343)
-    static let lightGrayColor         = UIColor(hex6: 0xC1C1C1)
-    static let placeholderPampasColor = UIColor(hex6: 0xF3F0EB)
+    static let mainGrayColor              = UIColor(hex6: 0x7B7878)
+    static let darkGrayColor              = UIColor(hex6: 0x434343)
+    static let lightGrayColor             = UIColor(hex6: 0xC1C1C1)
+    static let placeholderPampasColor     = UIColor(hex6: 0xF3F0EB)
+    static let lightGrayBackgroundColor   = UIColor(hex6: 0xFAFAFA)
+    static let lightGrayBorderColor       = UIColor(hex6: 0xF0F0F0)
 
     //Orange
     static let mainOrangeColor         = UIColor(hex6: 0xF26E01)

@@ -10,6 +10,18 @@ extension Dish {
         }
     }
 
+    var priceWithoutCurrency: String {
+        return String(format: "%.2f", Double(truncating: price))
+    }
+
+    var priceWithCurrency: String {
+        return String(format: "€%.2f", Double(truncating: price))
+    }
+
+    var asLocalCartDish: LocalCartDish {
+        return LocalCartDish(id: id, name: name, price: price, imageUrl: imageUrl)
+    }
+
     static var new: Dish {
         return Dish(description: "",
                     chef: nil,

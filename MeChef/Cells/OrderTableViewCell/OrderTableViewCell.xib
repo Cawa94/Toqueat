@@ -41,8 +41,8 @@
                                     <constraint firstAttribute="width" constant="55" id="SHo-tf-b5e"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chef " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBC-0q-KIl">
-                                <rect key="frame" x="75" y="7" width="240" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Chef " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBC-0q-KIl">
+                                <rect key="frame" x="75" y="7" width="192" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PC-JZ-xmJ">
-                                <rect key="frame" x="272" y="50" width="38" height="19.5"/>
+                                <rect key="frame" x="272" y="7" width="38" height="19.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -75,9 +75,9 @@
                             <constraint firstItem="mlA-as-1uo" firstAttribute="top" secondItem="HgV-lc-oqz" secondAttribute="bottom" constant="5" id="MKF-ZL-tBn"/>
                             <constraint firstItem="mlA-as-1uo" firstAttribute="leading" secondItem="qBC-0q-KIl" secondAttribute="leading" id="Rf2-SE-1PC"/>
                             <constraint firstItem="aCm-WG-7Hv" firstAttribute="leading" secondItem="6Yy-qn-XHK" secondAttribute="leading" constant="10" id="UTz-5e-fO4"/>
+                            <constraint firstItem="0PC-JZ-xmJ" firstAttribute="top" secondItem="6Yy-qn-XHK" secondAttribute="top" constant="7" id="VvT-Jp-bP3"/>
                             <constraint firstItem="qBC-0q-KIl" firstAttribute="leading" secondItem="aCm-WG-7Hv" secondAttribute="trailing" constant="10" id="bzA-bU-6xa"/>
-                            <constraint firstAttribute="bottom" secondItem="0PC-JZ-xmJ" secondAttribute="bottom" constant="10" id="hu3-RA-WGg"/>
-                            <constraint firstAttribute="trailing" secondItem="qBC-0q-KIl" secondAttribute="trailing" constant="5" id="nGF-sl-eSJ"/>
+                            <constraint firstItem="0PC-JZ-xmJ" firstAttribute="leading" secondItem="qBC-0q-KIl" secondAttribute="trailing" constant="5" id="oCn-2t-BPF"/>
                             <constraint firstAttribute="trailing" secondItem="0PC-JZ-xmJ" secondAttribute="trailing" constant="10" id="vE6-l9-2As"/>
                         </constraints>
                     </view>

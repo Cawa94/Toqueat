@@ -5,6 +5,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     UIGestureRecognizerDelegate {
 
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var checkoutButton: RoundedButton!
     @IBOutlet private weak var totalLabel: UILabel!
 
@@ -16,7 +17,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 
-        let checkoutModel = RoundedButtonViewModel(title: "", type: .defaultOrange)
+        let checkoutModel = RoundedButtonViewModel(title: "Choose delivery time", type: .defaultOrange)
         checkoutButton.configure(with: checkoutModel)
 
         tableView.register(UINib(nibName: "CartDishTableViewCell", bundle: nil),
@@ -26,26 +27,36 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         CartService.localCartDriver.drive(onNext: { localCart in
             self.cartViewModel.cart = localCart
-            self.totalLabel.text = "€\(localCart?.total ?? 0.00)"
+            self.totalLabel.text = "Total: \(String(format: "€%.2f", Double(truncating: localCart?.total ?? 0.00)))"
             self.tableView.reloadData()
+            self.checkoutButton.isHidden = localCart?.dishes?.isEmpty ?? true
+            self.totalLabel.isHidden = localCart?.dishes?.isEmpty ?? true
         }).disposed(by: disposeBag)
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
     }
 
     @IBAction func profileAction(_ sender: Any) {
         NavigationService.presentProfileController()
     }
 
-    @IBAction func startCheckoutAction(_ sender: Any) {
+    @IBAction func selectDeliveryTimeAction(_ sender: Any) {
         guard let cart = CartService.localCart, let chefId = cart.chef?.id
             else { return }
-        NavigationService.pushCheckoutViewController(cart: cart, chefId: chefId)
+        NavigationService.pushDeliverySlotsViewController(chefId: chefId)
+    }
+
+    override func viewDidLayoutSubviews() {
+        tableViewHeightConstraint.constant = tableView.contentSize.height >= 400 ? 400 : tableView.contentSize.height
     }
 
     // MARK: - UITableViewDelegate
-
+/*
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+        return 0
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -61,7 +72,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             .disposed(by: headerCell.disposeBag)
         return headerCell
     }
-
+*/
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -89,7 +100,14 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch cell {
         case let dishCell as CartDishTableViewCell:
             let dish = cartViewModel.elementAt(indexPath.row)
-            dishCell.configureWith(contentViewModel: dish)
+            let dishViewModel = CartDishTableViewModel(dish: dish,
+                                                       quantityInOrder: nil)
+            dishCell.configureWith(contentViewModel: dishViewModel)
+            if indexPath.row == cartViewModel.elements.count - 1 {
+                DispatchQueue.main.async {
+                    self.viewDidLayoutSubviews()
+                }
+            }
         default:
             break
         }

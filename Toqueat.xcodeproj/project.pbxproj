@@ -21,6 +21,9 @@
 		DA1CC8302260CDB300992BB7 /* RobotoSlab-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAA0BEEB225F555E00C70B54 /* RobotoSlab-Light.ttf */; };
 		DA1CC8312260CDB300992BB7 /* RobotoSlab-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAA0BEEE225F555F00C70B54 /* RobotoSlab-Regular.ttf */; };
 		DA1CC8322260CDB300992BB7 /* RobotoSlab-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAA0BEEC225F555F00C70B54 /* RobotoSlab-Thin.ttf */; };
+		DA28526122789B37009C0AD1 /* GoToPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA28526022789B37009C0AD1 /* GoToPaymentView.swift */; };
+		DA28526322789B43009C0AD1 /* GoToPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA28526222789B43009C0AD1 /* GoToPaymentViewModel.swift */; };
+		DA28526522789B4E009C0AD1 /* GoToPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA28526422789B4E009C0AD1 /* GoToPaymentView.xib */; };
 		DA3BC0C7226CA39F0045A352 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3BC0C6226CA39F0045A352 /* Dictionary+Extensions.swift */; };
 		DA3D421A223E5F0800AB2A27 /* Chef+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3D4219223E5F0800AB2A27 /* Chef+Extensions.swift */; };
 		DA454778222FDDB100237F6D /* CitiesRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA454777222FDDB100237F6D /* CitiesRequests.swift */; };
@@ -29,6 +32,10 @@
 		DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57E4DF222C57790086B5DA /* ChefViewController.xib */; };
 		DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */; };
 		DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */; };
+		DA5DE162227310B700229486 /* Error+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DE161227310B700229486 /* Error+Extensions.swift */; };
+		DA5DE1642273403B00229486 /* CartDishTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DE1632273403B00229486 /* CartDishTableViewModel.swift */; };
+		DA5DE16922734EDF00229486 /* DishCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DE16722734EDF00229486 /* DishCollectionViewCell.swift */; };
+		DA5DE16A22734EDF00229486 /* DishCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA5DE16822734EDF00229486 /* DishCollectionViewCell.xib */; };
 		DA636D7C2271E45D00DA2A70 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D7A2271E45D00DA2A70 /* OrderDetailsViewController.swift */; };
 		DA636D7D2271E45D00DA2A70 /* OrderDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA636D7B2271E45D00DA2A70 /* OrderDetailsViewController.xib */; };
 		DA636D7F2271E4C900DA2A70 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D7E2271E4C900DA2A70 /* OrderDetailsViewModel.swift */; };
@@ -205,6 +212,9 @@
 		DA0328BE225CF00A001FBE14 /* ChefBaseInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefBaseInfoTableViewCell.xib; sourceTree = "<group>"; };
 		DA126729223BC0170049215B /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
 		DA12672A223BC0170049215B /* AddressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressTableViewCell.xib; sourceTree = "<group>"; };
+		DA28526022789B37009C0AD1 /* GoToPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToPaymentView.swift; sourceTree = "<group>"; };
+		DA28526222789B43009C0AD1 /* GoToPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToPaymentViewModel.swift; sourceTree = "<group>"; };
+		DA28526422789B4E009C0AD1 /* GoToPaymentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoToPaymentView.xib; sourceTree = "<group>"; };
 		DA3BC0C6226CA39F0045A352 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		DA3D4219223E5F0800AB2A27 /* Chef+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chef+Extensions.swift"; sourceTree = "<group>"; };
 		DA454777222FDDB100237F6D /* CitiesRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesRequests.swift; sourceTree = "<group>"; };
@@ -213,6 +223,11 @@
 		DA57E4DF222C57790086B5DA /* ChefViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefViewController.xib; sourceTree = "<group>"; };
 		DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefViewController.swift"; sourceTree = "<group>"; };
 		DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyGridCollectionViewLayout.swift; sourceTree = "<group>"; };
+		DA5DE161227310B700229486 /* Error+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extensions.swift"; sourceTree = "<group>"; };
+		DA5DE1632273403B00229486 /* CartDishTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartDishTableViewModel.swift; sourceTree = "<group>"; };
+		DA5DE16722734EDF00229486 /* DishCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA5DE16822734EDF00229486 /* DishCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishCollectionViewCell.xib; sourceTree = "<group>"; };
+		DA5DE16B227360E900229486 /* Toqueat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Toqueat.entitlements; sourceTree = "<group>"; };
 		DA636D7A2271E45D00DA2A70 /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
 		DA636D7B2271E45D00DA2A70 /* OrderDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsViewController.xib; sourceTree = "<group>"; };
 		DA636D7E2271E4C900DA2A70 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -430,6 +445,16 @@
 			path = AddressTableViewCell;
 			sourceTree = "<group>";
 		};
+		DA28525F22789AD0009C0AD1 /* GoToPaymentView */ = {
+			isa = PBXGroup;
+			children = (
+				DA28526022789B37009C0AD1 /* GoToPaymentView.swift */,
+				DA28526222789B43009C0AD1 /* GoToPaymentViewModel.swift */,
+				DA28526422789B4E009C0AD1 /* GoToPaymentView.xib */,
+			);
+			path = GoToPaymentView;
+			sourceTree = "<group>";
+		};
 		DA57E4D8222C56CA0086B5DA /* ChefViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +480,15 @@
 				DA57E4DC222C571F0086B5DA /* ChefViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DA5DE16522734EBF00229486 /* DishCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DA5DE16722734EDF00229486 /* DishCollectionViewCell.swift */,
+				DA5DE16822734EDF00229486 /* DishCollectionViewCell.xib */,
+			);
+			path = DishCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		DA636D772271E3CA00DA2A70 /* OrderDetailsViewController */ = {
@@ -526,6 +560,7 @@
 			children = (
 				DA636D8F2271FD5E00DA2A70 /* AddToCartView */,
 				DACB01DE225F8EFE008093F3 /* CartHeaderView */,
+				DA28525F22789AD0009C0AD1 /* GoToPaymentView */,
 				DAD89AD9225DEB89000664E2 /* RoundedButton */,
 			);
 			path = Views;
@@ -784,6 +819,7 @@
 				DA9363B4223984E200DF8951 /* Array+Extensions.swift */,
 				DA636D8D2271F2BA00DA2A70 /* Date+Extensions.swift */,
 				DA3BC0C6226CA39F0045A352 /* Dictionary+Extensions.swift */,
+				DA5DE161227310B700229486 /* Error+Extensions.swift */,
 				DAD89AE0225DF676000664E2 /* String+Extensions.swift */,
 				DAD69167225526FE00E823C0 /* UISearchBar+Extensions.swift */,
 				DAAD192F2236EC8600543AE0 /* UIView+Extensions.swift */,
@@ -931,6 +967,7 @@
 			isa = PBXGroup;
 			children = (
 				DACB01DA225F89EF008093F3 /* CartDishTableViewCell.swift */,
+				DA5DE1632273403B00229486 /* CartDishTableViewModel.swift */,
 				DACB01DB225F89EF008093F3 /* CartDishTableViewCell.xib */,
 			);
 			path = CartDishTableViewCell;
@@ -966,6 +1003,7 @@
 		DAD2B72C22639C25004286A7 /* Dish */ = {
 			isa = PBXGroup;
 			children = (
+				DA5DE16522734EBF00229486 /* DishCollectionViewCell */,
 				DA0328B2225CD221001FBE14 /* DishDetailsTableViewCell */,
 				DAC99471222BE96A000282F1 /* DishTableViewCell */,
 				DA69D0F1225BD69B00231E3E /* DishTypeCollectionViewCell */,
@@ -1287,6 +1325,7 @@
 		DAFA9B682228907100B2CD4D = {
 			isa = PBXGroup;
 			children = (
+				DA5DE16B227360E900229486 /* Toqueat.entitlements */,
 				DAFA9B732228907100B2CD4D /* MeChef */,
 				DAFD096D2229816C00F1255A /* Generated */,
 				DAFA9B722228907100B2CD4D /* Products */,
@@ -1560,6 +1599,11 @@
 				TargetAttributes = {
 					DAFA9B702228907100B2CD4D = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1592,6 +1636,7 @@
 				DA78566D223FF9A0001BB354 /* ChefLoginViewController.xib in Resources */,
 				DA1CC82F2260CDB300992BB7 /* RobotoSlab-Bold.ttf in Resources */,
 				DA0328BB225CD4C2001FBE14 /* ChefDetailsTableViewCell.xib in Resources */,
+				DA5DE16A22734EDF00229486 /* DishCollectionViewCell.xib in Resources */,
 				DA8454A0222D1EA80052A8D2 /* LoginViewController.xib in Resources */,
 				DAB2716F2247B6D8005C0915 /* OrdersViewController.xib in Resources */,
 				DAF4FE23222AD02700F208DB /* ChefsViewController.xib in Resources */,
@@ -1609,6 +1654,7 @@
 				DA0328B6225CD235001FBE14 /* DishDetailsTableViewCell.xib in Resources */,
 				DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */,
 				DA69D0F5225BD6B600231E3E /* DishTypeCollectionViewCell.xib in Resources */,
+				DA28526522789B4E009C0AD1 /* GoToPaymentView.xib in Resources */,
 				DA8B703C22623995002DBF1A /* UserBarTableViewCell.xib in Resources */,
 				DAE902C722494BF900743D6A /* ChefDeliverySlotsViewController.xib in Resources */,
 				DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */,
@@ -1760,6 +1806,7 @@
 				DAB271802247E213005C0915 /* TrackOrderViewController.swift in Sources */,
 				DA979BE9222C912600D452B9 /* NavigationService+ProfileViewController.swift in Sources */,
 				DAD89ADB225DEBA5000664E2 /* RoundedButton.swift in Sources */,
+				DA5DE162227310B700229486 /* Error+Extensions.swift in Sources */,
 				DA3D421A223E5F0800AB2A27 /* Chef+Extensions.swift in Sources */,
 				DAD08B552245634E00F446C0 /* OrderStates.swift in Sources */,
 				DAB271852247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift in Sources */,
@@ -1804,6 +1851,7 @@
 				DAFEB6142240E49300CABCF5 /* NavigationService+ChefDishesViewController.swift in Sources */,
 				DAE902C622494BF900743D6A /* ChefDeliverySlotsViewController.swift in Sources */,
 				DA636D892271E91200DA2A70 /* ChefOrderDetailsViewController.swift in Sources */,
+				DA5DE1642273403B00229486 /* CartDishTableViewModel.swift in Sources */,
 				DA454778222FDDB100237F6D /* CitiesRequests.swift in Sources */,
 				DA9363A622395F8B00DF8951 /* CheckoutViewModel.swift in Sources */,
 				DA9363B32239657700DF8951 /* DeliverySlotsViewController+NavigationService.swift in Sources */,
@@ -1822,6 +1870,7 @@
 				DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */,
 				DAB2717A2247BBF6005C0915 /* OrderTableViewModel.swift in Sources */,
 				DAD89AE1225DF676000664E2 /* String+Extensions.swift in Sources */,
+				DA5DE16922734EDF00229486 /* DishCollectionViewCell.swift in Sources */,
 				DAB271732247B87F005C0915 /* NavigationService+OrdersViewController.swift in Sources */,
 				DAA8CD30222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift in Sources */,
 				DAF9C9A7226CE13900AD4248 /* ChefDishViewModel.swift in Sources */,
@@ -1863,6 +1912,7 @@
 				DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */,
 				DABC32182254EFEB0001757E /* ChefCollectionViewCell.swift in Sources */,
 				DA636D812271E74800DA2A70 /* NavigationService+OrderDetailsViewController.swift in Sources */,
+				DA28526122789B37009C0AD1 /* GoToPaymentView.swift in Sources */,
 				DADFF2D1222E888700BB6404 /* NavigationService+RegisterViewController.swift in Sources */,
 				DAD4B107223D1BAF009E6F84 /* LocalCartDish+Extensions.swift in Sources */,
 				DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */,
@@ -1875,6 +1925,7 @@
 				DAFEB6062240D6D900CABCF5 /* NavigationService+ChefProfileViewController.swift in Sources */,
 				DAF9C9A9226CE15200AD4248 /* NavigationService+ChefDishViewController.swift in Sources */,
 				DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */,
+				DA28526322789B43009C0AD1 /* GoToPaymentViewModel.swift in Sources */,
 				DA69D0F4225BD6B600231E3E /* DishTypeCollectionViewCell.swift in Sources */,
 				DA636D7C2271E45D00DA2A70 /* OrderDetailsViewController.swift in Sources */,
 				DAB2716E2247B6D8005C0915 /* OrdersViewController.swift in Sources */,
@@ -2030,6 +2081,7 @@
 			baseConfigurationReference = 4CA9C2903915803288B358B5 /* Pods-Toqueat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Toqueat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
@@ -2050,6 +2102,7 @@
 			baseConfigurationReference = 48180DD356B20E31B85C2A8F /* Pods-Toqueat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Toqueat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;

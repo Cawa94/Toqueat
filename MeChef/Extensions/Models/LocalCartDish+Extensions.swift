@@ -14,4 +14,22 @@ extension LocalCartDish {
         }
     }
 
+    var quantityInCart: Int {
+        guard let cart = CartService.localCart, let dishes = cart.dishes
+            else { return 0 }
+        return dishes.filter { $0.id == self.id }.count
+    }
+
+    var priceWithCurrency: String {
+        return String(format: "€%.2f", Double(truncating: price))
+    }
+
+}
+
+extension LocalCartDish: Equatable {
+
+    static func == (lhs: LocalCartDish, rhs: LocalCartDish) -> Bool {
+        return lhs.id == rhs.id
+    }
+
 }

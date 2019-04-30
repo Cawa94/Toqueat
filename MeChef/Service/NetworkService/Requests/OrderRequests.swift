@@ -42,4 +42,22 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    func getDeliveryCost(pickupAt: Date?,
+                         userAddress: String,
+                         userComment: String?,
+                         chef: Chef) -> Single<NSDecimalNumber> {
+        let pickup = chef.stuartLocation
+        let dropOff = StuartLocation(address: userAddress,
+                                     comment: userComment,
+                                     contact: nil,
+                                     packageType: "small",
+                                     packageDescription: "",
+                                     clientReference: nil)
+        let jobParameters = StuartJobParameters(pickupAt: pickupAt,
+                                                pickups: [pickup],
+                                                dropoffs: [dropOff],
+                                                transportType: nil)
+        return NetworkService.shared.getStuartJobPriceWith(jobParameters)
+    }
+
 }

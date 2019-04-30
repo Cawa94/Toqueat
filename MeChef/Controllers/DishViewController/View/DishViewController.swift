@@ -93,7 +93,7 @@ class DishViewController: BaseStatefulController<Dish>,
 
     override func viewDidLayoutSubviews() {
         tableViewHeightConstraint.constant = tableView.contentSize.height
-        whiteBackgroundHeightConstraint.constant = tableView.contentSize.height + 70 // bottom white space
+        whiteBackgroundHeightConstraint.constant = tableView.contentSize.height + 40 // bottom white space
         contentViewHeightConstraint.constant = whiteBackgroundHeightConstraint.constant + 260
     }
 

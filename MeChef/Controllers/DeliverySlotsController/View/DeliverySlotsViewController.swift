@@ -2,13 +2,33 @@ import RxSwift
 import RxCocoa
 import RxOptional
 
-class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel.ResultType>,
-    UIPickerViewDataSource, UIPickerViewDelegate {
+private extension CGFloat {
 
-    @IBOutlet weak var whiteView: UIView!
-    @IBOutlet weak var weekdayPicker: UIPickerView!
-    @IBOutlet weak var hourPicker: UIPickerView!
-    @IBOutlet weak var doneButton: RoundedButton!
+    static let bottomPadding: CGFloat = 10
+
+}
+
+class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel.ResultType>,
+    UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            collectionView.bounces = false
+        }
+    }
+
+    @IBOutlet weak var gridLayout: StickyGridCollectionViewLayout! {
+        didSet {
+            gridLayout.stickyRowsCount = 1
+            gridLayout.stickyColumnsCount = 0
+        }
+    }
+
+    @IBOutlet private weak var availableColorView: UIView!
+    @IBOutlet private weak var unavailableColorView: UIView!
+    @IBOutlet private weak var busyColorView: UIView!
+    @IBOutlet private weak var goToPaymentView: GoToPaymentView!
+    @IBOutlet private weak var goToPaymentBottomConstraint: NSLayoutConstraint!
 
     var deliverySlotsViewModel: DeliverySlotsViewModel! {
         didSet {
@@ -17,91 +37,125 @@ class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel
     }
 
     private let disposeBag = DisposeBag()
-    private let deliverySlotVariable = Variable<String?>(nil)
-
-    public var deliverySlotDriver: Driver<String> {
-        return deliverySlotVariable.asDriver().filterNil()
-    }
-
-    var weekdaySelectedIndex = 0
-    var hourSelectedIndex = 0
-    var hoursIds: [Int64] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let doneModel = RoundedButtonViewModel(title: "Done", type: .squeezedOrange)
-        doneButton.configure(with: doneModel)
+        availableColorView.roundCorners(radii: availableColorView.bounds.height/2)
+        unavailableColorView.roundCorners(radii: unavailableColorView.bounds.height/2)
+        busyColorView.roundCorners(radii: availableColorView.bounds.height/2)
 
-        whiteView.roundCorners(radii: 15.0)
+        let nib = UINib(nibName: DeliverySlotCollectionViewCell.reuseID, bundle: nil)
+        collectionView.register(nib,
+                                forCellWithReuseIdentifier: DeliverySlotCollectionViewCell.reuseID)
+
+        goToPaymentView.openCheckoutButton.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { _ in
+                guard let localCart = CartService.localCart
+                    else { return }
+                NavigationService.pushCheckoutViewController(cart: localCart,
+                                                             chefId: self.deliverySlotsViewModel.chefId)
+            })
+            .disposed(by: disposeBag)
     }
 
-    // MARK: - UIPickerViewDelegate - UIPickerViewDataSource
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+    override func configureNavigationBar() {
+        super.configureNavigationBar()
+        navigationController?.isNavigationBarHidden = false
+        title = "Delivery time"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(closeDeliverySlot))
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == weekdayPicker {
-            return deliverySlotsViewModel.listOfWeekdaysIds.count
-        } else if pickerView == hourPicker {
-            return hoursIds.count
+    @objc func closeDeliverySlot() {
+        NavigationService.popNavigationTopController()
+    }
+
+    // MARK: - Collection view data source and delegate methods
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 17 // hours ranges
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 7 // weekdays
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DeliverySlotCollectionViewCell.reuseID,
+                                                            for: indexPath) as? DeliverySlotCollectionViewCell else {
+                                                                return UICollectionViewCell()
+        }
+
+        cell.titleLabel.text = deliverySlotsViewModel.elementTitleAt(indexPath)
+        if indexPath.section != 0 {
+            let isAvailable = deliverySlotsViewModel.isLoading
+                ? false : deliverySlotsViewModel.isAvailableAt(indexPath)
+            cell.titleLabel.font = isAvailable ? .mediumFontOf(size: 14) : .regularFontOf(size: 14)
+            let deliverySlot = deliverySlotsViewModel.deliverySlotAt(indexPath)
+            var isSelected = false
+            var hasOrder = false
+            if let selectedSlot = deliverySlotsViewModel.selectedSlot, deliverySlot == selectedSlot {
+                isSelected = true
+            } else if deliverySlotsViewModel.hasAnOrderWith(slotId: deliverySlot.id) {
+                hasOrder = true
+            }
+            cell.backgroundColor = deliverySlotsViewModel.cellColorForHours(isSelected: isSelected,
+                                                                            hasOrder: hasOrder)
+            cell.titleLabel.textColor = deliverySlotsViewModel.textColorForAvailability(isAvailable,
+                                                                                        isSelected: isSelected,
+                                                                                        hasOrder: hasOrder)
+            cell.drawBorders(isWeekday: false)
         } else {
-            return 0
+            cell.titleLabel.font = .boldFontOf(size: 16)
+            cell.backgroundColor = deliverySlotsViewModel.cellColorForWeekdays
+            cell.titleLabel.textColor = deliverySlotsViewModel.textColorForWeekdays
+            cell.drawBorders(isWeekday: true)
+        }
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 40)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let deliverySlot = deliverySlotsViewModel.deliverySlotAt(indexPath)
+        if deliverySlotsViewModel.isAvailableAt(indexPath),
+            !deliverySlotsViewModel.hasAnOrderWith(slotId: deliverySlot.id) {
+            CartService.localCart = CartService.localCart?.copyWith(deliveryDate: deliverySlotsViewModel
+                .deliveryDate(weekdayId: deliverySlot.weekdayId, hourId: deliverySlot.hourId),
+                                                                    deliverySlotId: deliverySlot.id)
+            deliverySlotsViewModel.selectedSlot = deliverySlot
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+            showToast(for: deliverySlot)
         }
     }
 
-    func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == weekdayPicker {
-            return deliverySlotsViewModel.weekdayNameWith(weekdayId: deliverySlotsViewModel.listOfWeekdaysIds[row])
-        } else if pickerView == hourPicker {
-            return deliverySlotsViewModel.hoursRangeWith(
-                hourId: hoursIds[row],
-                weekdayId: deliverySlotsViewModel.listOfWeekdaysIds[weekdaySelectedIndex])
-        } else {
-            return nil
-        }
-    }
+    func showToast(for deliverySlot: DeliverySlot) {
+        goToPaymentView.configure(with: GoToPaymentViewModel(selectedSlot: deliverySlot))
 
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == weekdayPicker {
-            weekdaySelectedIndex = row
-            hourSelectedIndex = 0
-            hoursIds = deliverySlotsViewModel.listOfHoursIdsFor(selectedIndex: weekdaySelectedIndex)
-            hourPicker.reloadAllComponents()
-        } else if pickerView == hourPicker {
-            hourSelectedIndex = row
-            let weekdayId = deliverySlotsViewModel.listOfWeekdaysIds[weekdaySelectedIndex]
-            let hourId = hoursIds[hourSelectedIndex]
-            let deliverySlotId = deliverySlotsViewModel.getDeliverySlotIdWith(hourId: hourId, weekdayId: weekdayId)
-            guard let deliveryDate = deliverySlotsViewModel.deliveryDate(weekdayId: weekdayId, hourId: hourId)
-                else { return }
-            CartService.localCart = CartService.localCart?.copyWith(deliveryDate: deliveryDate,
-                                                                    deliverySlotId: deliverySlotId)
-            deliverySlotVariable.value = "\(deliverySlotsViewModel.weekdayNameWith(weekdayId: weekdayId))"
-                + " at \(deliverySlotsViewModel.hoursRangeWith(hourId: hourId, weekdayId: weekdayId))"
+        UIView.animate(withDuration: 0.25) {
+            self.goToPaymentBottomConstraint.constant = .bottomPadding
+            self.view.layoutIfNeeded()
+
+            self.collectionView.contentInset.bottom = self.goToPaymentView.frame.height
+                + .bottomPadding + .bottomPadding
         }
     }
 
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        deliverySlotsViewModel.deliverySlots = deliverySlotsViewModel.result.deliverySlots
-        weekdayPicker.reloadAllComponents()
-        hoursIds = deliverySlotsViewModel.listOfHoursIdsFor(selectedIndex: weekdaySelectedIndex)
-        hourPicker.reloadAllComponents()
-    }
-
-    // MARK: - Actions
-
-    @IBAction func dismissAction(_ sender: Any) {
-        guard deliverySlotVariable.value != nil
-            else {
-                presentAlertWith(title: "WARNING", message: "Please pick a delivery slot")
-                return
-            }
-        NavigationService.dismissTopController()
+        self.collectionView.reloadData()
     }
 
 }

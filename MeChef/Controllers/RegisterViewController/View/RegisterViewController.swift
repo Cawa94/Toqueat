@@ -66,7 +66,14 @@ class RegisterViewController: BaseStatefulController<[City]>,
                 CartService.localCart = .new
                 NavigationService.makeMainTabRootController()
             }, onError: { error in
-                debugPrint(error)
+                let message: String
+                if let serverError = error.serverError,
+                    let title = serverError.error {
+                    message = title
+                } else {
+                    message = "Something went wrong"
+                }
+                self.presentAlertWith(title: "WARNING", message: message)
             })
             .disposed(by: disposeBag)
     }

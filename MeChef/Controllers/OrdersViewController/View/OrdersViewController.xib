@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yTq-wI-lfT">
-                    <rect key="frame" x="6" y="20" width="369" height="647"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
@@ -30,7 +30,7 @@
             <constraints>
                 <constraint firstItem="yTq-wI-lfT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6b6-JB-iVd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yTq-wI-lfT" secondAttribute="trailing" id="ReV-UZ-Ezt"/>
-                <constraint firstItem="yTq-wI-lfT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="6" id="fZO-O4-fRl"/>
+                <constraint firstItem="yTq-wI-lfT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fZO-O4-fRl"/>
                 <constraint firstAttribute="bottom" secondItem="yTq-wI-lfT" secondAttribute="bottom" id="waI-M8-dqR"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

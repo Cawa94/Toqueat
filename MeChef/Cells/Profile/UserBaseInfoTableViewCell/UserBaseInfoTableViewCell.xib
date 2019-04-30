@@ -77,6 +77,13 @@
                             <constraint firstAttribute="height" constant="1" id="BBl-1J-uCo"/>
                         </constraints>
                     </view>
+                    <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HC5-PV-4kV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Xt1-ng-8Op"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="ySK-pn-WXE" secondAttribute="bottom" id="4G3-Fe-Fba"/>
@@ -85,10 +92,13 @@
                     <constraint firstAttribute="trailing" secondItem="ySK-pn-WXE" secondAttribute="trailing" id="LUM-dZ-L0g"/>
                     <constraint firstItem="ySK-pn-WXE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MiK-uW-32m"/>
                     <constraint firstItem="ogK-Aq-8QE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SaV-f5-G1v"/>
+                    <constraint firstItem="HC5-PV-4kV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Vj3-tF-8su"/>
+                    <constraint firstItem="HC5-PV-4kV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ciA-Rg-CUP"/>
                     <constraint firstAttribute="trailing" secondItem="ogK-Aq-8QE" secondAttribute="trailing" id="fVu-9L-vhy"/>
                     <constraint firstAttribute="trailing" secondItem="UbD-3N-1x3" secondAttribute="trailing" id="lm1-9k-BCK"/>
                     <constraint firstAttribute="bottom" secondItem="UbD-3N-1x3" secondAttribute="bottom" id="pD5-JX-GoU"/>
                     <constraint firstItem="ogK-Aq-8QE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="sPD-DU-1WV"/>
+                    <constraint firstAttribute="trailing" secondItem="HC5-PV-4kV" secondAttribute="trailing" id="vPY-Or-S7X"/>
                     <constraint firstItem="ySK-pn-WXE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yw7-k7-iwa"/>
                 </constraints>
             </tableViewCellContentView>

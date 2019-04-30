@@ -75,4 +75,20 @@ extension DeliverySlot {
         return hoursTable[hourId] ?? "Unknown"
     }
 
+    var attributedDeliveryMessage: NSAttributedString {
+        return NSMutableAttributedString()
+            .normal("Our car will be next to your house ", size: 15.0)
+            .bold(weekday, size: 15.0)
+            .normal(" between ", size: 15.0)
+            .bold(hourRange, size: 15.0)
+    }
+
+}
+
+extension DeliverySlot: Equatable {
+
+    static func == (lhs: DeliverySlot, rhs: DeliverySlot) -> Bool {
+        return lhs.id == rhs.id
+    }
+
 }

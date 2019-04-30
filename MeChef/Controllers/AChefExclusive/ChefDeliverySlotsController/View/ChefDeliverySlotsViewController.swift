@@ -37,9 +37,7 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
         ? "Here you can let people know when you're availble to deliver. Tap a slot to enable/disable it"
         : "The chef will be available to deliver dishes only during this hours"
         availableColorView.roundCorners(radii: availableColorView.bounds.height/2)
-        availableColorView.backgroundColor = .highlightedOrangeColor
-        unavailableColorView.roundCorners(radii: unavailableColorView.bounds.height/2,
-                                          borderWidth: 1, borderColor: .mainGrayColor)
+        unavailableColorView.roundCorners(radii: unavailableColorView.bounds.height/2)
 
         let nib = UINib(nibName: DeliverySlotCollectionViewCell.reuseID, bundle: nil)
         collectionView.register(nib,
@@ -81,11 +79,11 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
         let updateSingle = NetworkService.shared.updateDeliverySlotsFor(chefId: chefDeliverySlotsViewModel.chefId,
                                                                         slots: newDeliverySlots)
 
-        self.hudOperationWithRetry(operationSingle: updateSingle,
-                                   onSuccessClosure: { _ in
-                                    self.chefDeliverySlotsViewModel.reload()
-                                    self.presentAlertWith(title: "YEAH",
-                                                          message: "Slots updated")
+        self.hudOperationWithSingle(operationSingle: updateSingle,
+                                    onSuccessClosure: { _ in
+                                        self.chefDeliverySlotsViewModel.reload()
+                                        self.presentAlertWith(title: "YEAH",
+                                                              message: "Slots updated")
                                     },
                                    disposeBag: self.disposeBag)
     }
@@ -114,9 +112,12 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
             cell.titleLabel.font = isAvailable ? .mediumFontOf(size: 14) : .regularFontOf(size: 14)
             cell.backgroundColor = chefDeliverySlotsViewModel.cellColorForAvailability(isAvailable)
             cell.titleLabel.textColor = chefDeliverySlotsViewModel.textColorForAvailability(isAvailable)
+            cell.drawBorders(isWeekday: false)
         } else {
-            cell.backgroundColor = .groupTableViewBackground
-            cell.titleLabel.font = .mediumFontOf(size: 16)
+            cell.titleLabel.font = .boldFontOf(size: 16)
+            cell.backgroundColor = chefDeliverySlotsViewModel.cellColorForWeekdays
+            cell.titleLabel.textColor = chefDeliverySlotsViewModel.textColorForWeekdays
+            cell.drawBorders(isWeekday: true)
         }
 
         return cell

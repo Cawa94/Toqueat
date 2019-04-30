@@ -41,10 +41,9 @@ extension UIViewController {
 
     typealias GetErrorTextClosure = (Error) -> String?
 
-    func hudOperationWithRetry<ResultType>(operationSingle: Single<ResultType>,
-                                           getErrorClosure: GetErrorTextClosure? = { _ in "" },
-                                           onSuccessClosure: ((ResultType) -> Void)?,
-                                           disposeBag: DisposeBag) {
+    func hudOperationWithSingle<ResultType>(operationSingle: Single<ResultType>,
+                                            onSuccessClosure: ((ResultType) -> Void)?,
+                                            disposeBag: DisposeBag) {
 
         let progressHud = MBProgressHUD.showAdded(to: AppDelegate.shared.appWindow, animated: true)
 
@@ -57,8 +56,16 @@ extension UIViewController {
                     progressHud.hide(animated: true)
                     onSuccessClosure?(result)
                 }
-            }, onError: { _ in
+            }, onError: { [weak self] error in
                 progressHud.hide(animated: true)
+                let message: String
+                if let serverError = error.serverError,
+                    let title = serverError.error {
+                    message = title
+                } else {
+                    message = "Something went wrong"
+                }
+                self?.presentAlertWith(title: "WARNING", message: message)
             })
             .disposed(by: disposeBag)
     }

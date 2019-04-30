@@ -115,7 +115,7 @@ extension NavigationService {
     static func pushCheckoutViewController(cart: LocalCart, chefId: Int64) {
         let checkoutController = checkoutViewController(cart: cart,
                                                         chefId: chefId)
-        rootNavigationController?.pushViewController(checkoutController, animated: true)
+        push(viewController: checkoutController, animated: true)
     }
 
     static func presentDeliverySlots(controller: DeliverySlotsViewController) {
@@ -147,6 +147,15 @@ extension NavigationService {
     static func presentSafariController(url: URL) {
         let safariController = SFSafariViewController(url: url)
         navigationController?.present(safariController, animated: true, completion: nil)
+    }
+
+    static func topControllerPreentAlertWith(title: String, message: String) {
+        rootNavigationController?.presentAlertWith(title: title, message: message)
+    }
+
+    static func pushDeliverySlotsViewController(chefId: Int64) {
+        let deliverySlotsController = deliverySlotsViewController(chefId: chefId)
+        push(viewController: deliverySlotsController, animated: true)
     }
 
 }

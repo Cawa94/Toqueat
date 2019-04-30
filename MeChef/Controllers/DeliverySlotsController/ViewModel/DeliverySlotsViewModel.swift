@@ -5,80 +5,99 @@ import RxSwift
 final class DeliverySlotsViewModel: BaseStatefulViewModel<DeliverySlotsViewModel.ResultType> {
 
     struct ResultType {
-        let orders: [Order]
         let deliverySlots: [DeliverySlot]
+        let slotsIdsBusy: [Int64]
     }
 
-    var deliverySlots: [DeliverySlot] = []
+    private let disposeBag = DisposeBag()
+    var chefId: Int64
+    var selectedSlot: DeliverySlot?
     var today = DateInRegion().dateAt(.startOfDay)
 
     init(chefId: Int64) {
-        let ordersRequest = NetworkService.shared.getOrdersFor(chefId: chefId)
+        self.chefId = chefId
         let slotsRequest = NetworkService.shared.getDeliverySlotFor(chefId: chefId)
+        let slotsBusyRequest = NetworkService.shared.getDeliverySlotBusyIdsFor(chefId: chefId)
 
-        let zippedRequest = Single.zip(ordersRequest, slotsRequest, resultSelector: {
-            ResultType(orders: $0, deliverySlots: $1)
-        })
-        super.init(dataSource: zippedRequest)
+        let combinedSingle = Single.zip(slotsRequest, slotsBusyRequest) {
+            return ResultType(deliverySlots: $0, slotsIdsBusy: $1)
+        }
+
+        super.init(dataSource: combinedSingle)
     }
 
 }
 
 extension DeliverySlotsViewModel {
 
-    var listOfWeekdaysIds: [Int64] {
-        guard !isLoading
-            else { return [] }
-        let availableWeekdays = deliverySlots.map { $0.weekdayId }.uniqueElements
-        let firstDay = today.weekdayOrdinal
+    var weekdaysOrdered: [Int64] {
+        let firstDay = today.weekday != 1 ? today.weekday - 1 : 7
         var tempWeekdays = DeliverySlot.weekdayTable.map { $0.key }.sorted(by: { $0 < $1 })
         let toMoveDays = tempWeekdays[0...firstDay - 2]
         tempWeekdays.removeSubrange(0...firstDay - 2)
         tempWeekdays.append(contentsOf: toMoveDays)
-        tempWeekdays = tempWeekdays.filter { availableWeekdays.contains($0) }
         return tempWeekdays
     }
 
-    func weekdayNameWith(weekdayId: Int64) -> String {
-        guard !isLoading
-            else { return "Unknown" }
-        let weekdayDate = Date.today().next(weekdayId, considerToday: true)
-        return "\(weekdayDate.weekdayName(.short)) \(weekdayDate.day) \(weekdayDate.monthName(.short))"
+    func elementTitleAt(_ indexPath: IndexPath) -> String {
+        switch indexPath.section {
+        case 0:
+            //let slot = deliverySlotAt(IndexPath(row: indexPath.row, section: indexPath.section + 1))
+            //return "\(slot.weekday)"
+            let dayDate = today.dateByAdding(indexPath.row, .day)
+            return "\(dayDate.weekdayName(.short)) \(dayDate.day)"
+        default:
+            return DeliverySlot.hoursRangeWithIndex(indexPath.section)
+        }
     }
 
-    func listOfHoursIdsFor(selectedIndex: Int) -> [Int64] {
-        guard !isLoading
-            else { return [] }
-        return deliverySlots
-            .filter { $0.weekdayId == listOfWeekdaysIds[selectedIndex] }.map { $0.hourId }
-            .sorted(by: { $0 < $1 })
-            .uniqueElements
+    func deliverySlotAt(_ indexPath: IndexPath) -> DeliverySlot {
+        guard let deliverySlot = DeliverySlot.all[weekdaysOrdered[cyclic: indexPath.row]]?[indexPath.section - 1]
+            else { fatalError("Cannot find delivery slot") }
+        return deliverySlot
     }
 
-    func hoursRangeWith(hourId: Int64, weekdayId: Int64) -> String {
-        guard !isLoading
-            else { return "Unknown" }
-        return deliverySlots
-            .first(where: { $0.weekdayId == weekdayId && $0.hourId == hourId })?.hourRange ?? "Unknown"
-    }
-
-    func getDeliverySlotIdWith(hourId: Int64, weekdayId: Int64) -> Int64 {
-        return deliverySlots
-            .first(where: { $0.weekdayId == weekdayId && $0.hourId == hourId })?.id ?? -1
-    }
-
-    func deliveryDate(weekdayId: Int64, hourId: Int64) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        dateFormatter.calendar = Calendar(identifier: .gregorian)
-        let dayComponents = DateComponents(calendar: dateFormatter.calendar, weekday: Int(weekdayId))
-        let deliveryDay = dateFormatter.calendar.nextDate(after: Date(),
-                                                          matching: dayComponents,
-                                                          matchingPolicy: .nextTimePreservingSmallerComponents)
-        guard let deliveryDate = deliveryDay?.dateBySet(hour: Int(hourId) + 5, min: nil, secs: nil)
+    func deliveryDate(weekdayId: Int64, hourId: Int64) -> Date {
+        let deliveryDay = Date().next(weekdayId)
+        guard let deliveryDate = deliveryDay.dateBySet(hour: Int(hourId) + 5, min: nil, secs: nil)
             else { fatalError("Cannot create date") }
 
         return deliveryDate
+    }
+
+    func isAvailableAt(_ indexPath: IndexPath) -> Bool {
+        guard !isLoading
+            else { return false }
+        return result.deliverySlots.contains(where: { $0.weekdayId == (weekdaysOrdered[indexPath.row])
+            && $0.hourId == (indexPath.section) })
+    }
+
+    func hasAnOrderWith(slotId: Int64) -> Bool {
+        guard !isLoading
+            else { return false }
+        return result.slotsIdsBusy.contains(where: { $0 == slotId })
+    }
+
+    var cellColorForWeekdays: UIColor {
+        return .white
+    }
+
+    var textColorForWeekdays: UIColor {
+        return .mainOrangeColor
+    }
+
+    func cellColorForHours(isSelected: Bool, hasOrder: Bool) -> UIColor {
+        if hasOrder {
+            return .red
+        }
+        return isSelected ? .mainOrangeColor : .white
+    }
+
+    func textColorForAvailability(_ available: Bool, isSelected: Bool, hasOrder: Bool) -> UIColor {
+        if isSelected || hasOrder {
+            return .white
+        }
+        return available ? .darkGrayColor : .lightGrayColor
     }
 
 }

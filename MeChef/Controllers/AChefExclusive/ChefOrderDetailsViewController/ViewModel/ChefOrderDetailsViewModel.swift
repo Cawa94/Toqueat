@@ -46,4 +46,16 @@ extension ChefOrderDetailsViewModel {
                                                            state: state.rawValue)
     }
 
+    var elements: [LocalCartDish] {
+        return order.dishes.map { $0.asLocalCartDish }.uniqueElements
+    }
+
+    func quantityOf(dish: LocalCartDish) -> Int {
+        return order.dishes.filter { $0.id == dish.id }.count
+    }
+
+    func elementAt(_ index: Int) -> LocalCartDish {
+        return elements[index]
+    }
+
 }

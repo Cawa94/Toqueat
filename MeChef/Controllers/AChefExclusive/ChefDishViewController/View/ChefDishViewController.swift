@@ -64,8 +64,10 @@ class ChefDishViewController: UIViewController,
         let price = NSDecimalNumber(string: "\(priceText.doubleValue)")
         let dishParameters = DishCreateParameters(name: name, description: description,
                                                   price: price, chefId: "\(viewModel.chefId)")
+        var operationSingle: Single<Void>
         if let dish = viewModel.dish {
-            NetworkService.shared.updateDishWith(parameters: dishParameters, dishId: dish.id)
+            let updateDishSingle = NetworkService.shared.updateDishWith(parameters: dishParameters,
+                                                                        dishId: dish.id)
                 .map { _ in
                     if let newImage = self.newImageData {
                         NetworkService.shared.uploadPicture(for: dish.id,
@@ -73,17 +75,9 @@ class ChefDishViewController: UIViewController,
                                                             completion: { _ in })
                     }
                 }
-                .observeOn(MainScheduler.instance)
-                .subscribe(onSuccess: { _ in
-                   self.presentAlertWith(title: "YEAH", message: "Dish updated",
-                                          actions: [ UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                                            NavigationService.reloadChefDishes = true
-                                            NavigationService.popNavigationTopController()
-                                          })])
-                }, onError: { _ in })
-                .disposed(by: disposeBag)
+            operationSingle = updateDishSingle
         } else {
-            NetworkService.shared.createNewDishWith(parameters: dishParameters)
+            let createDishSingle = NetworkService.shared.createNewDishWith(parameters: dishParameters)
                 .map { dish in
                     if let newImage = self.newImageData {
                         NetworkService.shared.uploadPicture(for: dish.id,
@@ -91,16 +85,17 @@ class ChefDishViewController: UIViewController,
                                                             completion: { _ in })
                     }
                 }
-                .observeOn(MainScheduler.instance)
-                .subscribe(onSuccess: { _ in
-                    self.presentAlertWith(title: "YEAH", message: "Dish created",
-                        actions: [ UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                            NavigationService.reloadChefDishes = true
-                            NavigationService.popNavigationTopController()
-                        })])
-                }, onError: { _ in })
-                .disposed(by: disposeBag)
+            operationSingle = createDishSingle
         }
+        hudOperationWithSingle(operationSingle: operationSingle,
+                               onSuccessClosure: { _ in
+                                self.presentAlertWith(
+                                    title: "YEAH", message: "Dish updated",
+                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                                             handler: { _ in
+                                                                NavigationService.reloadChefDishes = true
+                                    })])
+                                }, disposeBag: disposeBag)
     }
 
     func configureXibElements() {
@@ -130,7 +125,7 @@ class ChefDishViewController: UIViewController,
                 dishImageView.contentMode = .scaleAspectFill
             }
             nameTextField.text = dish.name
-            priceTextField.text = "\(dish.price)"
+            priceTextField.text = dish.priceWithoutCurrency
             typeTextField.text = "Main course"
             servingsTextField.text = "2"
             descriptionTextView.text = dish.description

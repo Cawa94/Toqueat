@@ -6,8 +6,12 @@ struct CartViewModel {
 
 extension CartViewModel {
 
+    var hasContent: Bool {
+        return elements.isNotEmpty
+    }
+
     var elements: [LocalCartDish] {
-        return cart?.dishes ?? []
+        return cart?.dishes?.uniqueElements ?? []
     }
 
     func elementAt(_ index: Int) -> LocalCartDish {

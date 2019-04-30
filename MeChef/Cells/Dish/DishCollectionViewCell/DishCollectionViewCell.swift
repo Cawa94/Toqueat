@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import Nuke
 
-class ChefDishTableViewCell: UITableViewCell {
+class DishCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
@@ -10,27 +10,25 @@ class ChefDishTableViewCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var dishImageView: UIImageView!
-    @IBOutlet private weak var editButton: UIButton!
 
-    public var edit: UIButton {
-        return editButton
-    }
-
+    static let reuseID = "DishCollectionViewCell"
     var disposeBag = DisposeBag()
     private var viewModel: Dish?
 
     override func prepareForReuse() {
-        self.disposeBag = DisposeBag()
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        dishImageView.image = UIImage(named: "dish_placeholder")
     }
 
     override func awakeFromNib() {
         dishImageView.clipsToBounds = true
-        dishImageView.roundCorners(radii: 5.0)
+        contentContainerViewOutlet.roundCorners(radii: 15.0)
     }
 
 }
 
-extension ChefDishTableViewCell: PlaceholderConfigurable {
+extension DishCollectionViewCell: PlaceholderConfigurable {
 
     typealias ContentViewModelType = Dish
     typealias PlaceholderViewModelType = Void

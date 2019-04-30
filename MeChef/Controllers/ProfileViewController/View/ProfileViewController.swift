@@ -93,7 +93,8 @@ class ProfileViewController: BaseStatefulController<User>,
         switch cell {
         case let baseInfoCell as UserBaseInfoTableViewCell:
             let viewModel = UserBaseInfoCellViewModel(baseUser: profileViewModel.baseUser,
-                                                      isChef: false)
+                                                      isChef: false,
+                                                      chefImageUrl: nil)
             baseInfoCell.configureWith(contentViewModel: viewModel)
         case let barCell as UserBarTableViewCell:
             let viewModel: UserBarViewModel
@@ -101,11 +102,11 @@ class ProfileViewController: BaseStatefulController<User>,
             case 1:
                 switch indexPath.row {
                 case 0:
-                    viewModel = UserBarViewModel(option: "My Orders")
+                    viewModel = UserBarViewModel(option: "My Orders", hideBottomLine: true)
                 case 1:
-                    viewModel = UserBarViewModel(option: "Delivery Address")
+                    viewModel = UserBarViewModel(option: "Delivery Address", hideBottomLine: true)
                 case 2:
-                    viewModel = UserBarViewModel(option: "Payment Methods")
+                    viewModel = UserBarViewModel(option: "Payment Methods", hideBottomLine: true)
                 case 3:
                     viewModel = UserBarViewModel(option: "Notifications")
                 default:
@@ -127,7 +128,7 @@ class ProfileViewController: BaseStatefulController<User>,
         case 0:
             return 90
         default:
-            return 60
+            return 50
         }
     }
 
@@ -144,7 +145,7 @@ class ProfileViewController: BaseStatefulController<User>,
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = UITableViewCell()
-        headerCell.backgroundColor = .placeholderPampasColor
+        headerCell.backgroundColor = .lightGrayBackgroundColor
         return headerCell
     }
 

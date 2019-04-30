@@ -12,6 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChefOrderDetailsViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
+                <outlet property="confirmOrderButton" destination="BBH-1t-qKg" id="IOF-k5-ING"/>
+                <outlet property="contentViewHeightConstraint" destination="mui-NL-VF2" id="AxT-OC-13Y"/>
+                <outlet property="refuseOrderButton" destination="AtL-YC-jJM" id="cZJ-Gq-6kC"/>
+                <outlet property="tableView" destination="9cy-ie-GVJ" id="dkk-08-J5G"/>
+                <outlet property="tableViewHeightConstraint" destination="1vh-ah-8qi" id="zhb-vu-8Mf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,19 +29,28 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-Kr-fjR" userLabel="contentView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBH-1t-qKg" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
-                                    <rect key="frame" x="279" y="342" width="55" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9cy-ie-GVJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="350" id="1vh-ah-8qi"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="Pph-7d-rBe"/>
+                                        <outlet property="delegate" destination="-1" id="50A-Ew-qX7"/>
+                                    </connections>
+                                </tableView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBH-1t-qKg" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
+                                    <rect key="frame" x="249" y="380" width="145" height="30"/>
                                     <state key="normal" title="Confirm"/>
                                     <connections>
                                         <action selector="confirmOrderAction:" destination="-1" eventType="touchUpInside" id="mMu-4r-vv1"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtL-YC-jJM" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
-                                    <rect key="frame" x="62" y="350" width="48" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtL-YC-jJM" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="380" width="145" height="30"/>
                                     <state key="normal" title="Cancel"/>
                                     <connections>
                                         <action selector="cancelOrderAction:" destination="-1" eventType="touchUpInside" id="hns-gV-V1I"/>
@@ -45,7 +59,16 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="900" id="mui-NL-VF2"/>
+                                <constraint firstItem="9cy-ie-GVJ" firstAttribute="leading" secondItem="CnK-Kr-fjR" secondAttribute="leading" id="HIG-o0-uVf"/>
+                                <constraint firstItem="AtL-YC-jJM" firstAttribute="leading" secondItem="CnK-Kr-fjR" secondAttribute="leading" constant="20" id="R8e-Hf-AZH"/>
+                                <constraint firstItem="9cy-ie-GVJ" firstAttribute="top" secondItem="CnK-Kr-fjR" secondAttribute="top" id="V0A-i9-OKY"/>
+                                <constraint firstItem="BBH-1t-qKg" firstAttribute="centerY" secondItem="AtL-YC-jJM" secondAttribute="centerY" id="dv1-Rc-lff"/>
+                                <constraint firstAttribute="trailing" secondItem="9cy-ie-GVJ" secondAttribute="trailing" id="gPC-ek-P1u"/>
+                                <constraint firstAttribute="height" constant="500" id="mui-NL-VF2"/>
+                                <constraint firstAttribute="trailing" secondItem="BBH-1t-qKg" secondAttribute="trailing" constant="20" id="of3-ym-5WF"/>
+                                <constraint firstItem="AtL-YC-jJM" firstAttribute="width" secondItem="CnK-Kr-fjR" secondAttribute="width" multiplier="0.35" id="ofR-Gt-jVn"/>
+                                <constraint firstItem="AtL-YC-jJM" firstAttribute="top" secondItem="9cy-ie-GVJ" secondAttribute="bottom" constant="30" id="tWd-8E-2aw"/>
+                                <constraint firstItem="BBH-1t-qKg" firstAttribute="width" secondItem="CnK-Kr-fjR" secondAttribute="width" multiplier="0.35" id="z5W-MA-YnA"/>
                             </constraints>
                         </view>
                     </subviews>

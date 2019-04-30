@@ -21,6 +21,7 @@ class DishTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         dishImageView.clipsToBounds = true
+        dishImageView.roundCorners(radii: 15.0)
         chefImageView.roundCorners(radii: chefImageView.frame.width/2,
                                    borderWidth: 2.0, borderColor: .white)
     }
@@ -52,7 +53,7 @@ extension DishTableViewCell: PlaceholderConfigurable {
         self.viewModel = contentViewModel
 
         nameLabel.text = contentViewModel.dish.name
-        priceLabel.text = "€\(contentViewModel.dish.price)"
+        priceLabel.text = contentViewModel.dish.priceWithCurrency
         if let url = contentViewModel.dish.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)
         } else {

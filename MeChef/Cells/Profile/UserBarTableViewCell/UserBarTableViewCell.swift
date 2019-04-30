@@ -3,11 +3,14 @@ import UIKit
 struct UserBarViewModel {
     let option: String
     let arrowHidden: Bool
+    let hideBottomLine: Bool
 
     init(option: String,
-         arrowHidden: Bool = false) {
+         arrowHidden: Bool = false,
+         hideBottomLine: Bool = false) {
         self.option = option
         self.arrowHidden = arrowHidden
+        self.hideBottomLine = hideBottomLine
     }
 }
 
@@ -17,6 +20,7 @@ final class UserBarTableViewCell: UITableViewCell {
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
     @IBOutlet private weak var optionLabel: UILabel!
     @IBOutlet private weak var arrowImageView: UIImageView!
+    @IBOutlet private weak var bottomSpacerView: UIView!
 
     var viewModel: UserBarViewModel?
 
@@ -48,6 +52,7 @@ extension UserBarTableViewCell: PlaceholderConfigurable {
 
         optionLabel.text = contentViewModel.option
         arrowImageView.isHidden = contentViewModel.arrowHidden
+        bottomSpacerView.isHidden = contentViewModel.hideBottomLine
     }
 
 }

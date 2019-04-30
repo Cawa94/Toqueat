@@ -30,7 +30,7 @@ final class ChefOrdersViewModel: BaseStatefulViewModel<ChefOrdersViewModel.Resul
 extension ChefOrdersViewModel {
 
     var weekdaysOrdered: [Int64] {
-        let firstDay = today.weekdayOrdinal
+        let firstDay = today.weekday != 1 ? today.weekday - 1 : 7
         var tempWeekdays = DeliverySlot.weekdayTable.map { $0.key }.sorted(by: { $0 < $1 })
         let toMoveDays = tempWeekdays[0...firstDay - 2]
         tempWeekdays.removeSubrange(0...firstDay - 2)

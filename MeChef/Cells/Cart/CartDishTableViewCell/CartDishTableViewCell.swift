@@ -9,10 +9,11 @@ class CartDishTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var quantityLabel: UILabel!
     @IBOutlet private weak var dishImageView: UIImageView!
 
     var disposeBag = DisposeBag()
-    private var viewModel: LocalCartDish?
+    private var viewModel: CartDishTableViewModel?
 
     override func prepareForReuse() {
         self.disposeBag = DisposeBag()
@@ -27,7 +28,7 @@ class CartDishTableViewCell: UITableViewCell {
 
 extension CartDishTableViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = LocalCartDish
+    typealias ContentViewModelType = CartDishTableViewModel
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -38,7 +39,7 @@ extension CartDishTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWith(loading: Bool = false, contentViewModel: LocalCartDish? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: CartDishTableViewModel? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -46,12 +47,16 @@ extension CartDishTableViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: LocalCartDish) {
+    func configure(contentViewModel: CartDishTableViewModel) {
         self.viewModel = contentViewModel
 
-        nameLabel.text = contentViewModel.name
-        priceLabel.text = "€\(contentViewModel.price)"
-        if let url = contentViewModel.imageLink {
+        nameLabel.text = contentViewModel.dish.name
+        let dishQuantity = contentViewModel.quantityInOrder ?? contentViewModel.dish.quantityInCart
+        quantityLabel.text = "x\(dishQuantity)"
+        let totalPrice = contentViewModel.dish.price.multiplying(by: NSDecimalNumber(value: dishQuantity))
+        priceLabel.text = String(format: "€%.2f", Double(truncating: totalPrice))
+
+        if let url = contentViewModel.dish.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)
         } else {
             dishImageView.image = UIImage(named: "dish_placeholder")

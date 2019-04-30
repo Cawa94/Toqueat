@@ -53,13 +53,14 @@ final class AddToCartView: UIView {
             quantityControllerView.isHidden = true
             let addToCartModel = RoundedButtonViewModel(title: "", type: .defaultOrange)
             addToBasketButton.configure(with: addToCartModel)
-            priceLabel.text = "€\(viewModel.dish.price)"
+            priceLabel.text = viewModel.dish.priceWithCurrency
         } else {
             // in cart
             addToBasketView.isHidden = true
             quantityControllerView.isHidden = false
-            quantityLabel.text = "x \(viewModel.quantityInCart) -"
-                + " €\(viewModel.dish.price.multiplying(by: NSDecimalNumber(value: viewModel.quantityInCart)))"
+            let totalPrice = viewModel.dish.price.multiplying(by: NSDecimalNumber(value: viewModel.quantityInCart))
+            quantityLabel.text = "x \(viewModel.quantityInCart) - "
+                + String(format: "€%.2f", Double(truncating: totalPrice))
             addOneButton.roundCorners(radii: 10)
             removeOneButton.roundCorners(radii: 10)
         }

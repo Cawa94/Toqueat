@@ -38,12 +38,23 @@ extension ChefDeliverySlotsViewModel {
             && $0.hourId == (indexPath.section) })
     }
 
+    var cellColorForWeekdays: UIColor {
+        return .white
+    }
+
+    var textColorForWeekdays: UIColor {
+        return .mainOrangeColor
+    }
+
     func cellColorForAvailability(_ available: Bool) -> UIColor {
-        return available ? .highlightedOrangeColor : .white
+        if !editable {
+            return .white
+        }
+        return available ? .mainOrangeColor : .white
     }
 
     func textColorForAvailability(_ available: Bool) -> UIColor {
-        return available ? .white : .darkGrayColor
+        return available ? .darkGrayColor : .lightGrayColor
     }
 
     func toggle(slot: DeliverySlot) {
@@ -53,7 +64,6 @@ extension ChefDeliverySlotsViewModel {
         } else {
             activeSlots.append(slot)
         }
-        debugPrint(activeSlots.map { "\($0.id)" })
     }
 
 }

@@ -46,7 +46,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiY-u6-AMc">
-                                <rect key="frame" x="133" y="5" width="180" height="20"/>
+                                <rect key="frame" x="133" y="15" width="180" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -57,7 +57,7 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRb-uX-xRl">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRb-uX-xRl">
                                 <rect key="frame" x="265" y="57.5" width="100" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="yZn-QT-h0n"/>
@@ -67,12 +67,6 @@
                                     <color key="titleColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="3 orders" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcn-L1-iba">
-                                <rect key="frame" x="133" y="30" width="59" height="19"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -82,11 +76,9 @@
                             <constraint firstItem="8Sv-MI-uVE" firstAttribute="leading" secondItem="LiY-u6-AMc" secondAttribute="trailing" constant="10" id="EFI-GL-4Fg"/>
                             <constraint firstItem="8Sv-MI-uVE" firstAttribute="top" secondItem="mrJ-DM-ed2" secondAttribute="top" constant="5" id="Nf7-yA-FL3"/>
                             <constraint firstAttribute="bottom" secondItem="gRb-uX-xRl" secondAttribute="bottom" constant="10" id="NoZ-k3-1T4"/>
-                            <constraint firstItem="Fcn-L1-iba" firstAttribute="leading" secondItem="LiY-u6-AMc" secondAttribute="leading" id="QWT-ro-pEJ"/>
                             <constraint firstItem="LiY-u6-AMc" firstAttribute="leading" secondItem="BEI-9z-aqS" secondAttribute="trailing" constant="8" id="Qzv-GH-duJ"/>
-                            <constraint firstItem="Fcn-L1-iba" firstAttribute="top" secondItem="LiY-u6-AMc" secondAttribute="bottom" constant="5" id="bKf-lE-mlo"/>
                             <constraint firstItem="BEI-9z-aqS" firstAttribute="leading" secondItem="mrJ-DM-ed2" secondAttribute="leading" constant="5" id="cgo-Ui-Bc5"/>
-                            <constraint firstItem="LiY-u6-AMc" firstAttribute="top" secondItem="mrJ-DM-ed2" secondAttribute="top" constant="5" id="dkQ-7r-QB4"/>
+                            <constraint firstItem="LiY-u6-AMc" firstAttribute="top" secondItem="mrJ-DM-ed2" secondAttribute="top" constant="15" id="dkQ-7r-QB4"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -107,11 +99,10 @@
                 <outlet property="dishImageView" destination="BEI-9z-aqS" id="Sst-zd-J8l"/>
                 <outlet property="editButton" destination="gRb-uX-xRl" id="oWZ-Jz-emm"/>
                 <outlet property="nameLabel" destination="LiY-u6-AMc" id="eBC-GZ-mrb"/>
-                <outlet property="orderedLabel" destination="Fcn-L1-iba" id="qvs-sM-vBY"/>
                 <outlet property="placeholderContainerViewOutlet" destination="3GS-x0-LbL" id="oXs-OE-d49"/>
                 <outlet property="priceLabel" destination="8Sv-MI-uVE" id="hBk-1w-F3S"/>
             </connections>
-            <point key="canvasLocation" x="-37" y="93"/>
+            <point key="canvasLocation" x="-279" y="37"/>
         </tableViewCell>
     </objects>
 </document>

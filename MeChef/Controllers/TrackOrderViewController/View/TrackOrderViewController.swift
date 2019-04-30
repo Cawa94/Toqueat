@@ -30,6 +30,14 @@ class TrackOrderViewController: BaseStatefulController<TrackOrderViewModel.Order
 
     override func configureNavigationBar() {
         title = "Track Order"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(closeOrder))
+    }
+
+    @objc func closeOrder() {
+        NavigationService.popNavigationTopController()
     }
 
     func centerMapOnLocation(location: CLLocation) {

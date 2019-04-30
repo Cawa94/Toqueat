@@ -2,8 +2,9 @@ import UIKit
 import RxSwift
 import Nuke
 
-class CartHeaderView: UITableViewHeaderFooterView {
+class CartHeaderView: UIView {
 
+    @IBOutlet private var contentView: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var avatarImageView: UIImageView!
     @IBOutlet private weak var chefAvailabilityButton: UIButton!
@@ -14,9 +15,23 @@ class CartHeaderView: UITableViewHeaderFooterView {
         return chefAvailabilityButton
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposeBag = DisposeBag()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+
+    func commonInit() {
+        Bundle.main.loadNibNamed("CartHeaderView",
+                                 owner: self,
+                                 options: nil)
+        addSubview(contentView)
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
     }
 
     override func awakeFromNib() {
@@ -25,6 +40,7 @@ class CartHeaderView: UITableViewHeaderFooterView {
     }
 
     func configure(chef: BaseChef) {
+        disposeBag = DisposeBag()
         let formattedChefString = NSMutableAttributedString()
         formattedChefString
             .bold("\(chef.name)", size: 16.0)
@@ -36,10 +52,6 @@ class CartHeaderView: UITableViewHeaderFooterView {
         } else {
             avatarImageView.image = UIImage(named: "chef_placeholder")
         }
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 
 }

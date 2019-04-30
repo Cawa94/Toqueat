@@ -11,7 +11,7 @@ public extension Alamofire.SessionManager {
 
 class NetworkService {
 
-    static let baseUrl = "http://192.168.1.35:3000/" // Home
+    static let baseUrl = "http://192.168.1.34:3000/" // Home
     //static let baseUrl = "http://192.168.2.177:3000/" // Office
 
     // Alamofire Settings
@@ -43,7 +43,16 @@ class NetworkService {
                 $0.model
             }
             .do(onError: { error in
-                debugPrint(error)
+                let message: String
+                if let serverError = error.serverError,
+                    let title = serverError.error {
+                    message = title
+                } else {
+                    message = "Something went wrong"
+                }
+                DispatchQueue.main.async {
+                    NavigationService.topControllerPreentAlertWith(title: "WARNING", message: message)
+                }
             })
             .asSingle()
     }

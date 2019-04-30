@@ -93,7 +93,8 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
         switch cell {
         case let baseInfoCell as UserBaseInfoTableViewCell:
             let viewModel = UserBaseInfoCellViewModel(baseUser: chefProfileViewModel.baseChef,
-                                                      isChef: true)
+                                                      isChef: true,
+                                                      chefImageUrl: chefProfileViewModel.result.avatarLink)
             baseInfoCell.configureWith(contentViewModel: viewModel)
         case let barCell as UserBarTableViewCell:
             let viewModel: UserBarViewModel
@@ -101,11 +102,11 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
             case 1:
                 switch indexPath.row {
                 case 0:
-                    viewModel = UserBarViewModel(option: "My Availability")
+                    viewModel = UserBarViewModel(option: "My Availability", hideBottomLine: true)
                 case 1:
-                    viewModel = UserBarViewModel(option: "My Address")
+                    viewModel = UserBarViewModel(option: "My Address", hideBottomLine: true)
                 case 2:
-                    viewModel = UserBarViewModel(option: "My Orders")
+                    viewModel = UserBarViewModel(option: "My Orders", hideBottomLine: true)
                 case 3:
                     viewModel = UserBarViewModel(option: "Notifications")
                 default:
@@ -127,7 +128,7 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
         case 0:
             return 90
         default:
-            return 60
+            return 50
         }
     }
 
@@ -144,7 +145,7 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = UITableViewCell()
-        headerCell.backgroundColor = .placeholderPampasColor
+        headerCell.backgroundColor = .lightGrayBackgroundColor
         return headerCell
     }
 

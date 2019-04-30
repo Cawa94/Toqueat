@@ -1,9 +1,11 @@
 import UIKit
+import Nuke
 
 struct UserBaseInfoCellViewModel {
 
     let baseUser: BaseUser
     let isChef: Bool
+    let chefImageUrl: URL?
 
 }
 
@@ -45,7 +47,14 @@ extension UserBaseInfoTableViewCell: PlaceholderConfigurable {
 
         nameLabel.text = "\(contentViewModel.baseUser.name) \(contentViewModel.baseUser.lastname)"
         emailLabel.text = contentViewModel.baseUser.email
-        iconImageView.image = UIImage(named: viewModel?.isChef ?? false ? "profile_chef_woman" : "profile")
+        if let url = contentViewModel.chefImageUrl {
+            iconImageView.roundCorners(radii: self.iconImageView.frame.width/2,
+                                       borderWidth: 1.0, borderColor: .lightGrayColor)
+            Nuke.loadImage(with: url, into: iconImageView)
+        } else {
+            iconImageView.image = UIImage(named: viewModel?.isChef ?? false ? "chef_placeholder" : "profile")
+        }
+        iconImageView.contentMode = .scaleAspectFill
     }
 
 }

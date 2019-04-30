@@ -15,12 +15,13 @@
                 <outlet property="chefDetailsHeightConstraint" destination="dWd-2p-OG1" id="rnA-gL-3Fr"/>
                 <outlet property="chefDetailsTableView" destination="4Rn-GL-OjU" id="rHE-EV-bzY"/>
                 <outlet property="chefImageView" destination="Wfy-hx-zDE" id="Gpe-SH-4Fl"/>
+                <outlet property="collectionView" destination="Oby-EQ-2No" id="MCX-NT-9a6"/>
                 <outlet property="contentViewHeightConstraint" destination="4C9-Rd-cS4" id="vPi-6H-NTV"/>
                 <outlet property="headerView" destination="4ep-Uc-Nih" id="f6a-DM-B2A"/>
                 <outlet property="navigationBar" destination="1DI-Lk-kdJ" id="45u-RS-Ak1"/>
                 <outlet property="navigationTitle" destination="BHy-r3-kja" id="pUG-aZ-S11"/>
                 <outlet property="tableView" destination="Fll-bK-OFc" id="E2c-Ef-rEh"/>
-                <outlet property="tableViewHeightConstraint" destination="eov-ey-VZ7" id="2jT-5G-Dw8"/>
+                <outlet property="tableViewHeightConstraint" destination="6ao-f2-c1H" id="8wi-mA-vO2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -70,7 +71,7 @@
                                         <outlet property="delegate" destination="-1" id="Ul2-Eq-bY5"/>
                                     </connections>
                                 </tableView>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fll-bK-OFc">
+                                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fll-bK-OFc">
                                     <rect key="frame" x="0.0" y="410" width="375" height="255"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -78,20 +79,48 @@
                                     </constraints>
                                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableView>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Oby-EQ-2No">
+                                    <rect key="frame" x="0.0" y="445" width="375" height="255"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="255" id="6ao-f2-c1H"/>
+                                    </constraints>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tbj-nA-75V">
+                                        <size key="itemSize" width="50" height="50"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="2Dc-e5-o3o"/>
+                                        <outlet property="delegate" destination="-1" id="EmM-RV-5Te"/>
+                                    </connections>
+                                </collectionView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Dishes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDY-cA-wac">
+                                    <rect key="frame" x="15" y="415" width="84.333333333333329" height="20"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="665" id="4C9-Rd-cS4"/>
+                                <constraint firstItem="gDY-cA-wac" firstAttribute="leading" secondItem="UNT-NA-3gk" secondAttribute="leading" constant="15" id="6Gh-To-eBx"/>
                                 <constraint firstItem="4Rn-GL-OjU" firstAttribute="top" secondItem="xVa-1S-NUX" secondAttribute="bottom" constant="5" id="7t5-N2-ryL"/>
+                                <constraint firstItem="gDY-cA-wac" firstAttribute="top" secondItem="4Rn-GL-OjU" secondAttribute="bottom" constant="20" id="BJ2-tR-niU"/>
                                 <constraint firstAttribute="trailing" secondItem="Fll-bK-OFc" secondAttribute="trailing" id="Cfe-kU-XoR"/>
                                 <constraint firstAttribute="trailing" secondItem="xVa-1S-NUX" secondAttribute="trailing" id="ZF2-oP-kPe"/>
                                 <constraint firstItem="Fll-bK-OFc" firstAttribute="leading" secondItem="UNT-NA-3gk" secondAttribute="leading" id="bYk-jU-cV1"/>
                                 <constraint firstAttribute="bottom" secondItem="Fll-bK-OFc" secondAttribute="bottom" id="dKG-Jl-1Z6"/>
                                 <constraint firstItem="xVa-1S-NUX" firstAttribute="leading" secondItem="UNT-NA-3gk" secondAttribute="leading" id="e2E-ZK-E6Z"/>
+                                <constraint firstItem="Oby-EQ-2No" firstAttribute="top" secondItem="gDY-cA-wac" secondAttribute="bottom" constant="10" id="emc-vo-xq7"/>
                                 <constraint firstItem="Fll-bK-OFc" firstAttribute="top" secondItem="4Rn-GL-OjU" secondAttribute="bottom" constant="15" id="eus-vx-zHJ"/>
                                 <constraint firstItem="4Rn-GL-OjU" firstAttribute="leading" secondItem="UNT-NA-3gk" secondAttribute="leading" constant="15" id="hMC-dh-WGM"/>
                                 <constraint firstAttribute="trailing" secondItem="4Rn-GL-OjU" secondAttribute="trailing" constant="15" id="jxe-Q6-0hx"/>
                                 <constraint firstItem="xVa-1S-NUX" firstAttribute="top" secondItem="UNT-NA-3gk" secondAttribute="top" id="oQi-F9-Woz"/>
+                                <constraint firstItem="Oby-EQ-2No" firstAttribute="leading" secondItem="UNT-NA-3gk" secondAttribute="leading" id="sXT-bL-kA9"/>
+                                <constraint firstAttribute="trailing" secondItem="Oby-EQ-2No" secondAttribute="trailing" id="vm5-nI-Bac"/>
                             </constraints>
                         </view>
                     </subviews>

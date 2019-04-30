@@ -2,10 +2,12 @@ import UIKit
 import RxSwift
 import Nuke
 
-class ChefViewController: BaseTableViewController<Chef, Dish> {
+class ChefViewController: BaseTableViewController<Chef, Dish>,
+    UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var chefDetailsTableView: IntrinsicTableView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var chefImageView: UIImageView!
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var chefDetailsHeightConstraint: NSLayoutConstraint!
@@ -35,6 +37,10 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
                            forCellReuseIdentifier: "DishTableViewCell")
         chefDetailsTableView.register(UINib(nibName: "ChefDetailsTableViewCell", bundle: nil),
                                       forCellReuseIdentifier: "ChefDetailsTableViewCell")
+
+        let nib = UINib(nibName: DishCollectionViewCell.reuseID, bundle: nil)
+        collectionView.register(nib,
+                                forCellWithReuseIdentifier: DishCollectionViewCell.reuseID)
     }
 
     // MARK: - Actions
@@ -138,10 +144,80 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
         return nil
     }
 
+    // MARK: - Collection view data source and delegate methods
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return chefViewModel.numberOfItems(for: section)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
+        -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DishCollectionViewCell",
+                                                          for: indexPath)
+            configure(cell, at: indexPath, isLoading: chefViewModel.isLoading)
+            return cell
+    }
+
+    private func configure(_ cell: UICollectionViewCell, at indexPath: IndexPath, isLoading: Bool) {
+        if isLoading {
+            configureWithPlaceholders(cell, at: indexPath)
+        } else {
+            configureWithContent(cell, at: indexPath)
+        }
+    }
+
+    private func configureWithPlaceholders(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let chefCell as DishCollectionViewCell:
+            chefCell.configureWith(loading: true)
+        default:
+            break
+        }
+    }
+
+    private func configureWithContent(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let dishCell as DishCollectionViewCell:
+            let dish = chefViewModel.elementAt(indexPath.row)
+            dishCell.configureWith(contentViewModel: dish)
+            dishCell.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    NavigationService.pushDishViewController(dishId: dish.id)
+                })
+                .disposed(by: dishCell.disposeBag)
+        default:
+            break
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let columnWidth = collectionView.bounds.width / CGFloat(ChefViewModel.Constants.numberOfColumns)
+            - ChefViewModel.Constants.sectionInsets.left
+        let width = columnWidth - (ChefViewModel.Constants.horizontalSpacingBetweenCells
+            / CGFloat(ChefViewModel.Constants.numberOfColumns))
+
+        return CGSize(width: width, height: ChefViewModel.Constants.cellHeight)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return ChefViewModel.Constants.sectionInsets
+    }
+
     // MARK: - StatefulViewController related methods
 
     override func onLoadingState() {
-        chefDetailsTableView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
         super.onLoadingState()
     }
 
@@ -155,14 +231,18 @@ class ChefViewController: BaseTableViewController<Chef, Dish> {
         chefViewModel.elements = chefViewModel.result.dishes ?? []
         chefDetailsTableView.reloadData()
         navigationTitle.text = "\(chefViewModel.result.name) \(chefViewModel.result.lastname)"
-        super.onResultsState()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData {
+                self.viewDidLayoutSubviews()
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {
-        tableViewHeightConstraint.constant = tableView.contentSize.height
+        tableViewHeightConstraint.constant = collectionView.contentSize.height
         chefDetailsHeightConstraint.constant = chefDetailsTableView.contentSize.height
         contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
-            + 190 + chefDetailsHeightConstraint.constant + 30
+            + 190 + chefDetailsHeightConstraint.constant + 30 + 40
     }
 
     // MARK: - UIScrollViewDelegate

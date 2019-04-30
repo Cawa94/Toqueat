@@ -12,3 +12,11 @@ extension BaseUser {
     }
 
 }
+
+extension User {
+
+    var fullAddress: String {
+        return "\(address), \(zipcode) \(city.name)"
+    }
+
+}

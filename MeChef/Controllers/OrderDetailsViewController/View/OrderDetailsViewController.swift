@@ -24,10 +24,10 @@ class OrderDetailsViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
                                                            style: .plain,
                                                            target: self,
-                                                           action: #selector(dismissOrder))
+                                                           action: #selector(closeOrder))
     }
 
-    @objc func dismissOrder() {
+    @objc func closeOrder() {
         NavigationService.popNavigationTopController()
     }
 
