@@ -11,7 +11,7 @@ extension CartViewModel {
     }
 
     var elements: [LocalCartDish] {
-        return cart?.dishes?.uniqueElements ?? []
+        return cart?.dishes?.uniqueElements.sorted(by: { $0.name < $1.name }) ?? []
     }
 
     func elementAt(_ index: Int) -> LocalCartDish {

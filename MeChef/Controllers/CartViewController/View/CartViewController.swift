@@ -1,6 +1,12 @@
 import UIKit
 import RxSwift
-import Swi
+import SwipeCellKit
+
+private extension CGFloat {
+
+    static let swipeActionWidth: CGFloat = 57
+
+}
 
 class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
     UIGestureRecognizerDelegate {
@@ -15,8 +21,6 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
 
         let checkoutModel = RoundedButtonViewModel(title: "Choose delivery time", type: .defaultOrange)
         checkoutButton.configure(with: checkoutModel)
@@ -104,6 +108,10 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             let dishViewModel = CartDishTableViewModel(dish: dish,
                                                        quantityInOrder: nil)
             dishCell.configureWith(contentViewModel: dishViewModel)
+            dishCell.rx.tapGesture().when(.recognized).subscribe(onNext: { _ in
+                dishCell.showSwipe(orientation: .right)
+            }).disposed(by: dishCell.disposeBag)
+            dishCell.delegate = self
             if indexPath.row == cartViewModel.elements.count - 1 {
                 DispatchQueue.main.async {
                     self.viewDidLayoutSubviews()
@@ -116,4 +124,61 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 }
 
-extension CartViewController: Swip
+extension CartViewController: SwipeTableViewCellDelegate {
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath,
+                   for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard let dishCell = tableView.cellForRow(at: indexPath)
+            as? CartDishTableViewCell else { return nil }
+
+        guard orientation == .right
+            else {
+                if dishCell.hasControlsExpanded {
+                    dishCell.hasControlsExpanded = false
+                    dishCell.showSwipe(orientation: .left)
+                }
+                return nil
+        }
+
+        dishCell.hasControlsExpanded = !dishCell.hasControlsExpanded
+        if !dishCell.hasControlsExpanded {
+            dishCell.showSwipe(orientation: .left)
+            return nil
+        }
+
+        let dish = self.cartViewModel.elementAt(indexPath.row)
+        let addOneAction = SwipeAction(style: .default,
+                                       title: "+") { _, _ in
+                                        CartService.addToCart(dish)
+                                        DispatchQueue.main.async {
+                                            self.tableView.reloadData()
+                                        }
+        }
+        addOneAction.backgroundColor = .mainOrangeColor
+        addOneAction.font = .boldFontOf(size: 35)
+        addOneAction.textColor = .white
+
+        let removeOneAction = SwipeAction(style: .destructive,
+                                          title: "-") { _, _ in
+                                            CartService.removeFromCart(dish)
+                                            DispatchQueue.main.async {
+                                                self.tableView.reloadData()
+                                            }
+        }
+        removeOneAction.backgroundColor = .highlightedOrangeColor
+        removeOneAction.font = .boldFontOf(size: 35)
+        removeOneAction.textColor = .white
+
+        return [addOneAction, removeOneAction]
+    }
+
+    func tableView(_ tableView: UITableView,
+                   editActionsOptionsForRowAt indexPath: IndexPath,
+                   for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        options.maximumButtonWidth = .swipeActionWidth
+        options.minimumButtonWidth = .swipeActionWidth
+        return options
+    }
+
+}

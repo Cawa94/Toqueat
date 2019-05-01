@@ -12,8 +12,9 @@ class DishViewController: BaseStatefulController<Dish>,
     @IBOutlet private weak var whiteBackgroundView: UIView!
     @IBOutlet private weak var tableView: IntrinsicTableView!
     @IBOutlet private weak var dishImageView: UIImageView!
-    @IBOutlet private weak var openCartButton: RoundedButton!
-    @IBOutlet private weak var openCartButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var navigationTitle: UILabel!
+    @IBOutlet private weak var navigationBar: UIView!
+    @IBOutlet private weak var backArrowOrangeButton: UIButton!
 
     var dishViewModel: DishViewModel! {
         didSet {
@@ -32,9 +33,6 @@ class DishViewController: BaseStatefulController<Dish>,
 
         whiteBackgroundView.roundOnly(corners: [.topLeft, .topRight], cornerRadii: 30.0)
         tableView.roundOnly(corners: [.topLeft, .topRight], cornerRadii: 30.0)
-
-        let openCartModel = RoundedButtonViewModel(title: "Open cart", type: .squeezedOrange)
-        openCartButton.configure(with: openCartModel)
 
         tableView.register(UINib(nibName: "DishDetailsTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "DishDetailsTableViewCell")
@@ -75,6 +73,10 @@ class DishViewController: BaseStatefulController<Dish>,
         }
     }
 
+    @IBAction func closeAction(_ sender: Any) {
+        NavigationService.popNavigationTopController()
+    }
+
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
@@ -85,6 +87,7 @@ class DishViewController: BaseStatefulController<Dish>,
             dishImageView.image = UIImage(named: "dish_placeholder")
         }
         dishImageView.contentMode = .scaleAspectFill
+        navigationTitle.text = dishViewModel.result.name
     }
 
     override func onLoadingState() {
@@ -102,6 +105,8 @@ class DishViewController: BaseStatefulController<Dish>,
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
         var headerTransform = CATransform3DIdentity
+        let showNavigationBarY = CGFloat(100)
+        let showNavigationLabelY = CGFloat(200)
 
         if offset < 0 {
             // PULL DOWN -----------------
@@ -112,6 +117,20 @@ class DishViewController: BaseStatefulController<Dish>,
             headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizevariation, 0)
             headerTransform = CATransform3DScale(headerTransform, 1.0 + headerScaleFactor, 1.0
                 + headerScaleFactor, 90)
+        }
+
+        if offset >= showNavigationBarY {
+            navigationBar.alpha = min (1.0, (offset - showNavigationBarY)/80)
+        } else {
+            navigationBar.alpha = 0.0
+        }
+
+        if offset >= (showNavigationLabelY) { // after top bar blocked, start showing label
+            navigationTitle.alpha = min (1.0, (offset - showNavigationLabelY)/15)
+            backArrowOrangeButton.alpha = min (1.0, (offset - showNavigationLabelY)/15)
+        } else {
+            navigationTitle.alpha = 0.0
+            backArrowOrangeButton.alpha = 0.0
         }
 
         headerView.layer.transform = headerTransform

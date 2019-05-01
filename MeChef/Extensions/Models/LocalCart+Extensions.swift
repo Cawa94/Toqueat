@@ -8,8 +8,12 @@ extension LocalCart {
                                deliverySlotId: nil)
 
     func copyWith(dishes: [LocalCartDish], chef: BaseChef? = nil) -> LocalCart? {
+        var cartChef = self.chef
+        if let newChef = chef {
+            cartChef = newChef
+        }
         return LocalCart(dishes: dishes,
-                         chef: chef,
+                         chef: cartChef,
                          deliveryDate: deliveryDate,
                          deliverySlotId: deliverySlotId)
     }

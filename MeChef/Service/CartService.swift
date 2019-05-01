@@ -31,7 +31,7 @@ struct CartService {
         return localCartVariable.asObservable()
     }
 
-    static func addToCart(_ dish: LocalCartDish, chef: BaseChef) {
+    static func addToCart(_ dish: LocalCartDish, chef: BaseChef? = nil) {
         guard let cart = localCart
             else { return }
         var newDishes = cart.dishes ?? []

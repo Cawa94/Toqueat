@@ -41,27 +41,27 @@
                                     <constraint firstAttribute="width" constant="55" id="SHo-tf-b5e"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Chef " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBC-0q-KIl">
-                                <rect key="frame" x="75" y="7" width="192" height="19"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Delivery date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBC-0q-KIl">
+                                <rect key="frame" x="75" y="7" width="195.5" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Delivery date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgV-lc-oqz">
-                                <rect key="frame" x="75" y="31" width="93.5" height="19"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Chef " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgV-lc-oqz">
+                                <rect key="frame" x="75" y="31" width="36" height="17.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlA-as-1uo">
-                                <rect key="frame" x="75" y="55" width="36.5" height="18"/>
+                                <rect key="frame" x="75" y="53.5" width="36.5" height="18"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PC-JZ-xmJ">
-                                <rect key="frame" x="272" y="7" width="38" height="19.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                <rect key="frame" x="275.5" y="7" width="34.5" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -105,9 +105,9 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="chefImageView" destination="aCm-WG-7Hv" id="NDQ-i5-bgR"/>
-                <outlet property="chefLabel" destination="qBC-0q-KIl" id="R9h-6I-GeZ"/>
+                <outlet property="chefLabel" destination="HgV-lc-oqz" id="tu8-cl-JcB"/>
                 <outlet property="contentContainerViewOutlet" destination="6Yy-qn-XHK" id="UFk-NK-nox"/>
-                <outlet property="deliveryLabel" destination="HgV-lc-oqz" id="9NH-qq-IrV"/>
+                <outlet property="deliveryLabel" destination="qBC-0q-KIl" id="TMV-zQ-n6d"/>
                 <outlet property="placeholderContainerViewOutlet" destination="XZ7-6y-FGv" id="7lO-5b-BNQ"/>
                 <outlet property="stateLabel" destination="mlA-as-1uo" id="gEa-6A-hE6"/>
                 <outlet property="totalLabel" destination="0PC-JZ-xmJ" id="okn-Np-RVf"/>

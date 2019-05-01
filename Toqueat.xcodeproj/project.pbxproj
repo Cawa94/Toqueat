@@ -63,9 +63,6 @@
 		DA859D0A22411E9C008481D2 /* ChefOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA859D0822411E9C008481D2 /* ChefOrdersViewController.xib */; };
 		DA859D0C22411EAA008481D2 /* ChefOrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D0B22411EAA008481D2 /* ChefOrdersViewModel.swift */; };
 		DA859D0E22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D0D22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift */; };
-		DA859D1322412198008481D2 /* ChefOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D1122412198008481D2 /* ChefOrderTableViewCell.swift */; };
-		DA859D1422412198008481D2 /* ChefOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA859D1222412198008481D2 /* ChefOrderTableViewCell.xib */; };
-		DA859D16224121C9008481D2 /* ChefOrderTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D15224121C9008481D2 /* ChefOrderTableViewModel.swift */; };
 		DA8B7037226232E8002DBF1A /* UserBaseInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7035226232E8002DBF1A /* UserBaseInfoTableViewCell.swift */; };
 		DA8B7038226232E8002DBF1A /* UserBaseInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA8B7036226232E8002DBF1A /* UserBaseInfoTableViewCell.xib */; };
 		DA8B703B22623995002DBF1A /* UserBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B703922623995002DBF1A /* UserBarTableViewCell.swift */; };
@@ -255,9 +252,6 @@
 		DA859D0822411E9C008481D2 /* ChefOrdersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefOrdersViewController.xib; sourceTree = "<group>"; };
 		DA859D0B22411EAA008481D2 /* ChefOrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrdersViewModel.swift; sourceTree = "<group>"; };
 		DA859D0D22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefOrdersViewController.swift"; sourceTree = "<group>"; };
-		DA859D1122412198008481D2 /* ChefOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrderTableViewCell.swift; sourceTree = "<group>"; };
-		DA859D1222412198008481D2 /* ChefOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefOrderTableViewCell.xib; sourceTree = "<group>"; };
-		DA859D15224121C9008481D2 /* ChefOrderTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrderTableViewModel.swift; sourceTree = "<group>"; };
 		DA8B7035226232E8002DBF1A /* UserBaseInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBaseInfoTableViewCell.swift; sourceTree = "<group>"; };
 		DA8B7036226232E8002DBF1A /* UserBaseInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBaseInfoTableViewCell.xib; sourceTree = "<group>"; };
 		DA8B703922623995002DBF1A /* UserBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBarTableViewCell.swift; sourceTree = "<group>"; };
@@ -630,20 +624,9 @@
 			children = (
 				DAF9C995226CC7FF00AD4248 /* AddDishTableViewCell */,
 				DAF9C99A226CCEC700AD4248 /* ChefDishTableViewCell */,
-				DA859D102241216B008481D2 /* ChefOrderTableViewCell */,
 				DAE902CC22494D6D00743D6A /* DeliverySlotCollectionViewCell */,
 			);
 			path = AChefExclusive;
-			sourceTree = "<group>";
-		};
-		DA859D102241216B008481D2 /* ChefOrderTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				DA859D1122412198008481D2 /* ChefOrderTableViewCell.swift */,
-				DA859D15224121C9008481D2 /* ChefOrderTableViewModel.swift */,
-				DA859D1222412198008481D2 /* ChefOrderTableViewCell.xib */,
-			);
-			path = ChefOrderTableViewCell;
 			sourceTree = "<group>";
 		};
 		DA8B703222623176002DBF1A /* Profile */ = {
@@ -1649,7 +1632,6 @@
 				DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */,
 				DA9363A222395F5E00DF8951 /* CheckoutViewController.xib in Resources */,
 				DA636D952271FDA100DA2A70 /* AddToCartView.xib in Resources */,
-				DA859D1422412198008481D2 /* ChefOrderTableViewCell.xib in Resources */,
 				DACB01E2225F8F80008093F3 /* CartHeaderView.xib in Resources */,
 				DA0328B6225CD235001FBE14 /* DishDetailsTableViewCell.xib in Resources */,
 				DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */,
@@ -1831,11 +1813,9 @@
 				DAF86AF72237F44100070B76 /* Order+Extensions.swift in Sources */,
 				DA979BEE222C914F00D452B9 /* ProfileViewController.swift in Sources */,
 				DAFA9B752228907100B2CD4D /* AppDelegate.swift in Sources */,
-				DA859D1322412198008481D2 /* ChefOrderTableViewCell.swift in Sources */,
 				DABC321F2254F95F0001757E /* AnimationController.swift in Sources */,
 				DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */,
 				DA636D862271E90100DA2A70 /* NavigationService+ChefOrderDetailsViewController.swift in Sources */,
-				DA859D16224121C9008481D2 /* ChefOrderTableViewModel.swift in Sources */,
 				DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */,
 				DAF4FE2A222AD2C500F208DB /* AppDelegate+Extensions.swift in Sources */,
 				DA859D0E22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift in Sources */,
@@ -2088,7 +2068,10 @@
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -2106,7 +2089,10 @@
 				DEVELOPMENT_TEAM = ZWDDZD6GHF;
 				INFOPLIST_FILE = MeChef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

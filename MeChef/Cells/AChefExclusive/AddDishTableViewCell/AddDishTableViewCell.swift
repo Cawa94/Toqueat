@@ -10,7 +10,6 @@ class AddDishTableViewCell: UITableViewCell {
     }
 
     var disposeBag = DisposeBag()
-    private var viewModel: ChefOrderTableViewModel?
 
     override func prepareForReuse() {
         self.disposeBag = DisposeBag()

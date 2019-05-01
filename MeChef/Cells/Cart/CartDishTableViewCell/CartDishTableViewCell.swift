@@ -1,8 +1,9 @@
 import UIKit
 import RxSwift
 import Nuke
+import SwipeCellKit
 
-class CartDishTableViewCell: UITableViewCell {
+class CartDishTableViewCell: SwipeTableViewCell {
 
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
@@ -13,6 +14,7 @@ class CartDishTableViewCell: UITableViewCell {
     @IBOutlet private weak var dishImageView: UIImageView!
 
     var disposeBag = DisposeBag()
+    var hasControlsExpanded = false
     private var viewModel: CartDishTableViewModel?
 
     override func prepareForReuse() {

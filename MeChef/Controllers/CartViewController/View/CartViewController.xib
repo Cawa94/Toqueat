@@ -65,9 +65,9 @@
                     </connections>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQp-iw-tpO" userLabel="Total">
-                    <rect key="frame" x="305" y="360" width="50" height="24"/>
+                    <rect key="frame" x="165" y="555.5" width="45" height="21.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -85,14 +85,14 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Oo2-O8-5fb" firstAttribute="top" secondItem="IWC-1W-VBT" secondAttribute="bottom" constant="15" id="1AU-IV-8eh"/>
+                <constraint firstItem="PQp-iw-tpO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8R5-ZW-Bbo"/>
+                <constraint firstItem="OLD-mA-vaf" firstAttribute="top" secondItem="PQp-iw-tpO" secondAttribute="bottom" constant="15" id="Aoq-hy-LjM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="OLD-mA-vaf" secondAttribute="bottom" constant="25" id="ECO-Pm-3XQ"/>
                 <constraint firstItem="IWC-1W-VBT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="J7C-2s-fRU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aZg-tE-jGX" secondAttribute="trailing" constant="15" id="QE1-pc-OEt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oo2-O8-5fb" secondAttribute="trailing" id="Sj6-k7-6oE"/>
                 <constraint firstItem="OLD-mA-vaf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="aEL-te-AUo"/>
-                <constraint firstItem="PQp-iw-tpO" firstAttribute="top" secondItem="Oo2-O8-5fb" secondAttribute="bottom" constant="15" id="aW2-FG-Di9"/>
                 <constraint firstItem="IWC-1W-VBT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aXP-tf-P6Q"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PQp-iw-tpO" secondAttribute="trailing" constant="20" id="gnz-gk-We9"/>
                 <constraint firstItem="aZg-tE-jGX" firstAttribute="centerY" secondItem="IWC-1W-VBT" secondAttribute="centerY" id="h1d-Rz-U1x"/>
                 <constraint firstItem="aZg-tE-jGX" firstAttribute="leading" secondItem="IWC-1W-VBT" secondAttribute="trailing" constant="5" id="hXM-BF-0aT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OLD-mA-vaf" secondAttribute="trailing" constant="20" id="iwZ-VG-buB"/>
@@ -100,7 +100,7 @@
                 <constraint firstItem="aZg-tE-jGX" firstAttribute="width" secondItem="aZg-tE-jGX" secondAttribute="height" multiplier="1:1" id="uzg-i9-Rnn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-1273" y="127"/>
+            <point key="canvasLocation" x="-1777" y="164"/>
         </view>
     </objects>
     <resources>

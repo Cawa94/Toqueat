@@ -50,7 +50,7 @@ extension ChefDeliverySlotsViewModel {
         if !editable {
             return .white
         }
-        return available ? .mainOrangeColor : .white
+        return available ? .white : .white
     }
 
     func textColorForAvailability(_ available: Bool) -> UIColor {

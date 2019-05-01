@@ -14,6 +14,7 @@ class ChefViewController: BaseTableViewController<Chef, Dish>,
     @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var navigationTitle: UILabel!
     @IBOutlet private weak var navigationBar: UIView!
+    @IBOutlet private weak var backArrowOrangeButton: UIButton!
 
     var chefViewModel: ChefViewModel! {
         didSet {
@@ -250,7 +251,8 @@ class ChefViewController: BaseTableViewController<Chef, Dish>,
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
         var headerTransform = CATransform3DIdentity
-        let blockProfileImageY = CGFloat(120)
+        let showNavigationBarY = CGFloat(30)
+        let showNavigationLabelY = CGFloat(120)
 
         if offset < 0 {
             // PULL DOWN -----------------
@@ -263,16 +265,18 @@ class ChefViewController: BaseTableViewController<Chef, Dish>,
                 + headerScaleFactor, 90)
         }
 
-        if offset >= 30 {
-            navigationBar.alpha = min (1.0, (offset - 30)/80)
+        if offset >= showNavigationBarY {
+            navigationBar.alpha = min (1.0, (offset - showNavigationBarY)/80)
         } else {
             navigationBar.alpha = 0.0
         }
 
-        if offset >= (blockProfileImageY) { // after top bar blocked, start showing label
-            navigationTitle.alpha = min (1.0, (offset - blockProfileImageY)/15)
+        if offset >= (showNavigationLabelY) { // after top bar blocked, start showing label
+            navigationTitle.alpha = min (1.0, (offset - showNavigationLabelY)/15)
+            backArrowOrangeButton.alpha = min (1.0, (offset - showNavigationLabelY)/15)
         } else {
             navigationTitle.alpha = 0.0
+            backArrowOrangeButton.alpha = 0.0
         }
 
         headerView.layer.transform = headerTransform

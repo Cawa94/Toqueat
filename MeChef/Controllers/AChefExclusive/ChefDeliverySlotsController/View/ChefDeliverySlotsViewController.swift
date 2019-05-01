@@ -82,6 +82,7 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
         self.hudOperationWithSingle(operationSingle: updateSingle,
                                     onSuccessClosure: { _ in
                                         self.chefDeliverySlotsViewModel.reload()
+                                        NavigationService.reloadChefOrders = true
                                         self.presentAlertWith(title: "YEAH",
                                                               message: "Slots updated")
                                     },

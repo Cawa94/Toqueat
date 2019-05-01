@@ -59,7 +59,7 @@ final class AddToCartView: UIView {
             addToBasketView.isHidden = true
             quantityControllerView.isHidden = false
             let totalPrice = viewModel.dish.price.multiplying(by: NSDecimalNumber(value: viewModel.quantityInCart))
-            quantityLabel.text = "x \(viewModel.quantityInCart) - "
+            quantityLabel.text = "x\(viewModel.quantityInCart) - "
                 + String(format: "€%.2f", Double(truncating: totalPrice))
             addOneButton.roundCorners(radii: 10)
             removeOneButton.roundCorners(radii: 10)

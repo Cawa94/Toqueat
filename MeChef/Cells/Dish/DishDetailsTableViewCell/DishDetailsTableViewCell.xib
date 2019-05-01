@@ -18,6 +18,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8v0-0u-njs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXc-eg-ZYu">
+                                <rect key="frame" x="144" y="129.5" width="87" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wXc-eg-ZYu" firstAttribute="centerY" secondItem="8v0-0u-njs" secondAttribute="centerY" id="EZ3-NH-Wi1"/>
+                            <constraint firstItem="wXc-eg-ZYu" firstAttribute="centerX" secondItem="8v0-0u-njs" secondAttribute="centerX" id="HSN-aU-6Zl"/>
+                        </constraints>
+                    </view>
                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="TSw-nf-20N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
                         <subviews>
@@ -35,7 +51,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ieh-uL-6yi" customClass="AddToCartView" customModule="Toqueat" customModuleProvider="target">
                                 <rect key="frame" x="20" y="91.5" width="335" height="50"/>
-                                <color key="backgroundColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ate-lg-ohN"/>
                                 </constraints>
@@ -82,22 +98,6 @@
                             <constraint firstItem="WPV-m2-esk" firstAttribute="trailing" secondItem="S2P-fG-Py4" secondAttribute="trailing" id="sVq-qo-diE"/>
                         </constraints>
                     </view>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8v0-0u-njs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXc-eg-ZYu">
-                                <rect key="frame" x="144" y="129.5" width="87" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="wXc-eg-ZYu" firstAttribute="centerY" secondItem="8v0-0u-njs" secondAttribute="centerY" id="EZ3-NH-Wi1"/>
-                            <constraint firstItem="wXc-eg-ZYu" firstAttribute="centerX" secondItem="8v0-0u-njs" secondAttribute="centerX" id="HSN-aU-6Zl"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="TSw-nf-20N" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2cN-XI-IQJ"/>
@@ -118,7 +118,7 @@
                 <outlet property="nameLabel" destination="S2P-fG-Py4" id="hN7-ik-PZQ"/>
                 <outlet property="placeholderContainerViewOutlet" destination="8v0-0u-njs" id="Qtp-8g-sir"/>
             </connections>
-            <point key="canvasLocation" x="41" y="34"/>
+            <point key="canvasLocation" x="-153" y="34"/>
         </tableViewCell>
     </objects>
 </document>
