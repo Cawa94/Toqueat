@@ -54,7 +54,7 @@ extension ChefDeliverySlotsViewModel {
     }
 
     func textColorForAvailability(_ available: Bool) -> UIColor {
-        return available ? .darkGrayColor : .lightGrayColor
+        return available ? .mainOrangeColor : .lightGrayColor
     }
 
     func toggle(slot: DeliverySlot) {

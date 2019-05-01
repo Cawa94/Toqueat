@@ -39,6 +39,7 @@ struct CartService {
         localCart = cart.copyWith(dishes: newDishes, chef: chef)
         let generator = UIImpactFeedbackGenerator(style: .heavy)
         generator.impactOccurred()
+        NavigationService.animateBasketItem()
     }
 
     static func removeFromCart(_ dish: LocalCartDish) {

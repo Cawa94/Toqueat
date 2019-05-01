@@ -1,6 +1,15 @@
 import UIKit
+import RxSwift
 
 class MainTabViewController: UITabBarController {
+
+    private let disposeBag = DisposeBag()
+
+    var basketViewFrame: CGRect {
+        let xCoord = (tabBar.frame.width / 3) * 2
+        return CGRect(x: xCoord, y: self.view.frame.height - 75,
+                      width: tabBar.frame.width / 3, height: 50)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +26,13 @@ class MainTabViewController: UITabBarController {
             let cartController = NavigationService.cartTab()
 
             viewControllers = [ chefsController, dishesController, cartController ]
+
+            CartService.localCartDriver.drive(onNext: { localCart in
+                let cartController = self.viewControllers?[2]
+                cartController?.tabBarItem.title = String(format: "€%.2f", Double(truncating: localCart?.total ?? 0.00))
+                self.setBadgeValue(localCart?.dishes?.count ?? 0)
+            }).disposed(by: disposeBag)
+
         } else if let chefId = SessionService.session?.chef?.id {
             let chefOrdersController = NavigationService.chefOrderTab(chefId: chefId)
             let chefDishesController = NavigationService.chefDishesTab(chefId: chefId)
@@ -31,4 +47,36 @@ class MainTabViewController: UITabBarController {
         }
     }
 
+    func setBadgeValue(_ value: Int = 0) {
+        for view in self.tabBar.subviews {
+            if let badgeView = view as? PGTabBadge {
+                badgeView.removeFromSuperview()
+            }
+        }
+        addBadge(value: value)
+    }
+
+    func addBadge(value: Int) {
+        let itemPosition = CGFloat(3)
+        let itemWidth: CGFloat = tabBar.frame.width / 3
+        let xOffset: CGFloat = 12
+        let yOffset: CGFloat = -9
+        let badgeView = PGTabBadge()
+        badgeView.frame.size = CGSize(width: 17, height: 17)
+        badgeView.center = CGPoint(x: (itemWidth * itemPosition) - (itemWidth/2) + xOffset,
+                                   y: 20 + yOffset)
+        badgeView.layer.cornerRadius = badgeView.bounds.width/2
+        badgeView.clipsToBounds = true
+        badgeView.textColor = .white
+        badgeView.textAlignment = .center
+        badgeView.font = .boldFontOf(size: 11)
+        badgeView.text = "\(value)"
+        badgeView.backgroundColor = .mainOrangeColor
+        badgeView.tag = 3
+        tabBar.addSubview(badgeView)
+        tabBar.bringSubviewToFront(badgeView)
+    }
+
 }
+
+class PGTabBadge: UILabel {}

@@ -158,4 +158,20 @@ extension NavigationService {
         push(viewController: deliverySlotsController, animated: true)
     }
 
+    static func animateBasketItem() {
+        guard let mainController = NavigationService.mainViewController,
+            let cartItem = mainController.tabBar.items?[2]
+            else { return }
+        if let view = cartItem.value(forKey: "view") as? UIView {
+            view.layer.add(bounceAnimation, forKey: nil)
+        }
+    }
+
+    private static var bounceAnimation: CAKeyframeAnimation = {
+        let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        bounceAnimation.values = [1.0, 1.4, 1.0]
+        bounceAnimation.duration = TimeInterval(0.2)
+        return bounceAnimation
+    }()
+
 }

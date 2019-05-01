@@ -97,7 +97,7 @@ extension DeliverySlotsViewModel {
         if isSelected || hasOrder {
             return .white
         }
-        return available ? .darkGrayColor : .lightGrayColor
+        return available ? .mainOrangeColor : .lightGrayColor
     }
 
 }

@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import Swi
 
 class CartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
     UIGestureRecognizerDelegate {
@@ -114,3 +115,5 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
 }
+
+extension CartViewController: Swip

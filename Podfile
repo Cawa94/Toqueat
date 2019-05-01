@@ -21,4 +21,5 @@ target 'Toqueat' do
   pod 'Nuke'
   pod 'RxOptional'
   pod 'MBProgressHUD'
+  pod 'SwipeCellKit'
 end
