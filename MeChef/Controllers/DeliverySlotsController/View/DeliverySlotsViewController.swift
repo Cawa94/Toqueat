@@ -63,14 +63,6 @@ class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
         title = "Delivery time"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(closeDeliverySlot))
-    }
-
-    @objc func closeDeliverySlot() {
-        NavigationService.popNavigationTopController()
     }
 
     // MARK: - Collection view data source and delegate methods
@@ -122,26 +114,30 @@ class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 40)
+        if indexPath.section == 0 { // weekdays
+            return CGSize(width: 120, height: 50)
+        }
+        return CGSize(width: 120, height: 40)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let deliverySlot = deliverySlotsViewModel.deliverySlotAt(indexPath)
         if deliverySlotsViewModel.isAvailableAt(indexPath),
             !deliverySlotsViewModel.hasAnOrderWith(slotId: deliverySlot.id) {
-            CartService.localCart = CartService.localCart?.copyWith(deliveryDate: deliverySlotsViewModel
-                .deliveryDate(weekdayId: deliverySlot.weekdayId, hourId: deliverySlot.hourId),
+            let deliveryDate = deliverySlotsViewModel
+                .deliveryDate(weekdayId: deliverySlot.weekdayId, hourId: deliverySlot.hourId)
+            CartService.localCart = CartService.localCart?.copyWith(deliveryDate: deliveryDate,
                                                                     deliverySlotId: deliverySlot.id)
             deliverySlotsViewModel.selectedSlot = deliverySlot
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
-            showToast(for: deliverySlot)
+            showToast(for: deliverySlot, date: deliveryDate)
         }
     }
 
-    func showToast(for deliverySlot: DeliverySlot) {
-        goToPaymentView.configure(with: GoToPaymentViewModel(selectedSlot: deliverySlot))
+    func showToast(for deliverySlot: DeliverySlot, date: Date) {
+        goToPaymentView.configure(with: GoToPaymentViewModel(selectedSlot: deliverySlot, date: date))
 
         UIView.animate(withDuration: 0.25) {
             self.goToPaymentBottomConstraint.constant = .bottomPadding

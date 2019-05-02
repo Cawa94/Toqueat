@@ -53,25 +53,12 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
         title = "Chef Availability"
-        if !chefDeliverySlotsViewModel.editable {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close",
-                                                                style: .plain,
-                                                                target: self,
-                                                                action: #selector(closeAvailability))
-        } else {
+        if chefDeliverySlotsViewModel.editable {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
                                                                 style: .done,
                                                                 target: self,
                                                                 action: #selector(saveAndClose))
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-                                                               style: .plain,
-                                                               target: self,
-                                                               action: #selector(closeAvailability))
         }
-    }
-
-    @objc func closeAvailability() {
-        NavigationService.popNavigationTopController()
     }
 
     @objc func saveAndClose() {

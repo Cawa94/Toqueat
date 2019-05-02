@@ -42,7 +42,7 @@ final class GoToPaymentView: UIView {
         whiteBackgroundView.layer.cornerRadius = 15.0
         whiteBackgroundView.clipsToBounds = true
         whiteBackgroundView.drawShadow(cornerRadii: 15.0,
-                                       size: CGSize(width: 0, height: 5),
+                                       size: CGSize(width: 5, height: 5),
                                        opacity: 0.2)
         let buttonModel = RoundedButtonViewModel(title: "Proceed to checkout",
                                                  type: .defaultOrange)
@@ -56,7 +56,8 @@ extension GoToPaymentView: ConfigurableView {
     public func configure(with viewModel: GoToPaymentViewModel) {
         self.viewModel = viewModel
 
-        messageLabel.attributedText = viewModel.selectedSlot.attributedDeliveryMessage
+        messageLabel.attributedText = viewModel.selectedSlot
+            .attributedDeliveryMessage(with: viewModel.date)
     }
 
 }

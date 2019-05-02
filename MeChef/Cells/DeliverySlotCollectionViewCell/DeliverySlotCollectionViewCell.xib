@@ -37,7 +37,7 @@
             <connections>
                 <outlet property="titleLabel" destination="tS6-NN-VNY" id="OGn-ka-f7P"/>
             </connections>
-            <point key="canvasLocation" x="-25" y="151"/>
+            <point key="canvasLocation" x="-7.2000000000000002" y="142.1289355322339"/>
         </collectionViewCell>
     </objects>
 </document>

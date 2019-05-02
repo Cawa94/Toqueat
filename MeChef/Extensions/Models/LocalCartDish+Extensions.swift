@@ -20,10 +20,6 @@ extension LocalCartDish {
         return dishes.filter { $0.id == self.id }.count
     }
 
-    var priceWithCurrency: String {
-        return String(format: "€%.2f", Double(truncating: price))
-    }
-
 }
 
 extension LocalCartDish: Equatable {

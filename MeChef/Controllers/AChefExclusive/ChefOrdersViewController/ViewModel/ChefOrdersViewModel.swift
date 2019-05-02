@@ -13,9 +13,17 @@ final class ChefOrdersViewModel: BaseStatefulViewModel<ChefOrdersViewModel.Resul
     var chefId: Int64
     var chefSlots: [DeliverySlot] = []
     var today = DateInRegion().dateAt(.startOfDay)
+    var weekdaysOrdered: [Int64]
 
     init(chefId: Int64) {
         self.chefId = chefId
+        let firstDay = today.weekday != 1 ? today.weekday - 1 : 7
+        var tempWeekdays = DeliverySlot.weekdayTable.map { $0.key }.sorted(by: { $0 < $1 })
+        let toMoveDays = tempWeekdays[0...firstDay - 2]
+        tempWeekdays.removeSubrange(0...firstDay - 2)
+        tempWeekdays.append(contentsOf: toMoveDays)
+        self.weekdaysOrdered = tempWeekdays
+
         let ordersRequest = NetworkService.shared.getOrdersFor(chefId: chefId)
         let slotsRequest = NetworkService.shared.getDeliverySlotFor(chefId: chefId)
 
@@ -28,15 +36,6 @@ final class ChefOrdersViewModel: BaseStatefulViewModel<ChefOrdersViewModel.Resul
 }
 
 extension ChefOrdersViewModel {
-
-    var weekdaysOrdered: [Int64] {
-        let firstDay = today.weekday != 1 ? today.weekday - 1 : 7
-        var tempWeekdays = DeliverySlot.weekdayTable.map { $0.key }.sorted(by: { $0 < $1 })
-        let toMoveDays = tempWeekdays[0...firstDay - 2]
-        tempWeekdays.removeSubrange(0...firstDay - 2)
-        tempWeekdays.append(contentsOf: toMoveDays)
-        return tempWeekdays
-    }
 
     func elementTitleAt(_ indexPath: IndexPath) -> String {
         switch indexPath.section {

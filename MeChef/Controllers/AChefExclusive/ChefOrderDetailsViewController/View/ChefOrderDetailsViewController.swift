@@ -32,17 +32,11 @@ class ChefOrderDetailsViewController: UIViewController, UITableViewDelegate, UIT
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .mainOrangeColor
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.mainOrangeColor]
+            [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
         navigationController?.isNavigationBarHidden = false
         title = "Order Details"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(dismissOrder))
-    }
-
-    @objc func dismissOrder() {
-        NavigationService.popNavigationTopController()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ",
+                                                           style: .plain, target: nil, action: nil)
     }
 
     @IBAction func confirmOrderAction(_ sender: Any) {

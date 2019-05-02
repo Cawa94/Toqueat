@@ -29,7 +29,8 @@ class MainTabViewController: UITabBarController {
 
             CartService.localCartDriver.drive(onNext: { localCart in
                 let cartController = self.viewControllers?[2]
-                cartController?.tabBarItem.title = String(format: "€%.2f", Double(truncating: localCart?.total ?? 0.00))
+                let totalInCart = localCart?.total ?? 0.00
+                cartController?.tabBarItem.title = totalInCart.stringWithCurrency
                 self.setBadgeValue(localCart?.dishes?.count ?? 0)
             }).disposed(by: disposeBag)
 

@@ -20,15 +20,8 @@ class OrdersViewController: BaseTableViewController<[Order], Order> {
     }
 
     override func configureNavigationBar() {
+        super.configureNavigationBar()
         title = "My Orders"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(closeOrders))
-    }
-
-    @objc func closeOrders() {
-        NavigationService.popNavigationTopController()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

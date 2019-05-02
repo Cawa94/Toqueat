@@ -18,17 +18,11 @@ class OrderDetailsViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .mainOrangeColor
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.mainOrangeColor]
+            [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
         navigationController?.isNavigationBarHidden = false
         title = "Order Details"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(closeOrder))
-    }
-
-    @objc func closeOrder() {
-        NavigationService.popNavigationTopController()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ",
+                                                           style: .plain, target: nil, action: nil)
     }
 
 }

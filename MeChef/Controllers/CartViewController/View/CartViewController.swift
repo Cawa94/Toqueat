@@ -32,7 +32,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         CartService.localCartDriver.drive(onNext: { localCart in
             self.cartViewModel.cart = localCart
-            self.totalLabel.text = "Total: \(String(format: "€%.2f", Double(truncating: localCart?.total ?? 0.00)))"
+            self.totalLabel
+                .text = "Total: \(localCart?.total.stringWithCurrency ?? NSDecimalNumber(value: 0).stringWithCurrency)"
             self.tableView.reloadData()
             self.checkoutButton.isHidden = localCart?.dishes?.isEmpty ?? true
             self.totalLabel.isHidden = localCart?.dishes?.isEmpty ?? true
@@ -59,9 +60,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     // MARK: - UITableViewDelegate
-/*
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return 90
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -70,14 +71,9 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             let chef = cartViewModel.chef
             else { return nil }
         headerCell.configure(chef: chef)
-        headerCell.availabilityButton.rx.tapGesture().when(.recognized)
-            .subscribe(onNext: { _ in
-                NavigationService.pushChefDeliverySlotsViewController(chefId: chef.id)
-            })
-            .disposed(by: headerCell.disposeBag)
         return headerCell
     }
-*/
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -87,7 +83,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

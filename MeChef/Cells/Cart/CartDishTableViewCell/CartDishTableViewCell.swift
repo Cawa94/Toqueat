@@ -54,9 +54,9 @@ extension CartDishTableViewCell: PlaceholderConfigurable {
 
         nameLabel.text = contentViewModel.dish.name
         let dishQuantity = contentViewModel.quantityInOrder ?? contentViewModel.dish.quantityInCart
-        quantityLabel.text = "x\(dishQuantity)"
+        quantityLabel.text = dishQuantity > 1 ? "\(dishQuantity) dishes" : "\(dishQuantity) dish"
         let totalPrice = contentViewModel.dish.price.multiplying(by: NSDecimalNumber(value: dishQuantity))
-        priceLabel.text = String(format: "€%.2f", Double(truncating: totalPrice))
+        priceLabel.text = totalPrice.stringWithCurrency
 
         if let url = contentViewModel.dish.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)

@@ -75,10 +75,10 @@ extension DeliverySlot {
         return hoursTable[hourId] ?? "Unknown"
     }
 
-    var attributedDeliveryMessage: NSAttributedString {
+    func attributedDeliveryMessage(with date: Date) -> NSAttributedString {
         return NSMutableAttributedString()
-            .normal("Our car will be next to your house ", size: 15.0)
-            .bold(weekday, size: 15.0)
+            .normal("You will receive your order ", size: 15.0)
+            .bold("\(weekday) \(date.day) \(date.monthName(.default))", size: 15.0)
             .normal(" between ", size: 15.0)
             .bold(hourRange, size: 15.0)
     }

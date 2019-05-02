@@ -38,21 +38,15 @@ class ChefDishViewController: UIViewController,
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .mainOrangeColor
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.mainOrangeColor]
+            [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
         navigationController?.isNavigationBarHidden = false
         title = viewModel.dish != nil ? "Edit dish" : "New dish"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(saveAndClose))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(dismissDish))
-    }
-
-    @objc func dismissDish() {
-        NavigationService.popNavigationTopController()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ",
+                                                           style: .plain, target: nil, action: nil)
     }
 
     @objc func saveAndClose() {
@@ -125,7 +119,7 @@ class ChefDishViewController: UIViewController,
                 dishImageView.contentMode = .scaleAspectFill
             }
             nameTextField.text = dish.name
-            priceTextField.text = dish.priceWithoutCurrency
+            priceTextField.text = dish.price.stringWithoutCurrency
             typeTextField.text = "Main course"
             servingsTextField.text = "2"
             descriptionTextView.text = dish.description

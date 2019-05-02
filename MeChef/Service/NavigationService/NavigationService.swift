@@ -134,7 +134,7 @@ extension NavigationService {
     }
 
     static func dismissCartNavigationController() {
-        rootNavigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 
     static func presentAddress(controller: AddressViewController) {

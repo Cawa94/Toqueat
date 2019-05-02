@@ -15,7 +15,7 @@ class DeliverySlotCollectionViewCell: UICollectionViewCell {
 
     func drawBorders(isWeekday: Bool) {
         if isWeekday {
-            addLine(position: .bottom, color: .mainOrangeColor, width: 1.5)
+            addLine(position: .bottom, color: .weekdayBorderColor, width: 1)
         } else {
             roundCorners(radii: 0, borderWidth: 0.5, borderColor: .lightGrayBorderColor)
         }

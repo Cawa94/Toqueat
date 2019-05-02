@@ -55,7 +55,7 @@ extension ChefDishTableViewCell: PlaceholderConfigurable {
         self.viewModel = contentViewModel
 
         nameLabel.text = contentViewModel.name
-        priceLabel.text = contentViewModel.priceWithCurrency
+        priceLabel.text = contentViewModel.price.stringWithCurrency
         if let url = contentViewModel.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)
         } else {

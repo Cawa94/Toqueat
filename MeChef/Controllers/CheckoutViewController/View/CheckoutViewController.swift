@@ -2,7 +2,6 @@ import RxSwift
 
 class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultType> {
 
-    @IBOutlet weak var headerView: CartHeaderView!
     @IBOutlet weak var deliveryDateLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dishesPriceLabel: UILabel!
@@ -20,9 +19,6 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        deliveryDateLabel.text = CartService.localCart?.deliveryDate?.toFormat("dd MMM 'at' HH:mm")
-        addressLabel.text = SessionService.session?.user?.address.fullAddress
-
         let completeOrderModel = RoundedButtonViewModel(title: "Complete Order", type: .squeezedOrange)
         completeOrderButton.configure(with: completeOrderModel)
     }
@@ -31,14 +27,6 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
         title = "Checkout"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(closeCheckout))
-    }
-
-    @objc func closeCheckout() {
-        NavigationService.popNavigationTopController()
     }
 
     // MARK: - Actions
@@ -75,11 +63,12 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        headerView.configure(chef: checkoutViewModel.result.chef)
+        deliveryDateLabel.attributedText = checkoutViewModel.cart.deliveryDate?.attributedCheckoutMessage
+        addressLabel.text = SessionService.session?.user?.address.fullAddress
         let newTotal = (CartService.localCart?.total ?? 0.00).adding(checkoutViewModel.result.deliveryCost)
-        deliveryPriceLabel.text = "€\(checkoutViewModel.result.deliveryCost)"
-        dishesPriceLabel.text = "€\(CartService.localCart?.total ?? 0.00)"
-        totalPriceLabel.text = "€\(newTotal)"
+        deliveryPriceLabel.text = checkoutViewModel.result.deliveryCost.stringWithCurrency
+        dishesPriceLabel.text = CartService.localCart?.total.stringWithCurrency
+        totalPriceLabel.text = newTotal.stringWithCurrency
         super.onResultsState()
     }
 

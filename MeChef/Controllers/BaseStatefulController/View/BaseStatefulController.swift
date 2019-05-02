@@ -27,8 +27,8 @@ class BaseStatefulController<ResultType>: UIViewController, StatefulViewControll
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .mainOrangeColor
         navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.mainOrangeColor]
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "",
+            [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ",
                                                            style: .plain, target: nil, action: nil)
     }
 

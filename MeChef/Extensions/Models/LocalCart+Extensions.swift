@@ -32,11 +32,3 @@ extension LocalCart {
     }
 
 }
-
-extension NSDecimalNumber {
-
-    static func + (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
-        return lhs.adding(rhs)
-    }
-
-}

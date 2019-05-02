@@ -52,7 +52,7 @@ extension OrderTableViewCell: PlaceholderConfigurable {
         self.viewModel = contentViewModel
 
         chefLabel.text = contentViewModel.order.chef.name
-        totalLabel.text = String(format: "€%.2f", Double(truncating: contentViewModel.order.totalPrice))
+        totalLabel.text = contentViewModel.order.totalPrice.stringWithCurrency
         deliveryLabel.text = "\(contentViewModel.delivery)"
         stateLabel.text = "\(contentViewModel.order.state.capitalized)"
         stateLabel.textColor = contentViewModel.colorFor(contentViewModel.order.orderState)

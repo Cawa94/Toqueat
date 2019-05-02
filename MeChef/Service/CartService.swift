@@ -33,7 +33,10 @@ struct CartService {
 
     static func addToCart(_ dish: LocalCartDish, chef: BaseChef? = nil) {
         guard let cart = localCart
-            else { return }
+            else {
+                NavigationService.makeLoginRootController()
+                return
+            }
         var newDishes = cart.dishes ?? []
         newDishes.append(dish)
         localCart = cart.copyWith(dishes: newDishes, chef: chef)

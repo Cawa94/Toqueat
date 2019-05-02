@@ -61,14 +61,8 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6E-be-Mvj">
                     <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgQ-LZ-Nyb">
-                            <rect key="frame" x="5" y="14.5" width="20" height="21.5"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23x-bI-ITa">
-                            <rect key="frame" x="172" y="0.0" width="71.5" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="71.5" height="50"/>
                             <color key="backgroundColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="hCl-g0-O8g"/>
@@ -80,6 +74,12 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x1 - $15,92" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgQ-LZ-Nyb">
+                            <rect key="frame" x="121.5" y="14.5" width="92" height="21.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAP-KF-RV6">
                             <rect key="frame" x="263.5" y="0.0" width="71.5" height="50"/>
                             <color key="backgroundColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -96,10 +96,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="HgQ-LZ-Nyb" firstAttribute="leading" secondItem="G6E-be-Mvj" secondAttribute="leading" constant="5" id="D7N-gP-rl1"/>
-                        <constraint firstItem="gAP-KF-RV6" firstAttribute="leading" secondItem="23x-bI-ITa" secondAttribute="trailing" constant="20" id="Fuq-FW-rui"/>
+                        <constraint firstItem="23x-bI-ITa" firstAttribute="leading" secondItem="G6E-be-Mvj" secondAttribute="leading" id="Dey-sn-axp"/>
                         <constraint firstItem="23x-bI-ITa" firstAttribute="centerY" secondItem="G6E-be-Mvj" secondAttribute="centerY" id="X4v-CJ-qKx"/>
                         <constraint firstItem="HgQ-LZ-Nyb" firstAttribute="centerY" secondItem="G6E-be-Mvj" secondAttribute="centerY" id="cb0-WZ-srJ"/>
+                        <constraint firstItem="HgQ-LZ-Nyb" firstAttribute="centerX" secondItem="G6E-be-Mvj" secondAttribute="centerX" id="en3-7o-vH3"/>
                         <constraint firstItem="gAP-KF-RV6" firstAttribute="centerY" secondItem="G6E-be-Mvj" secondAttribute="centerY" id="iuK-qU-vHf"/>
                         <constraint firstAttribute="trailing" secondItem="gAP-KF-RV6" secondAttribute="trailing" id="pfu-q6-fM3"/>
                     </constraints>
@@ -117,7 +117,7 @@
                 <constraint firstItem="G6E-be-Mvj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uyM-mm-c5b"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-479" y="129"/>
+            <point key="canvasLocation" x="-682" y="98"/>
         </view>
     </objects>
 </document>

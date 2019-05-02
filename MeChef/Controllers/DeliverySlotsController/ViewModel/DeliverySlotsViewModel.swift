@@ -13,9 +13,17 @@ final class DeliverySlotsViewModel: BaseStatefulViewModel<DeliverySlotsViewModel
     var chefId: Int64
     var selectedSlot: DeliverySlot?
     var today = DateInRegion().dateAt(.startOfDay)
+    var weekdaysOrdered: [Int64]
 
     init(chefId: Int64) {
         self.chefId = chefId
+        let firstDay = today.weekday != 1 ? today.weekday - 1 : 7
+        var tempWeekdays = DeliverySlot.weekdayTable.map { $0.key }.sorted(by: { $0 < $1 })
+        let toMoveDays = tempWeekdays[0...firstDay - 2]
+        tempWeekdays.removeSubrange(0...firstDay - 2)
+        tempWeekdays.append(contentsOf: toMoveDays)
+        self.weekdaysOrdered = tempWeekdays
+
         let slotsRequest = NetworkService.shared.getDeliverySlotFor(chefId: chefId)
         let slotsBusyRequest = NetworkService.shared.getDeliverySlotBusyIdsFor(chefId: chefId)
 
@@ -30,22 +38,13 @@ final class DeliverySlotsViewModel: BaseStatefulViewModel<DeliverySlotsViewModel
 
 extension DeliverySlotsViewModel {
 
-    var weekdaysOrdered: [Int64] {
-        let firstDay = today.weekday != 1 ? today.weekday - 1 : 7
-        var tempWeekdays = DeliverySlot.weekdayTable.map { $0.key }.sorted(by: { $0 < $1 })
-        let toMoveDays = tempWeekdays[0...firstDay - 2]
-        tempWeekdays.removeSubrange(0...firstDay - 2)
-        tempWeekdays.append(contentsOf: toMoveDays)
-        return tempWeekdays
-    }
-
     func elementTitleAt(_ indexPath: IndexPath) -> String {
         switch indexPath.section {
         case 0:
             //let slot = deliverySlotAt(IndexPath(row: indexPath.row, section: indexPath.section + 1))
             //return "\(slot.weekday)"
             let dayDate = today.dateByAdding(indexPath.row, .day)
-            return "\(dayDate.weekdayName(.short)) \(dayDate.day)"
+            return "\(dayDate.weekdayName(.default)) \(dayDate.day)"
         default:
             return DeliverySlot.hoursRangeWithIndex(indexPath.section)
         }
@@ -58,10 +57,10 @@ extension DeliverySlotsViewModel {
     }
 
     func deliveryDate(weekdayId: Int64, hourId: Int64) -> Date {
-        let deliveryDay = Date().next(weekdayId)
+        let deliveryDay = Date().next(weekdayId + 1)
         guard let deliveryDate = deliveryDay.dateBySet(hour: Int(hourId) + 5, min: nil, secs: nil)
             else { fatalError("Cannot create date") }
-
+        debugPrint(deliveryDate)
         return deliveryDate
     }
 
