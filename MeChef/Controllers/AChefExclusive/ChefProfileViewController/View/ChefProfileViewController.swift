@@ -97,25 +97,25 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
                                                       chefImageUrl: chefProfileViewModel.result.avatarLink)
             baseInfoCell.configureWith(contentViewModel: viewModel)
         case let barCell as UserBarTableViewCell:
-            let viewModel: UserBarViewModel
+            let viewModel: UserBarTableViewModel
             switch indexPath.section {
             case 1:
                 switch indexPath.row {
                 case 0:
-                    viewModel = UserBarViewModel(option: "My Availability", hideBottomLine: true)
+                    viewModel = UserBarTableViewModel(option: "My Availability")
                 case 1:
-                    viewModel = UserBarViewModel(option: "My Address", hideBottomLine: true)
+                    viewModel = UserBarTableViewModel(option: "My Address")
                 case 2:
-                    viewModel = UserBarViewModel(option: "My Orders", hideBottomLine: true)
+                    viewModel = UserBarTableViewModel(option: "My Orders")
                 case 3:
-                    viewModel = UserBarViewModel(option: "Notifications")
+                    viewModel = UserBarTableViewModel(option: "Notifications", hideBottomLine: false)
                 default:
-                    viewModel = UserBarViewModel(option: "Unknown")
+                    viewModel = UserBarTableViewModel(option: "Unknown")
                 }
             case 2:
-                viewModel = UserBarViewModel(option: "Log out", arrowHidden: true)
+                viewModel = UserBarTableViewModel(option: "Log out", arrowHidden: true, hideBottomLine: false)
             default:
-                viewModel = UserBarViewModel(option: "Unknown")
+                viewModel = UserBarTableViewModel(option: "Unknown")
             }
             barCell.configureWith(contentViewModel: viewModel)
         default:
@@ -154,7 +154,7 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
             else { return }
         switch indexPath.section {
         case 0:
-        break // Show User Details
+            NavigationService.pushEditPeronalDetailsViewController()
         case 1:
             switch indexPath.row {
             case 0:

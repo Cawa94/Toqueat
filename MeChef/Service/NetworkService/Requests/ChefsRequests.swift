@@ -57,4 +57,27 @@ extension NetworkService {
             .map { $0.chefs }
     }
 
+    // swiftlint:disable all
+    func uploadAvatar(for chefId: Int64, imageData: Data, completion: @escaping (_ error: Error?) -> Void) {
+        let relativeUrl = "chefs/\(chefId)/update_avatar"
+        let fullUrl = URL(string: NetworkService.baseUrl + relativeUrl)!
+        let request = NSMutableURLRequest(url: fullUrl)
+        request.httpMethod = "POST"
+
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpBody = createBodyWithParameters(filePathKey: "chef_avatar", imageDataKey: imageData, boundary: boundary)
+
+        let task =  URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
+            (data, response, error) -> Void in
+            if data != nil {
+                completion(nil)
+            } else if let error = error {
+                completion(error)
+            }
+        })
+
+        task.resume()
+    }
+
 }

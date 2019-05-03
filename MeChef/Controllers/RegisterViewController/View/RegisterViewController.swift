@@ -1,8 +1,9 @@
 import UIKit
 import RxSwift
+import SwiftValidator
 
 class RegisterViewController: BaseStatefulController<[City]>,
-    UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDelegate {
 
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var lastnameTextField: UITextField!
@@ -22,20 +23,14 @@ class RegisterViewController: BaseStatefulController<[City]>,
     }
 
     private let disposeBag = DisposeBag()
+    private let validator = Validator()
     private let cityPicker = UIPickerView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nameTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
-        lastnameTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
-        emailTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
-        passwordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
-        confirmPasswordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
-        cityTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
-        streetTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
-        apartmentTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
-        zipcodeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        addLinesToTextfields()
+        addValidationRules()
 
         cityTextField.inputView = cityPicker
         cityPicker.delegate = self
@@ -45,6 +40,38 @@ class RegisterViewController: BaseStatefulController<[City]>,
     }
 
     @IBAction func performRegistration(_ sender: Any) {
+        validator.validate(self)
+    }
+
+    @IBAction func backToLogin(_ sender: Any) {
+        NavigationService.makeLoginRootController()
+    }
+
+    func addLinesToTextfields() {
+        nameTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        lastnameTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        emailTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        passwordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        confirmPasswordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        cityTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        streetTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        apartmentTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        zipcodeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+    }
+
+    func addValidationRules() {
+        validator.registerField(nameTextField, rules: [RequiredRule()])
+        validator.registerField(lastnameTextField, rules: [RequiredRule()])
+        validator.registerField(emailTextField, rules: [RequiredRule()])
+        validator.registerField(passwordTextField, rules: [RequiredRule()])
+        validator.registerField(confirmPasswordTextField, rules: [RequiredRule()])
+        validator.registerField(cityTextField, rules: [RequiredRule()])
+        validator.registerField(streetTextField, rules: [RequiredRule()])
+        validator.registerField(apartmentTextField, rules: [RequiredRule()])
+        validator.registerField(zipcodeTextField, rules: [RequiredRule()])
+    }
+
+    func validationSuccessful() {
         guard let name = nameTextField.text, let lastName = lastnameTextField.text,
             let email = emailTextField.text, let password = passwordTextField.text,
             let cityId = registerViewModel.cities.first(where: { $0.name == cityTextField.text })?.id,
@@ -78,8 +105,15 @@ class RegisterViewController: BaseStatefulController<[City]>,
             .disposed(by: disposeBag)
     }
 
-    @IBAction func backToLogin(_ sender: Any) {
-        NavigationService.makeLoginRootController()
+    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        // turn the fields to red
+        for (field, _) in errors {
+            if let field = field as? UITextField {
+                field.attributedPlaceholder = NSAttributedString(
+                    string: field.placeholder ?? "",
+                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            }
+        }
     }
 
     // MARK: - StatefulViewController related methods
@@ -124,7 +158,35 @@ class RegisterViewController: BaseStatefulController<[City]>,
         } else {
             return true
         }
+    }
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.placeholder = nil
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField {
+        case nameTextField:
+            textField.placeholder = "Name"
+        case lastnameTextField:
+            textField.placeholder = "Lastname"
+        case emailTextField:
+            textField.placeholder = "Email"
+        case passwordTextField:
+            textField.placeholder = "Password"
+        case confirmPasswordTextField:
+            textField.placeholder = "Confirm password"
+        case cityTextField:
+            textField.placeholder = "City"
+        case streetTextField:
+            textField.placeholder = "Street"
+        case apartmentTextField:
+            textField.placeholder = "Apartment"
+        case zipcodeTextField:
+            textField.placeholder = "Zipcode"
+        default:
+            break
+        }
     }
 
 }

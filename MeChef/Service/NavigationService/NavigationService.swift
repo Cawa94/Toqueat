@@ -105,6 +105,11 @@ extension NavigationService {
         push(viewController: ordersController, animated: true)
     }
 
+    static func pushEditPeronalDetailsViewController() {
+        let editDetailsController = editPersonalDetailsViewController()
+        push(viewController: editDetailsController, animated: true)
+    }
+
     static func pushTrackOrderViewController(orderId: Int64,
                                              stuartId: Int64?) {
         let trackOrderController = trackOrderViewController(orderId: orderId,

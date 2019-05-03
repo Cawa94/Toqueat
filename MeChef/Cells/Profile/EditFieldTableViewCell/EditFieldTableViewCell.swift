@@ -1,20 +1,19 @@
 import UIKit
 
-final class UserBarTableViewCell: UITableViewCell {
+final class EditFieldTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
-    @IBOutlet private weak var optionLabel: UILabel!
-    @IBOutlet private weak var arrowImageView: UIImageView!
+    @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var bottomSpacerView: UIView!
 
-    var viewModel: UserBarTableViewModel?
+    var viewModel: EditFieldTableViewModel?
 
 }
 
-extension UserBarTableViewCell: PlaceholderConfigurable {
+extension EditFieldTableViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = UserBarTableViewModel
+    typealias ContentViewModelType = EditFieldTableViewModel
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -25,7 +24,7 @@ extension UserBarTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWith(loading: Bool = false, contentViewModel: UserBarTableViewModel? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: EditFieldTableViewModel? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -33,11 +32,12 @@ extension UserBarTableViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: UserBarTableViewModel) {
+    func configure(contentViewModel: EditFieldTableViewModel) {
         self.viewModel = contentViewModel
 
-        optionLabel.text = contentViewModel.option
-        arrowImageView.isHidden = contentViewModel.arrowHidden
+        textField.text = contentViewModel.fieldValue
+        textField.placeholder = contentViewModel.placeholder
+        textField.isSecureTextEntry = contentViewModel.secureText
         bottomSpacerView.isHidden = contentViewModel.hideBottomLine
     }
 

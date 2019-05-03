@@ -94,6 +94,10 @@ class ChefDishViewController: UIViewController,
 
     func configureXibElements() {
         dishImageView.roundCorners(radii: 15.0)
+        dishImageView.rx.tapGesture().when(.recognized).asDriver()
+            .drive(onNext: { _ in
+                self.pickImageAction()
+            }).disposed(by: disposeBag)
         nameTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         priceTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         typeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
@@ -140,7 +144,7 @@ class ChefDishViewController: UIViewController,
         + 600 // Content without description
     }
 
-    @IBAction func pickImageAction(_ sender: Any) {
+    func pickImageAction() {
         ImagePickerManager().pickImage(self) { image in
             self.didPick(image: image)
         }

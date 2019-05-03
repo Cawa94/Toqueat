@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import SwiftValidator
 
 class LoginViewController: UIViewController {
 
@@ -9,11 +10,13 @@ class LoginViewController: UIViewController {
     @IBOutlet private weak var registerButton: RoundedButton!
 
     private let disposeBag = DisposeBag()
+    private let validator = Validator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
-        passwordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+
+        addLinesToTextfields()
+        addValidationRules()
 
         let loginModel = RoundedButtonViewModel(title: "Log in", type: .squeezedOrange)
         loginButton.configure(with: loginModel)
@@ -22,7 +25,62 @@ class LoginViewController: UIViewController {
         registerButton.configure(with: registerModel)
     }
 
+    func addLinesToTextfields() {
+        emailTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        passwordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+    }
+
+    func addValidationRules() {
+        validator.registerField(emailTextField, rules: [RequiredRule()])
+        validator.registerField(passwordTextField, rules: [RequiredRule()])
+    }
+
     @IBAction func loginAction(_ sender: Any) {
+        validator.validate(self)
+    }
+
+    @IBAction func registerAction(_ sender: Any) {
+        NavigationService.makeRegisterRootController()
+    }
+
+    @IBAction func loginAsChefAction(_ sender: Any) {
+        NavigationService.makeChefLoginRootController()
+    }
+
+}
+
+extension LoginViewController: UITextFieldDelegate {
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField {
+        case emailTextField:
+            textField.placeholder = "Email"
+        case passwordTextField:
+            textField.placeholder = "Password"
+        default:
+            break
+        }
+        textField.resignFirstResponder()
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag != 1, let nextField = self.view.viewWithTag(1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.placeholder = nil
+    }
+
+}
+
+extension LoginViewController: ValidationDelegate {
+
+    func validationSuccessful() {
         guard let email = emailTextField.text, let password = passwordTextField.text
             else { return }
         let bodyParameters = LoginParameters(email: email,
@@ -51,29 +109,15 @@ class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    @IBAction func registerAction(_ sender: Any) {
-        NavigationService.makeRegisterRootController()
-    }
-
-    @IBAction func loginAsChefAction(_ sender: Any) {
-        NavigationService.makeChefLoginRootController()
-    }
-
-}
-
-extension LoginViewController: UITextFieldDelegate {
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.resignFirstResponder()
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField.tag != 1, let nextField = self.view.viewWithTag(1) as? UITextField {
-            nextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
+    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        // turn the fields to red
+        for (field, _) in errors {
+            if let field = field as? UITextField {
+                field.attributedPlaceholder = NSAttributedString(
+                    string: field.placeholder ?? "",
+                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            }
         }
-        return false
     }
 
 }
