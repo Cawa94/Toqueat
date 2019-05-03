@@ -52,7 +52,7 @@ extension NetworkService {
     }
 
     // swiftlint:disable all
-    func uploadPicture(for dishId: Int64, imageData: Data, completion: @escaping (_ error: Error?) -> Void) {
+    func uploadDishPicture(for dishId: Int64, imageData: Data, completion: @escaping (_ error: Error?) -> Void) {
         let relativeUrl = "dishes/\(dishId)/update_image"
         let fullUrl = URL(string: NetworkService.baseUrl + relativeUrl)!
         let request = NSMutableURLRequest(url: fullUrl)
@@ -76,7 +76,7 @@ extension NetworkService {
 
     func createBodyWithParameters(filePathKey: String?, imageDataKey: Data, boundary: String) -> Data {
         let body = NSMutableData();
-        let filename = "user-profile.jpg"
+        let filename = "image.jpg"
         let mimetype = "image/jpg"
 
         body.append(NSString(format: "--\(boundary)\r\n" as NSString).data(using: String.Encoding.utf8.rawValue)!)

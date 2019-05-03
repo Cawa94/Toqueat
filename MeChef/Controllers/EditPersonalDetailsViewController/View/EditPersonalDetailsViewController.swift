@@ -1,6 +1,7 @@
 import UIKit
 import RxSwift
 import Nuke
+import SwiftValidator
 
 private extension CGFloat {
     static let maxAvatarDimension: CGFloat = 1_080
@@ -15,7 +16,8 @@ class EditPersonalDetailsViewController: UIViewController {
     @IBOutlet private weak var avatarImageView: UIImageView!
 
     var viewModel: EditPersonalDetailsViewModel!
-    var newImageData: Data?
+    private var newImageData: Data?
+    private let validator = Validator()
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -29,7 +31,7 @@ class EditPersonalDetailsViewController: UIViewController {
             .drive(onNext: { _ in
                 self.pickImageAction()
             }).disposed(by: disposeBag)
-        tableViewTopConstraint.constant = viewModel.isChef ? 300 : 10
+        tableViewTopConstraint.constant = viewModel.isChef ? 270 : 10
         if let avatarUrl = viewModel.chef?.avatarLink {
             Nuke.loadImage(with: avatarUrl, into: avatarImageView)
             avatarImageView.contentMode = .scaleAspectFill
@@ -57,23 +59,77 @@ class EditPersonalDetailsViewController: UIViewController {
     }
 
     @objc func updateDetails() {
-        /*let newDeliverySlots = chefDeliverySlotsViewModel.activeSlots.map { $0.id }
-        let updateSingle = NetworkService.shared.updateDeliverySlotsFor(chefId: chefDeliverySlotsViewModel.chefId,
-                                                                        slots: newDeliverySlots)
-        
-        self.hudOperationWithSingle(operationSingle: updateSingle,
-                                    onSuccessClosure: { _ in
-                                        self.chefDeliverySlotsViewModel.reload()
-                                        NavigationService.reloadChefOrders = true
-                                        self.presentAlertWith(title: "YEAH",
-                                                              message: "Slots updated")
-        },
-                                    disposeBag: self.disposeBag)*/
+        validator.validate(self)
+    }
+
+    func updateChefDetails() {
+        guard let chefId = viewModel.chef?.id,
+            let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditFieldTableViewCell,
+            let name = nameCell.cellTextField.text,
+            let lastnameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? EditFieldTableViewCell,
+            let lastname = lastnameCell.cellTextField.text,
+            let phoneCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? EditFieldTableViewCell,
+            let phone = phoneCell.cellTextField.text,
+            let instagramCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? EditFieldTableViewCell,
+            let descriptionCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0))
+                as? EditDescriptionTableViewCell
+            else { return }
+        let instagramUrl = instagramCell.cellTextField.text
+        let description = descriptionCell.hasContent ? descriptionCell.cellTextView.text : nil
+
+        let chefParameters = ChefUpdateParameters(name: name, lastname: lastname,
+                                                  phone: phone, instagramUrl: instagramUrl,
+                                                  description: description)
+
+        var operationSingle: Single<Void>
+        let updateChefSingle = NetworkService.shared.updateChefWith(parameters: chefParameters,
+                                                                    chefId: chefId)
+            .map { _ in
+                if let newImage = self.newImageData {
+                    NetworkService.shared.uploadChefAvatar(for: chefId,
+                                                           imageData: newImage,
+                                                           completion: { _ in })
+                }
+        }
+        operationSingle = updateChefSingle
+        hudOperationWithSingle(operationSingle: operationSingle,
+                               onSuccessClosure: { _ in
+                                self.presentAlertWith(
+                                    title: "YEAH", message: "Chef updated",
+                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                                             handler: { _ in
+                                                                NavigationService.reloadChefProfile = true
+                                    })])
+        }, disposeBag: disposeBag)
+    }
+
+    func updateUserDetails() {
+        guard let userId = viewModel.user?.id,
+            let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditFieldTableViewCell,
+            let name = nameCell.cellTextField.text,
+            let lastnameCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? EditFieldTableViewCell,
+            let lastname = lastnameCell.cellTextField.text,
+            let phoneCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? EditFieldTableViewCell,
+            let phone = phoneCell.cellTextField.text
+            else { return }
+
+        let userParameters = UserUpdateParameters(name: name, lastname: lastname, phone: phone)
+        let updateUserSingle = NetworkService.shared.updateUserWith(parameters: userParameters,
+                                                                    userId: userId)
+        hudOperationWithSingle(operationSingle: updateUserSingle,
+                               onSuccessClosure: { _ in
+                                self.presentAlertWith(
+                                    title: "YEAH", message: "User updated",
+                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                                             handler: { _ in
+                                                                NavigationService.reloadUserProfile = true
+                                    })])
+        }, disposeBag: disposeBag)
     }
 
     override func viewDidLayoutSubviews() {
         tableViewHeightConstraint.constant = tableView.contentSize.height
-        let avatarHeight: CGFloat = viewModel.isChef ? 300 : 20
+        let avatarHeight: CGFloat = viewModel.isChef ? 270 : 20
         contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
             + avatarHeight // Content without table
     }
@@ -150,16 +206,20 @@ extension EditPersonalDetailsViewController: UITableViewDelegate, UITableViewDat
             case 0:
                 cellViewModel = EditFieldTableViewModel(fieldValue: viewModel.name,
                                                         placeholder: "Name")
+                validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 1:
                 cellViewModel = EditFieldTableViewModel(fieldValue: viewModel.lastname,
                                                         placeholder: "Lastname")
+                validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 2:
                 cellViewModel = EditFieldTableViewModel(fieldValue: viewModel.phone,
-                                                        placeholder: "Phone number")
+                                                        placeholder: "Phone number",
+                                                        hideBottomLine: viewModel.isChef)
+                validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 3:
                 cellViewModel = viewModel.isChef
                     ? EditFieldTableViewModel(fieldValue: viewModel.chef?.instagramUrl,
-                                              placeholder: "Instagram Url")
+                                              placeholder: "Instagram url")
                     : EditFieldTableViewModel(fieldValue: nil, placeholder: "")
             default:
                 cellViewModel = EditFieldTableViewModel(fieldValue: nil, placeholder: "")
@@ -179,13 +239,36 @@ extension EditPersonalDetailsViewController: UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return viewModel.isChef ? 0 : 30
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = UITableViewCell()
         headerCell.backgroundColor = .lightGrayBackgroundColor
         return headerCell
+    }
+
+}
+
+extension EditPersonalDetailsViewController: ValidationDelegate {
+
+    func validationSuccessful() {
+        if viewModel.isChef {
+            updateChefDetails()
+        } else {
+            updateUserDetails()
+        }
+    }
+
+    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        // turn the fields to red
+        for (field, _) in errors {
+            if let field = field as? UITextField {
+                field.attributedPlaceholder = NSAttributedString(
+                    string: field.placeholder ?? "",
+                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            }
+        }
     }
 
 }

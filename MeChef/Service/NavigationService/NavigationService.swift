@@ -29,6 +29,8 @@ struct NavigationService {
 
 extension NavigationService {
 
+    static var reloadUserProfile = false
+
     static func setRootController(controller: UIViewController) {
         appWindow.rootViewController = controller
     }
@@ -100,14 +102,19 @@ extension NavigationService {
         appWindow.changeRootController(controller: registerController)
     }
 
-    static func pushOrdersViewController(userId: Int64) {
-        let ordersController = ordersViewController(userId: userId)
+    static func pushOrdersViewController() {
+        let ordersController = ordersViewController()
         push(viewController: ordersController, animated: true)
     }
 
     static func pushEditPeronalDetailsViewController() {
         let editDetailsController = editPersonalDetailsViewController()
         push(viewController: editDetailsController, animated: true)
+    }
+
+    static func pushEditAddressViewController() {
+        let editAddressController = editAddressViewController()
+        push(viewController: editAddressController, animated: true)
     }
 
     static func pushTrackOrderViewController(orderId: Int64,

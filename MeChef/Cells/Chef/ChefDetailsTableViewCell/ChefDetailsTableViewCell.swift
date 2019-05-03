@@ -6,6 +6,7 @@ final class ChefDetailsTableViewCell: UITableViewCell {
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var nameLabelTrailingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var cityLabel: UILabel!
     @IBOutlet private weak var presentationLabel: UILabel!
     @IBOutlet private weak var availabilityButton: UIButton!
@@ -53,12 +54,11 @@ extension ChefDetailsTableViewCell: PlaceholderConfigurable {
     func configure(contentViewModel: Chef) {
         self.viewModel = contentViewModel
 
+        instagramButton.isHidden = contentViewModel.instagramUrl == nil
+        nameLabelTrailingConstraint.constant = contentViewModel.instagramUrl == nil ? -40 : 10
         nameLabel.text = "\(contentViewModel.name) \(contentViewModel.lastname)"
         cityLabel.text = contentViewModel.city.name
-        presentationLabel.text = "Sono una chef esperta che sa fare tutti i piatti "
-            + "del mondo e sono sempre buonissimi. Ho iniziato a cucinare quando ero molto piccola"
-            + " e sono diventa una chef in Italia. Le mie specialità sono i bozeis bozeis"
-            + " e la coda di Narantxa."
+        presentationLabel.text = contentViewModel.description
     }
 
 }

@@ -114,7 +114,10 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 40)
+        if indexPath.section == 0 { // weekdays
+            return CGSize(width: 120, height: 50)
+        }
+        return CGSize(width: 120, height: 40)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

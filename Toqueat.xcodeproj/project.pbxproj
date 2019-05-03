@@ -18,6 +18,10 @@
 		DA0A6F2F227C43050011FA58 /* EditDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0A6F2D227C43050011FA58 /* EditDescriptionTableViewCell.swift */; };
 		DA0A6F30227C43050011FA58 /* EditDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0A6F2E227C43050011FA58 /* EditDescriptionTableViewCell.xib */; };
 		DA0A6F32227C43220011FA58 /* EditDescriptionTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0A6F31227C43220011FA58 /* EditDescriptionTableViewModel.swift */; };
+		DA0A6F37227C7F3B0011FA58 /* EditAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0A6F36227C7F3B0011FA58 /* EditAddressViewModel.swift */; };
+		DA0A6F3A227C7F4B0011FA58 /* EditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0A6F38227C7F4B0011FA58 /* EditAddressViewController.swift */; };
+		DA0A6F3B227C7F4B0011FA58 /* EditAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0A6F39227C7F4B0011FA58 /* EditAddressViewController.xib */; };
+		DA0A6F3D227C865C0011FA58 /* NavigationService+EditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0A6F3C227C865C0011FA58 /* NavigationService+EditAddressViewController.swift */; };
 		DA0E2AA8227B0A2A00BBCACC /* NSDecimalNumber+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0E2AA7227B0A2A00BBCACC /* NSDecimalNumber+Extensions.swift */; };
 		DA0E2AAE227B3CB000BBCACC /* EditPersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0E2AAC227B3CB000BBCACC /* EditPersonalDetailsViewController.swift */; };
 		DA0E2AAF227B3CB000BBCACC /* EditPersonalDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0E2AAD227B3CB000BBCACC /* EditPersonalDetailsViewController.xib */; };
@@ -218,6 +222,10 @@
 		DA0A6F2D227C43050011FA58 /* EditDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		DA0A6F2E227C43050011FA58 /* EditDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		DA0A6F31227C43220011FA58 /* EditDescriptionTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptionTableViewModel.swift; sourceTree = "<group>"; };
+		DA0A6F36227C7F3B0011FA58 /* EditAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressViewModel.swift; sourceTree = "<group>"; };
+		DA0A6F38227C7F4B0011FA58 /* EditAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressViewController.swift; sourceTree = "<group>"; };
+		DA0A6F39227C7F4B0011FA58 /* EditAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditAddressViewController.xib; sourceTree = "<group>"; };
+		DA0A6F3C227C865C0011FA58 /* NavigationService+EditAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+EditAddressViewController.swift"; sourceTree = "<group>"; };
 		DA0E2AA7227B0A2A00BBCACC /* NSDecimalNumber+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDecimalNumber+Extensions.swift"; sourceTree = "<group>"; };
 		DA0E2AAC227B3CB000BBCACC /* EditPersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalDetailsViewController.swift; sourceTree = "<group>"; };
 		DA0E2AAD227B3CB000BBCACC /* EditPersonalDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditPersonalDetailsViewController.xib; sourceTree = "<group>"; };
@@ -454,6 +462,33 @@
 				DA0A6F2E227C43050011FA58 /* EditDescriptionTableViewCell.xib */,
 			);
 			path = EditDescriptionTableViewCell;
+			sourceTree = "<group>";
+		};
+		DA0A6F33227C7F150011FA58 /* EditAddressViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DA0A6F3C227C865C0011FA58 /* NavigationService+EditAddressViewController.swift */,
+				DA0A6F35227C7F2B0011FA58 /* View */,
+				DA0A6F34227C7F230011FA58 /* ViewModel */,
+			);
+			path = EditAddressViewController;
+			sourceTree = "<group>";
+		};
+		DA0A6F34227C7F230011FA58 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA0A6F36227C7F3B0011FA58 /* EditAddressViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DA0A6F35227C7F2B0011FA58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DA0A6F38227C7F4B0011FA58 /* EditAddressViewController.swift */,
+				DA0A6F39227C7F4B0011FA58 /* EditAddressViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DA0E2AA9227B3C4A00BBCACC /* EditPersonalDetailsViewController */ = {
@@ -1413,6 +1448,7 @@
 				DA9363A9223964AA00DF8951 /* DeliverySlotsController */,
 				DAC99465222BE7B2000282F1 /* DishesViewController */,
 				DADFF2BC222E845200BB6404 /* DishViewController */,
+				DA0A6F33227C7F150011FA58 /* EditAddressViewController */,
 				DA0E2AA9227B3C4A00BBCACC /* EditPersonalDetailsViewController */,
 				DA84549A222D1E880052A8D2 /* LoginViewController */,
 				DAF4FE26222AD06900F208DB /* MainTabViewController */,
@@ -1674,6 +1710,7 @@
 				DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */,
 				DA9363A222395F5E00DF8951 /* CheckoutViewController.xib in Resources */,
 				DA636D952271FDA100DA2A70 /* AddToCartView.xib in Resources */,
+				DA0A6F3B227C7F4B0011FA58 /* EditAddressViewController.xib in Resources */,
 				DACB01E2225F8F80008093F3 /* CartHeaderView.xib in Resources */,
 				DA0328B6225CD235001FBE14 /* DishDetailsTableViewCell.xib in Resources */,
 				DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */,
@@ -1851,6 +1888,7 @@
 				DA913C7522466801003D4700 /* User+Extensions.swift in Sources */,
 				DA859D0C22411EAA008481D2 /* ChefOrdersViewModel.swift in Sources */,
 				DAAD19302236EC8600543AE0 /* UIView+Extensions.swift in Sources */,
+				DA0A6F3A227C7F4B0011FA58 /* EditAddressViewController.swift in Sources */,
 				DA0328BF225CF00A001FBE14 /* ChefBaseInfoTableViewCell.swift in Sources */,
 				DA0328B5225CD235001FBE14 /* DishDetailsTableViewCell.swift in Sources */,
 				DAD89ADF225DEE5B000664E2 /* UIFont+Extensions.swift in Sources */,
@@ -1862,6 +1900,7 @@
 				DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */,
 				DA636D862271E90100DA2A70 /* NavigationService+ChefOrderDetailsViewController.swift in Sources */,
 				DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */,
+				DA0A6F3D227C865C0011FA58 /* NavigationService+EditAddressViewController.swift in Sources */,
 				DAF4FE2A222AD2C500F208DB /* AppDelegate+Extensions.swift in Sources */,
 				DA859D0E22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift in Sources */,
 				DAB271772247BBD6005C0915 /* OrderTableViewCell.swift in Sources */,
@@ -1945,6 +1984,7 @@
 				DADFF2D1222E888700BB6404 /* NavigationService+RegisterViewController.swift in Sources */,
 				DAD4B107223D1BAF009E6F84 /* LocalCartDish+Extensions.swift in Sources */,
 				DAC9946F222BE80B000282F1 /* DishesViewModel.swift in Sources */,
+				DA0A6F37227C7F3B0011FA58 /* EditAddressViewModel.swift in Sources */,
 				DAF9C9AB226CE39E00AD4248 /* NavigationService+ChefExtensions.swift in Sources */,
 				DAF9C99D226CCF0100AD4248 /* ChefDishTableViewCell.swift in Sources */,
 				DAE902C0224937C500743D6A /* ObservableConvertibleType+AsDriver.swift in Sources */,

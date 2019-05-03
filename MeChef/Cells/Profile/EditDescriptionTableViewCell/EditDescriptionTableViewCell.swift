@@ -8,8 +8,16 @@ final class EditDescriptionTableViewCell: UITableViewCell {
     @IBOutlet private weak var textViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var bottomSpacerView: UIView!
 
-    var viewModel: EditDescriptionTableViewModel?
-    var placeholderLabel: UILabel!
+    private var viewModel: EditDescriptionTableViewModel?
+    private var placeholderLabel: UILabel!
+
+    public var hasContent: Bool {
+        return placeholderLabel.isHidden
+    }
+
+    public var cellTextView: UITextView {
+        return textView
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,9 +58,8 @@ extension EditDescriptionTableViewCell: PlaceholderConfigurable {
     func configure(contentViewModel: EditDescriptionTableViewModel) {
         self.viewModel = contentViewModel
 
-        textView.text = contentViewModel.fieldValue != nil
-            ? contentViewModel.fieldValue : contentViewModel.placeholder
-        textView.textColor = contentViewModel.fieldValue != nil ? .darkGrayColor : .lightGray
+        textView.text = contentViewModel.fieldValue
+        textView.textColor = .darkGrayColor
         bottomSpacerView.isHidden = contentViewModel.hideBottomLine
         textViewHeightConstraint.constant = textView.contentSize.height > 150
             ? textView.contentSize.height : 150

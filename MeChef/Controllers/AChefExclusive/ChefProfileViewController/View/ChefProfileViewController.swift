@@ -24,6 +24,14 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
                            forCellReuseIdentifier: "UserBarTableViewCell")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if NavigationService.reloadChefProfile {
+            chefProfileViewModel.reload()
+            NavigationService.reloadChefProfile = false
+        }
+    }
+
     override func configureNavigationBar() {
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
@@ -49,7 +57,7 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
         case 0:
             return 1
         case 1:
-            return 4
+            return 3
         case 2:
             return 1
         default:
@@ -106,9 +114,7 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
                 case 1:
                     viewModel = UserBarTableViewModel(option: "My Address")
                 case 2:
-                    viewModel = UserBarTableViewModel(option: "My Orders")
-                case 3:
-                    viewModel = UserBarTableViewModel(option: "Notifications", hideBottomLine: false)
+                    viewModel = UserBarTableViewModel(option: "My Orders", hideBottomLine: false)
                 default:
                     viewModel = UserBarTableViewModel(option: "Unknown")
                 }
@@ -161,11 +167,9 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
                 NavigationService.pushChefDeliverySlotsViewController(chefId: chefProfileViewModel.result.id,
                                                                       editable: true)
             case 1:
-            break // Show Delivery Addresses
+                NavigationService.pushEditAddressViewController()
             case 2:
-            break // Show Payment Methods
-            case 3:
-            break // Show Notifications
+                NavigationService.pushOrdersViewController()
             default:
                 break
             }
@@ -182,6 +186,9 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
 
     override func onResultsState() {
         tableView.reloadData()
+
+        // Update session value to be sure is updated after editing info
+        SessionService.updateWith(chef: chefProfileViewModel.result)
     }
 
     override func onLoadingState() {

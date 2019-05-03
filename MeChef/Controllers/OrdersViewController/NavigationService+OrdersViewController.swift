@@ -2,10 +2,10 @@ import UIKit
 
 extension NavigationService {
 
-    static func ordersViewController(userId: Int64) -> OrdersViewController {
+    static func ordersViewController() -> OrdersViewController {
         let controller = OrdersViewController(nibName: OrdersViewController.xibName,
                                               bundle: nil)
-        let viewModel = OrdersViewModel(userId: userId)
+        let viewModel = OrdersViewModel()
 
         controller.ordersViewModel = viewModel
         return controller

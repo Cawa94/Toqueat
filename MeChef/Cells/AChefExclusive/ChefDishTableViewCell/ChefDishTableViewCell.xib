@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -46,18 +45,18 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiY-u6-AMc">
-                                <rect key="frame" x="133" y="15" width="180" height="20"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <rect key="frame" x="133" y="15" width="182.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sv-MI-uVE">
-                                <rect key="frame" x="323" y="5" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <rect key="frame" x="325.5" y="5" width="39.5" height="19.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRb-uX-xRl">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRb-uX-xRl">
                                 <rect key="frame" x="265" y="57.5" width="100" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="yZn-QT-h0n"/>
@@ -81,19 +80,28 @@
                             <constraint firstItem="LiY-u6-AMc" firstAttribute="top" secondItem="mrJ-DM-ed2" secondAttribute="top" constant="15" id="dkQ-7r-QB4"/>
                         </constraints>
                     </view>
+                    <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssw-rE-mCc">
+                        <rect key="frame" x="0.0" y="98.5" width="375" height="1"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="pJe-T4-5H0"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="3GS-x0-LbL" secondAttribute="bottom" id="CVx-OO-t3u"/>
                     <constraint firstItem="3GS-x0-LbL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Dy3-4e-U9d"/>
                     <constraint firstAttribute="trailing" secondItem="3GS-x0-LbL" secondAttribute="trailing" id="Q7B-Rq-8c4"/>
+                    <constraint firstAttribute="trailing" secondItem="ssw-rE-mCc" secondAttribute="trailing" id="Urc-G4-of5"/>
                     <constraint firstItem="3GS-x0-LbL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YzI-ZD-7JE"/>
                     <constraint firstAttribute="trailing" secondItem="mrJ-DM-ed2" secondAttribute="trailing" id="dQi-0k-1Jh"/>
                     <constraint firstAttribute="bottom" secondItem="mrJ-DM-ed2" secondAttribute="bottom" id="njz-iF-Txn"/>
+                    <constraint firstItem="ssw-rE-mCc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oua-UG-fp7"/>
+                    <constraint firstAttribute="bottom" secondItem="ssw-rE-mCc" secondAttribute="bottom" id="uBT-5G-fCk"/>
                     <constraint firstItem="mrJ-DM-ed2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wIr-O4-dQ4"/>
                     <constraint firstItem="mrJ-DM-ed2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ymO-TB-zs0"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="contentContainerViewOutlet" destination="mrJ-DM-ed2" id="uV6-4x-Jcn"/>
                 <outlet property="dishImageView" destination="BEI-9z-aqS" id="Sst-zd-J8l"/>

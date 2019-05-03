@@ -38,6 +38,12 @@
                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dS0-G4-DH2">
+                    <rect key="frame" x="10" y="62" width="33.5" height="19"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bco-es-JA1">
                     <rect key="frame" x="0.0" y="96" width="375" height="1"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -129,7 +135,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19T-VR-o39" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
-                    <rect key="frame" x="20" y="597" width="335" height="30"/>
+                    <rect key="frame" x="20" y="607" width="335" height="30"/>
                     <color key="backgroundColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Complete Order">
                         <color key="titleColor" red="0.95294117649999999" green="0.94117647059999998" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -138,12 +144,6 @@
                         <action selector="placeOrder:" destination="-1" eventType="touchUpInside" id="TEZ-Kv-8EX"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dS0-G4-DH2">
-                    <rect key="frame" x="10" y="62" width="33.5" height="19"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -169,7 +169,7 @@
                 <constraint firstItem="qCH-DW-fjQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PhZ-3d-EBy"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3Vc-N2-J1P" secondAttribute="trailing" constant="10" id="R1T-AR-qew"/>
                 <constraint firstItem="3B5-zE-WTD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="SPK-3W-EfI"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="19T-VR-o39" secondAttribute="bottom" constant="40" id="UAv-Ke-aBM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="19T-VR-o39" secondAttribute="bottom" constant="30" id="UAv-Ke-aBM"/>
                 <constraint firstItem="dS0-G4-DH2" firstAttribute="top" secondItem="IHa-gP-9ki" secondAttribute="bottom" id="Xow-ue-0vx"/>
                 <constraint firstItem="19T-VR-o39" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ZV3-wk-GyD"/>
                 <constraint firstItem="Wyv-Sl-JNs" firstAttribute="leading" secondItem="CYR-ho-HiO" secondAttribute="leading" id="cC8-aa-1vh"/>

@@ -78,10 +78,10 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             let street = streetTextField.text, let apartment = apartmentTextField.text,
             let zipcode = zipcodeTextField.text
             else { return }
-        let registrationParameters = RegisterParameters(name: name, lastname: lastName,
-                                                        email: email, password: password,
-                                                        cityId: cityId, address: street,
-                                                        zipcode: zipcode, apartment: apartment)
+        let registrationParameters = UserCreateParameters(name: name, lastname: lastName,
+                                                          email: email, password: password,
+                                                          cityId: cityId, address: street,
+                                                          zipcode: zipcode, apartment: apartment)
         NetworkService.shared.register(registerParameters: registrationParameters)
             .flatMap { response -> Single<User> in
                 SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)

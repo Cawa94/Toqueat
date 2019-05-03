@@ -41,7 +41,7 @@
                                 <rect key="frame" x="15" y="0.0" width="290" height="49.5"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -90,7 +90,7 @@
                 <outlet property="placeholderContainerViewOutlet" destination="A8i-rR-WBb" id="6ZM-kE-A5K"/>
                 <outlet property="textField" destination="yak-Sg-dM2" id="MYi-6y-ch0"/>
             </connections>
-            <point key="canvasLocation" x="-226" y="49"/>
+            <point key="canvasLocation" x="-572" y="56"/>
         </tableViewCell>
     </objects>
 </document>

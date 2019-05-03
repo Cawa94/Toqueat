@@ -112,6 +112,7 @@
                 <outlet property="contentContainerViewOutlet" destination="xLc-YA-8BD" id="vol-tE-eCm"/>
                 <outlet property="instagramButton" destination="bVw-MA-Qa5" id="VP0-Jn-zIH"/>
                 <outlet property="nameLabel" destination="YCY-kj-Po5" id="lTW-jA-tsO"/>
+                <outlet property="nameLabelTrailingConstraint" destination="VOc-nu-AIH" id="7Mg-gT-LDN"/>
                 <outlet property="placeholderContainerViewOutlet" destination="lVH-TY-Y3A" id="6wO-Gj-Glu"/>
                 <outlet property="presentationLabel" destination="f9B-RA-wEW" id="pGg-bU-XYt"/>
             </connections>

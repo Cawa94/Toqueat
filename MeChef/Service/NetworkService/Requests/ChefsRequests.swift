@@ -38,6 +38,13 @@ extension NetworkService {
             .map { $0.orders }
     }
 
+    func getWeekplanFor(chefId: Int64) -> Single<[Order]> {
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/weekplan")
+
+        return (request(with: apiParameters) as Single<OrdersResponse>)
+            .map { $0.orders }
+    }
+
     func updateDeliverySlotsFor(chefId: Int64, slots: [Int64]) -> Single<[DeliverySlot]> {
         let body = ChefUpdateDeliverySlots(deliverySlotIds: slots)
         let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/update_deliveryslots",
@@ -57,8 +64,26 @@ extension NetworkService {
             .map { $0.chefs }
     }
 
+    func updateChefWith(parameters: ChefUpdateParameters, chefId: Int64) -> Single<Chef> {
+        let body = ChefUpdateBody(chef: parameters)
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)",
+                                                 method: .patch,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
+    func updateChefAddress(parameters: AddressUpdateParameters, chefId: Int64) -> Single<Chef> {
+        let body = AddressUpdateBody(address: parameters)
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)",
+                                                 method: .patch,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
     // swiftlint:disable all
-    func uploadAvatar(for chefId: Int64, imageData: Data, completion: @escaping (_ error: Error?) -> Void) {
+    func uploadChefAvatar(for chefId: Int64, imageData: Data, completion: @escaping (_ error: Error?) -> Void) {
         let relativeUrl = "chefs/\(chefId)/update_avatar"
         let fullUrl = URL(string: NetworkService.baseUrl + relativeUrl)!
         let request = NSMutableURLRequest(url: fullUrl)

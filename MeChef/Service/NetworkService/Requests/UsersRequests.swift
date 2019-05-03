@@ -12,10 +12,28 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func register(registerParameters: RegisterParameters) -> Single<LoginResponse> {
-        let body = RegistrationBody(user: registerParameters)
+    func register(registerParameters: UserCreateParameters) -> Single<LoginResponse> {
+        let body = UserCreateBody(user: registerParameters)
         let apiParameters = ApiRequestParameters(relativeUrl: "signup",
                                                  method: .post,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
+    func updateUserWith(parameters: UserUpdateParameters, userId: Int64) -> Single<User> {
+        let body = UserUpdateBody(user: parameters)
+        let apiParameters = ApiRequestParameters(relativeUrl: "users/\(userId)",
+                                                 method: .patch,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
+    func updateUserAddress(parameters: AddressUpdateParameters, userId: Int64) -> Single<User> {
+        let body = AddressUpdateBody(address: parameters)
+        let apiParameters = ApiRequestParameters(relativeUrl: "users/\(userId)",
+                                                 method: .patch,
                                                  parameters: body.toJSON())
 
         return request(with: apiParameters)

@@ -28,6 +28,7 @@ extension NavigationService {
 
     static var reloadChefDishes = false
     static var reloadChefOrders = false
+    static var reloadChefProfile = false
 
     static func chefDishesTab(chefId: Int64) -> UIViewController {
         let chefDishesController = NavigationService.chefDishesViewController(chefId: chefId)

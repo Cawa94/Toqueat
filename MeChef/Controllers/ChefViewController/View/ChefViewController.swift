@@ -105,7 +105,7 @@ class ChefViewController: BaseTableViewController<Chef, Dish>,
             chefDetailsCell.configureWith(contentViewModel: chef)
             chefDetailsCell.instaButton.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
-                    guard let instaUrl = URL(string: "https://www.instagram.com/ewelina_happymamas/")
+                    guard let instaUrl = URL(string: chef.instagramUrl ?? "")
                         else { return }
                     NavigationService.presentSafariController(url: instaUrl)
                 })

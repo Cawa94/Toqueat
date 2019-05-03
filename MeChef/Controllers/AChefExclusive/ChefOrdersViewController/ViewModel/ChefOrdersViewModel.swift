@@ -24,7 +24,7 @@ final class ChefOrdersViewModel: BaseStatefulViewModel<ChefOrdersViewModel.Resul
         tempWeekdays.append(contentsOf: toMoveDays)
         self.weekdaysOrdered = tempWeekdays
 
-        let ordersRequest = NetworkService.shared.getOrdersFor(chefId: chefId)
+        let ordersRequest = NetworkService.shared.getWeekplanFor(chefId: chefId)
         let slotsRequest = NetworkService.shared.getDeliverySlotFor(chefId: chefId)
 
         let zippedRequest = Single.zip(ordersRequest, slotsRequest, resultSelector: {
@@ -41,7 +41,7 @@ extension ChefOrdersViewModel {
         switch indexPath.section {
         case 0:
             let dayDate = today.dateByAdding(indexPath.row, .day)
-            return "\(dayDate.weekdayName(.short)) \(dayDate.day)"
+            return "\(dayDate.weekdayName(.default)) \(dayDate.day)"
         default:
             return DeliverySlot.hoursRangeWithIndex(indexPath.section)
         }
@@ -74,7 +74,7 @@ extension ChefOrdersViewModel {
     }
 
     func textColorForAvailability(_ available: Bool) -> UIColor {
-        return available ? .darkGrayColor : .lightGrayColor
+        return available ? .mainOrangeColor : .lightGrayColor
     }
 
     func textColorForOrderCell(state: OrderState) -> UIColor {

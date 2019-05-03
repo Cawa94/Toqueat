@@ -24,6 +24,14 @@ class ProfileViewController: BaseStatefulController<User>,
                            forCellReuseIdentifier: "UserBarTableViewCell")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if NavigationService.reloadUserProfile {
+            profileViewModel.reload()
+            NavigationService.reloadUserProfile = false
+        }
+    }
+
     override func configureNavigationBar() {
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
@@ -49,7 +57,7 @@ class ProfileViewController: BaseStatefulController<User>,
         case 0:
             return 1
         case 1:
-            return 4
+            return 3
         case 2:
             return 1
         default:
@@ -106,9 +114,7 @@ class ProfileViewController: BaseStatefulController<User>,
                 case 1:
                     viewModel = UserBarTableViewModel(option: "Delivery Address")
                 case 2:
-                    viewModel = UserBarTableViewModel(option: "Payment Methods")
-                case 3:
-                    viewModel = UserBarTableViewModel(option: "Notifications", hideBottomLine: false)
+                    viewModel = UserBarTableViewModel(option: "Payment Methods", hideBottomLine: false)
                 default:
                     viewModel = UserBarTableViewModel(option: "Unknown")
                 }
@@ -158,13 +164,11 @@ class ProfileViewController: BaseStatefulController<User>,
         case 1:
             switch indexPath.row {
             case 0:
-                NavigationService.pushOrdersViewController(userId: profileViewModel.result.id)
+                NavigationService.pushOrdersViewController()
             case 1:
-                break // Show Delivery Addresses
+                NavigationService.pushEditAddressViewController()
             case 2:
                 break // Show Payment Methods
-            case 3:
-                break // Show Notifications
             default:
                 break
             }
@@ -181,6 +185,9 @@ class ProfileViewController: BaseStatefulController<User>,
 
     override func onResultsState() {
         tableView.reloadData()
+
+        // Update session value to be sure is updated after editing info
+        SessionService.updateWith(user: profileViewModel.result)
     }
 
     override func onLoadingState() {

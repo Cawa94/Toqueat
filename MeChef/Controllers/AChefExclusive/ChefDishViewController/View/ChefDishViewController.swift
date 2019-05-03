@@ -1,6 +1,7 @@
 import UIKit
 import RxSwift
 import Nuke
+import SwiftValidator
 
 private extension CGFloat {
     static let maxAvatarDimension: CGFloat = 1_080
@@ -20,10 +21,10 @@ class ChefDishViewController: UIViewController,
     @IBOutlet private weak var ingredientsTextField: UITextField!
     @IBOutlet private weak var descriptionTextView: UITextView!
 
-    var placeholderLabel: UILabel!
+    private var placeholderLabel: UILabel!
     var viewModel: ChefDishViewModel!
-    var newImageData: Data?
-
+    private let validator = Validator()
+    private var newImageData: Data?
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -32,6 +33,8 @@ class ChefDishViewController: UIViewController,
         configureNavigationBar()
         configureXibElements()
         populateXibElements()
+        addValidationRules()
+
     }
 
     func configureNavigationBar() {
@@ -50,46 +53,7 @@ class ChefDishViewController: UIViewController,
     }
 
     @objc func saveAndClose() {
-        guard let name = nameTextField.text,
-            /*let type = typeTextField.text, let servings = servingsTextField.text,
-            let ingredients = ingredientsTextField.text, */let description = descriptionTextView.text,
-            let priceText = priceTextField.text
-            else { return }
-        let price = NSDecimalNumber(string: "\(priceText.doubleValue)")
-        let dishParameters = DishCreateParameters(name: name, description: description,
-                                                  price: price, chefId: "\(viewModel.chefId)")
-        var operationSingle: Single<Void>
-        if let dish = viewModel.dish {
-            let updateDishSingle = NetworkService.shared.updateDishWith(parameters: dishParameters,
-                                                                        dishId: dish.id)
-                .map { _ in
-                    if let newImage = self.newImageData {
-                        NetworkService.shared.uploadPicture(for: dish.id,
-                                                            imageData: newImage,
-                                                            completion: { _ in })
-                    }
-                }
-            operationSingle = updateDishSingle
-        } else {
-            let createDishSingle = NetworkService.shared.createNewDishWith(parameters: dishParameters)
-                .map { dish in
-                    if let newImage = self.newImageData {
-                        NetworkService.shared.uploadPicture(for: dish.id,
-                                                            imageData: newImage,
-                                                            completion: { _ in })
-                    }
-                }
-            operationSingle = createDishSingle
-        }
-        hudOperationWithSingle(operationSingle: operationSingle,
-                               onSuccessClosure: { _ in
-                                self.presentAlertWith(
-                                    title: "YEAH", message: "Dish updated",
-                                    actions: [ UIAlertAction(title: "Ok", style: .default,
-                                                             handler: { _ in
-                                                                NavigationService.reloadChefDishes = true
-                                    })])
-                                }, disposeBag: disposeBag)
+        validator.validate(self)
     }
 
     func configureXibElements() {
@@ -131,6 +95,13 @@ class ChefDishViewController: UIViewController,
         } else {
             // New dish
         }
+    }
+
+    func addValidationRules() {
+        validator.registerField(nameTextField, rules: [RequiredRule()])
+        validator.registerField(priceTextField, rules: [RequiredRule()])
+        validator.registerField(typeTextField, rules: [RequiredRule()])
+        validator.registerField(servingsTextField, rules: [RequiredRule()])
     }
 
     func textViewDidChange(_ textView: UITextView) {
@@ -179,6 +150,62 @@ class ChefDishViewController: UIViewController,
             else { return nil }
         UIGraphicsEndImageContext()
         return copy
+    }
+
+}
+
+extension ChefDishViewController: ValidationDelegate {
+
+    func validationSuccessful() {
+        guard let name = nameTextField.text,
+            /*let type = typeTextField.text, let servings = servingsTextField.text,
+             let ingredients = ingredientsTextField.text, */let description = descriptionTextView.text,
+            let priceText = priceTextField.text
+            else { return }
+        let price = NSDecimalNumber(string: "\(priceText.doubleValue)")
+        let dishParameters = DishCreateParameters(name: name, description: description,
+                                                  price: price, chefId: "\(viewModel.chefId)")
+        var operationSingle: Single<Void>
+        if let dish = viewModel.dish {
+            let updateDishSingle = NetworkService.shared.updateDishWith(parameters: dishParameters,
+                                                                        dishId: dish.id)
+                .map { _ in
+                    if let newImage = self.newImageData {
+                        NetworkService.shared.uploadDishPicture(for: dish.id,
+                                                                imageData: newImage,
+                                                                completion: { _ in })
+                    }
+            }
+            operationSingle = updateDishSingle
+        } else {
+            let createDishSingle = NetworkService.shared.createNewDishWith(parameters: dishParameters)
+                .map { dish in
+                    if let newImage = self.newImageData {
+                        NetworkService.shared.uploadDishPicture(for: dish.id,
+                                                                imageData: newImage,
+                                                                completion: { _ in })
+                    }
+            }
+            operationSingle = createDishSingle
+        }
+        hudOperationWithSingle(operationSingle: operationSingle,
+                               onSuccessClosure: { _ in
+                                self.presentAlertWith(
+                                    title: "YEAH", message: "Dish updated",
+                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                                             handler: { _ in
+                                                                NavigationService.reloadChefDishes = true
+                                    })])
+        }, disposeBag: disposeBag)
+    }
+
+    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
+        // turn the fields to red
+        for (field, _) in errors {
+            if let field = field as? UITextField {
+                field.addLine(position: .bottom, color: .red, width: 1)
+            }
+        }
     }
 
 }
