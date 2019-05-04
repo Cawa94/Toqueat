@@ -7,8 +7,8 @@ private extension CGFloat {
     static let maxAvatarDimension: CGFloat = 1_080
 }
 
-class ChefDishViewController: UIViewController,
-    UITextViewDelegate {
+class ChefDishViewController: BaseStatefulController<[Category]>,
+    UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var descriptionViewHeightConstraint: NSLayoutConstraint!
@@ -22,10 +22,17 @@ class ChefDishViewController: UIViewController,
     @IBOutlet private weak var descriptionTextView: UITextView!
 
     private var placeholderLabel: UILabel!
-    var viewModel: ChefDishViewModel!
+
+    var chefDishViewModel: ChefDishViewModel! {
+        didSet {
+            viewModel = chefDishViewModel
+        }
+    }
+
     private let validator = Validator()
     private var newImageData: Data?
     private let disposeBag = DisposeBag()
+    private let typePicker = UIPickerView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +44,9 @@ class ChefDishViewController: UIViewController,
 
     }
 
-    func configureNavigationBar() {
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .mainOrangeColor
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
+    override func configureNavigationBar() {
         navigationController?.isNavigationBarHidden = false
-        title = viewModel.dish != nil ? "Edit dish" : "New dish"
+        title = chefDishViewModel.dish != nil ? "Edit dish" : "New dish"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
                                                             style: .done,
                                                             target: self,
@@ -69,6 +72,9 @@ class ChefDishViewController: UIViewController,
         ingredientsTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         descriptionTextView.addLine(position: .bottom, color: .lightGray, width: 0.5)
 
+        typeTextField.inputView = typePicker
+        typePicker.delegate = self
+
         placeholderLabel = UILabel()
         placeholderLabel.text = "Describe your dish..."
         placeholderLabel.font = UIFont.regularFontOf(size: 16.0)
@@ -80,7 +86,7 @@ class ChefDishViewController: UIViewController,
     }
 
     func populateXibElements() {
-        if let dish = viewModel.dish {
+        if let dish = chefDishViewModel.dish {
             // Editing dish
             if let imageUrl = dish.imageLink {
                 Nuke.loadImage(with: imageUrl, into: dishImageView)
@@ -88,8 +94,9 @@ class ChefDishViewController: UIViewController,
             }
             nameTextField.text = dish.name
             priceTextField.text = dish.price.stringWithoutCurrency
-            typeTextField.text = "Main course"
-            servingsTextField.text = "2"
+            typeTextField.text = dish.categories.first?.name
+            servingsTextField.text = "\(dish.servings)"
+            ingredientsTextField.text = dish.ingredients
             descriptionTextView.text = dish.description
             placeholderLabel.isHidden = true
         } else {
@@ -152,21 +159,43 @@ class ChefDishViewController: UIViewController,
         return copy
     }
 
+    // MARK: - UIPickerViewDataSource
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return chefDishViewModel.isLoading ? 0 : chefDishViewModel.result.count
+    }
+
+    func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return chefDishViewModel.result[row].name
+    }
+
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        typeTextField.text = chefDishViewModel.result[row].name
+    }
+
 }
 
 extension ChefDishViewController: ValidationDelegate {
 
     func validationSuccessful() {
         guard let name = nameTextField.text,
-            /*let type = typeTextField.text, let servings = servingsTextField.text,
-             let ingredients = ingredientsTextField.text, */let description = descriptionTextView.text,
+            let categoryId = chefDishViewModel.result.first(where: { $0.name == typeTextField.text })?.id,
+            let servings = servingsTextField.text,
+            let description = descriptionTextView.text,
             let priceText = priceTextField.text
             else { return }
         let price = NSDecimalNumber(string: "\(priceText.doubleValue)")
+        let ingredients = ingredientsTextField.text
         let dishParameters = DishCreateParameters(name: name, description: description,
-                                                  price: price, chefId: "\(viewModel.chefId)")
+                                                  price: price, chefId: "\(chefDishViewModel.chefId)",
+                                                  categoryIds: categoryId, ingredients: ingredients,
+                                                  servings: Int(servings) ?? 1)
         var operationSingle: Single<Void>
-        if let dish = viewModel.dish {
+        if let dish = chefDishViewModel.dish {
             let updateDishSingle = NetworkService.shared.updateDishWith(parameters: dishParameters,
                                                                         dishId: dish.id)
                 .map { _ in

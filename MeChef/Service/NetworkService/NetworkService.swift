@@ -43,6 +43,8 @@ class NetworkService {
                 $0.model
             }
             .do(onError: { error in
+                debugPrint(parameters.url)
+                debugPrint(error)
                 let message: String
                 if let serverError = error.serverError,
                     let title = serverError.error {

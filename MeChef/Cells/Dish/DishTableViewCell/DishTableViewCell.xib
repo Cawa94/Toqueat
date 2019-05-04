@@ -107,6 +107,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="categoryLabel" destination="ded-PH-PJj" id="lCs-uI-OPt"/>
                 <outlet property="chefImageView" destination="df3-xL-pI6" id="ZWW-2I-B4a"/>
                 <outlet property="contentContainerViewOutlet" destination="A4M-bE-KpX" id="dZ9-Pw-lsF"/>
                 <outlet property="dishImageView" destination="UwX-gH-FTZ" id="JWP-Bh-4tY"/>

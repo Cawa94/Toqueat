@@ -7,6 +7,8 @@ final class DishDetailsTableViewCell: UITableViewCell {
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var categoryServingsLabel: UILabel!
+    @IBOutlet private weak var ingredientsText: UILabel!
     @IBOutlet private weak var ingredientsLabel: UILabel!
     @IBOutlet private weak var addToCartView: AddToCartView!
 
@@ -59,7 +61,14 @@ extension DishDetailsTableViewCell: PlaceholderConfigurable {
         descriptionLabel.text = contentViewModel.description
         let addButtonModel = AddToCartViewModel(dish: contentViewModel)
         addToCartView.configureWith(addButtonModel)
-        ingredientsLabel.text = "\u{2022} Pasta\n\u{2022} Pomodoro\n\u{2022} Basilico"
+        categoryServingsLabel.text = "\(contentViewModel.categories.first?.name ?? "") "
+            + "- \(contentViewModel.servings) servings"
+        if let ingredients = contentViewModel.ingredients?.replacingOccurrences(of: ",",
+                                                                                with: "\n\u{2022} ") {
+            ingredientsLabel.text = " \u{2022}\(ingredients)"
+        } else {
+            ingredientsText.isHidden = true
+        }
     }
 
 }

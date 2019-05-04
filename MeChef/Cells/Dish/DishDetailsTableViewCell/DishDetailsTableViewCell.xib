@@ -57,19 +57,19 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcI-FE-3EM">
-                                <rect key="frame" x="20" y="166.5" width="335" height="31"/>
+                                <rect key="frame" x="20" y="166.5" width="335" height="48.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-Zy-nEJ" userLabel="Ingredients title">
-                                <rect key="frame" x="20" y="217.5" width="335" height="19.5"/>
+                                <rect key="frame" x="20" y="235" width="335" height="19.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="- something" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPV-m2-esk" userLabel="Ingredients">
-                                <rect key="frame" x="20" y="242" width="335" height="17.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPV-m2-esk" userLabel="Ingredients">
+                                <rect key="frame" x="20" y="259.5" width="335" height="0.0"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -112,9 +112,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="addToCartView" destination="Ieh-uL-6yi" id="uyF-bF-QIo"/>
+                <outlet property="categoryServingsLabel" destination="kip-tf-25v" id="RBr-xz-7A8"/>
                 <outlet property="contentContainerViewOutlet" destination="TSw-nf-20N" id="t57-NL-0e4"/>
                 <outlet property="descriptionLabel" destination="HcI-FE-3EM" id="Kqf-Di-GMY"/>
                 <outlet property="ingredientsLabel" destination="WPV-m2-esk" id="JhK-fe-37m"/>
+                <outlet property="ingredientsText" destination="ge3-Zy-nEJ" id="BEY-FP-v1O"/>
                 <outlet property="nameLabel" destination="S2P-fG-Py4" id="hN7-ik-PZQ"/>
                 <outlet property="placeholderContainerViewOutlet" destination="8v0-0u-njs" id="Qtp-8g-sir"/>
             </connections>

@@ -15,13 +15,13 @@ final class DishViewModel: BaseStatefulViewModel<Dish> {
 extension DishViewModel {
 
     var baseChef: BaseChef? {
-        guard let chefId = result.chef?.id, let chefName = result.chef?.name
-            else { return nil }
-        return BaseChef(avatarUrl: result.chef?.avatarUrl, id: chefId, name: chefName)
+        return isLoading
+            ? nil : BaseChef(avatarUrl: result.chef.avatarUrl,
+                             id: result.chef.id, name: result.chef.name)
     }
 
     var chefId: Int64 {
-        return isLoading ? -1 : result.chef?.id ?? -1
+        return isLoading ? -1 : result.chef.id
     }
 
     var imageUrl: URL? {
@@ -29,7 +29,8 @@ extension DishViewModel {
     }
 
     var localCartDish: LocalCartDish {
-        return LocalCartDish(id: result.id, name: result.name, price: result.price, imageUrl: result.imageUrl)
+        return LocalCartDish(id: result.id, name: result.name,
+                             price: result.price, imageUrl: result.imageUrl)
     }
 
 }

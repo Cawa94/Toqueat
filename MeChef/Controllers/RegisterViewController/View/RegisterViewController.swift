@@ -10,6 +10,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var confirmPasswordTextField: UITextField!
+    @IBOutlet private weak var phoneTextField: UITextField!
     @IBOutlet private weak var cityTextField: UITextField!
     @IBOutlet private weak var streetTextField: UITextField!
     @IBOutlet private weak var apartmentTextField: UITextField!
@@ -53,6 +54,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         emailTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         passwordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         confirmPasswordTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        phoneTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         cityTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         streetTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         apartmentTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
@@ -65,6 +67,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         validator.registerField(emailTextField, rules: [RequiredRule()])
         validator.registerField(passwordTextField, rules: [RequiredRule()])
         validator.registerField(confirmPasswordTextField, rules: [RequiredRule()])
+        validator.registerField(phoneTextField, rules: [RequiredRule()])
         validator.registerField(cityTextField, rules: [RequiredRule()])
         validator.registerField(streetTextField, rules: [RequiredRule()])
         validator.registerField(apartmentTextField, rules: [RequiredRule()])
@@ -75,13 +78,14 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         guard let name = nameTextField.text, let lastName = lastnameTextField.text,
             let email = emailTextField.text, let password = passwordTextField.text,
             let cityId = registerViewModel.cities.first(where: { $0.name == cityTextField.text })?.id,
-            let street = streetTextField.text, let apartment = apartmentTextField.text,
-            let zipcode = zipcodeTextField.text
+            let phone = phoneTextField.text, let street = streetTextField.text,
+            let apartment = apartmentTextField.text, let zipcode = zipcodeTextField.text
             else { return }
         let registrationParameters = UserCreateParameters(name: name, lastname: lastName,
                                                           email: email, password: password,
                                                           cityId: cityId, address: street,
-                                                          zipcode: zipcode, apartment: apartment)
+                                                          zipcode: zipcode, apartment: apartment,
+                                                          phone: phone)
         NetworkService.shared.register(registerParameters: registrationParameters)
             .flatMap { response -> Single<User> in
                 SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)
@@ -164,6 +168,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         textField.placeholder = nil
     }
 
+    // swiftlint:disable all
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case nameTextField:
@@ -176,6 +181,8 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             textField.placeholder = "Password"
         case confirmPasswordTextField:
             textField.placeholder = "Confirm password"
+        case phoneTextField:
+            textField.placeholder = "Phone"
         case cityTextField:
             textField.placeholder = "City"
         case streetTextField:

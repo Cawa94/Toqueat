@@ -7,7 +7,7 @@ extension NavigationService {
                                                 bundle: nil)
         let viewModel = ChefDishViewModel(dish: dish, chefId: chefId)
 
-        controller.viewModel = viewModel
+        controller.chefDishViewModel = viewModel
         return controller
     }
 

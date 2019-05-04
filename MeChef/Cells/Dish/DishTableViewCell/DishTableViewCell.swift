@@ -10,6 +10,7 @@ class DishTableViewCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var chefImageView: UIImageView!
     @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var categoryLabel: UILabel!
     @IBOutlet private weak var dishImageView: UIImageView!
 
     var disposeBag = DisposeBag()
@@ -54,6 +55,7 @@ extension DishTableViewCell: PlaceholderConfigurable {
 
         nameLabel.text = contentViewModel.dish.name
         priceLabel.text = contentViewModel.dish.price.stringWithCurrency
+        categoryLabel.text = contentViewModel.dish.categories.first?.name
         if let url = contentViewModel.dish.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)
         } else {
