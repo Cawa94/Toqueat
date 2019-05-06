@@ -5,29 +5,38 @@ final class DishesViewModel: BaseTableViewModel<[Dish], Dish> {
         super.init(dataSource: dishesRequest)
     }
 
-    var dishesTypes: [DishType] = [DishType(imageName: "main_dishes",
-                                            name: "Main dishes",
-                                            sortParams: ["editorial_best"],
-                                            isActive: true),
-                                   DishType(imageName: "second_dishes",
-                                            name: "Second dishes",
-                                            sortParams: ["editorial_best"],
-                                            isActive: true),
-                                   DishType(imageName: "one_dishes",
-                                            name: "One dishes",
-                                            sortParams: ["editorial_best"],
-                                            isActive: true),
-                                   DishType(imageName: "snacks",
-                                            name: "Snacks",
-                                            sortParams: ["editorial_best"],
-                                            isActive: true),
-                                   DishType(imageName: "desserts",
-                                            name: "Desserts",
-                                            sortParams: ["editorial_best"],
-                                            isActive: true),
-                                   DishType(imageName: "salads",
-                                            name: "Salads",
-                                            sortParams: ["editorial_best"],
-                                            isActive: true)]
+    var dishesTypes: [DishCategory] = [DishCategory(imageName: "main_dishes",
+                                                    name: "Main courses",
+                                                    paramId: 1,
+                                                    isActive: false),
+                                       DishCategory(imageName: "second_dishes",
+                                                    name: "Second courses",
+                                                    paramId: 2,
+                                                    isActive: false),
+                                       DishCategory(imageName: "one_dishes",
+                                                    name: "One courses",
+                                                    paramId: 3,
+                                                    isActive: false),
+                                       DishCategory(imageName: "snacks",
+                                                    name: "Snacks",
+                                                    paramId: 4,
+                                                    isActive: false),
+                                       DishCategory(imageName: "salads",
+                                                    name: "Salads",
+                                                    paramId: 5,
+                                                    isActive: false),
+                                       DishCategory(imageName: "desserts",
+                                                    name: "Desserts",
+                                                    paramId: 6,
+                                                    isActive: false)]
+
+    func deselectFilters() {
+        dishesTypes[0].isActive = false
+        dishesTypes[1].isActive = false
+        dishesTypes[2].isActive = false
+        dishesTypes[3].isActive = false
+        dishesTypes[4].isActive = false
+        dishesTypes[5].isActive = false
+    }
 
 }

@@ -16,6 +16,8 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
     }
 
     private let disposeBag = DisposeBag()
+    private var filteredText: String?
+    private var selectedCategoryId: Int64?
     private lazy var searchBar: UISearchBar = .toqueatSearchBar
 
     override func viewDidLoad() {
@@ -32,7 +34,9 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
             .skip(1)
             .debounce(0.5)
             .drive(onNext: { text in
-                NetworkService.shared.searchDish(query: text)
+                self.filteredText = text
+                NetworkService.shared.searchDish(query: text,
+                                                 categoryId: self.selectedCategoryId)
                     .observeOn(MainScheduler.instance)
                     .subscribe(onSuccess: { filteredDishes in
                         self.dishesViewModel.elements = filteredDishes
@@ -44,9 +48,9 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
 
         tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "DishTableViewCell")
-        let nib = UINib(nibName: "DishTypeCollectionViewCell", bundle: nil)
+        let nib = UINib(nibName: "DishCategoryCollectionViewCell", bundle: nil)
         collectionView.register(nib,
-                                forCellWithReuseIdentifier: "DishTypeCollectionViewCell")
+                                forCellWithReuseIdentifier: "DishCategoryCollectionViewCell")
     }
 
     @IBAction func profileAction(_ sender: Any) {
@@ -111,7 +115,7 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)
         -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DishTypeCollectionViewCell",
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DishCategoryCollectionViewCell",
                                                           for: indexPath)
             configureWithContent(cell, at: indexPath)
             return cell
@@ -119,9 +123,28 @@ class DishesViewController: BaseTableViewController<[Dish], Dish>,
 
     private func configureWithContent(_ cell: UICollectionViewCell, at indexPath: IndexPath) {
         switch cell {
-        case let typeCell as DishTypeCollectionViewCell:
-            let dishType = dishesViewModel.dishesTypes[indexPath.row]
-            typeCell.configureWith(dishType)
+        case let categoryCell as DishCategoryCollectionViewCell:
+            let dishCategory = dishesViewModel.dishesTypes[indexPath.row]
+            categoryCell.configureWith(dishCategory)
+            categoryCell.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    let isActive = self.dishesViewModel.dishesTypes[indexPath.row].isActive
+                    self.dishesViewModel.deselectFilters()
+                    self.selectedCategoryId = isActive ? nil : dishCategory.paramId
+                    self.dishesViewModel.dishesTypes[indexPath.row].isActive = !isActive
+                    NetworkService.shared.searchDish(query: self.filteredText,
+                                                     categoryId: self.selectedCategoryId)
+                        .observeOn(MainScheduler.instance)
+                        .subscribe(onSuccess: { filteredDishes in
+                            self.dishesViewModel.elements = filteredDishes
+                            self.tableView.reloadData()
+                        })
+                        .disposed(by: self.disposeBag)
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                })
+                .disposed(by: categoryCell.disposeBag)
         default:
             break
         }

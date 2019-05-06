@@ -64,8 +64,9 @@ extension DishDetailsTableViewCell: PlaceholderConfigurable {
         categoryServingsLabel.text = "\(contentViewModel.categories.first?.name ?? "") "
             + "- \(contentViewModel.servings) servings"
         if let ingredients = contentViewModel.ingredients?.replacingOccurrences(of: ",",
-                                                                                with: "\n\u{2022} ") {
-            ingredientsLabel.text = " \u{2022}\(ingredients)"
+                                                                                with: "\n\u{2022} "),
+            ingredients.isNotEmpty {
+            ingredientsLabel.text = "\u{2022} \(ingredients)"
         } else {
             ingredientsText.isHidden = true
         }

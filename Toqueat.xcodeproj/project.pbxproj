@@ -60,8 +60,8 @@
 		DA636D912271FD8B00DA2A70 /* AddToCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D902271FD8B00DA2A70 /* AddToCartView.swift */; };
 		DA636D932271FD9800DA2A70 /* AddToCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA636D922271FD9800DA2A70 /* AddToCartViewModel.swift */; };
 		DA636D952271FDA100DA2A70 /* AddToCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA636D942271FDA100DA2A70 /* AddToCartView.xib */; };
-		DA69D0F4225BD6B600231E3E /* DishTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA69D0F2225BD6B600231E3E /* DishTypeCollectionViewCell.swift */; };
-		DA69D0F5225BD6B600231E3E /* DishTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA69D0F3225BD6B600231E3E /* DishTypeCollectionViewCell.xib */; };
+		DA69D0F4225BD6B600231E3E /* DishCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA69D0F2225BD6B600231E3E /* DishCategoryCollectionViewCell.swift */; };
+		DA69D0F5225BD6B600231E3E /* DishCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA69D0F3225BD6B600231E3E /* DishCategoryCollectionViewCell.xib */; };
 		DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */; };
 		DA78566D223FF9A0001BB354 /* ChefLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78566B223FF9A0001BB354 /* ChefLoginViewController.xib */; };
 		DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78566E223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift */; };
@@ -118,6 +118,8 @@
 		DAB271832247E223005C0915 /* TrackOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271822247E223005C0915 /* TrackOrderViewModel.swift */; };
 		DAB271852247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271842247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift */; };
 		DAB271882247EEA9005C0915 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB271872247EEA9005C0915 /* MapPoint.swift */; };
+		DAB89580227EF0ED0052DD46 /* DishCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB8957F227EF0ED0052DD46 /* DishCategoryType.swift */; };
+		DAB89582227EF1700052DD46 /* DishCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB89581227EF1700052DD46 /* DishCategory.swift */; };
 		DABB4BF3226E5E84000237ED /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB4BF2226E5E84000237ED /* ImagePickerManager.swift */; };
 		DABC32182254EFEB0001757E /* ChefCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC32162254EFEB0001757E /* ChefCollectionViewCell.swift */; };
 		DABC32192254EFEB0001757E /* ChefCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABC32172254EFEB0001757E /* ChefCollectionViewCell.xib */; };
@@ -261,8 +263,8 @@
 		DA636D902271FD8B00DA2A70 /* AddToCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartView.swift; sourceTree = "<group>"; };
 		DA636D922271FD9800DA2A70 /* AddToCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartViewModel.swift; sourceTree = "<group>"; };
 		DA636D942271FDA100DA2A70 /* AddToCartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddToCartView.xib; sourceTree = "<group>"; };
-		DA69D0F2225BD6B600231E3E /* DishTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishTypeCollectionViewCell.swift; sourceTree = "<group>"; };
-		DA69D0F3225BD6B600231E3E /* DishTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishTypeCollectionViewCell.xib; sourceTree = "<group>"; };
+		DA69D0F2225BD6B600231E3E /* DishCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA69D0F3225BD6B600231E3E /* DishCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefLoginViewController.swift; sourceTree = "<group>"; };
 		DA78566B223FF9A0001BB354 /* ChefLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefLoginViewController.xib; sourceTree = "<group>"; };
 		DA78566E223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefLoginViewController.swift"; sourceTree = "<group>"; };
@@ -323,6 +325,8 @@
 		DAB271822247E223005C0915 /* TrackOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderViewModel.swift; sourceTree = "<group>"; };
 		DAB271842247E2C8005C0915 /* NavigationService+TrackOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+TrackOrderViewController.swift"; sourceTree = "<group>"; };
 		DAB271872247EEA9005C0915 /* MapPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
+		DAB8957F227EF0ED0052DD46 /* DishCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategoryType.swift; sourceTree = "<group>"; };
+		DAB89581227EF1700052DD46 /* DishCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategory.swift; sourceTree = "<group>"; };
 		DABB4BF2226E5E84000237ED /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		DABC32162254EFEB0001757E /* ChefCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefCollectionViewCell.swift; sourceTree = "<group>"; };
 		DABC32172254EFEB0001757E /* ChefCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -631,13 +635,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		DA69D0F1225BD69B00231E3E /* DishTypeCollectionViewCell */ = {
+		DA69D0F1225BD69B00231E3E /* DishCategoryCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				DA69D0F2225BD6B600231E3E /* DishTypeCollectionViewCell.swift */,
-				DA69D0F3225BD6B600231E3E /* DishTypeCollectionViewCell.xib */,
+				DA69D0F2225BD6B600231E3E /* DishCategoryCollectionViewCell.swift */,
+				DA69D0F3225BD6B600231E3E /* DishCategoryCollectionViewCell.xib */,
 			);
-			path = DishTypeCollectionViewCell;
+			path = DishCategoryCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		DA785667223FF96F001BB354 /* ChefLoginViewController */ = {
@@ -959,8 +963,9 @@
 		DAB271862247EE70005C0915 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DAB271872247EEA9005C0915 /* MapPoint.swift */,
+				DAB89581227EF1700052DD46 /* DishCategory.swift */,
 				DA0328B0225CD148001FBE14 /* IntrinsicTableView.swift */,
+				DAB271872247EEA9005C0915 /* MapPoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1042,6 +1047,7 @@
 		DAD08B532245632F00F446C0 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				DAB8957F227EF0ED0052DD46 /* DishCategoryType.swift */,
 				DAD08B542245634E00F446C0 /* OrderStates.swift */,
 			);
 			path = Enums;
@@ -1063,7 +1069,7 @@
 				DA5DE16522734EBF00229486 /* DishCollectionViewCell */,
 				DA0328B2225CD221001FBE14 /* DishDetailsTableViewCell */,
 				DAC99471222BE96A000282F1 /* DishTableViewCell */,
-				DA69D0F1225BD69B00231E3E /* DishTypeCollectionViewCell */,
+				DA69D0F1225BD69B00231E3E /* DishCategoryCollectionViewCell */,
 			);
 			path = Dish;
 			sourceTree = "<group>";
@@ -1714,7 +1720,7 @@
 				DACB01E2225F8F80008093F3 /* CartHeaderView.xib in Resources */,
 				DA0328B6225CD235001FBE14 /* DishDetailsTableViewCell.xib in Resources */,
 				DAF86AF12237BEF300070B76 /* CartViewController.xib in Resources */,
-				DA69D0F5225BD6B600231E3E /* DishTypeCollectionViewCell.xib in Resources */,
+				DA69D0F5225BD6B600231E3E /* DishCategoryCollectionViewCell.xib in Resources */,
 				DA28526522789B4E009C0AD1 /* GoToPaymentView.xib in Resources */,
 				DA8B703C22623995002DBF1A /* UserBarTableViewCell.xib in Resources */,
 				DAE902C722494BF900743D6A /* ChefDeliverySlotsViewController.xib in Resources */,
@@ -1930,6 +1936,7 @@
 				DADFF2CF222E885A00BB6404 /* RegisterViewModel.swift in Sources */,
 				DA636D8E2271F2BA00DA2A70 /* Date+Extensions.swift in Sources */,
 				DA8B7037226232E8002DBF1A /* UserBaseInfoTableViewCell.swift in Sources */,
+				DAB89582227EF1700052DD46 /* DishCategory.swift in Sources */,
 				DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */,
 				DA979BEB222C914100D452B9 /* ProfileViewModel.swift in Sources */,
 				DAFD096B22297AA400F1255A /* NetworkService.swift in Sources */,
@@ -1975,6 +1982,7 @@
 				DA636D8C2271E91E00DA2A70 /* ChefOrderDetailsViewModel.swift in Sources */,
 				DADFF2C6222E84BB00BB6404 /* NavigationService+DishViewController.swift in Sources */,
 				DAF4FE2C222AD30F00F208DB /* UIViewController+Extensions.swift in Sources */,
+				DAB89580227EF0ED0052DD46 /* DishCategoryType.swift in Sources */,
 				DAFEB60E2240E3D300CABCF5 /* ChefDishesViewModel.swift in Sources */,
 				DADD68C9223AB6BA00D65C7A /* NavigationService+AddressViewController.swift in Sources */,
 				DA9363B5223984E200DF8951 /* Array+Extensions.swift in Sources */,
@@ -1997,7 +2005,7 @@
 				DAF9C9A9226CE15200AD4248 /* NavigationService+ChefDishViewController.swift in Sources */,
 				DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */,
 				DA28526322789B43009C0AD1 /* GoToPaymentViewModel.swift in Sources */,
-				DA69D0F4225BD6B600231E3E /* DishTypeCollectionViewCell.swift in Sources */,
+				DA69D0F4225BD6B600231E3E /* DishCategoryCollectionViewCell.swift in Sources */,
 				DAB2716E2247B6D8005C0915 /* OrdersViewController.swift in Sources */,
 				DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */,
 				DAF9C998226CC82000AD4248 /* AddDishTableViewCell.swift in Sources */,

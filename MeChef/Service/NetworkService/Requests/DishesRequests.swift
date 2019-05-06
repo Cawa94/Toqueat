@@ -31,9 +31,17 @@ extension NetworkService {
             .map { $0.categories }
     }
 
-    func searchDish(query: String) -> Single<[Dish]> {
-        let parameters = ["search": query] as Parameters
-        let apiParameters = ApiRequestParameters(relativeUrl: "searchDish",
+    func searchDish(query: String?, categoryId: Int64?) -> Single<[Dish]> {
+        var parameters: Parameters = [:]
+        if let categoryId = categoryId, let query = query {
+            parameters = ["search_query": query,
+                          "category_id": categoryId]
+        } else if let query = query {
+            parameters = ["search_query": query]
+        } else if let categoryId = categoryId {
+            parameters = ["category_id": categoryId]
+        }
+        let apiParameters = ApiRequestParameters(relativeUrl: "search_dish",
                                                  parameters: parameters + currentCityParameter)
 
         return (request(with: apiParameters) as Single<DishesResponse>)
