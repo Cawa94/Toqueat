@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import Nuke
 
-class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
+class ChefDishesViewController: BaseTableViewController<Chef, ChefDish> {
 
     @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
@@ -72,8 +72,7 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
             dishCell.configureWith(contentViewModel: dish)
             dishCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
-                    NavigationService.pushChefDishViewController(dish: dish,
-                                                                 chefId: self.chefDishesViewModel.chefId)
+                    NavigationService.pushChefDishViewController(dishId: dish.id)
                 })
                 .disposed(by: dishCell.disposeBag)
             dishCell.edit.rx.tapGesture().when(.recognized)
@@ -84,8 +83,7 @@ class ChefDishesViewController: BaseTableViewController<Chef, Dish> {
         case let addDishCell as AddDishTableViewCell:
             addDishCell.addDish.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
-                    NavigationService.pushChefDishViewController(dish: nil,
-                                                                 chefId: self.chefDishesViewModel.chefId)
+                    NavigationService.pushChefDishViewController(dishId: nil)
                 })
                 .disposed(by: addDishCell.disposeBag)
             DispatchQueue.main.async {

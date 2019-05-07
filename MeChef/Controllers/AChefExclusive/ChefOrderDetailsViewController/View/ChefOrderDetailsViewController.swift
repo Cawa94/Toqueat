@@ -2,15 +2,18 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ChefOrderDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChefOrderDetailsViewController: BaseTableViewController<Order, LocalCartDish> {
 
-    @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var confirmOrderButton: RoundedButton!
     @IBOutlet private weak var refuseOrderButton: RoundedButton!
 
-    var viewModel: ChefOrderDetailsViewModel!
+    var chefOrderDetailsViewModel: ChefOrderDetailsViewModel! {
+        didSet {
+            tableViewModel = chefOrderDetailsViewModel
+        }
+    }
 
     private let disposeBag = DisposeBag()
 
@@ -28,22 +31,17 @@ class ChefOrderDetailsViewController: UIViewController, UITableViewDelegate, UIT
                            forCellReuseIdentifier: "CartDishTableViewCell")
     }
 
-    func configureNavigationBar() {
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .mainOrangeColor
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
+    override func configureNavigationBar() {
         navigationController?.isNavigationBarHidden = false
         title = "Order Details"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ",
-                                                           style: .plain, target: nil, action: nil)
     }
 
     @IBAction func confirmOrderAction(_ sender: Any) {
         guard let chefLocation = SessionService.session?.chef?.stuartLocation
             else { return }
-        let createStuartSingle = viewModel.createStuartJobWith(orderId: viewModel.order.id,
-                                                               chefLocation: chefLocation)
+        let createStuartSingle = chefOrderDetailsViewModel
+            .createStuartJobWith(orderId: chefOrderDetailsViewModel.result.id,
+                                 chefLocation: chefLocation)
         self.hudOperationWithSingle(operationSingle: createStuartSingle,
                                     onSuccessClosure: { _ in
                                         self.presentAlertWith(title: "YEAH",
@@ -54,8 +52,8 @@ class ChefOrderDetailsViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     @IBAction func cancelOrderAction(_ sender: Any) {
-        viewModel.changeOrderStatusWith(orderId: viewModel.order.id,
-                                                       state: .canceled)
+        chefOrderDetailsViewModel.changeOrderStatusWith(orderId: chefOrderDetailsViewModel.result.id,
+                                                        state: .canceled)
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { _ in
                 self.presentAlertWith(title: "YEAH",
@@ -73,33 +71,39 @@ class ChefOrderDetailsViewController: UIViewController, UITableViewDelegate, UIT
 
     // MARK: - UITableViewDelegate
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.elements.count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return chefOrderDetailsViewModel.elements.count
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartDishTableViewCell",
                                                  for: indexPath)
-        configure(cell, at: indexPath)
+        configure(cell, at: indexPath, isLoading: chefOrderDetailsViewModel.isLoading)
         return cell
     }
 
-    private func configure(_ cell: UITableViewCell, at indexPath: IndexPath) {
-        configureWithContent(cell, at: indexPath)
-    }
-
-    private func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    override func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let dishCell as CartDishTableViewCell:
-            let dish = viewModel.elementAt(indexPath.row)
-            let dishViewModel = CartDishTableViewModel(dish: dish,
-                                                       quantityInOrder: viewModel.quantityOf(dish: dish))
+            dishCell.configureWith(loading: true)
+        default:
+            break
+        }
+    }
+
+    override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+        switch cell {
+        case let dishCell as CartDishTableViewCell:
+            let dish = chefOrderDetailsViewModel.elementAt(indexPath.row)
+            let dishViewModel = CartDishTableViewModel(
+                dish: dish,
+                quantityInOrder: chefOrderDetailsViewModel.quantityOf(dish: dish))
             dishCell.configureWith(contentViewModel: dishViewModel)
-            if indexPath.row == viewModel.elements.count - 1 {
+            if indexPath.row == chefOrderDetailsViewModel.elements.count - 1 {
                 DispatchQueue.main.async {
                     self.viewDidLayoutSubviews()
                 }
@@ -107,6 +111,14 @@ class ChefOrderDetailsViewController: UIViewController, UITableViewDelegate, UIT
         default:
             break
         }
+    }
+
+    // MARK: - StatefulViewController related methods
+
+    override func onResultsState() {
+        chefOrderDetailsViewModel.elements =
+            chefOrderDetailsViewModel.result.dishes.map { $0.asLocalCartDish }.uniqueElements
+        super.onResultsState()
     }
 
 }

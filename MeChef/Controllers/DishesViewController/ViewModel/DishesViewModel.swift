@@ -1,4 +1,4 @@
-final class DishesViewModel: BaseTableViewModel<[Dish], Dish> {
+final class DishesViewModel: BaseTableViewModel<[BaseDish], BaseDish> {
 
     init() {
         let dishesRequest = NetworkService.shared.getAllDishes()

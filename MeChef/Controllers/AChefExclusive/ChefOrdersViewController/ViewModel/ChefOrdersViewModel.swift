@@ -5,7 +5,7 @@ import SwiftDate
 final class ChefOrdersViewModel: BaseStatefulViewModel<ChefOrdersViewModel.ResultType> {
 
     struct ResultType {
-        let orders: [Order]
+        let orders: [BaseOrder]
         let deliverySlots: [DeliverySlot]
     }
 
@@ -49,7 +49,7 @@ extension ChefOrdersViewModel {
         }
     }
 
-    func orderAt(_ indexPath: IndexPath) -> Order? {
+    func orderAt(_ indexPath: IndexPath) -> BaseOrder? {
         guard !isLoading
             else { return nil }
         return result.orders.first(where: { $0.deliverySlot.weekdayId == (weekdaysOrdered[indexPath.row])

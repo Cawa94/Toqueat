@@ -1,7 +1,7 @@
 import UIKit
 import RxSwift
 
-class DishesViewController: BaseTableViewController<[Dish], Dish>,
+class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
     UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet private weak var collectionView: UICollectionView!

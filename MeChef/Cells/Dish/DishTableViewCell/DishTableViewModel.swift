@@ -1,6 +1,6 @@
 struct DishTableViewModel {
 
-    let dish: Dish
+    let dish: BaseDish
     let chef: BaseChef?
 
 }

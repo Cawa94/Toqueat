@@ -1,6 +1,22 @@
 import Foundation
 
-extension Dish {
+extension BaseDish {
+
+    var imageLink: URL? {
+        if let imageUrl = imageUrl {
+            return URL(string: "\(NetworkService.baseUrl)\(imageUrl.dropFirst())")
+        } else {
+            return nil
+        }
+    }
+
+    var asLocalCartDish: LocalCartDish {
+        return LocalCartDish(id: id, name: name, price: price, imageUrl: imageUrl)
+    }
+
+}
+
+extension ChefDish {
 
     var imageLink: URL? {
         if let imageUrl = imageUrl {

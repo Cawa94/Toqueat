@@ -12,7 +12,7 @@ class ChefCollectionViewCell: UICollectionViewCell {
 
     static let reuseID = "ChefCollectionViewCell"
     var disposeBag = DisposeBag()
-    private var viewModel: Chef?
+    private var viewModel: BaseChef?
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -29,7 +29,7 @@ class ChefCollectionViewCell: UICollectionViewCell {
 
 extension ChefCollectionViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = Chef
+    typealias ContentViewModelType = BaseChef
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -40,7 +40,7 @@ extension ChefCollectionViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWith(loading: Bool = false, contentViewModel: Chef? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: BaseChef? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -48,7 +48,7 @@ extension ChefCollectionViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: Chef) {
+    func configure(contentViewModel: BaseChef) {
         self.viewModel = contentViewModel
 
         nameLabel.text = "\(contentViewModel.name) \(contentViewModel.lastname)"

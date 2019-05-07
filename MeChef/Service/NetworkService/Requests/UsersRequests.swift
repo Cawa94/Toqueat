@@ -45,7 +45,7 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func getOrdersFor(userId: Int64) -> Single<[Order]> {
+    func getOrdersFor(userId: Int64) -> Single<[BaseOrder]> {
         let apiParameters = ApiRequestParameters(relativeUrl: "users/\(userId)/orders")
 
         return (request(with: apiParameters) as Single<OrdersResponse>)

@@ -2,7 +2,8 @@ import UIKit
 import RxSwift
 import Nuke
 
-class ChefViewController: BaseTableViewController<Chef, Dish>,
+class ChefViewController: BaseStatefulController<Chef>,
+    UITableViewDelegate, UITableViewDataSource,
     UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet private weak var headerView: UIView!
@@ -18,7 +19,7 @@ class ChefViewController: BaseTableViewController<Chef, Dish>,
 
     var chefViewModel: ChefViewModel! {
         didSet {
-            tableViewModel = chefViewModel
+            viewModel = chefViewModel
         }
     }
 
@@ -34,8 +35,6 @@ class ChefViewController: BaseTableViewController<Chef, Dish>,
         chefDetailsTableView.roundCorners(radii: 15.0)
         chefImageView.roundOnly(corners: [.bottomLeft, .bottomRight], cornerRadii: 30.0)
 
-        tableView.register(UINib(nibName: "DishTableViewCell", bundle: nil),
-                           forCellReuseIdentifier: "DishTableViewCell")
         chefDetailsTableView.register(UINib(nibName: "ChefDetailsTableViewCell", bundle: nil),
                                       forCellReuseIdentifier: "ChefDetailsTableViewCell")
 
@@ -52,27 +51,27 @@ class ChefViewController: BaseTableViewController<Chef, Dish>,
 
     // MARK: - UITableViewDelegate
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.tableView {
-            return tableViewModel.numberOfItems(for: section)
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell
-        if tableView == self.tableView {
-            cell = tableView.dequeueReusableCell(withIdentifier: "DishTableViewCell",
-                                                 for: indexPath)
-        } else {
-            cell = chefDetailsTableView.dequeueReusableCell(withIdentifier: "ChefDetailsTableViewCell",
-                                                            for: indexPath)
-        }
+        cell = chefDetailsTableView.dequeueReusableCell(withIdentifier: "ChefDetailsTableViewCell",
+                                                        for: indexPath)
         configure(cell, at: indexPath, isLoading: chefViewModel.isLoading)
         return cell
     }
 
-    override func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
+        if isLoading {
+            configureWithPlaceholders(cell, at: indexPath)
+        } else {
+            configureWithContent(cell, at: indexPath)
+        }
+    }
+
+    func configureWithPlaceholders(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
         case let dishCell as DishTableViewCell:
             dishCell.configureWith(loading: true)
@@ -83,23 +82,8 @@ class ChefViewController: BaseTableViewController<Chef, Dish>,
         }
     }
 
-    override func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
+    func configureWithContent(_ cell: UITableViewCell, at indexPath: IndexPath) {
         switch cell {
-        case let dishCell as DishTableViewCell:
-            let dish = chefViewModel.elementAt(indexPath.row)
-            let viewModel = DishTableViewModel(dish: dish,
-                                               chef: nil)
-            dishCell.configureWith(contentViewModel: viewModel)
-            dishCell.rx.tapGesture().when(.recognized)
-                .subscribe(onNext: { _ in
-                    NavigationService.pushDishViewController(dishId: dish.id)
-                })
-                .disposed(by: dishCell.disposeBag)
-            if indexPath.row == chefViewModel.elements.count - 1 {
-                DispatchQueue.main.async {
-                    self.viewDidLayoutSubviews()
-                }
-            }
         case let chefDetailsCell as ChefDetailsTableViewCell:
             let chef = chefViewModel.result
             chefDetailsCell.configureWith(contentViewModel: chef)
@@ -120,29 +104,8 @@ class ChefViewController: BaseTableViewController<Chef, Dish>,
         }
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == self.tableView {
-            return 220
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if tableView == self.tableView {
-            return 50
-        }
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if tableView == self.tableView {
-            let  headerCell = UITableViewCell()
-            headerCell.textLabel?.text = "My dishes"
-            headerCell.textLabel?.textColor = .darkGrayColor
-            headerCell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
-            return headerCell
-        }
-        return nil
     }
 
     // MARK: - Collection view data source and delegate methods

@@ -17,7 +17,7 @@ class ChefDishTableViewCell: UITableViewCell {
     }
 
     var disposeBag = DisposeBag()
-    private var viewModel: Dish?
+    private var viewModel: ChefDish?
 
     override func prepareForReuse() {
         self.disposeBag = DisposeBag()
@@ -32,7 +32,7 @@ class ChefDishTableViewCell: UITableViewCell {
 
 extension ChefDishTableViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = Dish
+    typealias ContentViewModelType = ChefDish
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -43,7 +43,7 @@ extension ChefDishTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWith(loading: Bool = false, contentViewModel: Dish? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: ChefDish? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -51,7 +51,7 @@ extension ChefDishTableViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: Dish) {
+    func configure(contentViewModel: ChefDish) {
         self.viewModel = contentViewModel
 
         nameLabel.text = contentViewModel.name

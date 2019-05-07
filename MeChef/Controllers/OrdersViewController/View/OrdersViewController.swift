@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import Nuke
 
-class OrdersViewController: BaseTableViewController<[Order], Order> {
+class OrdersViewController: BaseTableViewController<[BaseOrder], BaseOrder> {
 
     var ordersViewModel: OrdersViewModel! {
         didSet {
@@ -48,8 +48,7 @@ class OrdersViewController: BaseTableViewController<[Order], Order> {
             orderCell.configureWith(contentViewModel: viewModel)
             orderCell.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
-                    NavigationService.pushTrackOrderViewController(orderId: order.id,
-                                                                   stuartId: order.stuartId)
+                    NavigationService.pushTrackOrderViewController(orderId: order.id)
                 })
                 .disposed(by: orderCell.disposeBag)
         default:

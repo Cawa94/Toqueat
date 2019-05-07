@@ -2,7 +2,7 @@ import UIKit
 
 struct OrderTableViewModel {
 
-    let order: Order
+    let order: BaseOrder
 
 }
 

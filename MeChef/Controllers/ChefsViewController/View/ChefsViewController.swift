@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import RxGesture
 
-class ChefsViewController: BaseStatefulController<[Chef]>,
+class ChefsViewController: BaseStatefulController<[BaseChef]>,
     UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,
     UISearchBarDelegate {
 

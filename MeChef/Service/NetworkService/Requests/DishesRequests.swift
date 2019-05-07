@@ -16,7 +16,7 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func getAllDishes() -> Single<[Dish]> {
+    func getAllDishes() -> Single<[BaseDish]> {
         let apiParameters = ApiRequestParameters(relativeUrl: "dishes",
                                                  parameters: currentCityParameter)
 
@@ -24,14 +24,7 @@ extension NetworkService {
             .map { $0.dishes }
     }
 
-    func getAllDishesCategories() -> Single<[Category]> {
-        let apiParameters = ApiRequestParameters(relativeUrl: "categories")
-
-        return (request(with: apiParameters) as Single<CategoriesResponse>)
-            .map { $0.categories }
-    }
-
-    func searchDish(query: String?, categoryId: Int64?) -> Single<[Dish]> {
+    func searchDish(query: String?, categoryId: Int64?) -> Single<[BaseDish]> {
         var parameters: Parameters = [:]
         if let categoryId = categoryId, let query = query {
             parameters = ["search_query": query,

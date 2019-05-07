@@ -1,6 +1,6 @@
 import Foundation
 
-final class ChefDishesViewModel: BaseTableViewModel<Chef, Dish> {
+final class ChefDishesViewModel: BaseTableViewModel<Chef, ChefDish> {
 
     var chefId: Int64
 

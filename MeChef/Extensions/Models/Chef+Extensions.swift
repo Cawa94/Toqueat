@@ -1,17 +1,5 @@
 import Foundation
 
-extension BaseChef {
-
-    var avatarLink: URL? {
-        if let avatarUrl = avatarUrl {
-            return URL(string: "\(NetworkService.baseUrl)\(avatarUrl.dropFirst())")
-        } else {
-            return nil
-        }
-    }
-
-}
-
 extension Chef {
 
     var stuartContact: StuartContact {
@@ -30,6 +18,18 @@ extension Chef {
                               packageType: nil,
                               packageDescription: nil,
                               clientReference: nil)
+    }
+
+}
+
+extension BaseChef {
+
+    var avatarLink: URL? {
+        if let avatarUrl = avatarUrl {
+            return URL(string: "\(NetworkService.baseUrl)\(avatarUrl.dropFirst())")
+        } else {
+            return nil
+        }
     }
 
 }

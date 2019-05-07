@@ -1,6 +1,6 @@
 import Foundation
 
-extension Order {
+extension BaseOrder {
 
     var orderState: OrderState {
         return OrderState.getStateFrom(state)

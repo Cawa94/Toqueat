@@ -37,10 +37,6 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="350" id="1vh-ah-8qi"/>
                                     </constraints>
-                                    <connections>
-                                        <outlet property="dataSource" destination="-1" id="Pph-7d-rBe"/>
-                                        <outlet property="delegate" destination="-1" id="50A-Ew-qX7"/>
-                                    </connections>
                                 </tableView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBH-1t-qKg" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
                                     <rect key="frame" x="249" y="380" width="145" height="30"/>

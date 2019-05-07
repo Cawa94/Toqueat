@@ -117,10 +117,8 @@ extension NavigationService {
         push(viewController: editAddressController, animated: true)
     }
 
-    static func pushTrackOrderViewController(orderId: Int64,
-                                             stuartId: Int64?) {
-        let trackOrderController = trackOrderViewController(orderId: orderId,
-                                                            stuartId: stuartId)
+    static func pushTrackOrderViewController(orderId: Int64) {
+        let trackOrderController = trackOrderViewController(orderId: orderId)
         push(viewController: trackOrderController, animated: true)
     }
 

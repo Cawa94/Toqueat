@@ -19,10 +19,10 @@ final class TrackOrderViewModel: BaseStatefulViewModel<TrackOrderViewModel.Order
     private let disposeBag = DisposeBag()
     private let stuartJobVariable = Variable<StuartJob?>(nil)
 
-    init(orderId: Int64, stuartId: Int64?) {
+    init(orderId: Int64) {
         let orderSingle = NetworkService.shared.getOrderWith(orderId: orderId)
         var trackRequest: Single<OrderWithStuart>
-        if let stuartId = stuartId {
+        /*if let stuartId = stuartId {
             let stuartSingle = NetworkService.shared.getStuartJobWith(stuartId)
 
             Observable<Int>.interval(.updateTimeInterval, scheduler: MainScheduler.instance)
@@ -35,12 +35,12 @@ final class TrackOrderViewModel: BaseStatefulViewModel<TrackOrderViewModel.Order
                 OrderWithStuart(order: order, stuartJob: job)
             })
             super.init(dataSource: trackRequest)
-        } else {
+        } else {*/
             trackRequest = orderSingle.map { order -> TrackOrderViewModel.OrderWithStuart in
                 OrderWithStuart(order: order, stuartJob: nil)
             }
             super.init(dataSource: trackRequest)
-        }
+        //}
     }
 
     var stuartJobDriver: Driver<StuartJob> {

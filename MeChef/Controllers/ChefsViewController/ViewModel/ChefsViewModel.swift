@@ -1,6 +1,6 @@
 import UIKit
 
-final class ChefsViewModel: BaseStatefulViewModel<[Chef]> {
+final class ChefsViewModel: BaseStatefulViewModel<[BaseChef]> {
 
     enum Constants {
         static let numberOfColumns = 2
@@ -15,7 +15,7 @@ final class ChefsViewModel: BaseStatefulViewModel<[Chef]> {
         super.init(dataSource: chefsRequest)
     }
 
-    var elements: [Chef] = []
+    var elements: [BaseChef] = []
 
 }
 
@@ -25,7 +25,7 @@ extension ChefsViewModel {
         return hasContent ? elements.count : Constants.placeholderElements
     }
 
-    func elementAt(_ index: Int) -> Chef {
+    func elementAt(_ index: Int) -> BaseChef {
         return elements[index]
     }
 

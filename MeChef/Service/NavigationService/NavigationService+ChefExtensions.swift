@@ -67,13 +67,13 @@ extension NavigationService {
         push(viewController: deliverySlotsController, animated: true)
     }
 
-    static func pushChefDishViewController(dish: Dish?, chefId: Int64) {
-        let dishController = chefDishViewController(dish: dish, chefId: chefId)
+    static func pushChefDishViewController(dishId: Int64?) {
+        let dishController = chefDishViewController(dishId: dishId)
         push(viewController: dishController, animated: true)
     }
 
-    static func pushChefOrderDetailsViewController(order: Order) {
-        let orderDetailsController = chefOrderDetailsViewController(order: order)
+    static func pushChefOrderDetailsViewController(orderId: Int64) {
+        let orderDetailsController = chefOrderDetailsViewController(orderId: orderId)
         push(viewController: orderDetailsController, animated: true)
     }
 

@@ -2,9 +2,12 @@ import Foundation
 import RxSwift
 import SwiftDate
 
-struct ChefOrderDetailsViewModel {
+final class ChefOrderDetailsViewModel: BaseTableViewModel<Order, LocalCartDish> {
 
-    let order: Order
+    init(orderId: Int64) {
+        let orderRequest = NetworkService.shared.getOrderWith(orderId: orderId)
+        super.init(dataSource: orderRequest)
+    }
 
 }
 
@@ -46,16 +49,8 @@ extension ChefOrderDetailsViewModel {
                                                            state: state.rawValue)
     }
 
-    var elements: [LocalCartDish] {
-        return order.dishes.map { $0.asLocalCartDish }.uniqueElements
-    }
-
     func quantityOf(dish: LocalCartDish) -> Int {
-        return order.dishes.filter { $0.id == dish.id }.count
-    }
-
-    func elementAt(_ index: Int) -> LocalCartDish {
-        return elements[index]
+        return result.dishes.filter { $0.id == dish.id }.count
     }
 
 }

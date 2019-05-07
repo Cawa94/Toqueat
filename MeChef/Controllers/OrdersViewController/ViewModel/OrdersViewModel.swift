@@ -1,9 +1,9 @@
 import RxSwift
 
-final class OrdersViewModel: BaseTableViewModel<[Order], Order> {
+final class OrdersViewModel: BaseTableViewModel<[BaseOrder], BaseOrder> {
 
     init() {
-        var ordersRequest: Single<[Order]>
+        var ordersRequest: Single<[BaseOrder]>
         if SessionService.isChef {
             ordersRequest = NetworkService.shared
                 .getOrdersFor(chefId: SessionService.session?.chef?.id ?? -1)

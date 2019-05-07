@@ -7,7 +7,7 @@ private extension CGFloat {
     static let maxAvatarDimension: CGFloat = 1_080
 }
 
-class ChefDishViewController: UIViewController,
+class ChefDishViewController: BaseStatefulController<Dish>,
     UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
@@ -23,7 +23,11 @@ class ChefDishViewController: UIViewController,
 
     private var placeholderLabel: UILabel!
 
-    var viewModel: ChefDishViewModel!
+    var chefDishViewModel: ChefDishViewModel! {
+        didSet {
+            viewModel = chefDishViewModel
+        }
+    }
 
     private let validator = Validator()
     private var newImageData: Data?
@@ -35,20 +39,13 @@ class ChefDishViewController: UIViewController,
 
         configureNavigationBar()
         configureXibElements()
-        populateXibElements()
         addValidationRules()
 
     }
 
-    func configureNavigationBar() {
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .mainOrangeColor
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
+    override func configureNavigationBar() {
         navigationController?.isNavigationBarHidden = false
-        title = viewModel.dish != nil ? "Edit dish" : "New dish"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ",
-                                                           style: .plain, target: nil, action: nil)
+        title = chefDishViewModel.isNewDish ? "New dish" : "Edit dish"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
                                                             style: .done,
                                                             target: self,
@@ -86,7 +83,8 @@ class ChefDishViewController: UIViewController,
     }
 
     func populateXibElements() {
-        if let dish = viewModel.dish {
+        if !chefDishViewModel.isNewDish {
+            let dish = chefDishViewModel.result
             // Editing dish
             if let imageUrl = dish.imageLink {
                 Nuke.loadImage(with: imageUrl, into: dishImageView)
@@ -94,8 +92,8 @@ class ChefDishViewController: UIViewController,
             }
             nameTextField.text = dish.name
             priceTextField.text = dish.price.stringWithoutCurrency
-            typeTextField.text = dish.categories.first?.name
-            servingsTextField.text = "\(dish.servings)"
+            typeTextField.text = dish.categories?.first?.name
+            servingsTextField.text = "\(dish.servings ?? 1)"
             ingredientsTextField.text = dish.ingredients
             descriptionTextView.text = dish.description
             placeholderLabel.isHidden = true
@@ -177,6 +175,12 @@ class ChefDishViewController: UIViewController,
         typeTextField.text = DishCategoryType.allValues[row].name
     }
 
+    // MARK: - StatefulViewController related methods
+
+    override func onResultsState() {
+        populateXibElements()
+    }
+
 }
 
 extension ChefDishViewController: ValidationDelegate {
@@ -186,21 +190,22 @@ extension ChefDishViewController: ValidationDelegate {
             let categoryId = DishCategoryType.allValues.first(where: { $0.name == typeTextField.text })?.id,
             let servings = servingsTextField.text,
             let description = descriptionTextView.text,
-            let priceText = priceTextField.text
+            let priceText = priceTextField.text,
+            let chefId = SessionService.session?.chef?.id
             else { return }
         let price = NSDecimalNumber(string: "\(priceText.doubleValue)")
         let ingredients = ingredientsTextField.text
         let dishParameters = DishCreateParameters(name: name, description: description,
-                                                  price: price, chefId: "\(viewModel.chefId)",
+                                                  price: price, chefId: "\(chefId)",
                                                   categoryIds: [categoryId], ingredients: ingredients,
                                                   servings: Int(servings) ?? 1)
         var operationSingle: Single<Void>
-        if let dish = viewModel.dish {
+        if !chefDishViewModel.isNewDish {
             let updateDishSingle = NetworkService.shared.updateDishWith(parameters: dishParameters,
-                                                                        dishId: dish.id)
+                                                                        dishId: chefDishViewModel.result.id)
                 .map { _ in
                     if let newImage = self.newImageData {
-                        NetworkService.shared.uploadDishPicture(for: dish.id,
+                        NetworkService.shared.uploadDishPicture(for: self.chefDishViewModel.result.id,
                                                                 imageData: newImage,
                                                                 completion: { _ in })
                     }

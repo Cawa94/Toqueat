@@ -9,7 +9,7 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func getAllChefs() -> Single<[Chef]> {
+    func getAllChefs() -> Single<[BaseChef]> {
         let apiParameters = ApiRequestParameters(relativeUrl: "chefs",
                                                  parameters: currentCityParameter)
 
@@ -31,14 +31,14 @@ extension NetworkService {
             .map { $0.deliverySlotsIds }
     }
 
-    func getOrdersFor(chefId: Int64) -> Single<[Order]> {
+    func getOrdersFor(chefId: Int64) -> Single<[BaseOrder]> {
         let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/orders")
 
         return (request(with: apiParameters) as Single<OrdersResponse>)
             .map { $0.orders }
     }
 
-    func getWeekplanFor(chefId: Int64) -> Single<[Order]> {
+    func getWeekplanFor(chefId: Int64) -> Single<[BaseOrder]> {
         let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/weekplan")
 
         return (request(with: apiParameters) as Single<OrdersResponse>)
@@ -55,7 +55,7 @@ extension NetworkService {
             .map { $0.deliverySlots }
     }
 
-    func searchChef(query: String) -> Single<[Chef]> {
+    func searchChef(query: String) -> Single<[BaseChef]> {
         let parameters = ["search": query] as Parameters
         let apiParameters = ApiRequestParameters(relativeUrl: "searchChef",
                                                  parameters: parameters + currentCityParameter)
