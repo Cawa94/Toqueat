@@ -1,5 +1,6 @@
 import Foundation
 import RxSwift
+import Stripe
 
 final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultType> {
 
@@ -10,10 +11,18 @@ final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultTyp
 
     var cart: LocalCart
     var chefId: Int64
+    var orderParameters: OrderCreateParameters?
+    var paymentContext: STPPaymentContext?
+    var redirectContext: STPRedirectContext?
 
     init(cart: LocalCart, chefId: Int64) {
         self.cart = cart
         self.chefId = chefId
+
+        if let customerContext = StripeService.customerContext {
+            self.paymentContext = STPPaymentContext(customerContext: customerContext)
+        }
+
         let chefRequestSingle = NetworkService.shared.getChefWith(chefId: chefId)
         let deliveryCostSingle = chefRequestSingle.flatMap { chef in
             return NetworkService.shared

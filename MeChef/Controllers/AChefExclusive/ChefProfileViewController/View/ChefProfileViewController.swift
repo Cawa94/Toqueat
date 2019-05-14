@@ -46,6 +46,20 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
         NavigationService.dismissTopController()
     }
 
+    @IBAction func authorizeStripeAction(_ sender: Any) {
+        let urlString = "https://connect.stripe.com/oauth/authorize?response_type" +
+        "=code&client_id=\(StripeService.clientId)&scope=read_write"
+        guard let url = URL(string: urlString) else {
+            return //be safe
+        }
+
+        let webController = NavigationService.webViewController(pageTitle: "Connect Stripe account",
+                                                                url: url)
+        webController.delegate = self
+        NavigationService.pushWebViewController(webController)
+        //UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
     // MARK: - UITableViewDelegate
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -193,6 +207,36 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
 
     override func onLoadingState() {
         tableView.reloadData()
+    }
+
+}
+
+extension ChefProfileViewController: WebViewControllerDelegate {
+
+    func successWith(authCode: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            let ouathParameters = StripeOauthParameters(clientSecret: StripeService.secretKey,
+                                                        code: authCode,
+                                                        grantType: "authorization_code")
+            let requestSingle = NetworkService.shared.requestChefStripeId(parameters: ouathParameters)
+                .flatMap { response -> Single<Chef> in
+                    let updateParam = ChefUpdateStripeUserIdParameters(stripeUserId: response.stripeUserId)
+                    return NetworkService.shared.updateChefStripeUserId(parameters: updateParam,
+                                                                        chefId: self.chefProfileViewModel.chefId)
+                }
+            self.hudOperationWithSingle(operationSingle: requestSingle,
+                                        onSuccessClosure: { _ in
+                                            self.presentAlertWith(title: "YEAH",
+                                                                  message: "Stripe account connected")
+                                        },
+                                        disposeBag: self.disposeBag)
+        }
+    }
+
+    func errorWith(description: String?) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.presentAlertWith(title: "WARNING", message: description ?? "Something went wrong")
+        }
     }
 
 }

@@ -16,6 +16,17 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>es.YC.toqueat</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>toqueat</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -44,6 +55,20 @@
 						<key>NSIncludesSubdomains</key>
 						<true/>
 					</dict>
+					<key>https://toqueat.com</key>
+					<dict>
+						<key>NSExceptionRequiresForwardSecrecy</key>
+						<false/>
+						<key>NSIncludesSubdomains</key>
+						<true/>
+					</dict>
+					<key>toqueat.com</key>
+					<dict>
+						<key>NSExceptionRequiresForwardSecrecy</key>
+						<false/>
+						<key>NSIncludesSubdomains</key>
+						<true/>
+					</dict>
 				</dict>
 			</dict>
 			<key>api.mechef.com:3000</key>
@@ -58,6 +83,28 @@
 				<true/>
 			</dict>
 			<key>http://api.mechef.com:3000</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+				<key>New NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>https://toqueat.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+				<key>New NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>toqueat.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

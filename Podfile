@@ -22,4 +22,5 @@ target 'Toqueat' do
   pod 'RxOptional'
   pod 'MBProgressHUD'
   pod 'SwipeCellKit'
+  pod 'Stripe'
 end

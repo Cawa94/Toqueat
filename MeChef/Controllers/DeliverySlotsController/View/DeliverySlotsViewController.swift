@@ -68,11 +68,11 @@ class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel
     // MARK: - Collection view data source and delegate methods
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 17 // hours ranges
+        return DeliverySlot.hoursTable.count // hours ranges
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7 // weekdays
+        return DeliverySlot.weekdayTable.count // weekdays
     }
 
     func collectionView(_ collectionView: UICollectionView,

@@ -168,6 +168,10 @@ extension NavigationService {
         push(viewController: deliverySlotsController, animated: true)
     }
 
+    static func pushWebViewController(_ webController: WebViewController) {
+        push(viewController: webController, animated: true)
+    }
+
     static func animateBasketItem() {
         guard let mainController = NavigationService.mainViewController,
             let cartItem = mainController.tabBar.items?[2]

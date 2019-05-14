@@ -82,6 +82,15 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    func updateChefStripeUserId(parameters: ChefUpdateStripeUserIdParameters, chefId: Int64) -> Single<Chef> {
+        let body = ChefUpdateStripeUserIdBody(chef: parameters)
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)",
+                                                 method: .patch,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
     // swiftlint:disable all
     func uploadChefAvatar(for chefId: Int64, imageData: Data, completion: @escaping (_ error: Error?) -> Void) {
         let relativeUrl = "chefs/\(chefId)/update_avatar"

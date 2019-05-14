@@ -147,7 +147,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
     // MARK: - UITextFieldDelegate related methods
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.tag == 6 {
+        if textField == streetTextField {
             guard let city = cityTextField.text, city != ""
                 else {
                     presentAlertWith(title: "WARNING", message: "Please select a city first")

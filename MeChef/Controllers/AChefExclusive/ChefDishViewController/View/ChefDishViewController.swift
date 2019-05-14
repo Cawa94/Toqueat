@@ -7,7 +7,7 @@ private extension CGFloat {
     static let maxAvatarDimension: CGFloat = 1_080
 }
 
-class ChefDishViewController: BaseStatefulController<Dish>,
+class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultType>,
     UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
@@ -83,8 +83,7 @@ class ChefDishViewController: BaseStatefulController<Dish>,
     }
 
     func populateXibElements() {
-        if !chefDishViewModel.isNewDish {
-            let dish = chefDishViewModel.result
+        if !chefDishViewModel.isNewDish, let dish = chefDishViewModel.result.dish {
             // Editing dish
             if let imageUrl = dish.imageLink {
                 Nuke.loadImage(with: imageUrl, into: dishImageView)
@@ -200,12 +199,12 @@ extension ChefDishViewController: ValidationDelegate {
                                                   categoryIds: [categoryId], ingredients: ingredients,
                                                   servings: Int(servings) ?? 1)
         var operationSingle: Single<Void>
-        if !chefDishViewModel.isNewDish {
+        if !chefDishViewModel.isNewDish, let dishId = chefDishViewModel.result.dish?.id {
             let updateDishSingle = NetworkService.shared.updateDishWith(parameters: dishParameters,
-                                                                        dishId: chefDishViewModel.result.id)
+                                                                        dishId: dishId)
                 .map { _ in
                     if let newImage = self.newImageData {
-                        NetworkService.shared.uploadDishPicture(for: self.chefDishViewModel.result.id,
+                        NetworkService.shared.uploadDishPicture(for: dishId,
                                                                 imageData: newImage,
                                                                 completion: { _ in })
                     }
@@ -225,10 +224,14 @@ extension ChefDishViewController: ValidationDelegate {
         hudOperationWithSingle(operationSingle: operationSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH", message: "Dish updated",
+                                    title: "YEAH",
+                                    message: self.chefDishViewModel.isNewDish ? "Dish created" : "Dish updated",
                                     actions: [ UIAlertAction(title: "Ok", style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadChefDishes = true
+                                                                if self.chefDishViewModel.isNewDish {
+                                                                    NavigationService.popNavigationTopController()
+                                                                }
                                     })])
         }, disposeBag: disposeBag)
     }

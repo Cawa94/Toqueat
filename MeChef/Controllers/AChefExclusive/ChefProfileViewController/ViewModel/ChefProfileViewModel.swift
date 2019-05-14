@@ -1,6 +1,10 @@
 final class ChefProfileViewModel: BaseStatefulViewModel<Chef> {
 
+    let chefId: Int64
+
     init(chefId: Int64) {
+        self.chefId = chefId
+
         let userInfoRequest = NetworkService.shared.getChefWith(chefId: chefId)
         super.init(dataSource: userInfoRequest)
     }

@@ -4,6 +4,7 @@ import RxSwift
 class MainTabViewController: UITabBarController {
 
     private let disposeBag = DisposeBag()
+    var viewModel: MainTabViewModel!
 
     var basketViewFrame: CGRect {
         let xCoord = (tabBar.frame.width / 3) * 2
@@ -11,8 +12,26 @@ class MainTabViewController: UITabBarController {
                       width: tabBar.frame.width / 3, height: 50)
     }
 
+    init() {
+        self.viewModel = MainTabViewModel()
+
+        super.init(nibName: MainTabViewController.xibName, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        viewModel.getCustomerEphemeralKey()
+        viewModel.customizeStripeUI()
+        configureTabBar()
+
+    }
+
+    func configureTabBar() {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:
             UIColor.mainGrayColor], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:

@@ -2,6 +2,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import RxSwift
 import UserNotifications
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 StuartService.authToken = token
             })
             .disposed(by: disposeBag)
+
+        STPPaymentConfiguration.shared().publishableKey = StripeService.publicKey
+        STPPaymentConfiguration.shared().appleMerchantIdentifier = "merchant.es.YC.toqueat"
 
         return true
     }
@@ -81,6 +85,40 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler:
         @escaping (UNNotificationPresentationOptions) -> Void) {
             completionHandler(.alert)
+    }
+
+}
+
+extension AppDelegate {
+
+    // This method handles opening native URLs (e.g., "your-app://")
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        let stripeHandled = Stripe.handleURLCallback(with: url)
+        if stripeHandled {
+            return true
+        } else {
+            // This was not a stripe url – do whatever url handling your app
+            // normally does, if any.
+        }
+        return false
+    }
+
+    // This method handles opening universal link URLs (e.g., "https://example.com/stripe_ios_callback")
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            if let url = userActivity.webpageURL {
+                let stripeHandled = Stripe.handleURLCallback(with: url)
+                if stripeHandled {
+                    return true
+                } else {
+                    // This was not a stripe url – do whatever url handling your app
+                    // normally does, if any.
+                }
+            }
+        }
+        return true
     }
 
 }

@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2j-eF-mof" userLabel="contentView">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="768"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_screen" translatesAutoresizingMaskIntoConstraints="NO" id="h13-nC-uFG">
                                     <rect key="frame" x="157.66666666666666" y="10" width="60" height="60"/>
@@ -84,7 +84,7 @@
                                             </constraints>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="ZbF-aw-fJH"/>
                                             </connections>
@@ -113,19 +113,19 @@
                                                 <outlet property="delegate" destination="-1" id="c96-2q-Xb4"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fBU-Bh-MD4">
+                                        <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fBU-Bh-MD4">
                                             <rect key="frame" x="0.0" y="290" width="305" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="GDn-4a-kZc"/>
                                             </constraints>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="tel"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="OFE-2x-LKt"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Pp-fC-QuT">
+                                        <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Pp-fC-QuT">
                                             <rect key="frame" x="0.0" y="348" width="305" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="7Pr-A9-FCd"/>
@@ -137,7 +137,7 @@
                                                 <outlet property="delegate" destination="-1" id="yZW-cg-Zm9"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2e-al-zVe">
+                                        <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2e-al-zVe">
                                             <rect key="frame" x="0.0" y="406" width="305" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="EER-eJ-9tj"/>
@@ -149,7 +149,7 @@
                                                 <outlet property="delegate" destination="-1" id="8NV-3h-jB7"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Apartment" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LtN-Rb-1lm">
+                                        <textField opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Apartment" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LtN-Rb-1lm">
                                             <rect key="frame" x="0.0" y="464" width="305" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="mVv-vz-mQ6"/>
@@ -161,7 +161,7 @@
                                                 <outlet property="delegate" destination="-1" id="wxj-Aj-FY3"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zipcode" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="caG-GI-Qab">
+                                        <textField opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zipcode" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="caG-GI-Qab">
                                             <rect key="frame" x="0.0" y="522" width="305" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="TQe-jo-Tcz"/>
@@ -206,7 +206,7 @@
                                 <constraint firstItem="TI4-Da-b3C" firstAttribute="leading" secondItem="d2j-eF-mof" secondAttribute="leading" constant="40" id="dm1-vF-nQq"/>
                                 <constraint firstItem="BNv-bf-F7C" firstAttribute="centerX" secondItem="d2j-eF-mof" secondAttribute="centerX" id="ecN-QQ-Lx7"/>
                                 <constraint firstItem="h13-nC-uFG" firstAttribute="centerX" secondItem="d2j-eF-mof" secondAttribute="centerX" id="lDm-KS-kay"/>
-                                <constraint firstAttribute="height" constant="768" id="qz1-b7-lx6"/>
+                                <constraint firstAttribute="height" constant="800" id="qz1-b7-lx6"/>
                                 <constraint firstItem="BNv-bf-F7C" firstAttribute="top" secondItem="h13-nC-uFG" secondAttribute="bottom" constant="5" id="v6i-tz-QDK"/>
                                 <constraint firstItem="TI4-Da-b3C" firstAttribute="top" secondItem="bXX-3t-ybO" secondAttribute="bottom" constant="30" id="zaM-sj-OKN"/>
                             </constraints>

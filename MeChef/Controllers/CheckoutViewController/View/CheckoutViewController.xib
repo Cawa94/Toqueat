@@ -141,7 +141,14 @@
                         <color key="titleColor" red="0.95294117649999999" green="0.94117647059999998" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="placeOrder:" destination="-1" eventType="touchUpInside" id="TEZ-Kv-8EX"/>
+                        <action selector="completeOrderAction:" destination="-1" eventType="touchUpInside" id="pLc-PA-32o"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKq-gj-sU8">
+                    <rect key="frame" x="101" y="349.5" width="173" height="30"/>
+                    <state key="normal" title="Choose payment method"/>
+                    <connections>
+                        <action selector="choosePaymentButtonTapped" destination="-1" eventType="touchUpInside" id="lET-Hd-qGk"/>
                     </connections>
                 </button>
             </subviews>
@@ -151,6 +158,7 @@
                 <constraint firstItem="9YO-0U-40S" firstAttribute="centerY" secondItem="e4L-8X-cPB" secondAttribute="centerY" constant="-1" id="4Ot-bk-HeN"/>
                 <constraint firstItem="TUH-TU-eXz" firstAttribute="centerY" secondItem="N2L-cY-z4g" secondAttribute="centerY" id="4ee-gO-pHW"/>
                 <constraint firstItem="3Vc-N2-J1P" firstAttribute="centerY" secondItem="3B5-zE-WTD" secondAttribute="centerY" id="539-OX-ilm"/>
+                <constraint firstItem="kKq-gj-sU8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7LA-uK-nsv"/>
                 <constraint firstItem="dS0-G4-DH2" firstAttribute="leading" secondItem="IHa-gP-9ki" secondAttribute="leading" id="7zw-Rm-Qex"/>
                 <constraint firstAttribute="trailing" secondItem="qCH-DW-fjQ" secondAttribute="trailing" id="8kB-PU-GUu"/>
                 <constraint firstItem="Wyv-Sl-JNs" firstAttribute="top" secondItem="CYR-ho-HiO" secondAttribute="bottom" id="AhT-VX-fx6"/>
@@ -184,10 +192,11 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="e4L-8X-cPB" secondAttribute="trailing" constant="15" id="k54-4H-nD8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jwu-HS-Vp1" secondAttribute="trailing" constant="15" id="l0g-ZP-2wo"/>
                 <constraint firstItem="vGq-YX-cgQ" firstAttribute="centerY" secondItem="9YO-0U-40S" secondAttribute="centerY" id="moG-8a-kYa"/>
+                <constraint firstItem="kKq-gj-sU8" firstAttribute="top" secondItem="76i-DV-zV2" secondAttribute="bottom" constant="80" id="tKU-sc-JEC"/>
                 <constraint firstItem="N2L-cY-z4g" firstAttribute="centerY" secondItem="76i-DV-zV2" secondAttribute="centerY" constant="-1" id="zvy-um-o94"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-2126" y="-146"/>
+            <point key="canvasLocation" x="-2258" y="-152"/>
         </view>
     </objects>
 </document>
