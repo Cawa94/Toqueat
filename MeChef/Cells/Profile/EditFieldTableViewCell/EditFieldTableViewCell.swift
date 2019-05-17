@@ -42,7 +42,7 @@ extension EditFieldTableViewCell: PlaceholderConfigurable {
 
         textField.text = contentViewModel.fieldValue
         textField.placeholder = contentViewModel.placeholder
-        textField.isSecureTextEntry = contentViewModel.secureText
+        textField.autocapitalizationType = contentViewModel.fieldCapitalized ? .words : .none
         bottomSpacerView.isHidden = contentViewModel.hideBottomLine
 
         textField.inputView = contentViewModel.pickerValues.isNotEmpty ? pickerView : nil

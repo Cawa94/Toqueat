@@ -23,4 +23,5 @@ target 'Toqueat' do
   pod 'MBProgressHUD'
   pod 'SwipeCellKit'
   pod 'Stripe'
+  pod 'CropViewController'
 end

@@ -16,8 +16,7 @@ extension DishViewModel {
 
     var baseChef: BaseChef? {
         return isLoading
-            ? nil : BaseChef.init(avatarUrl: result.chef.avatarUrl, lastname: result.chef.lastname,
-                                  id: result.chef.id, name: result.chef.name)
+            ? nil : result.chef
     }
 
     var chefId: Int64 {

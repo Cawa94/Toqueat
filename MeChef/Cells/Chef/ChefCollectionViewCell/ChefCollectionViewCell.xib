@@ -107,6 +107,7 @@
             <connections>
                 <outlet property="avatarImageView" destination="6fu-IX-slj" id="4gJ-Ce-RMi"/>
                 <outlet property="contentContainerViewOutlet" destination="OZP-qZ-mcL" id="sDE-uh-Tr2"/>
+                <outlet property="instaUsernameLabel" destination="FkQ-1h-RZa" id="7rk-Y2-N4M"/>
                 <outlet property="nameLabel" destination="SYc-fx-nfF" id="Iwh-pO-hAj"/>
                 <outlet property="placeholderContainerViewOutlet" destination="DTi-Lm-pHd" id="6ff-hM-q8O"/>
             </connections>

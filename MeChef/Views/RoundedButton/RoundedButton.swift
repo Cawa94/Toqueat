@@ -190,6 +190,9 @@ private extension RoundedButtonType {
         case .squeezedWhite:
             return .init(backgroundColor: .white, borderColor: .mainOrangeColor,
                          height: 40, cornerRadius: 45)
+        case .squeezedRed:
+            return .init(backgroundColor: .red,
+                         height: 40, cornerRadius: 45)
         }
     }
 

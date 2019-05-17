@@ -50,10 +50,19 @@
                                     <constraint firstAttribute="width" secondItem="wQG-4s-4N9" secondAttribute="height" multiplier="1:1" id="FkR-gt-aza"/>
                                 </constraints>
                             </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked_fill" translatesAutoresizingMaskIntoConstraints="NO" id="doN-gX-DRW">
+                                <rect key="frame" x="70.5" y="12.5" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="Prj-0K-Xa2"/>
+                                    <constraint firstAttribute="height" constant="25" id="XhR-42-7uJ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="doN-gX-DRW" firstAttribute="centerY" secondItem="YxC-DK-dpD" secondAttribute="centerY" id="T3N-pH-qDh"/>
                             <constraint firstItem="UFj-nf-s4m" firstAttribute="centerY" secondItem="YxC-DK-dpD" secondAttribute="centerY" id="Wz4-fo-ErM"/>
+                            <constraint firstItem="doN-gX-DRW" firstAttribute="leading" secondItem="UFj-nf-s4m" secondAttribute="trailing" constant="10" id="Y7g-XT-PGo"/>
                             <constraint firstItem="UFj-nf-s4m" firstAttribute="leading" secondItem="YxC-DK-dpD" secondAttribute="leading" constant="15" id="dfl-pt-UKR"/>
                             <constraint firstAttribute="trailing" secondItem="wQG-4s-4N9" secondAttribute="trailing" constant="15" id="e2f-FB-bhz"/>
                             <constraint firstItem="wQG-4s-4N9" firstAttribute="centerY" secondItem="YxC-DK-dpD" secondAttribute="centerY" id="tv0-me-1gN"/>
@@ -94,14 +103,16 @@
             <connections>
                 <outlet property="arrowImageView" destination="wQG-4s-4N9" id="OnC-IW-yyr"/>
                 <outlet property="bottomSpacerView" destination="yM1-TK-aEw" id="0a7-gQ-YBT"/>
+                <outlet property="checkedImageView" destination="doN-gX-DRW" id="IBM-Hx-lY5"/>
                 <outlet property="contentContainerViewOutlet" destination="YxC-DK-dpD" id="Ufd-UW-07P"/>
                 <outlet property="optionLabel" destination="UFj-nf-s4m" id="uoa-b5-vjf"/>
                 <outlet property="placeholderContainerViewOutlet" destination="Aqe-b0-VlG" id="A1m-2e-Nmg"/>
             </connections>
-            <point key="canvasLocation" x="-107" y="9"/>
+            <point key="canvasLocation" x="-107.24637681159422" y="8.7053571428571423"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="arrow_right" width="32" height="32"/>
+        <image name="checked_fill" width="64" height="64"/>
     </resources>
 </document>

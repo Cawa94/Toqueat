@@ -6,6 +6,7 @@ final class UserBarTableViewCell: UITableViewCell {
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
     @IBOutlet private weak var optionLabel: UILabel!
     @IBOutlet private weak var arrowImageView: UIImageView!
+    @IBOutlet private weak var checkedImageView: UIImageView!
     @IBOutlet private weak var bottomSpacerView: UIView!
 
     var viewModel: UserBarTableViewModel?
@@ -39,6 +40,7 @@ extension UserBarTableViewCell: PlaceholderConfigurable {
         optionLabel.text = contentViewModel.option
         arrowImageView.isHidden = contentViewModel.arrowHidden
         bottomSpacerView.isHidden = contentViewModel.hideBottomLine
+        checkedImageView.isHidden = contentViewModel.checkHidden
     }
 
 }

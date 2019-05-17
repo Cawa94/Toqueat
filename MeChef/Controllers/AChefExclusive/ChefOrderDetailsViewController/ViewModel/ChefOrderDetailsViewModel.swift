@@ -25,9 +25,9 @@ extension ChefOrderDetailsViewModel {
                                              packageDescription: "",
                                              clientReference: nil)
                 let jobParameters = StuartJobParameters(pickupAt: nil /*order.deliveryDate*/,
-                    pickups: [chefLocation],
-                    dropoffs: [dropOff],
-                    transportType: nil)
+                                                        pickups: [chefLocation],
+                                                        dropoffs: [dropOff],
+                                                        transportType: nil)
                 return NetworkService.shared.createStuartJobWith(jobParameters)
                     .flatMap { stuartJob -> Single<Order> in
                         self.setStuartIdWith(orderId: orderId,

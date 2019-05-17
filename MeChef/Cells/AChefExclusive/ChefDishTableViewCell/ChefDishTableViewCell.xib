@@ -66,16 +66,24 @@
                                     <color key="titleColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26i-M9-Xt6">
+                                <rect key="frame" x="135" y="66.5" width="38.5" height="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gRb-uX-xRl" secondAttribute="trailing" constant="10" id="2OU-8J-Kyf"/>
+                            <constraint firstAttribute="bottom" secondItem="26i-M9-Xt6" secondAttribute="bottom" constant="15" id="8XR-Bs-l6q"/>
                             <constraint firstItem="BEI-9z-aqS" firstAttribute="top" secondItem="mrJ-DM-ed2" secondAttribute="top" constant="5" id="9ot-0K-3Ca"/>
                             <constraint firstAttribute="trailing" secondItem="8Sv-MI-uVE" secondAttribute="trailing" constant="10" id="DZ5-I7-S8j"/>
                             <constraint firstItem="8Sv-MI-uVE" firstAttribute="leading" secondItem="LiY-u6-AMc" secondAttribute="trailing" constant="10" id="EFI-GL-4Fg"/>
                             <constraint firstItem="8Sv-MI-uVE" firstAttribute="top" secondItem="mrJ-DM-ed2" secondAttribute="top" constant="5" id="Nf7-yA-FL3"/>
                             <constraint firstAttribute="bottom" secondItem="gRb-uX-xRl" secondAttribute="bottom" constant="10" id="NoZ-k3-1T4"/>
                             <constraint firstItem="LiY-u6-AMc" firstAttribute="leading" secondItem="BEI-9z-aqS" secondAttribute="trailing" constant="8" id="Qzv-GH-duJ"/>
+                            <constraint firstItem="26i-M9-Xt6" firstAttribute="leading" secondItem="BEI-9z-aqS" secondAttribute="trailing" constant="10" id="W2E-cg-Pwj"/>
                             <constraint firstItem="BEI-9z-aqS" firstAttribute="leading" secondItem="mrJ-DM-ed2" secondAttribute="leading" constant="5" id="cgo-Ui-Bc5"/>
                             <constraint firstItem="LiY-u6-AMc" firstAttribute="top" secondItem="mrJ-DM-ed2" secondAttribute="top" constant="15" id="dkQ-7r-QB4"/>
                         </constraints>
@@ -106,6 +114,7 @@
                 <outlet property="contentContainerViewOutlet" destination="mrJ-DM-ed2" id="uV6-4x-Jcn"/>
                 <outlet property="dishImageView" destination="BEI-9z-aqS" id="Sst-zd-J8l"/>
                 <outlet property="editButton" destination="gRb-uX-xRl" id="oWZ-Jz-emm"/>
+                <outlet property="isActiveLabel" destination="26i-M9-Xt6" id="Dyh-RO-Vi5"/>
                 <outlet property="nameLabel" destination="LiY-u6-AMc" id="eBC-GZ-mrb"/>
                 <outlet property="placeholderContainerViewOutlet" destination="3GS-x0-LbL" id="oXs-OE-d49"/>
                 <outlet property="priceLabel" destination="8Sv-MI-uVE" id="hBk-1w-F3S"/>

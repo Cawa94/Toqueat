@@ -59,6 +59,13 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    func toggleDishAvailability(dishId: Int64) -> Single<Dish> {
+        let apiParameters = ApiRequestParameters(relativeUrl: "dishes/\(dishId)/toggle_availability",
+                                                 method: .post)
+
+        return request(with: apiParameters)
+    }
+
     // swiftlint:disable all
     func uploadDishPicture(for dishId: Int64, imageData: Data, completion: @escaping (_ error: Error?) -> Void) {
         let relativeUrl = "dishes/\(dishId)/update_image"

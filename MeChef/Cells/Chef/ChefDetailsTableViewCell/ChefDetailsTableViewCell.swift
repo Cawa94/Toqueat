@@ -6,7 +6,6 @@ final class ChefDetailsTableViewCell: UITableViewCell {
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var nameLabelTrailingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var cityLabel: UILabel!
     @IBOutlet private weak var presentationLabel: UILabel!
     @IBOutlet private weak var availabilityButton: UIButton!
@@ -54,8 +53,8 @@ extension ChefDetailsTableViewCell: PlaceholderConfigurable {
     func configure(contentViewModel: Chef) {
         self.viewModel = contentViewModel
 
-        instagramButton.isHidden = contentViewModel.instagramUrl == nil
-        nameLabelTrailingConstraint.constant = contentViewModel.instagramUrl == nil ? -40 : 10
+        instagramButton.isHidden = contentViewModel.instagramUsername == nil
+        instagramButton.text = " @\(contentViewModel.instagramUsername ?? "")"
         nameLabel.text = "\(contentViewModel.name) \(contentViewModel.lastname)"
         cityLabel.text = contentViewModel.city.name
         presentationLabel.text = contentViewModel.description

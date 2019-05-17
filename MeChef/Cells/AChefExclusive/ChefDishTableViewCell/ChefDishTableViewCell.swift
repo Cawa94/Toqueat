@@ -11,6 +11,7 @@ class ChefDishTableViewCell: UITableViewCell {
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var dishImageView: UIImageView!
     @IBOutlet private weak var editButton: UIButton!
+    @IBOutlet private weak var isActiveLabel: UILabel!
 
     public var edit: UIButton {
         return editButton
@@ -62,6 +63,8 @@ extension ChefDishTableViewCell: PlaceholderConfigurable {
             dishImageView.image = UIImage(named: "dish_placeholder")
         }
         dishImageView.contentMode = .scaleAspectFill
+        isActiveLabel.text = contentViewModel.isActive ?? true ? "" : "DISABLED"
+        isActiveLabel.textColor = contentViewModel.isActive ?? true ? .green : .red
     }
 
 }

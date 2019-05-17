@@ -2,18 +2,18 @@ struct EditFieldTableViewModel {
 
     let fieldValue: String?
     let placeholder: String
-    let secureText: Bool
+    let fieldCapitalized: Bool
     let hideBottomLine: Bool
     let pickerValues: [String]
 
     init(fieldValue: String?,
          placeholder: String,
-         secureText: Bool = false,
+         fieldCapitalized: Bool = true,
          hideBottomLine: Bool = true,
          pickerValues: [String] = []) {
         self.fieldValue = fieldValue
         self.placeholder = placeholder
-        self.secureText = secureText
+        self.fieldCapitalized = fieldCapitalized
         self.hideBottomLine = hideBottomLine
         self.pickerValues = pickerValues
     }

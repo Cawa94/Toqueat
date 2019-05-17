@@ -19,19 +19,6 @@ final class EditDescriptionTableViewCell: UITableViewCell {
         return textView
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        placeholderLabel = UILabel()
-        placeholderLabel.text = viewModel?.placeholder
-        placeholderLabel.font = UIFont.regularFontOf(size: 16.0)
-        placeholderLabel.sizeToFit()
-        textView.addSubview(placeholderLabel)
-        placeholderLabel.frame.origin = CGPoint(x: 5, y: (textView.font?.pointSize)! / 2)
-        placeholderLabel.textColor = .lightGray
-        placeholderLabel.isHidden = !textView.text.isEmpty
-    }
-
 }
 
 extension EditDescriptionTableViewCell: PlaceholderConfigurable {
@@ -57,6 +44,15 @@ extension EditDescriptionTableViewCell: PlaceholderConfigurable {
 
     func configure(contentViewModel: EditDescriptionTableViewModel) {
         self.viewModel = contentViewModel
+
+        placeholderLabel = UILabel()
+        placeholderLabel.text = viewModel?.placeholder
+        placeholderLabel.font = UIFont.regularFontOf(size: 15.0)
+        placeholderLabel.sizeToFit()
+        textView.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (textView.font?.pointSize)! / 2)
+        placeholderLabel.textColor = .placeholderGrayApple
+        placeholderLabel.isHidden = contentViewModel.fieldValue?.isNotEmpty ?? false
 
         textView.text = contentViewModel.fieldValue
         textView.textColor = .darkGrayColor

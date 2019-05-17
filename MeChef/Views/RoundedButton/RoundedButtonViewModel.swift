@@ -6,6 +6,7 @@ enum RoundedButtonType {
     case defaultOrange
     case squeezedOrange
     case squeezedWhite
+    case squeezedRed
 
 }
 
@@ -43,6 +44,11 @@ extension RoundedButtonType {
         case .squeezedWhite:
             return [
                 .foregroundColor: UIColor.mainOrangeColor,
+                .font: UIFont.mediumFontOf(size: 18)
+            ]
+        case .squeezedRed:
+            return [
+                .foregroundColor: UIColor.white,
                 .font: UIFont.mediumFontOf(size: 18)
             ]
         }

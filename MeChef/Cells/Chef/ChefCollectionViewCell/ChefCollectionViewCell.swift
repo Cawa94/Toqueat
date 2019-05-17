@@ -8,6 +8,7 @@ class ChefCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
 
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var instaUsernameLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
 
     static let reuseID = "ChefCollectionViewCell"
@@ -52,6 +53,8 @@ extension ChefCollectionViewCell: PlaceholderConfigurable {
         self.viewModel = contentViewModel
 
         nameLabel.text = "\(contentViewModel.name) \(contentViewModel.lastname)"
+        instaUsernameLabel.isHidden = contentViewModel.instagramUsername == nil
+        instaUsernameLabel.text = "@\(contentViewModel.instagramUsername ?? "")"
         if let url = contentViewModel.avatarLink {
             Nuke.loadImage(with: url, into: avatarImageView)
             avatarImageView.contentMode = .scaleAspectFill

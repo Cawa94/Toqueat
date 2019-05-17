@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="RobotoSlab-Bold.ttf">
-            <string>RobotoSlab-Bold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -54,14 +49,14 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdK-X4-LAI">
-                                        <rect key="frame" x="10" y="15" width="200" height="22.5"/>
-                                        <fontDescription key="fontDescription" name="RobotoSlab-Bold" family="Roboto Slab" pointSize="17"/>
+                                        <rect key="frame" x="15" y="15" width="190" height="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Te-5T-cZY">
-                                        <rect key="frame" x="165.5" y="146" width="44.5" height="24"/>
-                                        <fontDescription key="fontDescription" name="RobotoSlab-Bold" family="Roboto Slab" pointSize="18"/>
+                                        <rect key="frame" x="167" y="148.5" width="43" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -73,7 +68,7 @@
                                     <constraint firstItem="u4t-Sb-VDA" firstAttribute="leading" secondItem="j28-Sc-DzT" secondAttribute="leading" id="Hyu-KQ-tcp"/>
                                     <constraint firstItem="mdK-X4-LAI" firstAttribute="top" secondItem="j28-Sc-DzT" secondAttribute="top" constant="15" id="M1c-9J-Wo1"/>
                                     <constraint firstAttribute="trailing" secondItem="7Te-5T-cZY" secondAttribute="trailing" constant="10" id="M8O-2J-mng"/>
-                                    <constraint firstAttribute="trailing" secondItem="mdK-X4-LAI" secondAttribute="trailing" constant="10" id="Otr-h9-M7V"/>
+                                    <constraint firstAttribute="trailing" secondItem="mdK-X4-LAI" secondAttribute="trailing" constant="15" id="Otr-h9-M7V"/>
                                     <constraint firstAttribute="bottom" secondItem="7Te-5T-cZY" secondAttribute="bottom" constant="10" id="Tao-CA-61p"/>
                                     <constraint firstAttribute="bottom" secondItem="u4t-Sb-VDA" secondAttribute="bottom" id="Yf1-Vu-Epj"/>
                                     <constraint firstAttribute="bottom" secondItem="uoa-kC-Ar8" secondAttribute="bottom" id="dPN-oI-y01"/>
@@ -81,7 +76,7 @@
                                     <constraint firstItem="uoa-kC-Ar8" firstAttribute="leading" secondItem="j28-Sc-DzT" secondAttribute="leading" id="ezo-YI-Eul"/>
                                     <constraint firstAttribute="trailing" secondItem="u4t-Sb-VDA" secondAttribute="trailing" id="fOS-Gv-KZW"/>
                                     <constraint firstAttribute="trailing" secondItem="uoa-kC-Ar8" secondAttribute="trailing" id="wvq-2p-fV1"/>
-                                    <constraint firstItem="mdK-X4-LAI" firstAttribute="leading" secondItem="j28-Sc-DzT" secondAttribute="leading" constant="10" id="yby-kj-m3T"/>
+                                    <constraint firstItem="mdK-X4-LAI" firstAttribute="leading" secondItem="j28-Sc-DzT" secondAttribute="leading" constant="15" id="yby-kj-m3T"/>
                                 </constraints>
                             </view>
                         </subviews>

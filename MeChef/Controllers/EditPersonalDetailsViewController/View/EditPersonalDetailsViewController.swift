@@ -2,6 +2,7 @@ import UIKit
 import RxSwift
 import Nuke
 import SwiftValidator
+import CropViewController
 
 private extension CGFloat {
     static let maxAvatarDimension: CGFloat = 1_080
@@ -25,13 +26,13 @@ class EditPersonalDetailsViewController: UIViewController {
 
         configureNavigationBar()
 
-        avatarImageView.roundCorners(radii: 15.0)
+        avatarImageView.roundCorners(radii: avatarImageView.bounds.width/2)
         avatarImageView.isHidden = !viewModel.isChef
         avatarImageView.rx.tapGesture().when(.recognized).asDriver()
             .drive(onNext: { _ in
                 self.pickImageAction()
             }).disposed(by: disposeBag)
-        tableViewTopConstraint.constant = viewModel.isChef ? 270 : 10
+        tableViewTopConstraint.constant = viewModel.isChef ? 200 : 10
         if let avatarUrl = viewModel.chef?.avatarLink {
             Nuke.loadImage(with: avatarUrl, into: avatarImageView)
             avatarImageView.contentMode = .scaleAspectFill
@@ -74,11 +75,11 @@ class EditPersonalDetailsViewController: UIViewController {
             let descriptionCell = tableView.cellForRow(at: IndexPath(row: 4, section: 0))
                 as? EditDescriptionTableViewCell
             else { return }
-        let instagramUrl = instagramCell.cellTextField.text
+        let instagramUsername = instagramCell.cellTextField.text
         let description = descriptionCell.hasContent ? descriptionCell.cellTextView.text : nil
 
         let chefParameters = ChefUpdateParameters(name: name, lastname: lastname,
-                                                  phone: phone, instagramUrl: instagramUrl,
+                                                  phone: phone, instagramUsername: instagramUsername,
                                                   description: description)
 
         var operationSingle: Single<Void>
@@ -141,7 +142,21 @@ class EditPersonalDetailsViewController: UIViewController {
     }
 
     func didPick(image: UIImage?) {
-        guard let image = image, let fixedImage = rotateImage(image: image)
+        guard let image = image
+            else { return }
+
+        let cropViewController = CropViewController(image: image)
+        cropViewController.delegate = self
+        present(cropViewController, animated: true, completion: nil)
+    }
+
+}
+
+extension EditPersonalDetailsViewController: CropViewControllerDelegate {
+
+    func cropViewController(_ cropViewController: CropViewController,
+                            didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        guard let fixedImage = rotateImage(image: image)
             else { return }
 
         let imageSize = fixedImage.size
@@ -157,6 +172,8 @@ class EditPersonalDetailsViewController: UIViewController {
 
         avatarImageView.image = newSizeImage
         newImageData = imageData
+
+        NavigationService.dismissTopController()
     }
 
     func rotateImage(image: UIImage) -> UIImage? {
@@ -218,8 +235,9 @@ extension EditPersonalDetailsViewController: UITableViewDelegate, UITableViewDat
                 validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 3:
                 cellViewModel = viewModel.isChef
-                    ? EditFieldTableViewModel(fieldValue: viewModel.chef?.instagramUrl,
-                                              placeholder: "Instagram url")
+                    ? EditFieldTableViewModel(fieldValue: viewModel.chef?.instagramUsername,
+                                              placeholder: "Instagram username",
+                                              fieldCapitalized: false)
                     : EditFieldTableViewModel(fieldValue: nil, placeholder: "")
             default:
                 cellViewModel = EditFieldTableViewModel(fieldValue: nil, placeholder: "")

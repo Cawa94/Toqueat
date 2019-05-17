@@ -33,7 +33,9 @@ class ChefViewController: BaseStatefulController<Chef>,
         super.viewDidLoad()
 
         chefDetailsTableView.roundCorners(radii: 15.0)
-        chefImageView.roundOnly(corners: [.bottomLeft, .bottomRight], cornerRadii: 30.0)
+        //chefDetailsTableView.drawShadow(cornerRadii: 15.0, size: CGSize(width: 5, height: 5), opacity: 0.4)
+        chefImageView.roundCorners(radii: chefImageView.bounds.height/2)
+        //chefImageView.roundOnly(corners: [.bottomLeft, .bottomRight], cornerRadii: 30.0)
 
         chefDetailsTableView.register(UINib(nibName: "ChefDetailsTableViewCell", bundle: nil),
                                       forCellReuseIdentifier: "ChefDetailsTableViewCell")
@@ -89,7 +91,8 @@ class ChefViewController: BaseStatefulController<Chef>,
             chefDetailsCell.configureWith(contentViewModel: chef)
             chefDetailsCell.instaButton.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
-                    guard let instaUrl = URL(string: chef.instagramUrl ?? "")
+                    guard let username = chef.instagramUsername,
+                        let instaUrl = URL(string: "https://www.instagram.com/\(username)")
                         else { return }
                     NavigationService.presentSafariController(url: instaUrl)
                 })
@@ -206,7 +209,7 @@ class ChefViewController: BaseStatefulController<Chef>,
         tableViewHeightConstraint.constant = collectionView.contentSize.height
         chefDetailsHeightConstraint.constant = chefDetailsTableView.contentSize.height
         contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
-            + 190 + chefDetailsHeightConstraint.constant + 30 + 40
+            + 230 + chefDetailsHeightConstraint.constant + 30 + 50
     }
 
     // MARK: - UIScrollViewDelegate
@@ -214,8 +217,8 @@ class ChefViewController: BaseStatefulController<Chef>,
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
         var headerTransform = CATransform3DIdentity
-        let showNavigationBarY = CGFloat(30)
-        let showNavigationLabelY = CGFloat(120)
+        let showNavigationBarY = CGFloat(60)
+        let showNavigationLabelY = CGFloat(170)
 
         if offset < 0 {
             // PULL DOWN -----------------
@@ -226,6 +229,9 @@ class ChefViewController: BaseStatefulController<Chef>,
             headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizevariation, 0)
             headerTransform = CATransform3DScale(headerTransform, 1.0 + headerScaleFactor, 1.0
                 + headerScaleFactor, 90)
+        } else {
+            // SCROLL UP/DOWN ------------
+            headerTransform = CATransform3DTranslate(headerTransform, 0, -offset, 0)
         }
 
         if offset >= showNavigationBarY {

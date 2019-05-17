@@ -2,6 +2,7 @@ import UIKit
 import RxSwift
 import Nuke
 import SwiftValidator
+import CropViewController
 
 private extension CGFloat {
     static let maxAvatarDimension: CGFloat = 1_080
@@ -13,13 +14,13 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
     @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var descriptionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var dishImageView: UIImageView!
-    @IBOutlet private weak var cameraButton: UIButton!
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var priceTextField: UITextField!
     @IBOutlet private weak var typeTextField: UITextField!
     @IBOutlet private weak var servingsTextField: UITextField!
     @IBOutlet private weak var ingredientsTextField: UITextField!
     @IBOutlet private weak var descriptionTextView: UITextView!
+    @IBOutlet private weak var toggleDishButton: RoundedButton!
 
     private var placeholderLabel: UILabel!
 
@@ -40,7 +41,6 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
         configureNavigationBar()
         configureXibElements()
         addValidationRules()
-
     }
 
     override func configureNavigationBar() {
@@ -54,6 +54,23 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
 
     @objc func save() {
         validator.validate(self)
+    }
+
+    @IBAction func toggleDishAction(_ sender: Any) {
+        guard let dishId = chefDishViewModel.result.dish?.id
+            else { return }
+        let toggleSingle = NetworkService.shared.toggleDishAvailability(dishId: dishId)
+        hudOperationWithSingle(operationSingle: toggleSingle,
+                               onSuccessClosure: { dish in
+                                self.presentAlertWith(
+                                    title: "YEAH",
+                                    message: dish.isActive ?? true ? "Dish activated" : "Dish deactivated",
+                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                                             handler: { _ in
+                                                                NavigationService.reloadChefDishes = true
+                                                                NavigationService.popNavigationTopController()
+                                    })])
+                                }, disposeBag: disposeBag)
     }
 
     func configureXibElements() {
@@ -80,6 +97,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
         placeholderLabel.frame.origin = CGPoint(x: 5, y: (descriptionTextView.font?.pointSize)! / 2)
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.isHidden = !descriptionTextView.text.isEmpty
+
     }
 
     func populateXibElements() {
@@ -96,6 +114,12 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
             ingredientsTextField.text = dish.ingredients
             descriptionTextView.text = dish.description
             placeholderLabel.isHidden = true
+
+            toggleDishButton.isHidden = false
+            let toggleDishModel = dish.isActive ?? true
+            ? RoundedButtonViewModel(title: "Disable dish", type: .squeezedRed)
+            : RoundedButtonViewModel(title: "Enable dish", type: .squeezedOrange)
+            toggleDishButton.configure(with: toggleDishModel)
         } else {
             // New dish
         }
@@ -117,6 +141,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
             ? descriptionTextView.contentSize.height : 300
         contentViewHeightConstraint.constant = descriptionViewHeightConstraint.constant
         + 600 // Content without description
+        + 60 // Remove dish button
     }
 
     func pickImageAction() {
@@ -126,34 +151,12 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
     }
 
     func didPick(image: UIImage?) {
-        guard let image = image, let fixedImage = rotateImage(image: image)
+        guard let image = image
             else { return }
 
-        let imageSize = fixedImage.size
-        let imageWidth = imageSize.width
-        let imageHeight = imageSize.height
-        let maxSize = max(imageWidth, imageHeight)
-        let ratio = maxSize / min(maxSize, .maxAvatarDimension)
-        let newSize = CGSize(width: imageWidth / ratio, height: imageHeight / ratio)
-
-        guard let newSizeImage = fixedImage.support.resize(newSize: newSize)?.base,
-            let imageData = UIImage.jpegData(newSizeImage)(compressionQuality: 0.8)
-            else { return }
-
-        dishImageView.image = newSizeImage
-        newImageData = imageData
-    }
-
-    func rotateImage(image: UIImage) -> UIImage? {
-        if image.imageOrientation == UIImage.Orientation.up {
-            return image
-        }
-        UIGraphicsBeginImageContext(image.size)
-        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
-        guard let copy = UIGraphicsGetImageFromCurrentImageContext()
-            else { return nil }
-        UIGraphicsEndImageContext()
-        return copy
+        let cropViewController = CropViewController(image: image)
+        cropViewController.delegate = self
+        present(cropViewController, animated: true, completion: nil)
     }
 
     // MARK: - UIPickerViewDataSource
@@ -198,29 +201,8 @@ extension ChefDishViewController: ValidationDelegate {
                                                   price: price, chefId: "\(chefId)",
                                                   categoryIds: [categoryId], ingredients: ingredients,
                                                   servings: Int(servings) ?? 1)
-        var operationSingle: Single<Void>
-        if !chefDishViewModel.isNewDish, let dishId = chefDishViewModel.result.dish?.id {
-            let updateDishSingle = NetworkService.shared.updateDishWith(parameters: dishParameters,
-                                                                        dishId: dishId)
-                .map { _ in
-                    if let newImage = self.newImageData {
-                        NetworkService.shared.uploadDishPicture(for: dishId,
-                                                                imageData: newImage,
-                                                                completion: { _ in })
-                    }
-            }
-            operationSingle = updateDishSingle
-        } else {
-            let createDishSingle = NetworkService.shared.createNewDishWith(parameters: dishParameters)
-                .map { dish in
-                    if let newImage = self.newImageData {
-                        NetworkService.shared.uploadDishPicture(for: dish.id,
-                                                                imageData: newImage,
-                                                                completion: { _ in })
-                    }
-            }
-            operationSingle = createDishSingle
-        }
+        let operationSingle: Single<Void> = updateOrCreateDishSingle(parameters: dishParameters)
+
         hudOperationWithSingle(operationSingle: operationSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
@@ -236,6 +218,31 @@ extension ChefDishViewController: ValidationDelegate {
         }, disposeBag: disposeBag)
     }
 
+    func updateOrCreateDishSingle(parameters: DishCreateParameters) -> Single<Void> {
+        if !chefDishViewModel.isNewDish, let dishId = chefDishViewModel.result.dish?.id {
+            let updateDishSingle = NetworkService.shared.updateDishWith(parameters: parameters,
+                                                                        dishId: dishId)
+                .map { _ in
+                    if let newImage = self.newImageData {
+                        NetworkService.shared.uploadDishPicture(for: dishId,
+                                                                imageData: newImage,
+                                                                completion: { _ in })
+                    }
+            }
+            return updateDishSingle
+        } else {
+            let createDishSingle = NetworkService.shared.createNewDishWith(parameters: parameters)
+                .map { dish in
+                    if let newImage = self.newImageData {
+                        NetworkService.shared.uploadDishPicture(for: dish.id,
+                                                                imageData: newImage,
+                                                                completion: { _ in })
+                    }
+            }
+            return createDishSingle
+        }
+    }
+
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {
         // turn the fields to red
         for (field, _) in errors {
@@ -243,6 +250,44 @@ extension ChefDishViewController: ValidationDelegate {
                 field.addLine(position: .bottom, color: .red, width: 1)
             }
         }
+    }
+
+}
+
+extension ChefDishViewController: CropViewControllerDelegate {
+
+    func cropViewController(_ cropViewController: CropViewController,
+                            didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        guard let fixedImage = rotateImage(image: image)
+            else { return }
+
+        let imageSize = fixedImage.size
+        let imageWidth = imageSize.width
+        let imageHeight = imageSize.height
+        let maxSize = max(imageWidth, imageHeight)
+        let ratio = maxSize / min(maxSize, .maxAvatarDimension)
+        let newSize = CGSize(width: imageWidth / ratio, height: imageHeight / ratio)
+
+        guard let newSizeImage = fixedImage.support.resize(newSize: newSize)?.base,
+            let imageData = UIImage.jpegData(newSizeImage)(compressionQuality: 0.8)
+            else { return }
+
+        dishImageView.image = newSizeImage
+        newImageData = imageData
+
+        NavigationService.dismissTopController()
+    }
+
+    func rotateImage(image: UIImage) -> UIImage? {
+        if image.imageOrientation == UIImage.Orientation.up {
+            return image
+        }
+        UIGraphicsBeginImageContext(image.size)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+        guard let copy = UIGraphicsGetImageFromCurrentImageContext()
+            else { return nil }
+        UIGraphicsEndImageContext()
+        return copy
     }
 
 }

@@ -46,24 +46,10 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
         NavigationService.dismissTopController()
     }
 
-    @IBAction func authorizeStripeAction(_ sender: Any) {
-        let urlString = "https://connect.stripe.com/oauth/authorize?response_type" +
-        "=code&client_id=\(StripeService.clientId)&scope=read_write"
-        guard let url = URL(string: urlString) else {
-            return //be safe
-        }
-
-        let webController = NavigationService.webViewController(pageTitle: "Connect Stripe account",
-                                                                url: url)
-        webController.delegate = self
-        NavigationService.pushWebViewController(webController)
-        //UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
-
     // MARK: - UITableViewDelegate
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,6 +59,8 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
         case 1:
             return 3
         case 2:
+            return 1
+        case 3:
             return 1
         default:
             return 1
@@ -133,6 +121,13 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
                     viewModel = UserBarTableViewModel(option: "Unknown")
                 }
             case 2:
+                viewModel = UserBarTableViewModel(option: chefProfileViewModel.result.authorizedStripe
+                    ? "Account Stripe associated"
+                    : "Connect your account Stripe",
+                                                  arrowHidden: chefProfileViewModel.result.authorizedStripe,
+                                                  hideBottomLine: false,
+                                                  checkHidden: !chefProfileViewModel.result.authorizedStripe)
+            case 3:
                 viewModel = UserBarTableViewModel(option: "Log out", arrowHidden: true, hideBottomLine: false)
             default:
                 viewModel = UserBarTableViewModel(option: "Unknown")
@@ -154,10 +149,10 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
-        case 0:
+        case 0, 1:
             return 30
-        case 1:
-            return 40
+        case 2:
+            return 20
         default:
             return 50
         }
@@ -187,6 +182,8 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
             default:
                 break
             }
+        case 2:
+            authorizeStripe()
         default:
             SessionService.logout()
             DispatchQueue.main.async {
@@ -194,6 +191,19 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
             }
         }
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+
+    func authorizeStripe() {
+        let urlString = "https://connect.stripe.com/oauth/authorize?response_type" +
+        "=code&client_id=\(StripeService.clientId)&scope=read_write"
+        guard let url = URL(string: urlString) else {
+            return //be safe
+        }
+
+        let webController = NavigationService.webViewController(pageTitle: "Connect Stripe account",
+                                                                url: url)
+        webController.delegate = self
+        NavigationService.pushWebViewController(webController)
     }
 
     // MARK: - StatefulViewController related methods
