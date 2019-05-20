@@ -6,7 +6,7 @@ extension NetworkService: STPEphemeralKeyProvider {
 
     func createCustomerKey(withAPIVersion apiVersion: String,
                            completion: @escaping STPJSONResponseCompletionBlock) {
-        let url = "\(NetworkService.baseUrl)/ephemeral_key"
+        let url = "\(NetworkService.baseUrl)ephemeral_key"
         Alamofire.request(url,
                           method: .post,
                           parameters: ["api_version": apiVersion],

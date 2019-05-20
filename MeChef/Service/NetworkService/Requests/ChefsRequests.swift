@@ -91,6 +91,25 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    func toggleChefAvailability(chefId: Int64) -> Single<Chef> {
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/toggle_availability",
+                                                 method: .post)
+
+        return request(with: apiParameters)
+    }
+
+    func updateChefDeviceToken(_ token: String, chefId: Int64) -> Single<Chef> {
+        let body = [
+            "device_token": token
+        ]
+
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/update_device_token",
+                                                 method: .patch,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
     // swiftlint:disable all
     func uploadChefAvatar(for chefId: Int64, imageData: Data, completion: @escaping (_ error: Error?) -> Void) {
         let relativeUrl = "chefs/\(chefId)/update_avatar"
@@ -100,6 +119,8 @@ extension NetworkService {
 
         let boundary = "Boundary-\(NSUUID().uuidString)"
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.setValue("\(SessionService.session?.authToken ?? "")", forHTTPHeaderField: "Authorization")
+        request.setValue("true", forHTTPHeaderField: "Is-Chef")
         request.httpBody = createBodyWithParameters(filePathKey: "chef_avatar", imageDataKey: imageData, boundary: boundary)
 
         let task =  URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {

@@ -117,6 +117,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to access to your camera to take a picture</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to access to your photos to choose a picture</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>RobotoSlab-Bold.ttf</string>

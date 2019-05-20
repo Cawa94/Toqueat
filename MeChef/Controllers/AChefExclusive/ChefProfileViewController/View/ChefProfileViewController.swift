@@ -121,12 +121,12 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
                     viewModel = UserBarTableViewModel(option: "Unknown")
                 }
             case 2:
-                viewModel = UserBarTableViewModel(option: chefProfileViewModel.result.authorizedStripe
+                viewModel = UserBarTableViewModel(option: chefProfileViewModel.result.authorizedStripe ?? false
                     ? "Account Stripe associated"
                     : "Connect your account Stripe",
-                                                  arrowHidden: chefProfileViewModel.result.authorizedStripe,
+                                                  arrowHidden: chefProfileViewModel.result.authorizedStripe ?? false,
                                                   hideBottomLine: false,
-                                                  checkHidden: !chefProfileViewModel.result.authorizedStripe)
+                                                  checkHidden: !(chefProfileViewModel.result.authorizedStripe ?? false))
             case 3:
                 viewModel = UserBarTableViewModel(option: "Log out", arrowHidden: true, hideBottomLine: false)
             default:

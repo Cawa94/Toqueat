@@ -23,7 +23,7 @@ extension ChefOrderDetailsViewModel {
                                              contact: order.user.stuartContact,
                                              packageType: "small",
                                              packageDescription: "",
-                                             clientReference: nil)
+                                             clientReference: "\(orderId)")
                 let jobParameters = StuartJobParameters(pickupAt: nil /*order.deliveryDate*/,
                                                         pickups: [chefLocation],
                                                         dropoffs: [dropOff],

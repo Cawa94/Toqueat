@@ -75,6 +75,8 @@ extension NetworkService {
 
         let boundary = "Boundary-\(NSUUID().uuidString)"
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.setValue("\(SessionService.session?.authToken ?? "")", forHTTPHeaderField: "Authorization")
+        request.setValue("true", forHTTPHeaderField: "Is-Chef")
         request.httpBody = createBodyWithParameters(filePathKey: "dish_image", imageDataKey: imageData, boundary: boundary)
 
         let task =  URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {

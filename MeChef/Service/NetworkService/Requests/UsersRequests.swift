@@ -52,4 +52,16 @@ extension NetworkService {
             .map { $0.orders }
     }
 
+    func updateUserDeviceToken(_ token: String, userId: Int64) -> Single<User> {
+        let body = [
+            "device_token": token
+        ]
+
+        let apiParameters = ApiRequestParameters(relativeUrl: "users/\(userId)/update_device_token",
+                                                 method: .patch,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
 }

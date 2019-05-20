@@ -15,6 +15,7 @@ class EditPersonalDetailsViewController: UIViewController {
     @IBOutlet private weak var tableViewTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var toggleAvailabilityButton: RoundedButton!
 
     var viewModel: EditPersonalDetailsViewModel!
     private var newImageData: Data?
@@ -36,6 +37,14 @@ class EditPersonalDetailsViewController: UIViewController {
         if let avatarUrl = viewModel.chef?.avatarLink {
             Nuke.loadImage(with: avatarUrl, into: avatarImageView)
             avatarImageView.contentMode = .scaleAspectFill
+        }
+
+        if let chef = viewModel.chef {
+            let toggleAvailabilityModel = RoundedButtonViewModel(title: chef.isActive ?? true
+                ? "Disable your account"
+                : "Activate your account", type: chef.isActive ?? true ? .squeezedRed : .squeezedOrange)
+            toggleAvailabilityButton.configure(with: toggleAvailabilityModel)
+            toggleAvailabilityButton.isHidden = false
         }
 
         tableView.register(UINib(nibName: "EditFieldTableViewCell", bundle: nil),
@@ -131,8 +140,10 @@ class EditPersonalDetailsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         tableViewHeightConstraint.constant = tableView.contentSize.height
         let avatarHeight: CGFloat = viewModel.isChef ? 270 : 20
+        let disableButtonHeight: CGFloat = viewModel.isChef ? 100 : 0
         contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
             + avatarHeight // Content without table
+            + disableButtonHeight
     }
 
     func pickImageAction() {
@@ -148,6 +159,25 @@ class EditPersonalDetailsViewController: UIViewController {
         let cropViewController = CropViewController(image: image)
         cropViewController.delegate = self
         present(cropViewController, animated: true, completion: nil)
+    }
+
+    @IBAction func disableChefAccount(_ sender: Any) {
+        guard let chefId = viewModel.chef?.id
+            else { return }
+        let toggleAvailabilitySingle = NetworkService.shared.toggleChefAvailability(chefId: chefId)
+        self.hudOperationWithSingle(operationSingle: toggleAvailabilitySingle,
+                                    onSuccessClosure: { chef in
+                                        self.presentAlertWith(
+                                            title: "YEAH",
+                                            message: chef.isActive ?? true
+                                                ? "You're available now" : "You're no longer available",
+                                            actions: [ UIAlertAction(title: "Ok", style: .default,
+                                                                     handler: { _ in
+                                                                        NavigationService.reloadChefProfile = true
+                                                                        NavigationService.popNavigationTopController()
+                                            })])
+        },
+                                    disposeBag: disposeBag)
     }
 
 }
@@ -253,7 +283,7 @@ extension EditPersonalDetailsViewController: UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.isChef && indexPath.row == 4 ? UITableView.automaticDimension : 50
+        return viewModel.isChef && indexPath.row == 4 ? 150 : 50
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

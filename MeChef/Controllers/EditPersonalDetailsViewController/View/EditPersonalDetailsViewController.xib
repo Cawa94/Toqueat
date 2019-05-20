@@ -17,6 +17,7 @@
                 <outlet property="tableView" destination="snl-dk-8Kx" id="dKg-Ae-IbU"/>
                 <outlet property="tableViewHeightConstraint" destination="8mU-HD-sLu" id="Y9Z-XF-Bat"/>
                 <outlet property="tableViewTopConstraint" destination="nDn-gP-Zdb" id="maV-zo-zLc"/>
+                <outlet property="toggleAvailabilityButton" destination="FnL-HL-v5P" id="HmI-yj-ELi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -51,14 +52,27 @@
                                         <outlet property="delegate" destination="-1" id="mzH-mZ-muK"/>
                                     </connections>
                                 </tableView>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FnL-HL-v5P" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
+                                    <rect key="frame" x="30" y="730" width="354" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="e2c-hn-4YV"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="disableChefAccount:" destination="-1" eventType="touchUpInside" id="Fh5-7s-9vr"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="FnL-HL-v5P" firstAttribute="leading" secondItem="baX-bF-Rnh" secondAttribute="leading" constant="30" id="FAj-9r-aRw"/>
                                 <constraint firstAttribute="height" constant="800" id="H3g-0r-vvm"/>
+                                <constraint firstAttribute="trailing" secondItem="FnL-HL-v5P" secondAttribute="trailing" constant="30" id="L4V-Bc-Qzh"/>
                                 <constraint firstItem="1pJ-by-de3" firstAttribute="centerX" secondItem="baX-bF-Rnh" secondAttribute="centerX" id="cwN-WP-Bwp"/>
                                 <constraint firstItem="1pJ-by-de3" firstAttribute="top" secondItem="baX-bF-Rnh" secondAttribute="top" constant="20" id="gRT-Jc-hg9"/>
                                 <constraint firstItem="snl-dk-8Kx" firstAttribute="top" secondItem="baX-bF-Rnh" secondAttribute="top" constant="200" id="nDn-gP-Zdb"/>
                                 <constraint firstAttribute="trailing" secondItem="snl-dk-8Kx" secondAttribute="trailing" id="qUn-fN-tfI"/>
+                                <constraint firstItem="FnL-HL-v5P" firstAttribute="top" secondItem="snl-dk-8Kx" secondAttribute="bottom" constant="30" id="sfb-mn-byl"/>
                                 <constraint firstItem="snl-dk-8Kx" firstAttribute="leading" secondItem="baX-bF-Rnh" secondAttribute="leading" id="tFZ-jL-fog"/>
                             </constraints>
                         </view>

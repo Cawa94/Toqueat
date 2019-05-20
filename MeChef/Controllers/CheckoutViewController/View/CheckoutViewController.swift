@@ -8,6 +8,9 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
     @IBOutlet weak var dishesPriceLabel: UILabel!
     @IBOutlet weak var deliveryPriceLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var choosePaymentMethodButton: UIButton!
+    @IBOutlet weak var paymentMethodImageView: UIImageView!
+    @IBOutlet weak var paymentMethodLabel: UILabel!
     @IBOutlet weak var completeOrderButton: RoundedButton!
 
     var checkoutViewModel: CheckoutViewModel! {
@@ -87,12 +90,11 @@ extension CheckoutViewController: STPPaymentContextDelegate {
     }
 
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-        /*
-        self.activityIndicator.animating = paymentContext.loading
-        self.paymentButton.enabled = paymentContext.selectedPaymentOption != nil
-        self.paymentLabel.text = paymentContext.selectedPaymentOption?.label
-        self.paymentIcon.image = paymentContext.selectedPaymentOption?.image
-        */
+        //self.activityIndicator.animating = paymentContext.loading
+        completeOrderButton.isHidden = paymentContext.selectedPaymentMethod == nil
+        paymentMethodImageView.isHidden = paymentContext.selectedPaymentMethod == nil
+        paymentMethodLabel.text = paymentContext.selectedPaymentMethod?.label
+        paymentMethodImageView.image = paymentContext.selectedPaymentMethod?.image
     }
 
     func paymentContext(_ paymentContext: STPPaymentContext,

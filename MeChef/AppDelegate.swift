@@ -42,6 +42,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let nsDeviceToken = NSData(data: deviceToken)
         debugPrint("NOTIFICATIONS TOKEN => \(nsDeviceToken)")
+
+        let token = "\(nsDeviceToken)".replacingOccurrences(of: " ", with: "")
+        uploadDeviceToken(token)
+    }
+
+    func uploadDeviceToken(_ token: String) {
+        if let chefId = SessionService.session?.chef?.id {
+            NetworkService.shared.updateChefDeviceToken(token, chefId: chefId)
+                .subscribe().disposed(by: disposeBag)
+        } else if let userId = SessionService.session?.user?.id {
+            NetworkService.shared.updateUserDeviceToken(token, userId: userId)
+                .subscribe().disposed(by: disposeBag)
+        }
     }
 
     func registerForPushNotifications() {
