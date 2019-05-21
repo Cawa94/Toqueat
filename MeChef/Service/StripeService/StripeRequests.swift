@@ -22,14 +22,13 @@ extension NetworkService: STPEphemeralKeyProvider {
         }
     }
 
-    func generatePaymentIntent(parameters: StripePaymentIntentParameters) -> Single<String> {
+    func generatePaymentIntent(parameters: StripePaymentIntentParameters) -> Single<StripePaymentIntentResponse> {
         let body = StripePaymentIntentBody(paymentIntent: parameters)
         let apiParameters = ApiRequestParameters(relativeUrl: "generate_payment_context",
                                                  method: .post,
                                                  parameters: body.toJSON())
 
-        return (request(with: apiParameters) as Single<StripePaymentIntentResponse>)
-            .map { $0.clientSecret }
+        return request(with: apiParameters)
     }
 
     func requestChefStripeId(parameters: StripeOauthParameters) -> Single<StripeOauthResponse> {

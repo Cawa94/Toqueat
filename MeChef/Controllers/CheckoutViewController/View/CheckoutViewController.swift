@@ -63,7 +63,8 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
                                                     deliveryAddress: deliveryAddress,
                                                     deliveryComment: deliveryComment,
                                                     dishesPrice: NSDecimalNumber(decimal: dishesPrice),
-                                                    deliveryPrice: checkoutViewModel.result.deliveryCost)
+                                                    deliveryPrice: checkoutViewModel.result.deliveryCost,
+                                                    paymentIntentId: "")
         checkoutViewModel.orderParameters = orderParameters
 
         checkoutViewModel.paymentContext?.requestPayment()
@@ -78,6 +79,7 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
         deliveryPriceLabel.text = checkoutViewModel.result.deliveryCost.stringWithCurrency
         dishesPriceLabel.text = CartService.localCart?.total.stringWithCurrency
         totalPriceLabel.text = newTotal.stringWithCurrency
+        //checkoutViewModel.paymentContext?.paymentAmount = Int(truncating: newTotal.multiplying(byPowerOf10: 2))
         super.onResultsState()
     }
 
@@ -89,6 +91,7 @@ extension CheckoutViewController: STPPaymentContextDelegate {
         self.presentAlertWith(title: "WARNING", message: error.localizedDescription)
     }
 
+    // Called when user select a payment method
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
         //self.activityIndicator.animating = paymentContext.loading
         completeOrderButton.isHidden = paymentContext.selectedPaymentMethod == nil
@@ -97,14 +100,16 @@ extension CheckoutViewController: STPPaymentContextDelegate {
         paymentMethodImageView.image = paymentContext.selectedPaymentMethod?.image
     }
 
+    // Called when user press the 'complete order' button
     func paymentContext(_ paymentContext: STPPaymentContext,
                         didCreatePaymentResult paymentResult: STPPaymentResult,
                         completion: @escaping STPErrorBlock) {
         let payAndCreateOrderSingle = NetworkService.shared.generatePaymentIntent(parameters:
             StripePaymentIntentParameters(amount: paymentContext.paymentAmount,
                                           paymentMethod: paymentResult.source.stripeID))
-            .map { clientSecret in
-                let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
+            .map { intentResponse in
+                self.checkoutViewModel.paymentIntentId = intentResponse.id
+                let paymentIntentParams = STPPaymentIntentParams(clientSecret: intentResponse.clientSecret)
                 paymentIntentParams.sourceId = paymentResult.source.stripeID
                 paymentIntentParams.returnURL = "toqueat://stripe-redirect"
                 let client = STPAPIClient.shared()
@@ -137,9 +142,11 @@ extension CheckoutViewController: STPPaymentContextDelegate {
     }
 
     func placeOrder() {
-        guard let orderParameters = checkoutViewModel.orderParameters
+        guard let orderParameters = checkoutViewModel.orderParameters,
+            let paymentIntentId = checkoutViewModel.paymentIntentId
             else { return }
-        NetworkService.shared.createNewOrderWith(parameters: orderParameters)
+        NetworkService.shared
+            .createNewOrderWith(parameters: orderParameters.copyWith(intentId: paymentIntentId))
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { order in
                 self.presentAlertWith(title: "YEAH", message: "Order placed with ID: \(order.id)",

@@ -69,6 +69,7 @@
 		DA78566C223FF9A0001BB354 /* ChefLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */; };
 		DA78566D223FF9A0001BB354 /* ChefLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA78566B223FF9A0001BB354 /* ChefLoginViewController.xib */; };
 		DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78566E223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift */; };
+		DA799A9F2292FF4200CF525A /* OrderCreateParameters+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA799A9E2292FF4200CF525A /* OrderCreateParameters+Extensions.swift */; };
 		DA8208AF22341178002E6743 /* UserDefaults+LocalCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208AE22341178002E6743 /* UserDefaults+LocalCart.swift */; };
 		DA8208B12234270A002E6743 /* CartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208B02234270A002E6743 /* CartService.swift */; };
 		DA8208B622343717002E6743 /* LocalCart+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8208B522343717002E6743 /* LocalCart+Extensions.swift */; };
@@ -279,6 +280,7 @@
 		DA78566A223FF9A0001BB354 /* ChefLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefLoginViewController.swift; sourceTree = "<group>"; };
 		DA78566B223FF9A0001BB354 /* ChefLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefLoginViewController.xib; sourceTree = "<group>"; };
 		DA78566E223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefLoginViewController.swift"; sourceTree = "<group>"; };
+		DA799A9E2292FF4200CF525A /* OrderCreateParameters+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderCreateParameters+Extensions.swift"; sourceTree = "<group>"; };
 		DA8208AE22341178002E6743 /* UserDefaults+LocalCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+LocalCart.swift"; sourceTree = "<group>"; };
 		DA8208B02234270A002E6743 /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
 		DA8208B522343717002E6743 /* LocalCart+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalCart+Extensions.swift"; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 				DA8208B522343717002E6743 /* LocalCart+Extensions.swift */,
 				DAD4B106223D1BAF009E6F84 /* LocalCartDish+Extensions.swift */,
 				DAF86AF62237F44100070B76 /* Order+Extensions.swift */,
+				DA799A9E2292FF4200CF525A /* OrderCreateParameters+Extensions.swift */,
 				DA913C7422466801003D4700 /* User+Extensions.swift */,
 			);
 			path = Models;
@@ -2000,6 +2003,7 @@
 				DA0328BA225CD4C2001FBE14 /* ChefDetailsTableViewCell.swift in Sources */,
 				DADFF2CC222E878C00BB6404 /* RegisterViewController.swift in Sources */,
 				DA8208AF22341178002E6743 /* UserDefaults+LocalCart.swift in Sources */,
+				DA799A9F2292FF4200CF525A /* OrderCreateParameters+Extensions.swift in Sources */,
 				DAF4FE28222AD0AB00F208DB /* MainTabViewController.swift in Sources */,
 				DA3BC0C7226CA39F0045A352 /* Dictionary+Extensions.swift in Sources */,
 				DADFF2C3222E848000BB6404 /* DishViewController.swift in Sources */,

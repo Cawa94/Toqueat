@@ -14,6 +14,7 @@ final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultTyp
     var orderParameters: OrderCreateParameters?
     var paymentContext: STPPaymentContext?
     var redirectContext: STPRedirectContext?
+    var paymentIntentId: String?
 
     init(cart: LocalCart, chefId: Int64) {
         self.cart = cart
