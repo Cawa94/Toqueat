@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OrderStateTableHeaderView" customModule="Toqueat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1mV-VR-Qiq">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order state" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esp-5P-OFy">
+                    <rect key="frame" x="15" y="17" width="97.5" height="21.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APl-Wa-z2U">
+                    <rect key="frame" x="0.0" y="54" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="3UM-MN-Vlv"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="APl-Wa-z2U" secondAttribute="trailing" id="KOm-lE-ske"/>
+                <constraint firstAttribute="trailing" secondItem="1mV-VR-Qiq" secondAttribute="trailing" id="dSg-RY-fEm"/>
+                <constraint firstItem="esp-5P-OFy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="lC9-S8-yzJ"/>
+                <constraint firstItem="APl-Wa-z2U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nQw-48-aDD"/>
+                <constraint firstItem="1mV-VR-Qiq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oTs-es-cBM"/>
+                <constraint firstItem="esp-5P-OFy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="rzQ-4B-mz5"/>
+                <constraint firstAttribute="bottom" secondItem="APl-Wa-z2U" secondAttribute="bottom" id="uUc-29-tkM"/>
+                <constraint firstItem="1mV-VR-Qiq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xKD-4n-t21"/>
+                <constraint firstAttribute="bottom" secondItem="1mV-VR-Qiq" secondAttribute="bottom" id="z49-AM-bB6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="stateLabel" destination="esp-5P-OFy" id="dRw-HM-SSB"/>
+            </connections>
+            <point key="canvasLocation" x="-154" y="-9"/>
+        </view>
+    </objects>
+</document>

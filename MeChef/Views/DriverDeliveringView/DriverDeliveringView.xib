@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DriverDeliveringView" customModule="Toqueat" customModuleProvider="target">
+            <connections>
+                <outlet property="callButton" destination="a12-a7-mQf" id="3uq-r3-XN7"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="9yX-2O-dzT"/>
+                <outlet property="driverImageView" destination="cBx-5H-oZ7" id="xyO-9J-M9D"/>
+                <outlet property="extimatedTimeLabel" destination="4AC-zt-bOy" id="Vvt-71-dfw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stuart driver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izV-2V-sHQ">
+                    <rect key="frame" x="15" y="5" width="82.5" height="17.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="courier_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="cBx-5H-oZ7">
+                    <rect key="frame" x="10" y="37.5" width="80" height="80"/>
+                    <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="cBx-5H-oZ7" secondAttribute="height" multiplier="1:1" id="3sV-SJ-iqI"/>
+                        <constraint firstAttribute="width" constant="80" id="sj0-he-8Cr"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driver will be at your house in a few minutes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AC-zt-bOy">
+                    <rect key="frame" x="105" y="47.5" width="260" height="37.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a12-a7-mQf">
+                    <rect key="frame" x="105" y="85" width="30" height="33"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                    <state key="normal" title="Call">
+                        <color key="titleColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nn6-Mb-SzR">
+                    <rect key="frame" x="0.0" y="149" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="e5e-hL-ql3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="nn6-Mb-SzR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1hc-A7-Z8Y"/>
+                <constraint firstItem="4AC-zt-bOy" firstAttribute="leading" secondItem="cBx-5H-oZ7" secondAttribute="trailing" constant="15" id="1pF-rt-5mP"/>
+                <constraint firstItem="izV-2V-sHQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Bdu-hW-bNL"/>
+                <constraint firstItem="a12-a7-mQf" firstAttribute="top" secondItem="4AC-zt-bOy" secondAttribute="bottom" id="BpT-Nu-u02"/>
+                <constraint firstItem="cBx-5H-oZ7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="DQU-95-oj4"/>
+                <constraint firstItem="a12-a7-mQf" firstAttribute="leading" secondItem="4AC-zt-bOy" secondAttribute="leading" id="DtI-u8-NhZ"/>
+                <constraint firstAttribute="trailing" secondItem="nn6-Mb-SzR" secondAttribute="trailing" id="OLF-qp-Zls"/>
+                <constraint firstItem="cBx-5H-oZ7" firstAttribute="width" secondItem="cBx-5H-oZ7" secondAttribute="height" multiplier="1:1" id="PQv-ww-Zpb"/>
+                <constraint firstItem="cBx-5H-oZ7" firstAttribute="top" secondItem="izV-2V-sHQ" secondAttribute="bottom" constant="15" id="dA2-fP-K2W"/>
+                <constraint firstItem="izV-2V-sHQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="m9v-vK-dBi"/>
+                <constraint firstAttribute="trailing" secondItem="4AC-zt-bOy" secondAttribute="trailing" constant="10" id="r8v-Xi-y5p"/>
+                <constraint firstAttribute="bottom" secondItem="nn6-Mb-SzR" secondAttribute="bottom" id="rQ4-Fq-Dij"/>
+                <constraint firstItem="4AC-zt-bOy" firstAttribute="top" secondItem="cBx-5H-oZ7" secondAttribute="top" constant="10" id="tfj-8h-spo"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="96.799999999999997" y="-111.54422788605699"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="courier_placeholder" width="128" height="128"/>
+    </resources>
+</document>

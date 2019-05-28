@@ -12,8 +12,8 @@ public extension Alamofire.SessionManager {
 
 class NetworkService: NSObject {
 
-    static let baseUrl = "https://toqueat.com/" // Server
-    //static let baseUrl = "http://192.168.1.168:3000/" // Home
+    //static let baseUrl = "https://toqueat.com/" // Server
+    static let baseUrl = "http://192.168.1.168:3000/" // Home
     //static let baseUrl = "http://192.168.2.177:3000/" // Office
 
     // Alamofire Settings

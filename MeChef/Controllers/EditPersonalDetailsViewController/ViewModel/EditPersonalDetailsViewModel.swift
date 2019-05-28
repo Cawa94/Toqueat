@@ -24,7 +24,7 @@ extension EditPersonalDetailsViewModel {
     }
 
     var phone: String? {
-        return isChef ? chef?.phone : nil
+        return isChef ? chef?.phone : user?.phone
     }
 
 }

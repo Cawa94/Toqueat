@@ -62,4 +62,31 @@ extension CheckoutViewModel {
         return NetworkService.shared.getStuartJobPriceWith(jobParameters)
     }
 
+    func createStuartJobWith(orderId: Int64, chefLocation: StuartLocation) -> Single<Order> {
+        let networkService = NetworkService.shared
+        return networkService.getOrderWith(orderId: orderId)
+            .flatMap { order -> Single<Order> in
+                guard order.stuartId == nil
+                    else { return Single.just(order) }
+                let dropOff = StuartLocation(address: order.deliveryAddress,
+                                             comment: order.deliveryComment,
+                                             contact: order.user.stuartContact,
+                                             packageType: "small",
+                                             packageDescription: "",
+                                             clientReference: "\(orderId)")
+                let jobParameters = StuartJobParameters(pickupAt: nil /*order.deliveryDate*/,
+                    pickups: [chefLocation],
+                    dropoffs: [dropOff],
+                    transportType: nil)
+                return NetworkService.shared.createStuartJobWith(jobParameters)
+                    .flatMap { stuartJob -> Single<Order> in
+                        networkService.setStuartIdFor(orderId: orderId, stuartId: stuartJob.id)
+                            .flatMap { _ -> Single<Order> in
+                                networkService.changeOrderStatusWith(orderId: orderId,
+                                                                            state: .scheduled)
+                        }
+                }
+        }
+    }
+
 }

@@ -72,9 +72,4 @@ extension NavigationService {
         push(viewController: dishController, animated: true)
     }
 
-    static func pushChefOrderDetailsViewController(orderId: Int64) {
-        let orderDetailsController = chefOrderDetailsViewController(orderId: orderId)
-        push(viewController: orderDetailsController, animated: true)
-    }
-
 }

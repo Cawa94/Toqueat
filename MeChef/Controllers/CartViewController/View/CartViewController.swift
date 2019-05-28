@@ -34,9 +34,10 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.cartViewModel.cart = localCart
             self.totalLabel
                 .text = "Total: \(localCart?.total.stringWithCurrency ?? NSDecimalNumber(value: 0).stringWithCurrency)"
+            self.tableView.isHidden = !self.cartViewModel.hasContent
             self.tableView.reloadData()
-            self.checkoutButton.isHidden = localCart?.dishes?.isEmpty ?? true
-            self.totalLabel.isHidden = localCart?.dishes?.isEmpty ?? true
+            self.checkoutButton.isHidden = !self.cartViewModel.hasContent
+            self.totalLabel.isHidden = !self.cartViewModel.hasContent
         }).disposed(by: disposeBag)
     }
 
@@ -144,22 +145,26 @@ extension CartViewController: SwipeTableViewCellDelegate {
 
         let dish = self.cartViewModel.elementAt(indexPath.row)
         let addOneAction = SwipeAction(style: .default,
-                                       title: "+") { _, _ in
-                                        CartService.addToCart(dish)
-                                        DispatchQueue.main.async {
-                                            self.tableView.reloadData()
+                                       title: "+") { base, _ in
+                                        if dish.canAddToCart() {
+                                            CartService.addToCart(dish)
                                         }
+                                        self.checkColor(swipeAction: base,
+                                                        tableView: tableView,
+                                                        localCartDish: dish,
+                                                        indexPath: indexPath)
         }
-        addOneAction.backgroundColor = .mainOrangeColor
+        addOneAction.backgroundColor = dish.canAddToCart() ? .mainOrangeColor : .lightGrayColor
         addOneAction.font = .boldFontOf(size: 35)
         addOneAction.textColor = .white
 
         let removeOneAction = SwipeAction(style: .destructive,
-                                          title: "-") { _, _ in
+                                          title: "-") { base, _ in
                                             CartService.removeFromCart(dish)
-                                            DispatchQueue.main.async {
-                                                self.tableView.reloadData()
-                                            }
+                                            self.checkColor(swipeAction: base,
+                                                            tableView: tableView,
+                                                            localCartDish: dish,
+                                                            indexPath: indexPath)
         }
         removeOneAction.backgroundColor = .highlightedOrangeColor
         removeOneAction.font = .boldFontOf(size: 35)
@@ -175,6 +180,19 @@ extension CartViewController: SwipeTableViewCellDelegate {
         options.maximumButtonWidth = .swipeActionWidth
         options.minimumButtonWidth = .swipeActionWidth
         return options
+    }
+
+    func checkColor(swipeAction: SwipeAction,
+                    tableView: UITableView,
+                    localCartDish: LocalCartDish,
+                    indexPath: IndexPath) {
+        swipeAction.backgroundColor = localCartDish.canAddToCart() ? .mainOrangeColor : .lightGrayColor
+        UIView.performWithoutAnimation {
+            tableView.reloadRows(at: [indexPath], with: .none)
+            if let cell = tableView.cellForRow(at: indexPath) as? CartDishTableViewCell {
+                cell.showSwipe(orientation: .right)
+            }
+        }
     }
 
 }

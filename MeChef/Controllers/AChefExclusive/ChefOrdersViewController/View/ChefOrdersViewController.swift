@@ -99,7 +99,7 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let order = chefOrdersViewModel.orderAt(indexPath) {
-            NavigationService.pushChefOrderDetailsViewController(orderId: order.id)
+            NavigationService.pushOrderPulleyViewController(orderId: order.id, stuartId: order.stuartId)
         }
     }
 

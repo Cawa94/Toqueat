@@ -117,9 +117,10 @@ extension NavigationService {
         push(viewController: editAddressController, animated: true)
     }
 
-    static func pushTrackOrderViewController(orderId: Int64) {
-        let trackOrderController = trackOrderViewController(orderId: orderId)
-        push(viewController: trackOrderController, animated: true)
+    static func pushOrderPulleyViewController(orderId: Int64, stuartId: Int64?) {
+        let orderPulleyController = orderPulleyViewController(orderId: orderId,
+                                                              stuartId: stuartId)
+        push(viewController: orderPulleyController, animated: true)
     }
 
     static func pushCheckoutViewController(cart: LocalCart, chefId: Int64) {

@@ -16,6 +16,13 @@ extension LocalCartDish {
         return dishes.filter { $0.id == self.id }.count
     }
 
+    func canAddToCart() -> Bool {
+        if quantityInCart < maxQuantity {
+            return true
+        }
+        return false
+    }
+
 }
 
 extension LocalCartDish: Equatable {

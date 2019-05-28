@@ -39,6 +39,10 @@ class BaseTableViewController<ResultType, ElementType>: BaseStatefulController<R
         return 0
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return nil
     }

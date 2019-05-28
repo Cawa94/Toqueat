@@ -12,10 +12,23 @@ extension AddToCartViewModel {
         return dishes.contains(where: { $0.id == dish.id })
     }
 
+    var localCartDish: LocalCartDish? {
+        guard let cart = CartService.localCart, let dishes = cart.dishes,
+            let localCartDish = dishes.first(where: { $0.id == dish.id })
+            else { return nil }
+        return localCartDish
+    }
+
     var quantityInCart: Int {
-        guard let cart = CartService.localCart, let dishes = cart.dishes
+        guard let localCartDish = localCartDish
             else { return 0 }
-        return dishes.filter { $0.id == dish.id }.count
+        return localCartDish.quantityInCart
+    }
+
+    func canAddToCart() -> Bool {
+        guard let localCartDish = localCartDish
+            else { return true }
+        return localCartDish.canAddToCart()
     }
 
 }

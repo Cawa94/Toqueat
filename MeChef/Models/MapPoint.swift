@@ -1,41 +1,29 @@
 import MapKit
 
-class MapPoint: NSObject, MKAnnotation {
+class HomePoint: NSObject, MKAnnotation {
 
-    let title: String?
-    let locationName: String
+    static let imageName = "home_location"
+
     let coordinate: CLLocationCoordinate2D
 
-    init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
-        self.title = title
-        self.locationName = locationName
+    init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
 
         super.init()
-    }
-
-    var subtitle: String? {
-        return locationName
     }
 
 }
 
 class CourierPoint: NSObject, MKAnnotation {
 
-    let title: String?
-    let locationName: String
+    static let imageName = "motorbike_location"
+
     let coordinate: CLLocationCoordinate2D
 
-    init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
-        self.title = title
-        self.locationName = locationName
+    init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
 
         super.init()
-    }
-
-    var subtitle: String? {
-        return locationName
     }
 
 }

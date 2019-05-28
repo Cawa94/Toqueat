@@ -24,8 +24,8 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func changeOrderStatusWith(orderId: Int64, state: String) -> Single<Order> {
-        let parameters = ["state": state]
+    func changeOrderStatusWith(orderId: Int64, state: OrderState) -> Single<Order> {
+        let parameters = ["state": state.rawValue]
         let apiParameters = ApiRequestParameters(relativeUrl: "orders/\(orderId)/set_new_state",
                                                  method: .patch,
                                                  parameters: parameters)

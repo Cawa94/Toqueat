@@ -139,8 +139,8 @@ class EditPersonalDetailsViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         tableViewHeightConstraint.constant = tableView.contentSize.height
-        let avatarHeight: CGFloat = viewModel.isChef ? 270 : 20
-        let disableButtonHeight: CGFloat = viewModel.isChef ? 100 : 0
+        let avatarHeight: CGFloat = viewModel.isChef ? 200 : 20
+        let disableButtonHeight: CGFloat = viewModel.isChef ? 80 : 0
         contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
             + avatarHeight // Content without table
             + disableButtonHeight
@@ -277,13 +277,16 @@ extension EditPersonalDetailsViewController: UITableViewDelegate, UITableViewDat
             let cellViewModel = EditDescriptionTableViewModel(fieldValue: viewModel.chef?.description,
                                                               placeholder: "Write something about you")
             editDescriptionCell.configure(contentViewModel: cellViewModel)
+            DispatchQueue.main.async {
+                self.viewDidLayoutSubviews()
+            }
         default:
             break
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.isChef && indexPath.row == 4 ? 150 : 50
+        return viewModel.isChef && indexPath.row == 4 ? UITableView.automaticDimension : 50
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

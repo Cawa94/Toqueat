@@ -60,6 +60,8 @@ final class AddToCartView: UIView {
             quantityControllerView.isHidden = false
             let totalPrice = viewModel.dish.price.multiplying(by: NSDecimalNumber(value: viewModel.quantityInCart))
             quantityLabel.text = "\(viewModel.quantityInCart)x - " + totalPrice.stringWithCurrency
+            addOneButton.backgroundColor = viewModel.canAddToCart() ? .mainOrangeColor : .lightGrayColor
+            addOneButton.isEnabled = viewModel.canAddToCart()
             addOneButton.roundCorners(radii: 10)
             removeOneButton.roundCorners(radii: 10)
         }

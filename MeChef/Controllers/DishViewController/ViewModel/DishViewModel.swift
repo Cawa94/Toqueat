@@ -29,7 +29,8 @@ extension DishViewModel {
 
     var localCartDish: LocalCartDish {
         return LocalCartDish(id: result.id, name: result.name,
-                             price: result.price, imageUrl: result.imageUrl)
+                             price: result.price, imageUrl: result.imageUrl,
+                             maxQuantity: result.maxQuantity)
     }
 
 }

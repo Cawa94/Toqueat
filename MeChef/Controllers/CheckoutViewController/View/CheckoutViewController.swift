@@ -79,7 +79,7 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
         deliveryPriceLabel.text = checkoutViewModel.result.deliveryCost.stringWithCurrency
         dishesPriceLabel.text = CartService.localCart?.total.stringWithCurrency
         totalPriceLabel.text = newTotal.stringWithCurrency
-        //checkoutViewModel.paymentContext?.paymentAmount = Int(truncating: newTotal.multiplying(byPowerOf10: 2))
+        checkoutViewModel.paymentContext?.paymentAmount = Int(truncating: newTotal.multiplying(byPowerOf10: 2))
         super.onResultsState()
     }
 
@@ -147,6 +147,11 @@ extension CheckoutViewController: STPPaymentContextDelegate {
             else { return }
         NetworkService.shared
             .createNewOrderWith(parameters: orderParameters.copyWith(intentId: paymentIntentId))
+            .flatMap {
+                self.checkoutViewModel.createStuartJobWith(
+                    orderId: $0.id,
+                    chefLocation: self.checkoutViewModel.result.chef.stuartLocation)
+            }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { order in
                 self.presentAlertWith(title: "YEAH", message: "Order placed with ID: \(order.id)",

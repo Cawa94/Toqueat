@@ -60,7 +60,7 @@ extension DeliverySlotsViewModel {
 
     func deliveryDate(weekdayId: Int64, hourId: Int64) -> Date {
         let deliveryDay = Date().next(weekdayId + 1)
-        guard let deliveryDate = deliveryDay.dateBySet(hour: Int(hourId) + 5, min: nil, secs: nil)
+        guard let deliveryDate = deliveryDay.dateBySet(hour: Int(hourId) + 8, min: nil, secs: nil)
             else { fatalError("Cannot create date") }
         debugPrint(deliveryDate)
         return deliveryDate

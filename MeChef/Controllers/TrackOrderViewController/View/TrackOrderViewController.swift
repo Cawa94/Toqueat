@@ -3,8 +3,7 @@ import RxSwift
 import Nuke
 import MapKit
 
-class TrackOrderViewController: BaseStatefulController<TrackOrderViewModel.OrderWithStuart>,
-    MKMapViewDelegate {
+class TrackOrderViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
 
@@ -12,25 +11,27 @@ class TrackOrderViewController: BaseStatefulController<TrackOrderViewModel.Order
     private var needZoomOut = false
     private var locationsDrawn = false
 
-    var trackOrderViewModel: TrackOrderViewModel! {
-        didSet {
-            viewModel = trackOrderViewModel
-        }
-    }
+    var viewModel: TrackOrderViewModel!
 
-    private let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // set initial location in Honolulu
+        // set initial location in Barcelona
         let initialLocation = CLLocation(latitude: 41.3868214, longitude: 2.1695953)
         centerMapOnLocation(location: initialLocation)
+
     }
 
-    override func configureNavigationBar() {
-        super.configureNavigationBar()
-        title = "Track Order"
+    // fake result state, called when PulleyController has result
+    func onResultState() {
+        if let courierCoordiante = viewModel.courierCoordinate {
+            let courierPoint = CourierPoint(coordinate: courierCoordiante)
+            mapView.addAnnotation(courierPoint)
+        }
+
+        drawLocations()
     }
 
     func centerMapOnLocation(location: CLLocation) {
@@ -40,29 +41,6 @@ class TrackOrderViewController: BaseStatefulController<TrackOrderViewModel.Order
         mapView.setRegion(coordinateRegion, animated: true)
     }
 
-    // MARK: - StatefulViewController related methods
-
-    override func onResultsState() {
-        if let courierCoordiante = trackOrderViewModel.courierCoordinate {
-            let courier = MapPoint(title: "Bob",
-                                   locationName: "courier",
-                                   coordinate: courierCoordiante)
-            mapView.addAnnotation(courier)
-        }
-
-        drawLocations()
-
-        trackOrderViewModel.stuartJobDriver.drive(onNext: { stuartJob in
-            guard let latitude = stuartJob.driver?.latitude,
-                let longitude = stuartJob.driver?.longitude
-                else { return }
-            let courierCoordiante = CLLocationCoordinate2D(latitude: CLLocationDegrees(truncating: latitude),
-                                                           longitude: CLLocationDegrees(truncating: longitude))
-            self.updateCourierLocation(courierCoordiante)
-        })
-        .disposed(by: disposeBag)
-    }
-
     func updateCourierLocation(_ newCoordinate: CLLocationCoordinate2D?) {
         if let courierCoordinate = newCoordinate {
             for existingMarker in self.mapView.annotations {
@@ -70,31 +48,23 @@ class TrackOrderViewController: BaseStatefulController<TrackOrderViewModel.Order
                     self.mapView.removeAnnotation(courierMarker)
                 }
             }
-            let courierPoint = CourierPoint(title: "Courier",
-                                            locationName: "on my way",
-                                            coordinate: courierCoordinate)
+            let courierPoint = CourierPoint(coordinate: courierCoordinate)
             mapView.addAnnotation(courierPoint)
         }
     }
 
     func drawLocations() {
-        if !locationsDrawn, let pickupCoordinate = trackOrderViewModel.pickupCoordinate,
-            let dropoffCoordinate = trackOrderViewModel.dropoffCoordinate {
-            let pickup = MapPoint(title: "Chef house",
-                                  locationName: "pickup",
-                                  coordinate: pickupCoordinate)
-            mapView.addAnnotation(pickup)
-
-            let dropoff = MapPoint(title: "Your house",
-                                   locationName: "dropoff",
-                                   coordinate: dropoffCoordinate)
+        if !locationsDrawn, let courierCoordinate = viewModel.courierCoordinate,
+            let houseCoordinate = SessionService.isChef
+                ? viewModel.pickupCoordinate : viewModel.dropoffCoordinate {
+            let dropoff = HomePoint(coordinate: houseCoordinate)
             mapView.addAnnotation(dropoff)
 
             locationsDrawn = true
 
             let directionRequest = MKDirections.Request()
-            directionRequest.source = MKMapItem(placemark: MKPlacemark(coordinate: pickupCoordinate))
-            directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: dropoffCoordinate))
+            directionRequest.source = MKMapItem(placemark: MKPlacemark(coordinate: courierCoordinate))
+            directionRequest.destination = MKMapItem(placemark: MKPlacemark(coordinate: houseCoordinate))
             directionRequest.transportType = .walking
 
             let directions = MKDirections(request: directionRequest)
@@ -119,10 +89,33 @@ class TrackOrderViewController: BaseStatefulController<TrackOrderViewModel.Order
         if needZoomOut {
             self.mapView.setVisibleMapRect(self.mapView.visibleMapRect,
                                            edgePadding: UIEdgeInsets(top: 100, left: 100,
-                                                                     bottom: 100, right: 100),
+                                                                     bottom: 250, right: 100),
                                            animated: true)
             needZoomOut = false
         }
+    }
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationIdentifier = "AnnotationIdentifier"
+
+        var annotationView: MKAnnotationView?
+        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
+            annotationView = dequeuedAnnotationView
+            annotationView?.annotation = annotation
+        } else {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+        }
+
+        if let annotationView = annotationView {
+            if annotation as? HomePoint != nil {
+                annotationView.image = UIImage(named: HomePoint.imageName)
+            } else if annotation as? CourierPoint != nil {
+                annotationView.image = UIImage(named: CourierPoint.imageName)
+            }
+
+        }
+
+        return annotationView
     }
 
 }

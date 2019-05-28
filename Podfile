@@ -24,4 +24,5 @@ target 'Toqueat' do
   pod 'SwipeCellKit'
   pod 'Stripe'
   pod 'CropViewController'
+  pod 'Pulley'
 end

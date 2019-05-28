@@ -11,7 +11,6 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet private weak var chefLabel: UILabel!
     @IBOutlet private weak var totalLabel: UILabel!
     @IBOutlet private weak var deliveryLabel: UILabel!
-    @IBOutlet private weak var stateLabel: UILabel!
 
     var disposeBag = DisposeBag()
     private var viewModel: OrderTableViewModel?
@@ -54,8 +53,11 @@ extension OrderTableViewCell: PlaceholderConfigurable {
         chefLabel.text = contentViewModel.order.chef.name
         totalLabel.text = contentViewModel.order.totalPrice.stringWithCurrency
         deliveryLabel.text = "\(contentViewModel.delivery)"
-        stateLabel.text = "\(contentViewModel.order.state.capitalized)"
-        stateLabel.textColor = contentViewModel.colorFor(contentViewModel.order.orderState)
+        if let url = contentViewModel.order.chef.avatarLink {
+            Nuke.loadImage(with: url, into: chefImageView)
+        } else {
+            chefImageView.image = UIImage(named: "chef_placeholder")
+        }
     }
 
 }

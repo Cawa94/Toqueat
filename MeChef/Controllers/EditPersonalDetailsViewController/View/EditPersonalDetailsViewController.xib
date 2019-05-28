@@ -53,7 +53,7 @@
                                     </connections>
                                 </tableView>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FnL-HL-v5P" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
-                                    <rect key="frame" x="30" y="730" width="354" height="40"/>
+                                    <rect key="frame" x="30" y="715" width="354" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="e2c-hn-4YV"/>
                                     </constraints>
@@ -72,7 +72,7 @@
                                 <constraint firstItem="1pJ-by-de3" firstAttribute="top" secondItem="baX-bF-Rnh" secondAttribute="top" constant="20" id="gRT-Jc-hg9"/>
                                 <constraint firstItem="snl-dk-8Kx" firstAttribute="top" secondItem="baX-bF-Rnh" secondAttribute="top" constant="200" id="nDn-gP-Zdb"/>
                                 <constraint firstAttribute="trailing" secondItem="snl-dk-8Kx" secondAttribute="trailing" id="qUn-fN-tfI"/>
-                                <constraint firstItem="FnL-HL-v5P" firstAttribute="top" secondItem="snl-dk-8Kx" secondAttribute="bottom" constant="30" id="sfb-mn-byl"/>
+                                <constraint firstItem="FnL-HL-v5P" firstAttribute="top" secondItem="snl-dk-8Kx" secondAttribute="bottom" constant="15" id="sfb-mn-byl"/>
                                 <constraint firstItem="snl-dk-8Kx" firstAttribute="leading" secondItem="baX-bF-Rnh" secondAttribute="leading" id="tFZ-jL-fog"/>
                             </constraints>
                         </view>

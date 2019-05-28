@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="way-lg-e12">
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="way-lg-e12">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="WPD-VY-RAz"/>
@@ -36,7 +36,7 @@
                 <constraint firstItem="way-lg-e12" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gfz-fl-LlW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-306" y="44"/>
+            <point key="canvasLocation" x="-266" y="-18"/>
         </view>
     </objects>
 </document>

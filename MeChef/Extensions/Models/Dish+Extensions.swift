@@ -11,7 +11,8 @@ extension BaseDish {
     }
 
     var asLocalCartDish: LocalCartDish {
-        return LocalCartDish(id: id, name: name, price: price, imageUrl: imageUrl)
+        return LocalCartDish(id: id, name: name, price: price,
+                             imageUrl: imageUrl, maxQuantity: maxQuantity)
     }
 
 }
@@ -27,7 +28,8 @@ extension ChefDish {
     }
 
     var asLocalCartDish: LocalCartDish {
-        return LocalCartDish(id: id, name: name, price: price, imageUrl: imageUrl)
+        return LocalCartDish(id: id, name: name, price: price,
+                             imageUrl: imageUrl, maxQuantity: maxQuantity)
     }
 
 }
