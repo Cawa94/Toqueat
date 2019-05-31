@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 import SwiftDate
 
-final class ChefOrdersViewModel: BaseStatefulViewModel<ChefOrdersViewModel.ResultType> {
+final class ChefWeekplanViewModel: BaseStatefulViewModel<ChefWeekplanViewModel.ResultType> {
 
     struct ResultType {
         let orders: [BaseOrder]
@@ -37,7 +37,7 @@ final class ChefOrdersViewModel: BaseStatefulViewModel<ChefOrdersViewModel.Resul
 
 }
 
-extension ChefOrdersViewModel {
+extension ChefWeekplanViewModel {
 
     func elementTitleAt(_ indexPath: IndexPath) -> String {
         switch indexPath.section {

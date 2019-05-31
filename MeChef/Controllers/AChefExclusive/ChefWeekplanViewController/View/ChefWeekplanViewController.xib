@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChefOrdersViewController" customModule="Toqueat" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChefWeekplanViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="Hhu-tz-dU0" id="CVa-gI-pRW"/>
                 <outlet property="gridLayout" destination="90B-i1-OVx" id="wrt-B6-uuk"/>
@@ -25,11 +25,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Npk-JR-hQ4">
                     <rect key="frame" x="0.0" y="20" width="375" height="60"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Weekplan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMv-rl-9dh">
-                            <rect key="frame" x="25" y="7.5" width="251" height="45.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weekplan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMv-rl-9dh">
+                            <rect key="frame" x="25" y="7.5" width="181" height="45.5"/>
                             <fontDescription key="fontDescription" name="Baskerville-BoldItalic" family="Baskerville" pointSize="40"/>
                             <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="chef_weekplan"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ig-c0-wo2">
                             <rect key="frame" x="325" y="12.5" width="35" height="35"/>

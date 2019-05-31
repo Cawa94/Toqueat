@@ -35,8 +35,8 @@ class ProfileViewController: BaseStatefulController<User>,
     override func configureNavigationBar() {
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
-        title = "Profile"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
+        title = .commonProfile()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: .commonDone(),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(closeProfile))
@@ -57,7 +57,7 @@ class ProfileViewController: BaseStatefulController<User>,
         case 0:
             return 1
         case 1:
-            return 3
+            return 2
         case 2:
             return 1
         default:
@@ -110,16 +110,16 @@ class ProfileViewController: BaseStatefulController<User>,
             case 1:
                 switch indexPath.row {
                 case 0:
-                    viewModel = UserBarTableViewModel(option: "My Orders")
+                    viewModel = UserBarTableViewModel(option: .profileMyOrders())
                 case 1:
-                    viewModel = UserBarTableViewModel(option: "Delivery Address")
+                    viewModel = UserBarTableViewModel(option: .profileMyAddress(), hideBottomLine: false)
                 case 2:
                     viewModel = UserBarTableViewModel(option: "Payment Methods", hideBottomLine: false)
                 default:
                     viewModel = UserBarTableViewModel(option: "Unknown")
                 }
             case 2:
-                viewModel = UserBarTableViewModel(option: "Log out", arrowHidden: true, hideBottomLine: false)
+                viewModel = UserBarTableViewModel(option: .profileLogout(), arrowHidden: true, hideBottomLine: false)
             default:
                 viewModel = UserBarTableViewModel(option: "Unknown")
             }
@@ -184,13 +184,19 @@ class ProfileViewController: BaseStatefulController<User>,
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
+        super.onResultsState()
+
         tableView.reloadData()
 
         // Update session value to be sure is updated after editing info
         SessionService.updateWith(user: profileViewModel.result)
+
+        super.onResultsState()
     }
 
     override func onLoadingState() {
+        super.onLoadingState()
+
         tableView.reloadData()
     }
 

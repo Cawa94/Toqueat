@@ -96,7 +96,7 @@
                                             </constraints>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" secureTextEntry="YES"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="oKF-Rw-reb"/>
                                             </connections>
@@ -108,7 +108,7 @@
                                             </constraints>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="c96-2q-Xb4"/>
                                             </connections>
@@ -125,7 +125,7 @@
                                                 <outlet property="delegate" destination="-1" id="OFE-2x-LKt"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Pp-fC-QuT">
+                                        <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Barcelona" placeholder="City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Pp-fC-QuT">
                                             <rect key="frame" x="0.0" y="348" width="305" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="7Pr-A9-FCd"/>
@@ -137,26 +137,26 @@
                                                 <outlet property="delegate" destination="-1" id="yZW-cg-Zm9"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2e-al-zVe">
+                                        <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street, number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2e-al-zVe">
                                             <rect key="frame" x="0.0" y="406" width="305" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="EER-eJ-9tj"/>
                                             </constraints>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="8NV-3h-jB7"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Apartment" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LtN-Rb-1lm">
+                                        <textField opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Apartment, door" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="LtN-Rb-1lm">
                                             <rect key="frame" x="0.0" y="464" width="305" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="mVv-vz-mQ6"/>
                                             </constraints>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="wxj-Aj-FY3"/>
                                             </connections>
@@ -188,6 +188,9 @@
                                     <state key="normal" title="Already registered">
                                         <color key="titleColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="auth_already_registered"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="backToLogin:" destination="-1" eventType="touchUpInside" id="AQY-pC-IEf"/>
                                     </connections>

@@ -6,6 +6,21 @@ enum OrderState: String {
     case delivered = "delivered"
     case canceled = "canceled"
 
+    var localizedDescription: String {
+        switch self {
+        case .enRoute:
+            return .ordersEnRoute()
+        case .scheduled:
+            return .ordersScheduled()
+        case .waitingForConfirmation:
+            return .ordersWaitingForConfirmation()
+        case .delivered:
+            return .ordersDelivered()
+        case .canceled:
+            return .ordersCanceled()
+        }
+    }
+
     static func getStateFrom(_ string: String) -> OrderState {
         switch string {
         case "waiting for confirmation":

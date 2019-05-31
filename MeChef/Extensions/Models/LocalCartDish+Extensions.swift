@@ -1,4 +1,6 @@
 import Foundation
+import RxSwift
+import RxCocoa
 
 extension LocalCartDish {
 
@@ -21,6 +23,17 @@ extension LocalCartDish {
             return true
         }
         return false
+    }
+
+    func canRemoveFromCart() -> Bool {
+        if quantityInCart > 0 {
+            return true
+        }
+        return false
+    }
+
+    var canAddDriver: Driver<Bool> {
+        return CartService.canAddDriver(for: id)
     }
 
 }

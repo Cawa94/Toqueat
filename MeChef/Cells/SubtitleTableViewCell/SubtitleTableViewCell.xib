@@ -18,22 +18,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="350" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcZ-Rh-yAu">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="69.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOF-cJ-zwV">
-                                <rect key="frame" x="131.5" y="24.5" width="87" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="UOF-cJ-zwV" firstAttribute="centerX" secondItem="KcZ-Rh-yAu" secondAttribute="centerX" id="M73-1z-nZi"/>
-                            <constraint firstItem="UOF-cJ-zwV" firstAttribute="centerY" secondItem="KcZ-Rh-yAu" secondAttribute="centerY" id="TFd-VB-eeE"/>
-                        </constraints>
-                    </view>
                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Dcm-YJ-8Mj">
                         <rect key="frame" x="0.0" y="0.0" width="350" height="69.5"/>
                         <subviews>
@@ -58,6 +42,32 @@
                             <constraint firstItem="xh3-Ua-1xf" firstAttribute="leading" secondItem="YEc-LN-2Kw" secondAttribute="leading" id="jiJ-sB-RZg"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="dVl-MF-t5C">
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="69.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="              " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1i-B5-SDM">
+                                <rect key="frame" x="10" y="15" width="54.5" height="16.5"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                         " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ki1-UZ-nsA">
+                                <rect key="frame" x="10" y="36.5" width="111.5" height="19"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="u1i-B5-SDM" firstAttribute="top" secondItem="dVl-MF-t5C" secondAttribute="top" constant="15" id="4ma-jc-3t8"/>
+                            <constraint firstItem="u1i-B5-SDM" firstAttribute="leading" secondItem="dVl-MF-t5C" secondAttribute="leading" constant="10" id="bk4-Rb-apz"/>
+                            <constraint firstItem="ki1-UZ-nsA" firstAttribute="top" secondItem="u1i-B5-SDM" secondAttribute="bottom" constant="5" id="loj-h0-a52"/>
+                            <constraint firstItem="ki1-UZ-nsA" firstAttribute="leading" secondItem="u1i-B5-SDM" secondAttribute="leading" id="nxY-WD-2hf"/>
+                        </constraints>
+                    </view>
                     <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPd-Yx-UCM">
                         <rect key="frame" x="0.0" y="68.5" width="350" height="1"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,22 +77,22 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="KcZ-Rh-yAu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="4W8-3o-2Mo"/>
                     <constraint firstItem="Dcm-YJ-8Mj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7cB-3o-Exr"/>
+                    <constraint firstItem="dVl-MF-t5C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="BHn-xC-8os"/>
                     <constraint firstItem="Dcm-YJ-8Mj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Ej2-0C-8g6"/>
                     <constraint firstAttribute="trailing" secondItem="Dcm-YJ-8Mj" secondAttribute="trailing" id="FHz-ir-pgA"/>
-                    <constraint firstItem="KcZ-Rh-yAu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FJT-O2-q9X"/>
+                    <constraint firstItem="dVl-MF-t5C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KRe-20-Fhz"/>
                     <constraint firstItem="fPd-Yx-UCM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PhH-EV-PjU"/>
                     <constraint firstAttribute="trailing" secondItem="fPd-Yx-UCM" secondAttribute="trailing" id="T0Y-rf-mUP"/>
                     <constraint firstAttribute="bottom" secondItem="fPd-Yx-UCM" secondAttribute="bottom" id="T95-IE-tR5"/>
-                    <constraint firstAttribute="bottom" secondItem="KcZ-Rh-yAu" secondAttribute="bottom" id="arL-Lk-8s4"/>
+                    <constraint firstAttribute="trailing" secondItem="dVl-MF-t5C" secondAttribute="trailing" id="dUy-TI-99C"/>
+                    <constraint firstAttribute="bottom" secondItem="dVl-MF-t5C" secondAttribute="bottom" id="evd-s5-l3H"/>
                     <constraint firstAttribute="bottom" secondItem="Dcm-YJ-8Mj" secondAttribute="bottom" id="tOt-yb-k4X"/>
-                    <constraint firstAttribute="trailing" secondItem="KcZ-Rh-yAu" secondAttribute="trailing" id="zXb-MH-yCO"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentContainerViewOutlet" destination="Dcm-YJ-8Mj" id="fMZ-zh-JAt"/>
-                <outlet property="placeholderContainerViewOutlet" destination="KcZ-Rh-yAu" id="uAl-sZ-84N"/>
+                <outlet property="placeholderContainerViewOutlet" destination="dVl-MF-t5C" id="hOu-hR-092"/>
                 <outlet property="titleLabel" destination="YEc-LN-2Kw" id="L3p-DN-0U2"/>
                 <outlet property="valueLabel" destination="xh3-Ua-1xf" id="cTK-or-Gxp"/>
             </connections>

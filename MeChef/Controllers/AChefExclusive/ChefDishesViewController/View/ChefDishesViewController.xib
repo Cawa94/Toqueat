@@ -37,6 +37,9 @@
                                             <fontDescription key="fontDescription" name="Baskerville-BoldItalic" family="Baskerville" pointSize="40"/>
                                             <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="chef_my_dishes"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rte-RL-PHb">
                                             <rect key="frame" x="325" y="12.5" width="35" height="35"/>

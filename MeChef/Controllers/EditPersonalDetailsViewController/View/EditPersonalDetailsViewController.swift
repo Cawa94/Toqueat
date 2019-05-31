@@ -41,8 +41,8 @@ class EditPersonalDetailsViewController: UIViewController {
 
         if let chef = viewModel.chef {
             let toggleAvailabilityModel = RoundedButtonViewModel(title: chef.isActive ?? true
-                ? "Disable your account"
-                : "Activate your account", type: chef.isActive ?? true ? .squeezedRed : .squeezedOrange)
+                ? String.chefDisableAccount()
+                : String.chefActivateAccount(), type: chef.isActive ?? true ? .squeezedRed : .squeezedOrange)
             toggleAvailabilityButton.configure(with: toggleAvailabilityModel)
             toggleAvailabilityButton.isHidden = false
         }
@@ -59,10 +59,10 @@ class EditPersonalDetailsViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
         navigationController?.isNavigationBarHidden = false
-        title = "Personal Details"
+        title = .profilePersonalDetails()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ",
                                                            style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: .commonSave(),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(updateDetails))
@@ -105,8 +105,8 @@ class EditPersonalDetailsViewController: UIViewController {
         hudOperationWithSingle(operationSingle: operationSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH", message: "Chef updated",
-                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                    title: "YEAH", message: .profileUpdated(),
+                                    actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadChefProfile = true
                                     })])
@@ -129,8 +129,8 @@ class EditPersonalDetailsViewController: UIViewController {
         hudOperationWithSingle(operationSingle: updateUserSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH", message: "User updated",
-                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                    title: "YEAH", message: .profileUpdated(),
+                                    actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadUserProfile = true
                                     })])
@@ -161,7 +161,7 @@ class EditPersonalDetailsViewController: UIViewController {
         present(cropViewController, animated: true, completion: nil)
     }
 
-    @IBAction func disableChefAccount(_ sender: Any) {
+    @IBAction func toggleChefAccount(_ sender: Any) {
         guard let chefId = viewModel.chef?.id
             else { return }
         let toggleAvailabilitySingle = NetworkService.shared.toggleChefAvailability(chefId: chefId)
@@ -170,8 +170,8 @@ class EditPersonalDetailsViewController: UIViewController {
                                         self.presentAlertWith(
                                             title: "YEAH",
                                             message: chef.isActive ?? true
-                                                ? "You're available now" : "You're no longer available",
-                                            actions: [ UIAlertAction(title: "Ok", style: .default,
+                                                ? String.chefAccountActivated() : String.chefAccountDisabled(),
+                                            actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                                      handler: { _ in
                                                                         NavigationService.reloadChefProfile = true
                                                                         NavigationService.popNavigationTopController()
@@ -252,21 +252,21 @@ extension EditPersonalDetailsViewController: UITableViewDelegate, UITableViewDat
             switch indexPath.row {
             case 0:
                 cellViewModel = EditFieldTableViewModel(fieldValue: viewModel.name,
-                                                        placeholder: "Name")
+                                                        placeholder: .userName())
                 validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 1:
                 cellViewModel = EditFieldTableViewModel(fieldValue: viewModel.lastname,
-                                                        placeholder: "Lastname")
+                                                        placeholder: .userLastname())
                 validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 2:
                 cellViewModel = EditFieldTableViewModel(fieldValue: viewModel.phone,
-                                                        placeholder: "Phone number",
+                                                        placeholder: .userPhone(),
                                                         hideBottomLine: viewModel.isChef)
                 validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 3:
                 cellViewModel = viewModel.isChef
                     ? EditFieldTableViewModel(fieldValue: viewModel.chef?.instagramUsername,
-                                              placeholder: "Instagram username",
+                                              placeholder: .chefInstagramUsername(),
                                               fieldCapitalized: false)
                     : EditFieldTableViewModel(fieldValue: nil, placeholder: "")
             default:
@@ -275,7 +275,7 @@ extension EditPersonalDetailsViewController: UITableViewDelegate, UITableViewDat
             editFieldCell.configureWith(contentViewModel: cellViewModel)
         case let editDescriptionCell as EditDescriptionTableViewCell:
             let cellViewModel = EditDescriptionTableViewModel(fieldValue: viewModel.chef?.description,
-                                                              placeholder: "Write something about you")
+                                                              placeholder: .profileDescriptionPlaceholder())
             editDescriptionCell.configure(contentViewModel: cellViewModel)
             DispatchQueue.main.async {
                 self.viewDidLayoutSubviews()

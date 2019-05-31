@@ -18,22 +18,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8i-rR-WBb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTg-LY-rum">
-                                <rect key="frame" x="116.5" y="14.5" width="87" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="uTg-LY-rum" firstAttribute="centerY" secondItem="A8i-rR-WBb" secondAttribute="centerY" id="50W-nX-a00"/>
-                            <constraint firstItem="uTg-LY-rum" firstAttribute="centerX" secondItem="A8i-rR-WBb" secondAttribute="centerX" id="sap-CT-t4D"/>
-                        </constraints>
-                    </view>
                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="geW-yD-tgX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                         <subviews>
@@ -50,6 +34,25 @@
                             <constraint firstItem="yak-Sg-dM2" firstAttribute="top" secondItem="geW-yD-tgX" secondAttribute="top" id="nwH-sG-CNM"/>
                             <constraint firstAttribute="trailing" secondItem="yak-Sg-dM2" secondAttribute="trailing" constant="15" id="tDZ-h5-9mz"/>
                             <constraint firstItem="yak-Sg-dM2" firstAttribute="leading" secondItem="geW-yD-tgX" secondAttribute="leading" constant="15" id="z7E-zu-Iks"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="trt-OL-c4O">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HO4-Ul-Awg">
+                                <rect key="frame" x="15" y="10" width="290" height="29.5"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="HO4-Ul-Awg" secondAttribute="bottom" constant="10" id="THk-fJ-kjp"/>
+                            <constraint firstItem="HO4-Ul-Awg" firstAttribute="leading" secondItem="trt-OL-c4O" secondAttribute="leading" constant="15" id="a97-JA-Omb"/>
+                            <constraint firstAttribute="trailing" secondItem="HO4-Ul-Awg" secondAttribute="trailing" constant="15" id="nEJ-Fs-8Y8"/>
+                            <constraint firstItem="HO4-Ul-Awg" firstAttribute="top" secondItem="trt-OL-c4O" secondAttribute="top" constant="10" id="wmG-IW-2GN"/>
                         </constraints>
                     </view>
                     <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXn-fw-3M5">
@@ -69,25 +72,25 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="geW-yD-tgX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="37t-ir-FUl"/>
-                    <constraint firstItem="A8i-rR-WBb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5lj-W5-W7K"/>
-                    <constraint firstAttribute="trailing" secondItem="A8i-rR-WBb" secondAttribute="trailing" id="7nN-dd-ekm"/>
+                    <constraint firstAttribute="trailing" secondItem="trt-OL-c4O" secondAttribute="trailing" id="7Fh-fK-fOx"/>
                     <constraint firstItem="RXn-fw-3M5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="A1Y-jR-2eJ"/>
-                    <constraint firstItem="A8i-rR-WBb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Db8-cb-koV"/>
                     <constraint firstAttribute="trailing" secondItem="RXn-fw-3M5" secondAttribute="trailing" id="Jdf-hH-8er"/>
                     <constraint firstAttribute="trailing" secondItem="hD2-cD-D6U" secondAttribute="trailing" id="MXJ-hH-Wql"/>
                     <constraint firstItem="RXn-fw-3M5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Nqh-Cw-gyo"/>
-                    <constraint firstAttribute="bottom" secondItem="A8i-rR-WBb" secondAttribute="bottom" id="WZK-r5-2QI"/>
+                    <constraint firstItem="trt-OL-c4O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="T55-73-Dai"/>
+                    <constraint firstAttribute="bottom" secondItem="trt-OL-c4O" secondAttribute="bottom" id="bOg-Qm-VVv"/>
                     <constraint firstAttribute="bottom" secondItem="hD2-cD-D6U" secondAttribute="bottom" id="feg-Tr-oeC"/>
                     <constraint firstItem="hD2-cD-D6U" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sQu-kz-hPq"/>
                     <constraint firstAttribute="bottom" secondItem="geW-yD-tgX" secondAttribute="bottom" id="tL9-Vz-Wma"/>
                     <constraint firstItem="geW-yD-tgX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tge-Hl-nsd"/>
                     <constraint firstAttribute="trailing" secondItem="geW-yD-tgX" secondAttribute="trailing" id="x1b-9L-NIg"/>
+                    <constraint firstItem="trt-OL-c4O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zs2-DM-Usi"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="bottomSpacerView" destination="hD2-cD-D6U" id="fvb-5X-fA8"/>
                 <outlet property="contentContainerViewOutlet" destination="geW-yD-tgX" id="o63-FM-bjd"/>
-                <outlet property="placeholderContainerViewOutlet" destination="A8i-rR-WBb" id="6ZM-kE-A5K"/>
+                <outlet property="placeholderContainerViewOutlet" destination="trt-OL-c4O" id="UCz-pU-1y3"/>
                 <outlet property="textField" destination="yak-Sg-dM2" id="MYi-6y-ch0"/>
             </connections>
             <point key="canvasLocation" x="-572" y="56"/>

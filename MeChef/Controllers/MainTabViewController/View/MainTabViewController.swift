@@ -54,16 +54,10 @@ class MainTabViewController: UITabBarController {
             }).disposed(by: disposeBag)
 
         } else if let chefId = SessionService.session?.chef?.id {
-            let chefOrdersController = NavigationService.chefOrderTab(chefId: chefId)
+            let chefWeekplanController = NavigationService.chefWeekplanTab(chefId: chefId)
             let chefDishesController = NavigationService.chefDishesTab(chefId: chefId)
 
-            viewControllers = [ chefOrdersController, chefDishesController ]
-        }
-    }
-
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if (item == tabBar.items?.last) && !SessionService.isLoggedIn {
-            //NavigationService.makeLoginRootController()
+            viewControllers = [ chefWeekplanController, chefDishesController ]
         }
     }
 

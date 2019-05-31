@@ -41,4 +41,14 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    func validateAddress(_ address: String, phone: String?) -> Single<BaseSuccessResponse> {
+        let addressBody = ["address": address,
+                           "type": "delivering",
+                           "phone": phone]
+        let apiParameters = ApiRequestParameters(stuartUrl: "v2/addresses/validate",
+                                                 parameters: addressBody.toJSON())
+
+        return request(with: apiParameters)
+    }
+
 }

@@ -26,8 +26,8 @@ class EditAddressViewController: BaseStatefulController<[City]> {
 
     override func configureNavigationBar() {
         navigationController?.isNavigationBarHidden = false
-        title = "My address"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
+        title = .profileMyAddress()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: .commonSave(),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(updateDetails))
@@ -45,8 +45,8 @@ class EditAddressViewController: BaseStatefulController<[City]> {
         hudOperationWithSingle(operationSingle: updateChefAddressSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH", message: "Address updated",
-                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                    title: "YEAH", message: .profileAddressUpdated(),
+                                    actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadChefProfile = true
                                     })])
@@ -61,8 +61,8 @@ class EditAddressViewController: BaseStatefulController<[City]> {
         hudOperationWithSingle(operationSingle: updateUserAddressSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH", message: "Address updated",
-                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                    title: "YEAH", message: .profileAddressUpdated(),
+                                    actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadUserProfile = true
                                     })])
@@ -72,11 +72,15 @@ class EditAddressViewController: BaseStatefulController<[City]> {
     // MARK: - StatefulViewController related methods
 
     override func onLoadingState() {
+        super.onLoadingState()
+
         tableView.reloadData()
     }
 
     override func onResultsState() {
         tableView.reloadData()
+
+        super.onResultsState()
     }
 
 }
@@ -118,19 +122,21 @@ extension EditAddressViewController: UITableViewDelegate, UITableViewDataSource 
             let cellViewModel: EditFieldTableViewModel
             switch indexPath.row {
             case 0:
+                let placeholderText = "\(String.addressStreet()), \(String.addressNumber())"
                 cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.address,
-                                                        placeholder: "Address")
+                                                        placeholder: placeholderText)
                 validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 1:
+                let placeholderText = "\(String.addressFloor()), \(String.addressDoor()) (\(String.commonOptional()))"
                 cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.apartment,
-                                                        placeholder: "Apartment (optional)")
+                                                        placeholder: placeholderText)
             case 2:
                 cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.zipcode,
-                                                        placeholder: "Zipcode")
+                                                        placeholder: .addressZipcode())
                 validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 3:
                 cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.city,
-                                                        placeholder: "City",
+                                                        placeholder: .addressCity(),
                                                         hideBottomLine: false,
                                                         pickerValues: editAddressViewModel.result.map { $0.name })
                 validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])

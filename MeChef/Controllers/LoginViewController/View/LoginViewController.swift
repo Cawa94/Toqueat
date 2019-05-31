@@ -18,10 +18,10 @@ class LoginViewController: UIViewController {
         addLinesToTextfields()
         addValidationRules()
 
-        let loginModel = RoundedButtonViewModel(title: "Log in", type: .squeezedOrange)
+        let loginModel = RoundedButtonViewModel(title: .authLogin(), type: .squeezedOrange)
         loginButton.configure(with: loginModel)
 
-        let registerModel = RoundedButtonViewModel(title: "Register", type: .squeezedWhite)
+        let registerModel = RoundedButtonViewModel(title: .authRegister(), type: .squeezedWhite)
         registerButton.configure(with: registerModel)
     }
 
@@ -54,9 +54,9 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case emailTextField:
-            textField.placeholder = "Email"
+            textField.placeholder = .userEmail()
         case passwordTextField:
-            textField.placeholder = "Password"
+            textField.placeholder = .userPassword()
         default:
             break
         }
@@ -96,15 +96,6 @@ extension LoginViewController: ValidationDelegate {
                 SessionService.updateWith(user: user)
                 CartService.localCart = .new
                 NavigationService.makeMainTabRootController()
-            }, onError: { error in
-                let message: String
-                if let serverError = error.serverError,
-                    let title = serverError.error {
-                    message = title
-                } else {
-                    message = "Something went wrong"
-                }
-                self.presentAlertWith(title: "WARNING", message: message)
             })
             .disposed(by: disposeBag)
     }

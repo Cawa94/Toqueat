@@ -62,7 +62,7 @@ class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel
     override func configureNavigationBar() {
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
-        title = "Delivery time"
+        title = .commonDeliveryDate()
     }
 
     // MARK: - Collection view data source and delegate methods
@@ -152,6 +152,8 @@ class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel
 
     override func onResultsState() {
         self.collectionView.reloadData()
+
+        super.onResultsState()
     }
 
 }

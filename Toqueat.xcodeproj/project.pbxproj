@@ -40,6 +40,12 @@
 		DA28526122789B37009C0AD1 /* GoToPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA28526022789B37009C0AD1 /* GoToPaymentView.swift */; };
 		DA28526322789B43009C0AD1 /* GoToPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA28526222789B43009C0AD1 /* GoToPaymentViewModel.swift */; };
 		DA28526522789B4E009C0AD1 /* GoToPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA28526422789B4E009C0AD1 /* GoToPaymentView.xib */; };
+		DA3B1204229FD96200D6134B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA3B11FF229FD96200D6134B /* Localizable.strings */; };
+		DA3B1208229FD97200D6134B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA3B1206229FD97100D6134B /* LaunchScreen.storyboard */; };
+		DA3B1209229FD97200D6134B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA3B1207229FD97200D6134B /* Main.storyboard */; };
+		DA3B120E229FE1FB00D6134B /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3B120D229FE1FB00D6134B /* UILabel+Extensions.swift */; };
+		DA3B121522A03AA800D6134B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3B121422A03AA800D6134B /* LoadingView.swift */; };
+		DA3B121722A03AB100D6134B /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3B121622A03AB100D6134B /* LoadingView.xib */; };
 		DA3BC0C7226CA39F0045A352 /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3BC0C6226CA39F0045A352 /* Dictionary+Extensions.swift */; };
 		DA3D421A223E5F0800AB2A27 /* Chef+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3D4219223E5F0800AB2A27 /* Chef+Extensions.swift */; };
 		DA44DEAF2289A60000502A7F /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44DEAE2289A60000502A7F /* WebViewModel.swift */; };
@@ -51,6 +57,8 @@
 		DA57E4E0222C57790086B5DA /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4DE222C57790086B5DA /* ChefViewController.swift */; };
 		DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57E4DF222C57790086B5DA /* ChefViewController.xib */; };
 		DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */; };
+		DA5A6C6B22A1808A00D28935 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A6C6A22A1808A00D28935 /* String+Localization.swift */; };
+		DA5A6C6D22A182D300D28935 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A6C6C22A182D300D28935 /* UIButton+Extensions.swift */; };
 		DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */; };
 		DA5DE162227310B700229486 /* Error+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DE161227310B700229486 /* Error+Extensions.swift */; };
 		DA5DE1642273403B00229486 /* CartDishTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DE1632273403B00229486 /* CartDishTableViewModel.swift */; };
@@ -81,10 +89,10 @@
 		DA84549F222D1EA80052A8D2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA84549D222D1EA80052A8D2 /* LoginViewController.swift */; };
 		DA8454A0222D1EA80052A8D2 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA84549E222D1EA80052A8D2 /* LoginViewController.xib */; };
 		DA8454A2222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8454A1222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift */; };
-		DA859D0922411E9C008481D2 /* ChefOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D0722411E9C008481D2 /* ChefOrdersViewController.swift */; };
-		DA859D0A22411E9C008481D2 /* ChefOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA859D0822411E9C008481D2 /* ChefOrdersViewController.xib */; };
-		DA859D0C22411EAA008481D2 /* ChefOrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D0B22411EAA008481D2 /* ChefOrdersViewModel.swift */; };
-		DA859D0E22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D0D22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift */; };
+		DA859D0922411E9C008481D2 /* ChefWeekplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D0722411E9C008481D2 /* ChefWeekplanViewController.swift */; };
+		DA859D0A22411E9C008481D2 /* ChefWeekplanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA859D0822411E9C008481D2 /* ChefWeekplanViewController.xib */; };
+		DA859D0C22411EAA008481D2 /* ChefWeekplanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D0B22411EAA008481D2 /* ChefWeekplanViewModel.swift */; };
+		DA859D0E22411EB6008481D2 /* NavigationService+ChefWeekplanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA859D0D22411EB6008481D2 /* NavigationService+ChefWeekplanViewController.swift */; };
 		DA8B7037226232E8002DBF1A /* UserBaseInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B7035226232E8002DBF1A /* UserBaseInfoTableViewCell.swift */; };
 		DA8B7038226232E8002DBF1A /* UserBaseInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA8B7036226232E8002DBF1A /* UserBaseInfoTableViewCell.xib */; };
 		DA8B703B22623995002DBF1A /* UserBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8B703922623995002DBF1A /* UserBarTableViewCell.swift */; };
@@ -211,9 +219,7 @@
 		DAF9C9A9226CE15200AD4248 /* NavigationService+ChefDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9C9A8226CE15200AD4248 /* NavigationService+ChefDishViewController.swift */; };
 		DAF9C9AB226CE39E00AD4248 /* NavigationService+ChefExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9C9AA226CE39E00AD4248 /* NavigationService+ChefExtensions.swift */; };
 		DAFA9B752228907100B2CD4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA9B742228907100B2CD4D /* AppDelegate.swift */; };
-		DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFA9B7A2228907100B2CD4D /* Main.storyboard */; };
 		DAFA9B7E2228907200B2CD4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAFA9B7D2228907200B2CD4D /* Assets.xcassets */; };
-		DAFA9B812228907200B2CD4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFA9B7F2228907200B2CD4D /* LaunchScreen.storyboard */; };
 		DAFD096B22297AA400F1255A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD096A22297AA400F1255A /* NetworkService.swift */; };
 		DAFD096F2229816C00F1255A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD096E2229816C00F1255A /* Models.swift */; };
 		DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD09742229872700F1255A /* ApiRequestParameters.swift */; };
@@ -261,6 +267,12 @@
 		DA28526022789B37009C0AD1 /* GoToPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToPaymentView.swift; sourceTree = "<group>"; };
 		DA28526222789B43009C0AD1 /* GoToPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToPaymentViewModel.swift; sourceTree = "<group>"; };
 		DA28526422789B4E009C0AD1 /* GoToPaymentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoToPaymentView.xib; sourceTree = "<group>"; };
+		DA3B1200229FD96200D6134B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
+		DA3B1206229FD97100D6134B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DA3B1207229FD97200D6134B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DA3B120D229FE1FB00D6134B /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		DA3B121422A03AA800D6134B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		DA3B121622A03AB100D6134B /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		DA3BC0C6226CA39F0045A352 /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		DA3D4219223E5F0800AB2A27 /* Chef+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chef+Extensions.swift"; sourceTree = "<group>"; };
 		DA44DEAE2289A60000502A7F /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
@@ -272,6 +284,10 @@
 		DA57E4DE222C57790086B5DA /* ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
 		DA57E4DF222C57790086B5DA /* ChefViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefViewController.xib; sourceTree = "<group>"; };
 		DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefViewController.swift"; sourceTree = "<group>"; };
+		DA5A6C6722A17C9100D28935 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DA5A6C6922A17CBA00D28935 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = ../es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DA5A6C6A22A1808A00D28935 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		DA5A6C6C22A182D300D28935 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyGridCollectionViewLayout.swift; sourceTree = "<group>"; };
 		DA5DE161227310B700229486 /* Error+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extensions.swift"; sourceTree = "<group>"; };
 		DA5DE1632273403B00229486 /* CartDishTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartDishTableViewModel.swift; sourceTree = "<group>"; };
@@ -303,10 +319,10 @@
 		DA84549D222D1EA80052A8D2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DA84549E222D1EA80052A8D2 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		DA8454A1222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+LoginViewController.swift"; sourceTree = "<group>"; };
-		DA859D0722411E9C008481D2 /* ChefOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrdersViewController.swift; sourceTree = "<group>"; };
-		DA859D0822411E9C008481D2 /* ChefOrdersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefOrdersViewController.xib; sourceTree = "<group>"; };
-		DA859D0B22411EAA008481D2 /* ChefOrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefOrdersViewModel.swift; sourceTree = "<group>"; };
-		DA859D0D22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefOrdersViewController.swift"; sourceTree = "<group>"; };
+		DA859D0722411E9C008481D2 /* ChefWeekplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefWeekplanViewController.swift; sourceTree = "<group>"; };
+		DA859D0822411E9C008481D2 /* ChefWeekplanViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefWeekplanViewController.xib; sourceTree = "<group>"; };
+		DA859D0B22411EAA008481D2 /* ChefWeekplanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefWeekplanViewModel.swift; sourceTree = "<group>"; };
+		DA859D0D22411EB6008481D2 /* NavigationService+ChefWeekplanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefWeekplanViewController.swift"; sourceTree = "<group>"; };
 		DA8B7035226232E8002DBF1A /* UserBaseInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBaseInfoTableViewCell.swift; sourceTree = "<group>"; };
 		DA8B7036226232E8002DBF1A /* UserBaseInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBaseInfoTableViewCell.xib; sourceTree = "<group>"; };
 		DA8B703922623995002DBF1A /* UserBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBarTableViewCell.swift; sourceTree = "<group>"; };
@@ -438,9 +454,7 @@
 		DAF9C9AA226CE39E00AD4248 /* NavigationService+ChefExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefExtensions.swift"; sourceTree = "<group>"; };
 		DAFA9B712228907100B2CD4D /* Toqueat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toqueat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFA9B742228907100B2CD4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DAFA9B7B2228907100B2CD4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DAFA9B7D2228907200B2CD4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DAFA9B802228907200B2CD4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAFA9B822228907200B2CD4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAFD096A22297AA400F1255A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		DAFD096E2229816C00F1255A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -589,6 +603,32 @@
 			path = GoToPaymentView;
 			sourceTree = "<group>";
 		};
+		DA3B11FE229FD96200D6134B /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				DA3B11FF229FD96200D6134B /* Localizable.strings */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		DA3B120C229FE1CC00D6134B /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				DA5A6C6C22A182D300D28935 /* UIButton+Extensions.swift */,
+				DA3B120D229FE1FB00D6134B /* UILabel+Extensions.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		DA3B121322A03A9900D6134B /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				DA3B121422A03AA800D6134B /* LoadingView.swift */,
+				DA3B121622A03AB100D6134B /* LoadingView.xib */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		DA44DEA72289A5D200502A7F /* WebViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,6 +735,7 @@
 				DACB01DE225F8EFE008093F3 /* CartHeaderView */,
 				DAAB7FF322994DFA00FB375B /* DriverDeliveringView */,
 				DA28525F22789AD0009C0AD1 /* GoToPaymentView */,
+				DA3B121322A03A9900D6134B /* LoadingView */,
 				DAD89AD9225DEB89000664E2 /* RoundedButton */,
 			);
 			path = Views;
@@ -847,8 +888,8 @@
 		DA913C70224644E2003D4700 /* StuartService */ = {
 			isa = PBXGroup;
 			children = (
-				DA913C6C224643C4003D4700 /* StuartService.swift */,
 				DA913C7222464505003D4700 /* StuartRequests.swift */,
+				DA913C6C224643C4003D4700 /* StuartService.swift */,
 			);
 			path = StuartService;
 			sourceTree = "<group>";
@@ -959,6 +1000,8 @@
 		DAA0BEE8225F552100C70B54 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA5A6C6A22A1808A00D28935 /* String+Localization.swift */,
+				DA3B11FE229FD96200D6134B /* Base.lproj */,
 				DAA0BEE9225F552900C70B54 /* Fonts */,
 				DAFA9B7D2228907200B2CD4D /* Assets.xcassets */,
 			);
@@ -1568,14 +1611,14 @@
 			isa = PBXGroup;
 			children = (
 				DAFA9B822228907200B2CD4D /* Info.plist */,
+				DA3B1206229FD97100D6134B /* LaunchScreen.storyboard */,
+				DA3B1207229FD97200D6134B /* Main.storyboard */,
 				DAFA9B742228907100B2CD4D /* AppDelegate.swift */,
-				DAFA9B7A2228907100B2CD4D /* Main.storyboard */,
-				DAFA9B7F2228907200B2CD4D /* LaunchScreen.storyboard */,
 				DAC99462222BE621000282F1 /* Appearance */,
 				DAFA9BA62228915400B2CD4D /* Cells */,
 				DAFA9BA52228914E00B2CD4D /* Controllers */,
-				DAFD0970222981DC00F1255A /* Extensions */,
 				DAD08B532245632F00F446C0 /* Enums */,
+				DAFD0970222981DC00F1255A /* Extensions */,
 				DAB271862247EE70005C0915 /* Models */,
 				DAAD193122371D7300543AE0 /* Protocols */,
 				DAA0BEE8225F552100C70B54 /* Resources */,
@@ -1656,9 +1699,10 @@
 		DAFD0970222981DC00F1255A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				DAE902BE224937A800743D6A /* Rx */,
 				DAAD192E2236EC6E00543AE0 /* Common */,
 				DA8208B422343708002E6743 /* Models */,
+				DAE902BE224937A800743D6A /* Rx */,
+				DA3B120C229FE1CC00D6134B /* UIKit */,
 				DA9E074A222E6DE80094A69D /* UserDefaults */,
 			);
 			path = Extensions;
@@ -1704,8 +1748,8 @@
 				DAFEB6072240E2F900CABCF5 /* ChefDishesViewController */,
 				DAF9C99F226CE0DC00AD4248 /* ChefDishViewController */,
 				DA785667223FF96F001BB354 /* ChefLoginViewController */,
-				DAFEB6082240E32F00CABCF5 /* ChefOrdersViewController */,
 				DAFEB5FB2240D61500CABCF5 /* ChefProfileViewController */,
+				DAFEB6082240E32F00CABCF5 /* ChefWeekplanViewController */,
 			);
 			path = AChefExclusive;
 			sourceTree = "<group>";
@@ -1737,14 +1781,14 @@
 			path = ChefDishesViewController;
 			sourceTree = "<group>";
 		};
-		DAFEB6082240E32F00CABCF5 /* ChefOrdersViewController */ = {
+		DAFEB6082240E32F00CABCF5 /* ChefWeekplanViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DA859D0D22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift */,
+				DA859D0D22411EB6008481D2 /* NavigationService+ChefWeekplanViewController.swift */,
 				DAFEB60C2240E37000CABCF5 /* View */,
 				DAFEB60B2240E36A00CABCF5 /* ViewModel */,
 			);
-			path = ChefOrdersViewController;
+			path = ChefWeekplanViewController;
 			sourceTree = "<group>";
 		};
 		DAFEB6092240E35B00CABCF5 /* ViewModel */ = {
@@ -1767,7 +1811,7 @@
 		DAFEB60B2240E36A00CABCF5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DA859D0B22411EAA008481D2 /* ChefOrdersViewModel.swift */,
+				DA859D0B22411EAA008481D2 /* ChefWeekplanViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1775,8 +1819,8 @@
 		DAFEB60C2240E37000CABCF5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DA859D0722411E9C008481D2 /* ChefOrdersViewController.swift */,
-				DA859D0822411E9C008481D2 /* ChefOrdersViewController.xib */,
+				DA859D0722411E9C008481D2 /* ChefWeekplanViewController.swift */,
+				DA859D0822411E9C008481D2 /* ChefWeekplanViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1797,6 +1841,7 @@
 			buildConfigurationList = DAFA9B9B2228907300B2CD4D /* Build configuration list for PBXNativeTarget "Toqueat" */;
 			buildPhases = (
 				47EFAFB9C0B43857BAF8A860 /* [CP] Check Pods Manifest.lock */,
+				DA3B120B229FE10B00D6134B /* Localization */,
 				DAFD09712229841300F1255A /* API Generator */,
 				DAFA9B6D2228907100B2CD4D /* Sources */,
 				DAFA9B6E2228907100B2CD4D /* Frameworks */,
@@ -1846,6 +1891,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = DAFA9B682228907100B2CD4D;
 			productRefGroup = DAFA9B722228907100B2CD4D /* Products */;
@@ -1865,6 +1911,7 @@
 				DAFEB6022240D65A00CABCF5 /* ChefProfileViewController.xib in Resources */,
 				DA1CC8302260CDB300992BB7 /* RobotoSlab-Light.ttf in Resources */,
 				DAF9C9A3226CE0FC00AD4248 /* ChefDishViewController.xib in Resources */,
+				DA3B121722A03AB100D6134B /* LoadingView.xib in Resources */,
 				DA799AA522940D7600CF525A /* OrderStateTableHeaderView.xib in Resources */,
 				DA78566D223FF9A0001BB354 /* ChefLoginViewController.xib in Resources */,
 				DA1CC82F2260CDB300992BB7 /* RobotoSlab-Bold.ttf in Resources */,
@@ -1873,7 +1920,6 @@
 				DA8454A0222D1EA80052A8D2 /* LoginViewController.xib in Resources */,
 				DAB2716F2247B6D8005C0915 /* OrdersViewController.xib in Resources */,
 				DAF4FE23222AD02700F208DB /* ChefsViewController.xib in Resources */,
-				DAFA9B812228907200B2CD4D /* LaunchScreen.storyboard in Resources */,
 				DA0E2AB6227B3F6C00BBCACC /* EditFieldTableViewCell.xib in Resources */,
 				DAB271782247BBD6005C0915 /* OrderTableViewCell.xib in Resources */,
 				DA9363AF223964F600DF8951 /* DeliverySlotsViewController.xib in Resources */,
@@ -1896,13 +1942,14 @@
 				DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */,
 				DAC9946D222BE7F3000282F1 /* DishesViewController.xib in Resources */,
 				DA12672C223BC0170049215B /* AddressTableViewCell.xib in Resources */,
-				DA859D0A22411E9C008481D2 /* ChefOrdersViewController.xib in Resources */,
+				DA859D0A22411E9C008481D2 /* ChefWeekplanViewController.xib in Resources */,
+				DA3B1204229FD96200D6134B /* Localizable.strings in Resources */,
+				DA3B1209229FD97200D6134B /* Main.storyboard in Resources */,
 				DADFF2C4222E848000BB6404 /* DishViewController.xib in Resources */,
 				DAB271812247E213005C0915 /* TrackOrderViewController.xib in Resources */,
 				DA979BEF222C914F00D452B9 /* ProfileViewController.xib in Resources */,
 				DAF9C99E226CCF0100AD4248 /* ChefDishTableViewCell.xib in Resources */,
 				DA0328C0225CF00A001FBE14 /* ChefBaseInfoTableViewCell.xib in Resources */,
-				DAFA9B7C2228907100B2CD4D /* Main.storyboard in Resources */,
 				DA8B7038226232E8002DBF1A /* UserBaseInfoTableViewCell.xib in Resources */,
 				DADFF2CD222E878C00BB6404 /* RegisterViewController.xib in Resources */,
 				DAAB7FF722994E2500FB375B /* DriverDeliveringView.xib in Resources */,
@@ -1915,6 +1962,7 @@
 				DAF9C999226CC82000AD4248 /* AddDishTableViewCell.xib in Resources */,
 				DAB775BE229C400A0040C386 /* SubtitleTableViewCell.xib in Resources */,
 				DADD68D1223AB7DE00D65C7A /* AddressViewController.xib in Resources */,
+				DA3B1208229FD97200D6134B /* LaunchScreen.storyboard in Resources */,
 				DACB01DD225F89EF008093F3 /* CartDishTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1955,6 +2003,7 @@
 				"${BUILT_PRODUCTS_DIR}/LeadKit/LeadKit.framework",
 				"${BUILT_PRODUCTS_DIR}/LeadKitAdditions/LeadKitAdditions.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework",
@@ -1983,6 +2032,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeadKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeadKitAdditions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinLayout.framework",
@@ -2005,6 +2055,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Toqueat/Pods-Toqueat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		DA3B120B229FE10B00D6134B /* Localization */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Localization;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "php ./strings.php MeChef common/\n";
 		};
 		DADF5A23222AABEE0064DB75 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2042,6 +2106,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA12672B223BC0170049215B /* AddressTableViewCell.swift in Sources */,
+				DA5A6C6D22A182D300D28935 /* UIButton+Extensions.swift in Sources */,
 				DA9363AE223964F600DF8951 /* DeliverySlotsViewController.swift in Sources */,
 				DAAD193322371D9400543AE0 /* PlaceholderConfigurable.swift in Sources */,
 				DAB271712247B6E2005C0915 /* OrdersViewModel.swift in Sources */,
@@ -2074,7 +2139,7 @@
 				DA44DEB22289A63E00502A7F /* WebViewController.swift in Sources */,
 				DACB01DC225F89EF008093F3 /* CartDishTableViewCell.swift in Sources */,
 				DA913C7522466801003D4700 /* User+Extensions.swift in Sources */,
-				DA859D0C22411EAA008481D2 /* ChefOrdersViewModel.swift in Sources */,
+				DA859D0C22411EAA008481D2 /* ChefWeekplanViewModel.swift in Sources */,
 				DAAD19302236EC8600543AE0 /* UIView+Extensions.swift in Sources */,
 				DA0A6F3A227C7F4B0011FA58 /* EditAddressViewController.swift in Sources */,
 				DA0328BF225CF00A001FBE14 /* ChefBaseInfoTableViewCell.swift in Sources */,
@@ -2090,7 +2155,7 @@
 				DA44DEB52289A72600502A7F /* NavigationService+WebViewController.swift in Sources */,
 				DA0A6F3D227C865C0011FA58 /* NavigationService+EditAddressViewController.swift in Sources */,
 				DAF4FE2A222AD2C500F208DB /* AppDelegate+Extensions.swift in Sources */,
-				DA859D0E22411EB6008481D2 /* NavigationService+ChefOrdersViewController.swift in Sources */,
+				DA859D0E22411EB6008481D2 /* NavigationService+ChefWeekplanViewController.swift in Sources */,
 				DAB271772247BBD6005C0915 /* OrderTableViewCell.swift in Sources */,
 				DAFEB6042240D66500CABCF5 /* ChefProfileViewModel.swift in Sources */,
 				DAF4FE2E222AD35C00F208DB /* NavigationService+ChefsViewController.swift in Sources */,
@@ -2118,6 +2183,7 @@
 				DAB775BD229C400A0040C386 /* SubtitleTableViewCell.swift in Sources */,
 				DADFF2D4222EC29500BB6404 /* BaseStatefulController.swift in Sources */,
 				DADFF2C0222E847300BB6404 /* DishViewModel.swift in Sources */,
+				DA3B121522A03AA800D6134B /* LoadingView.swift in Sources */,
 				DAD69168225526FE00E823C0 /* UISearchBar+Extensions.swift in Sources */,
 				DADFF2CF222E885A00BB6404 /* RegisterViewModel.swift in Sources */,
 				DA636D8E2271F2BA00DA2A70 /* Date+Extensions.swift in Sources */,
@@ -2135,6 +2201,7 @@
 				DAB271732247B87F005C0915 /* NavigationService+OrdersViewController.swift in Sources */,
 				DAA8CD30222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift in Sources */,
 				DAF9C9A7226CE13900AD4248 /* ChefDishViewModel.swift in Sources */,
+				DA5A6C6B22A1808A00D28935 /* String+Localization.swift in Sources */,
 				DA0A6F2F227C43050011FA58 /* EditDescriptionTableViewCell.swift in Sources */,
 				DA9E0749222E6D910094A69D /* UserDefaults+UserSession.swift in Sources */,
 				DAE902CF22494D8F00743D6A /* DeliverySlotCollectionViewCell.swift in Sources */,
@@ -2164,7 +2231,7 @@
 				DA93639D22395AF000DF8951 /* DeliverySlot+Extensions.swift in Sources */,
 				DAF4FE1F222ACFEF00F208DB /* NavigationService.swift in Sources */,
 				DADFF2E8222ED89600BB6404 /* BaseTableViewController.swift in Sources */,
-				DA859D0922411E9C008481D2 /* ChefOrdersViewController.swift in Sources */,
+				DA859D0922411E9C008481D2 /* ChefWeekplanViewController.swift in Sources */,
 				DA8208B622343717002E6743 /* LocalCart+Extensions.swift in Sources */,
 				DA9363A122395F5E00DF8951 /* CheckoutViewController.swift in Sources */,
 				DA57E4E0222C57790086B5DA /* ChefViewController.swift in Sources */,
@@ -2197,6 +2264,7 @@
 				DAF9C9A9226CE15200AD4248 /* NavigationService+ChefDishViewController.swift in Sources */,
 				DA78566F223FFA89001BB354 /* NavigationService+ChefLoginViewController.swift in Sources */,
 				DA28526322789B43009C0AD1 /* GoToPaymentViewModel.swift in Sources */,
+				DA3B120E229FE1FB00D6134B /* UILabel+Extensions.swift in Sources */,
 				DA69D0F4225BD6B600231E3E /* DishCategoryCollectionViewCell.swift in Sources */,
 				DAB2716E2247B6D8005C0915 /* OrdersViewController.swift in Sources */,
 				DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */,
@@ -2211,20 +2279,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DAFA9B7A2228907100B2CD4D /* Main.storyboard */ = {
+		DA3B11FF229FD96200D6134B /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DAFA9B7B2228907100B2CD4D /* Base */,
+				DA3B1200229FD96200D6134B /* Base */,
+				DA5A6C6722A17C9100D28935 /* en */,
+				DA5A6C6922A17CBA00D28935 /* es */,
 			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		DAFA9B7F2228907200B2CD4D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DAFA9B802228907200B2CD4D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2234,6 +2296,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2295,6 +2358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

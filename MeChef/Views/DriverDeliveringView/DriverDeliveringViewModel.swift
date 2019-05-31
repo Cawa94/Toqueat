@@ -20,7 +20,7 @@ extension DriverDeliveringViewModel {
     }
 
     func attributedExtimatedTime() -> NSAttributedString {
-        let driverName = stuartDriver?.displayName ?? "Driver"
+        let driverName = stuartDriver?.displayName ?? "Stuart driver"
         let dateArrivalString = isChef ? driverEta?.pickup : driverEta?.dropoff
         if let deliveryDate = DateInRegion.init(dateArrivalString ?? "") {
             let time = fabs((deliveryDate - DateInRegion())).toString(options: {
@@ -29,12 +29,12 @@ extension DriverDeliveringViewModel {
             })
             return NSMutableAttributedString()
                 .bold(driverName, size: 15.0)
-                .normal(" will be at your house in ", size: 15.0)
+                .normal(" \(String.orderDetailsDriverEta()) ", size: 15.0)
                 .bold(time, size: 15.0)
         } else {
             return NSMutableAttributedString()
                 .bold(driverName, size: 15.0)
-                .normal(" will be at your house in a few minutes", size: 15.0)
+                .normal(" \(String.orderDetailsDriverEtaUndefined())", size: 15.0)
         }
     }
 

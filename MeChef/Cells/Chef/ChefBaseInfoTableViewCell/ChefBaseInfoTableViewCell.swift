@@ -49,7 +49,7 @@ extension ChefBaseInfoTableViewCell: PlaceholderConfigurable {
 
         let formattedChefString = NSMutableAttributedString()
         formattedChefString
-            .normal("Prepared by ", size: 16.0)
+            .normal("\(String.dishPreparedBy()) ", size: 16.0)
             .bold("\(contentViewModel.name)", size: 16.0)
         nameLabel.attributedText = formattedChefString
         if let url = contentViewModel.avatarLink {

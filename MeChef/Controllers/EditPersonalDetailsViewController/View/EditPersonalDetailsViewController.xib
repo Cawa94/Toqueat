@@ -59,7 +59,7 @@
                                     </constraints>
                                     <state key="normal" title="Button"/>
                                     <connections>
-                                        <action selector="disableChefAccount:" destination="-1" eventType="touchUpInside" id="Fh5-7s-9vr"/>
+                                        <action selector="toggleChefAccount:" destination="-1" eventType="touchUpInside" id="rlP-Z8-zuP"/>
                                     </connections>
                                 </button>
                             </subviews>

@@ -81,6 +81,9 @@
                     <state key="normal" title="Are you a chef?">
                         <color key="titleColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="auth_are_chef"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="loginAsChefAction:" destination="-1" eventType="touchUpInside" id="REM-Qf-B3E"/>
                     </connections>
@@ -110,7 +113,7 @@
                 <constraint firstItem="Nd8-V2-98S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="xex-9a-gu8"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-842" y="-31"/>
+            <point key="canvasLocation" x="-1143" y="-43"/>
         </view>
     </objects>
     <resources>

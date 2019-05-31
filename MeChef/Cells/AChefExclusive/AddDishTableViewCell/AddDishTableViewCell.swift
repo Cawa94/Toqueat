@@ -16,7 +16,7 @@ class AddDishTableViewCell: UITableViewCell {
     }
 
     override func awakeFromNib() {
-        let buttonModel = RoundedButtonViewModel(title: "Add dish", type: .squeezedOrange)
+        let buttonModel = RoundedButtonViewModel(title: .chefAddDish(), type: .squeezedOrange)
         addDishButton.configure(with: buttonModel)
     }
 

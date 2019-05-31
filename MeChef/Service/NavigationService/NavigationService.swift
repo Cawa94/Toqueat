@@ -38,7 +38,7 @@ extension NavigationService {
     static func dishesTab() -> UIViewController {
         let dishesController = NavigationService.dishesViewController().embedInNavigationController()
         dishesController.tabBarItem =
-            UITabBarItem(title: "Dishes",
+            UITabBarItem(title: .commonDishes(),
                          image: UIImage(named: "dish_icon_off")?.withRenderingMode(.alwaysOriginal),
                          selectedImage: UIImage(named: "dish_icon_on")?.withRenderingMode(.alwaysOriginal))
         return dishesController
@@ -47,7 +47,7 @@ extension NavigationService {
     static func chefsTab() -> UIViewController {
         let chefsController = NavigationService.chefsViewController().embedInNavigationController()
         chefsController.tabBarItem =
-            UITabBarItem(title: "Chefs",
+            UITabBarItem(title: .commonChefs(),
                          image: UIImage(named: "chef_icon_off")?.withRenderingMode(.alwaysOriginal),
                          selectedImage: UIImage(named: "chef_icon_on")?.withRenderingMode(.alwaysOriginal))
         return chefsController
@@ -56,7 +56,7 @@ extension NavigationService {
     static func cartTab() -> UIViewController {
         let cartController = NavigationService.cartViewController().embedInNavigationController()
         cartController.tabBarItem =
-            UITabBarItem(title: "Cart",
+            UITabBarItem(title: "",
                          image: UIImage(named: "cart_icon_off")?.withRenderingMode(.alwaysOriginal),
                          selectedImage: UIImage(named: "cart_icon_on")?.withRenderingMode(.alwaysOriginal))
         return cartController

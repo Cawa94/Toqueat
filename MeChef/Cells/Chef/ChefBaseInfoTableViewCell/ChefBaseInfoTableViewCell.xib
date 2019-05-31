@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -47,40 +46,53 @@
                             <constraint firstItem="LRJ-BU-l8p" firstAttribute="centerY" secondItem="ZPT-vS-MaD" secondAttribute="centerY" id="uiC-8S-wMf"/>
                         </constraints>
                     </view>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BsJ-1R-mhL">
+                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vxh-LR-7IV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8z-cn-ogQ">
-                                <rect key="frame" x="144" y="30" width="87" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FyA-i6-sWX">
+                                <rect key="frame" x="20" y="5.5" width="70" height="70"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="71c-MS-Yny"/>
+                                    <constraint firstAttribute="width" secondItem="FyA-i6-sWX" secondAttribute="height" multiplier="1:1" id="NcR-s8-rwm"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvB-42-bIN">
+                                <rect key="frame" x="100" y="30" width="265" height="21"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="J8z-cn-ogQ" firstAttribute="centerY" secondItem="BsJ-1R-mhL" secondAttribute="centerY" id="FdG-vf-CBb"/>
-                            <constraint firstItem="J8z-cn-ogQ" firstAttribute="centerX" secondItem="BsJ-1R-mhL" secondAttribute="centerX" id="UdK-0a-UBx"/>
+                            <constraint firstItem="FyA-i6-sWX" firstAttribute="leading" secondItem="vxh-LR-7IV" secondAttribute="leading" constant="20" id="3PS-Ce-sYA"/>
+                            <constraint firstItem="FyA-i6-sWX" firstAttribute="centerY" secondItem="vxh-LR-7IV" secondAttribute="centerY" id="Ars-KV-4jb"/>
+                            <constraint firstItem="bvB-42-bIN" firstAttribute="leading" secondItem="FyA-i6-sWX" secondAttribute="trailing" constant="10" id="Lhf-9i-H5w"/>
+                            <constraint firstAttribute="bottom" secondItem="FyA-i6-sWX" secondAttribute="bottom" constant="5" id="pSy-NH-Tkb"/>
+                            <constraint firstItem="FyA-i6-sWX" firstAttribute="top" secondItem="vxh-LR-7IV" secondAttribute="top" constant="5" id="uiG-Xp-nwz"/>
+                            <constraint firstItem="bvB-42-bIN" firstAttribute="centerY" secondItem="vxh-LR-7IV" secondAttribute="centerY" id="wyr-hz-6te"/>
+                            <constraint firstAttribute="trailing" secondItem="bvB-42-bIN" secondAttribute="trailing" constant="10" id="zu2-Ry-bvg"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="BsJ-1R-mhL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Bqd-bC-Qe5"/>
-                    <constraint firstAttribute="trailing" secondItem="BsJ-1R-mhL" secondAttribute="trailing" id="EwJ-es-CdW"/>
+                    <constraint firstAttribute="trailing" secondItem="vxh-LR-7IV" secondAttribute="trailing" id="2Ui-eI-CXh"/>
+                    <constraint firstAttribute="bottom" secondItem="vxh-LR-7IV" secondAttribute="bottom" id="7tn-FA-4G2"/>
                     <constraint firstItem="ZPT-vS-MaD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HxM-rM-Ec9"/>
-                    <constraint firstItem="BsJ-1R-mhL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JVX-un-JJc"/>
                     <constraint firstAttribute="trailing" secondItem="ZPT-vS-MaD" secondAttribute="trailing" id="LQe-Ux-1qF"/>
                     <constraint firstItem="ZPT-vS-MaD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Mjq-5b-97k"/>
-                    <constraint firstAttribute="bottom" secondItem="BsJ-1R-mhL" secondAttribute="bottom" id="ajt-23-9y8"/>
+                    <constraint firstItem="vxh-LR-7IV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="QjH-QS-V3G"/>
+                    <constraint firstItem="vxh-LR-7IV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="d3r-YO-qQm"/>
                     <constraint firstAttribute="bottom" secondItem="ZPT-vS-MaD" secondAttribute="bottom" id="yKz-HM-XEX"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImageView" destination="LRJ-BU-l8p" id="WMQ-aV-Vwh"/>
                 <outlet property="contentContainerViewOutlet" destination="ZPT-vS-MaD" id="gbV-oW-Y4u"/>
                 <outlet property="nameLabel" destination="yJs-R2-MnJ" id="dSF-cJ-9rL"/>
-                <outlet property="placeholderContainerViewOutlet" destination="BsJ-1R-mhL" id="YCr-Hc-4Mj"/>
+                <outlet property="placeholderContainerViewOutlet" destination="vxh-LR-7IV" id="9IB-h9-0Nt"/>
             </connections>
             <point key="canvasLocation" x="-92" y="110"/>
         </tableViewCell>

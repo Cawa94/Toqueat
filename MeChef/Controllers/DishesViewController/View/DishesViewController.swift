@@ -25,7 +25,7 @@ class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
 
         searchBar.frame = searchBarContainerView.bounds
         searchBarContainerView.addSubview(searchBar)
-        searchBar.placeholder = "Search dishes"
+        searchBar.placeholder = .mainSearchDish()
         searchBar.delegate = self
         searchBar.rx
             .text
@@ -34,11 +34,13 @@ class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
             .skip(1)
             .debounce(0.5)
             .drive(onNext: { text in
-                self.filteredText = text
-                NetworkService.shared.searchDish(query: text,
+                self.startLoading(with: self.loadingStateView)
+                self.filteredText = text.isNotEmpty ? text : nil
+                NetworkService.shared.searchDish(query: text.isNotEmpty ? text : nil,
                                                  categoryId: self.selectedCategoryId)
                     .observeOn(MainScheduler.instance)
                     .subscribe(onSuccess: { filteredDishes in
+                        self.endLoading(with: self.loadingStateView)
                         self.dishesViewModel.elements = filteredDishes
                         self.tableView.reloadData()
                     })
@@ -87,6 +89,11 @@ class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
                     NavigationService.pushDishViewController(dishId: dish.id)
                 })
                 .disposed(by: dishCell.disposeBag)
+            if indexPath.row == dishesViewModel.elements.count - 1 {
+                DispatchQueue.main.async {
+                    self.viewDidLayoutSubviews()
+                }
+            }
         default:
             break
         }
@@ -132,10 +139,12 @@ class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
                     self.dishesViewModel.deselectFilters()
                     self.selectedCategoryId = isActive ? nil : dishCategory.paramId
                     self.dishesViewModel.dishesTypes[indexPath.row].isActive = !isActive
+                    self.startLoading(with: self.loadingStateView)
                     NetworkService.shared.searchDish(query: self.filteredText,
                                                      categoryId: self.selectedCategoryId)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onSuccess: { filteredDishes in
+                            self.endLoading(with: self.loadingStateView)
                             self.dishesViewModel.elements = filteredDishes
                             self.tableView.reloadData()
                         })
@@ -154,6 +163,7 @@ class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
 
     override func onResultsState() {
         dishesViewModel.elements = dishesViewModel.result
+
         super.onResultsState()
     }
 

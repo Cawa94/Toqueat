@@ -17,7 +17,7 @@ class ChefLoginViewController: UIViewController {
         addLinesToTextfields()
         addValidationRules()
 
-        let loginModel = RoundedButtonViewModel(title: "Log in as chef", type: .squeezedOrange)
+        let loginModel = RoundedButtonViewModel(title: .authLoginAsChef(), type: .squeezedOrange)
         loginButton.configure(with: loginModel)
     }
 
@@ -46,9 +46,9 @@ extension ChefLoginViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case emailTextField:
-            textField.placeholder = "Email"
+            textField.placeholder = .userEmail()
         case passwordTextField:
-            textField.placeholder = "Password"
+            textField.placeholder = .userPassword()
         default:
             break
         }
@@ -89,15 +89,6 @@ extension ChefLoginViewController: ValidationDelegate {
             .subscribe(onSuccess: { chef in
                 SessionService.updateWith(chef: chef)
                 NavigationService.makeMainTabRootController()
-            }, onError: { error in
-                let message: String
-                if let serverError = error.serverError,
-                    let title = serverError.error {
-                    message = title
-                } else {
-                    message = "Something went wrong"
-                }
-                self.presentAlertWith(title: "WARNING", message: message)
             })
             .disposed(by: disposeBag)
     }

@@ -63,13 +63,16 @@ class BaseTableViewController<ResultType, ElementType>: BaseStatefulController<R
 
     override func onResultsState() {
         self.tableView.reloadData()
+        super.onResultsState()
     }
 
     override func onLoadingState() {
+        super.onLoadingState()
         self.tableView.reloadData()
     }
 
     override func onEmptyState() {
+        super.onEmptyState()
         self.tableView.reloadData()
     }
 

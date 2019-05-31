@@ -36,7 +36,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         cityTextField.inputView = cityPicker
         cityPicker.delegate = self
 
-        let registerModel = RoundedButtonViewModel(title: "Register", type: .squeezedOrange)
+        let registerModel = RoundedButtonViewModel(title: .authRegister(), type: .squeezedOrange)
         registerButton.configure(with: registerModel)
     }
 
@@ -70,41 +70,37 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         validator.registerField(phoneTextField, rules: [RequiredRule()])
         validator.registerField(cityTextField, rules: [RequiredRule()])
         validator.registerField(streetTextField, rules: [RequiredRule()])
-        validator.registerField(apartmentTextField, rules: [RequiredRule()])
         validator.registerField(zipcodeTextField, rules: [RequiredRule()])
     }
 
     func validationSuccessful() {
         guard let name = nameTextField.text, let lastName = lastnameTextField.text,
             let email = emailTextField.text, let password = passwordTextField.text,
-            let cityId = registerViewModel.cities.first(where: { $0.name == cityTextField.text })?.id,
+            let city = cityTextField.text,
+            let cityId = registerViewModel.cities.first(where: { $0.name == city })?.id,
             let phone = phoneTextField.text, let street = streetTextField.text,
-            let apartment = apartmentTextField.text, let zipcode = zipcodeTextField.text
+            let zipcode = zipcodeTextField.text
             else { return }
-        let registrationParameters = UserCreateParameters(name: name, lastname: lastName,
-                                                          email: email, password: password,
-                                                          cityId: cityId, address: street,
-                                                          zipcode: zipcode, apartment: apartment,
-                                                          phone: phone)
-        NetworkService.shared.register(registerParameters: registrationParameters)
-            .flatMap { response -> Single<User> in
-                SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)
-                return NetworkService.shared.getUserInfo()
+        let apartment = apartmentTextField.text
+        let fullAddress = "\(street) \(apartment ?? "") \(zipcode) \(city)"
+        NetworkService.shared.validateAddress(fullAddress, phone: phone)
+            .flatMap { _ -> Single<User> in
+                let registrationParameters = UserCreateParameters(name: name, lastname: lastName,
+                                                                  email: email, password: password,
+                                                                  cityId: cityId, address: street,
+                                                                  zipcode: zipcode, apartment: apartment,
+                                                                  phone: phone)
+                return NetworkService.shared.register(registerParameters: registrationParameters)
+                    .flatMap { response -> Single<User> in
+                        SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)
+                        return NetworkService.shared.getUserInfo()
+                }
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { user in
                 SessionService.updateWith(user: user)
                 CartService.localCart = .new
                 NavigationService.makeMainTabRootController()
-            }, onError: { error in
-                let message: String
-                if let serverError = error.serverError,
-                    let title = serverError.error {
-                    message = title
-                } else {
-                    message = "Something went wrong"
-                }
-                self.presentAlertWith(title: "WARNING", message: message)
             })
             .disposed(by: disposeBag)
     }
@@ -124,6 +120,8 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
 
     override func onResultsState() {
         registerViewModel.cities = registerViewModel.result
+
+        super.onResultsState()
     }
 
     // MARK: - UIPickerViewDataSource
@@ -147,7 +145,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
     // MARK: - UITextFieldDelegate related methods
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == streetTextField {
+        /*if textField == streetTextField {
             guard let city = cityTextField.text, city != ""
                 else {
                     presentAlertWith(title: "WARNING", message: "Please select a city first")
@@ -159,9 +157,9 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
                 .disposed(by: disposeBag)
             NavigationService.presentAddress(controller: addressController)
             return false
-        } else {
+        } else {*/
             return true
-        }
+        //}
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -172,25 +170,25 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case nameTextField:
-            textField.placeholder = "Name"
+            textField.placeholder = .userName()
         case lastnameTextField:
-            textField.placeholder = "Lastname"
+            textField.placeholder = .userLastname()
         case emailTextField:
-            textField.placeholder = "Email"
+            textField.placeholder = .userEmail()
         case passwordTextField:
-            textField.placeholder = "Password"
+            textField.placeholder = .userPassword()
         case confirmPasswordTextField:
-            textField.placeholder = "Confirm password"
+            textField.placeholder = .userConfirmPassword()
         case phoneTextField:
-            textField.placeholder = "Phone"
+            textField.placeholder = .userPhone()
         case cityTextField:
-            textField.placeholder = "City"
+            textField.placeholder = .addressCity()
         case streetTextField:
-            textField.placeholder = "Street"
+            textField.placeholder = "\(String.addressStreet()), \(String.addressNumber())"
         case apartmentTextField:
-            textField.placeholder = "Apartment"
+            textField.placeholder = "\(String.addressFloor()), \(String.addressDoor()) (\(String.commonOptional()))"
         case zipcodeTextField:
-            textField.placeholder = "Zipcode"
+            textField.placeholder = .addressZipcode()
         default:
             break
         }

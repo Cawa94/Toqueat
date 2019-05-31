@@ -27,27 +27,27 @@ extension NavigationService {
 extension NavigationService {
 
     static var reloadChefDishes = false
-    static var reloadChefOrders = false
+    static var reloadChefWeekplan = false
     static var reloadChefProfile = false
 
     static func chefDishesTab(chefId: Int64) -> UIViewController {
         let chefDishesController = NavigationService.chefDishesViewController(chefId: chefId)
             .embedInNavigationController()
         chefDishesController.tabBarItem =
-            UITabBarItem(title: "Dishes",
+            UITabBarItem(title: .commonDishes(),
                          image: UIImage(named: "dish_icon_off")?.withRenderingMode(.alwaysOriginal),
                          selectedImage: UIImage(named: "dish_icon_on")?.withRenderingMode(.alwaysOriginal))
         return chefDishesController
     }
 
-    static func chefOrderTab(chefId: Int64) -> UIViewController {
-        let chefsController = NavigationService.chefOrdersViewController(chefId: chefId)
+    static func chefWeekplanTab(chefId: Int64) -> UIViewController {
+        let weekplanController = NavigationService.chefWeekplanViewController(chefId: chefId)
             .embedInNavigationController()
-        chefsController.tabBarItem =
-            UITabBarItem(title: "Orders",
+        weekplanController.tabBarItem =
+            UITabBarItem(title: .chefWeekplan(),
                          image: UIImage(named: "chef_icon_off")?.withRenderingMode(.alwaysOriginal),
                          selectedImage: UIImage(named: "chef_icon_on")?.withRenderingMode(.alwaysOriginal))
-        return chefsController
+        return weekplanController
     }
 
     static func presentChefProfileController(chefId: Int64) {

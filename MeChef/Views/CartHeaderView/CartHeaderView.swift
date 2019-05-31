@@ -23,7 +23,7 @@ class CartHeaderView: UITableViewHeaderFooterView {
         let formattedChefString = NSMutableAttributedString()
         formattedChefString
             .bold("\(chef.name)", size: 16.0)
-            .normal(" is gonna cook this dishes for you!", size: 16.0)
+            .normal(" \(String.cartChefWillCook())", size: 16.0)
         nameLabel.attributedText = formattedChefString
         if let url = chef.avatarLink {
             Nuke.loadImage(with: url, into: avatarImageView)

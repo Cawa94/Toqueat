@@ -31,6 +31,10 @@ struct CartService {
         return localCartVariable.asObservable()
     }
 
+    static func canAddDriver(for dishId: Int64) -> Driver<Bool> {
+        return localCartDriver.map { $0?.canAddToCart(dishId) ?? true }
+    }
+
     static func addToCart(_ dish: LocalCartDish, chef: BaseChef? = nil) {
         guard let cart = localCart
             else {

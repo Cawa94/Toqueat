@@ -10,10 +10,16 @@ class BaseStatefulController<ResultType>: UIViewController, StatefulViewControll
     typealias ViewModelType = BaseStatefulViewModel<ResultType>
     var viewModel: ViewModelType!
 
+    lazy var loadingStateView = {
+        LoadingView()
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+
+        loadingView = loadingStateView
 
         setupInitialViewState()
         configureNavigationBar()
@@ -51,13 +57,21 @@ class BaseStatefulController<ResultType>: UIViewController, StatefulViewControll
 
     // MARK: - StatefulViewController related methods
 
-    func onLoadingState() {}
+    func onLoadingState() {
+        startLoading(with: loadingStateView)
+    }
 
-    func onResultsState() {}
+    func onResultsState() {
+        endLoading(with: loadingStateView)
+    }
 
-    func onEmptyState() {}
+    func onEmptyState() {
+        endLoading(with: loadingStateView)
+    }
 
-    func onErrorState(error: Error) {}
+    func onErrorState(error: Error) {
+        endLoading(with: loadingStateView)
+    }
 
     func retry() {
         startLoading()
@@ -72,5 +86,32 @@ class BaseStatefulController<ResultType>: UIViewController, StatefulViewControll
     // MARK: - UIScrollViewDelegate
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {}
+
+    // MARK: - LoadingActivityIndicator related methods
+
+    func showActivityIndicatorView() {
+        backingView.addSubview(loadingStateView)
+        loadingStateView.setToCenter()
+    }
+
+    func hideActivityIndicatorView() {
+        loadingStateView.removeFromSuperview()
+    }
+
+}
+
+extension StatefulViewController {
+
+    func startLoading(with loadingView: LoadingView) {
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        backingView.addSubview(loadingView)
+        loadingView.setToCenter()
+        //transitionViewStates(loading: true, animated: true, completion: nil)
+    }
+
+    func endLoading(with loadingView: LoadingView, error: Error? = nil) {
+        loadingView.removeFromSuperview()
+        //transitionViewStates(loading: false, error: error, animated: false, completion: nil)
+    }
 
 }

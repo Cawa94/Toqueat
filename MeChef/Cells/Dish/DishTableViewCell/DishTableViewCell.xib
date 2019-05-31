@@ -26,20 +26,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="219.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wg-8d-kdt">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVA-5x-RHl" userLabel="ContentContainerView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="219.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOADING..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztY-zf-TKM">
-                                <rect key="frame" x="144" y="99.5" width="87" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" verticalHuggingPriority="253" translatesAutoresizingMaskIntoConstraints="NO" id="UCE-Ob-2Gf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="155" id="M8w-FT-To6"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjb-LY-wM7">
+                                <rect key="frame" x="5" y="160" width="197" height="22.5"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="RobotoSlab-Bold" family="Roboto Slab" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                                " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T37-mD-1KL">
+                                <rect key="frame" x="5" y="192.5" width="93.5" height="19"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="RobotoSlab-Light" family="Roboto Slab" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="               " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXw-pr-gUd">
+                                <rect key="frame" x="302" y="160" width="63" height="22.5"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="RobotoSlab-Bold" family="Roboto Slab" pointSize="17"/>
+                                <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ztY-zf-TKM" firstAttribute="centerY" secondItem="5wg-8d-kdt" secondAttribute="centerY" id="kxR-jp-D9M"/>
-                            <constraint firstItem="ztY-zf-TKM" firstAttribute="centerX" secondItem="5wg-8d-kdt" secondAttribute="centerX" id="szP-LH-Uct"/>
+                            <constraint firstItem="vXw-pr-gUd" firstAttribute="leading" secondItem="Tjb-LY-wM7" secondAttribute="trailing" constant="100" id="2aa-Rs-PGR"/>
+                            <constraint firstItem="UCE-Ob-2Gf" firstAttribute="leading" secondItem="wVA-5x-RHl" secondAttribute="leading" id="ASL-Na-D6E"/>
+                            <constraint firstItem="T37-mD-1KL" firstAttribute="leading" secondItem="Tjb-LY-wM7" secondAttribute="leading" id="J2I-8I-kHd"/>
+                            <constraint firstAttribute="trailing" secondItem="vXw-pr-gUd" secondAttribute="trailing" constant="10" id="KCi-8n-qtZ"/>
+                            <constraint firstItem="Tjb-LY-wM7" firstAttribute="top" secondItem="UCE-Ob-2Gf" secondAttribute="bottom" constant="5" id="LkB-E8-yIU"/>
+                            <constraint firstItem="vXw-pr-gUd" firstAttribute="centerY" secondItem="Tjb-LY-wM7" secondAttribute="centerY" id="OHM-vk-c7e"/>
+                            <constraint firstAttribute="trailing" secondItem="UCE-Ob-2Gf" secondAttribute="trailing" id="Yii-J6-NWV"/>
+                            <constraint firstItem="UCE-Ob-2Gf" firstAttribute="top" secondItem="wVA-5x-RHl" secondAttribute="top" id="eRb-pY-sgz"/>
+                            <constraint firstItem="T37-mD-1KL" firstAttribute="top" secondItem="Tjb-LY-wM7" secondAttribute="bottom" constant="10" id="hfx-I2-EHU"/>
+                            <constraint firstAttribute="bottom" secondItem="T37-mD-1KL" secondAttribute="bottom" constant="8" id="iK8-B2-ffN"/>
+                            <constraint firstItem="Tjb-LY-wM7" firstAttribute="leading" secondItem="wVA-5x-RHl" secondAttribute="leading" constant="5" id="vF1-as-VHf"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4M-bE-KpX" userLabel="ContentContainerView">
@@ -96,14 +127,14 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="5wg-8d-kdt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0b0-aC-W94"/>
-                    <constraint firstAttribute="bottom" secondItem="5wg-8d-kdt" secondAttribute="bottom" id="Ajn-nC-Rz1"/>
-                    <constraint firstAttribute="trailing" secondItem="5wg-8d-kdt" secondAttribute="trailing" id="GS7-lX-iH2"/>
                     <constraint firstItem="A4M-bE-KpX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="IKX-YX-V5h"/>
+                    <constraint firstItem="wVA-5x-RHl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="V1n-yT-SLU"/>
                     <constraint firstAttribute="bottom" secondItem="A4M-bE-KpX" secondAttribute="bottom" constant="10" id="WsM-Yu-eys"/>
-                    <constraint firstItem="5wg-8d-kdt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="dSV-gm-R2N"/>
+                    <constraint firstAttribute="bottom" secondItem="wVA-5x-RHl" secondAttribute="bottom" id="eBD-BS-KJZ"/>
+                    <constraint firstItem="wVA-5x-RHl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kYY-3H-nfP"/>
                     <constraint firstAttribute="trailing" secondItem="A4M-bE-KpX" secondAttribute="trailing" constant="10" id="mEM-77-GB0"/>
                     <constraint firstItem="A4M-bE-KpX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="prg-TL-7jU"/>
+                    <constraint firstAttribute="trailing" secondItem="wVA-5x-RHl" secondAttribute="trailing" id="waG-Q0-u9y"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -112,7 +143,7 @@
                 <outlet property="contentContainerViewOutlet" destination="A4M-bE-KpX" id="dZ9-Pw-lsF"/>
                 <outlet property="dishImageView" destination="UwX-gH-FTZ" id="JWP-Bh-4tY"/>
                 <outlet property="nameLabel" destination="gyv-yg-fSX" id="1QS-Gm-ZAE"/>
-                <outlet property="placeholderContainerViewOutlet" destination="5wg-8d-kdt" id="Z9b-Ll-zJV"/>
+                <outlet property="placeholderContainerViewOutlet" destination="wVA-5x-RHl" id="wJj-sg-swZ"/>
                 <outlet property="priceLabel" destination="TxZ-iS-R7H" id="xNg-JE-rqt"/>
             </connections>
             <point key="canvasLocation" x="-258" y="111"/>

@@ -23,7 +23,7 @@ class OrdersViewController: BaseTableViewController<[BaseOrder], OrdersViewModel
 
     override func configureNavigationBar() {
         super.configureNavigationBar()
-        title = "My Orders"
+        title = .profileMyOrders()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,7 +64,7 @@ class OrdersViewController: BaseTableViewController<[BaseOrder], OrdersViewModel
             withIdentifier: OrderStateTableHeaderView.reuseIdentifier) as? OrderStateTableHeaderView
             else { return nil }
         headerView.configureWith(state: ordersViewModel.isLoading
-            ? "Loading" : ordersViewModel.elements[section].state.rawValue)
+            ? "" : ordersViewModel.elements[section].state.localizedDescription)
         return headerView
     }
 
@@ -90,6 +90,7 @@ class OrdersViewController: BaseTableViewController<[BaseOrder], OrdersViewModel
 
     override func onResultsState() {
         ordersViewModel.elements = ordersViewModel.ordersGroupedByState
+
         super.onResultsState()
     }
 

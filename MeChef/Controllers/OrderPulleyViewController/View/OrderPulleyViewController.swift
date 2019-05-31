@@ -90,6 +90,8 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
         } else {
             pulleyController.allowsUserDrawerPositionChange = false
         }
+
+        super.onResultsState()
     }
 
 }

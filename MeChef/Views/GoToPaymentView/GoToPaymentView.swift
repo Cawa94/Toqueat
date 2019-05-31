@@ -44,7 +44,7 @@ final class GoToPaymentView: UIView {
         whiteBackgroundView.drawShadow(cornerRadii: 15.0,
                                        size: CGSize(width: 5, height: 5),
                                        opacity: 0.2)
-        let buttonModel = RoundedButtonViewModel(title: "Proceed to checkout",
+        let buttonModel = RoundedButtonViewModel(title: .deliveryDateProceedCheckout(),
                                                  type: .defaultOrange)
         goToPaymentButton.configure(with: buttonModel)
     }

@@ -26,7 +26,7 @@ class ChefsViewController: BaseStatefulController<[BaseChef]>,
 
         searchBar.frame = searchBarContainerView.bounds
         searchBarContainerView.addSubview(searchBar)
-        searchBar.placeholder = "Search chef"
+        searchBar.placeholder = .mainSearchChef()
         searchBar.delegate = self
         searchBar.rx
             .text
@@ -129,6 +129,8 @@ class ChefsViewController: BaseStatefulController<[BaseChef]>,
     // MARK: - StatefulViewController related methods
 
     override func onLoadingState() {
+        super.onLoadingState()
+
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -139,6 +141,8 @@ class ChefsViewController: BaseStatefulController<[BaseChef]>,
         DispatchQueue.main.async {
             self.collectionView.reloadData {
                 self.viewDidLayoutSubviews()
+
+                super.onResultsState()
             }
         }
     }

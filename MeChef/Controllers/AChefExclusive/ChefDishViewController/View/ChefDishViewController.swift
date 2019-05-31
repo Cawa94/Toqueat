@@ -16,6 +16,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
     @IBOutlet private weak var dishImageView: UIImageView!
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var priceTextField: UITextField!
+    @IBOutlet private weak var maxQuantityTextField: UITextField!
     @IBOutlet private weak var typeTextField: UITextField!
     @IBOutlet private weak var servingsTextField: UITextField!
     @IBOutlet private weak var ingredientsTextField: UITextField!
@@ -45,8 +46,8 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
 
     override func configureNavigationBar() {
         navigationController?.isNavigationBarHidden = false
-        title = chefDishViewModel.isNewDish ? "New dish" : "Edit dish"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
+        title = chefDishViewModel.isNewDish ? String.chefAddDish() : String.editDishTitle()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: .commonSave(),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(save))
@@ -64,8 +65,9 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
                                onSuccessClosure: { dish in
                                 self.presentAlertWith(
                                     title: "YEAH",
-                                    message: dish.isActive ?? true ? "Dish activated" : "Dish deactivated",
-                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                    message: dish.isActive ?? true
+                                        ? String.editDishEnabled() : String.editDishDisabled(),
+                                    actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadChefDishes = true
                                                                 NavigationService.popNavigationTopController()
@@ -81,6 +83,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
             }).disposed(by: disposeBag)
         nameTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         priceTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        maxQuantityTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         typeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         servingsTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         ingredientsTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
@@ -90,7 +93,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
         typePicker.delegate = self
 
         placeholderLabel = UILabel()
-        placeholderLabel.text = "Describe your dish..."
+        placeholderLabel.text = .dishDescriptionPlaceholder()
         placeholderLabel.font = UIFont.regularFontOf(size: 16.0)
         placeholderLabel.sizeToFit()
         descriptionTextView.addSubview(placeholderLabel)
@@ -109,6 +112,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
             }
             nameTextField.text = dish.name
             priceTextField.text = dish.price.stringWithoutCurrency
+            maxQuantityTextField.text = "\(dish.maxQuantity)"
             typeTextField.text = dish.categories?.first?.name
             servingsTextField.text = "\(dish.servings ?? 1)"
             ingredientsTextField.text = dish.ingredients
@@ -117,17 +121,19 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
 
             toggleDishButton.isHidden = false
             let toggleDishModel = dish.isActive ?? true
-            ? RoundedButtonViewModel(title: "Disable dish", type: .squeezedRed)
-            : RoundedButtonViewModel(title: "Enable dish", type: .squeezedOrange)
+            ? RoundedButtonViewModel(title: String.editDishDisable(), type: .squeezedRed)
+            : RoundedButtonViewModel(title: String.editDishEnable(), type: .squeezedOrange)
             toggleDishButton.configure(with: toggleDishModel)
         } else {
             // New dish
+            toggleDishButton.isHidden = true
         }
     }
 
     func addValidationRules() {
         validator.registerField(nameTextField, rules: [RequiredRule()])
         validator.registerField(priceTextField, rules: [RequiredRule()])
+        validator.registerField(maxQuantityTextField, rules: [RequiredRule()])
         validator.registerField(typeTextField, rules: [RequiredRule()])
         validator.registerField(servingsTextField, rules: [RequiredRule()])
     }
@@ -181,6 +187,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
 
     override func onResultsState() {
         populateXibElements()
+        super.onResultsState()
     }
 
 }
@@ -193,6 +200,7 @@ extension ChefDishViewController: ValidationDelegate {
             let servings = servingsTextField.text,
             let description = descriptionTextView.text,
             let priceText = priceTextField.text,
+            let maxQuantityText = maxQuantityTextField.text,
             let chefId = SessionService.session?.chef?.id
             else { return }
         let price = NSDecimalNumber(string: "\(priceText.doubleValue)")
@@ -200,15 +208,17 @@ extension ChefDishViewController: ValidationDelegate {
         let dishParameters = DishCreateParameters(name: name, description: description,
                                                   price: price, chefId: "\(chefId)",
                                                   categoryIds: [categoryId], ingredients: ingredients,
-                                                  servings: Int(servings) ?? 1)
+                                                  servings: Int(servings) ?? 1,
+                                                  maxQuantity: Int(maxQuantityText) ?? 1)
         let operationSingle: Single<Void> = updateOrCreateDishSingle(parameters: dishParameters)
 
         hudOperationWithSingle(operationSingle: operationSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
                                     title: "YEAH",
-                                    message: self.chefDishViewModel.isNewDish ? "Dish created" : "Dish updated",
-                                    actions: [ UIAlertAction(title: "Ok", style: .default,
+                                    message: self.chefDishViewModel.isNewDish
+                                        ? .editDishCreated() : .editDishUpdated(),
+                                    actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadChefDishes = true
                                                                 if self.chefDishViewModel.isNewDish {

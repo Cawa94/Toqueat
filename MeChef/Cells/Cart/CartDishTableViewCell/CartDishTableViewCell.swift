@@ -52,6 +52,7 @@ extension CartDishTableViewCell: PlaceholderConfigurable {
     func configure(contentViewModel: CartDishTableViewModel) {
         self.viewModel = contentViewModel
 
+        priceLabel.textColor = contentViewModel.isInCart ? .mainOrangeColor : .darkGrayColor
         nameLabel.text = contentViewModel.dish.name
         let dishQuantity = contentViewModel.quantityInOrder ?? contentViewModel.dish.quantityInCart
         quantityLabel.text = dishQuantity > 1 ? "\(dishQuantity) dishes" : "\(dishQuantity) dish"

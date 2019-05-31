@@ -41,14 +41,24 @@ class DishViewController: BaseStatefulController<Dish>,
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if !dishViewModel.isLoading {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+
     // MARK: - Actions
 
     func addToCartAction() {
         guard let baseChef = self.dishViewModel.baseChef, !SessionService.isChef
             else { return }
         if let currentChef = CartService.localCart?.chef?.id, currentChef != dishViewModel.chefId {
-            presentAlertWith(title: "WARNING", message: "You're gonna lose all your products",
-                             actions: [UIAlertAction(title: "Proceed", style: .default, handler: { _ in
+            presentAlertWith(title: String.commonWarning().capitalized, message: .errorChangeCartChef(),
+                             actions: [UIAlertAction(title: .commonConfirm(), style: .default, handler: { _ in
                                 CartService.clearCart()
                                 CartService.addToCart(self.dishViewModel.localCartDish,
                                                       chef: baseChef)
@@ -56,7 +66,7 @@ class DishViewController: BaseStatefulController<Dish>,
                                     self.tableView.reloadData()
                                 }
                              }),
-                                       UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
+                                       UIAlertAction(title: .commonCancel(), style: .cancel, handler: nil)])
             return
         } else {
             CartService.addToCart(dishViewModel.localCartDish, chef: baseChef)
@@ -88,9 +98,13 @@ class DishViewController: BaseStatefulController<Dish>,
         }
         dishImageView.contentMode = .scaleAspectFill
         navigationTitle.text = dishViewModel.result.name
+
+        super.onResultsState()
     }
 
     override func onLoadingState() {
+        super.onLoadingState()
+
         tableView.reloadData()
     }
 

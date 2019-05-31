@@ -33,9 +33,7 @@ class ChefViewController: BaseStatefulController<Chef>,
         super.viewDidLoad()
 
         chefDetailsTableView.roundCorners(radii: 15.0)
-        //chefDetailsTableView.drawShadow(cornerRadii: 15.0, size: CGSize(width: 5, height: 5), opacity: 0.4)
         chefImageView.roundCorners(radii: chefImageView.bounds.height/2)
-        //chefImageView.roundOnly(corners: [.bottomLeft, .bottomRight], cornerRadii: 30.0)
 
         chefDetailsTableView.register(UINib(nibName: "ChefDetailsTableViewCell", bundle: nil),
                                       forCellReuseIdentifier: "ChefDetailsTableViewCell")
@@ -182,10 +180,11 @@ class ChefViewController: BaseStatefulController<Chef>,
     // MARK: - StatefulViewController related methods
 
     override func onLoadingState() {
+        super.onLoadingState()
+
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        super.onLoadingState()
     }
 
     override func onResultsState() {
@@ -203,6 +202,8 @@ class ChefViewController: BaseStatefulController<Chef>,
                 self.viewDidLayoutSubviews()
             }
         }
+
+        super.onResultsState()
     }
 
     override func viewDidLayoutSubviews() {

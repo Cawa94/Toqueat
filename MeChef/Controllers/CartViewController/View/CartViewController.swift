@@ -1,5 +1,6 @@
 import UIKit
 import RxSwift
+import RxCocoa
 import SwipeCellKit
 
 private extension CGFloat {
@@ -22,7 +23,7 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let checkoutModel = RoundedButtonViewModel(title: "Choose delivery time", type: .defaultOrange)
+        let checkoutModel = RoundedButtonViewModel(title: .cartChooseDeliveryTime(), type: .defaultOrange)
         checkoutButton.configure(with: checkoutModel)
 
         tableView.register(UINib(nibName: "CartDishTableViewCell", bundle: nil),
@@ -33,7 +34,8 @@ class CartViewController: UIViewController, UITableViewDelegate, UITableViewData
         CartService.localCartDriver.drive(onNext: { localCart in
             self.cartViewModel.cart = localCart
             self.totalLabel
-                .text = "Total: \(localCart?.total.stringWithCurrency ?? NSDecimalNumber(value: 0).stringWithCurrency)"
+                .text = "\(String.commonTotal()): " +
+            "\(localCart?.total.stringWithCurrency ?? NSDecimalNumber(value: 0).stringWithCurrency)"
             self.tableView.isHidden = !self.cartViewModel.hasContent
             self.tableView.reloadData()
             self.checkoutButton.isHidden = !self.cartViewModel.hasContent
@@ -145,26 +147,29 @@ extension CartViewController: SwipeTableViewCellDelegate {
 
         let dish = self.cartViewModel.elementAt(indexPath.row)
         let addOneAction = SwipeAction(style: .default,
-                                       title: "+") { base, _ in
+                                       title: "+") { _, _ in
                                         if dish.canAddToCart() {
                                             CartService.addToCart(dish)
                                         }
-                                        self.checkColor(swipeAction: base,
+                                        /*self.checkColor(swipeAction: base,
                                                         tableView: tableView,
                                                         localCartDish: dish,
-                                                        indexPath: indexPath)
+                                                        indexPath: indexPath)*/
         }
-        addOneAction.backgroundColor = dish.canAddToCart() ? .mainOrangeColor : .lightGrayColor
+        addOneAction.backgroundColor = .mainOrangeColor
+        //dish.canAddDriver.drive(addOneAction.rx.enabledChanged).disposed(by: disposeBag)
         addOneAction.font = .boldFontOf(size: 35)
         addOneAction.textColor = .white
 
         let removeOneAction = SwipeAction(style: .destructive,
-                                          title: "-") { base, _ in
+                                          title: "-") { _, _ in
                                             CartService.removeFromCart(dish)
-                                            self.checkColor(swipeAction: base,
-                                                            tableView: tableView,
-                                                            localCartDish: dish,
-                                                            indexPath: indexPath)
+                                            if dish.canRemoveFromCart() {
+                                                /*self.checkColor(swipeAction: base,
+                                                                tableView: tableView,
+                                                                localCartDish: dish,
+                                                                indexPath: indexPath)*/
+                                            }
         }
         removeOneAction.backgroundColor = .highlightedOrangeColor
         removeOneAction.font = .boldFontOf(size: 35)
@@ -192,6 +197,16 @@ extension CartViewController: SwipeTableViewCellDelegate {
             if let cell = tableView.cellForRow(at: indexPath) as? CartDishTableViewCell {
                 cell.showSwipe(orientation: .right)
             }
+        }
+    }
+
+}
+
+private extension Reactive where Base: SwipeAction {
+
+    var enabledChanged: Binder<Bool> {
+        return Binder(base) { base, value in
+            base.backgroundColor = value ? .mainOrangeColor : .lightGrayColor
         }
     }
 

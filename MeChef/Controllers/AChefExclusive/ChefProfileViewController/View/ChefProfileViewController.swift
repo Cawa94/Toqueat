@@ -35,8 +35,8 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
     override func configureNavigationBar() {
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
-        title = "Profile"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
+        title = .commonProfile()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: .commonDone(),
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(closeProfile))
@@ -112,23 +112,23 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
             case 1:
                 switch indexPath.row {
                 case 0:
-                    viewModel = UserBarTableViewModel(option: "My Availability")
+                    viewModel = UserBarTableViewModel(option: .profileMyAvilability())
                 case 1:
-                    viewModel = UserBarTableViewModel(option: "My Address")
+                    viewModel = UserBarTableViewModel(option: .profileMyAddress())
                 case 2:
-                    viewModel = UserBarTableViewModel(option: "My Orders", hideBottomLine: false)
+                    viewModel = UserBarTableViewModel(option: .profileMyOrders(), hideBottomLine: false)
                 default:
                     viewModel = UserBarTableViewModel(option: "Unknown")
                 }
             case 2:
                 viewModel = UserBarTableViewModel(option: chefProfileViewModel.result.authorizedStripe ?? false
-                    ? "Account Stripe associated"
-                    : "Connect your account Stripe",
+                    ? String.profileStripeAssociated()
+                    : String.profileStripeMissing(),
                                                   arrowHidden: chefProfileViewModel.result.authorizedStripe ?? false,
                                                   hideBottomLine: false,
                                                   checkHidden: !(chefProfileViewModel.result.authorizedStripe ?? false))
             case 3:
-                viewModel = UserBarTableViewModel(option: "Log out", arrowHidden: true, hideBottomLine: false)
+                viewModel = UserBarTableViewModel(option: .profileLogout(), arrowHidden: true, hideBottomLine: false)
             default:
                 viewModel = UserBarTableViewModel(option: "Unknown")
             }
@@ -200,7 +200,7 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
             return //be safe
         }
 
-        let webController = NavigationService.webViewController(pageTitle: "Connect Stripe account",
+        let webController = NavigationService.webViewController(pageTitle: .profileStripeMissing(),
                                                                 url: url)
         webController.delegate = self
         NavigationService.pushWebViewController(webController)
@@ -213,9 +213,13 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
 
         // Update session value to be sure is updated after editing info
         SessionService.updateWith(chef: chefProfileViewModel.result)
+
+        super.onResultsState()
     }
 
     override func onLoadingState() {
+        super.onLoadingState()
+
         tableView.reloadData()
     }
 
@@ -237,7 +241,7 @@ extension ChefProfileViewController: WebViewControllerDelegate {
             self.hudOperationWithSingle(operationSingle: requestSingle,
                                         onSuccessClosure: { _ in
                                             self.presentAlertWith(title: "YEAH",
-                                                                  message: "Stripe account connected")
+                                                                  message: .profileStripeConnected())
                                         },
                                         disposeBag: self.disposeBag)
         }
@@ -245,7 +249,7 @@ extension ChefProfileViewController: WebViewControllerDelegate {
 
     func errorWith(description: String?) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            self.presentAlertWith(title: "WARNING", message: description ?? "Something went wrong")
+            self.presentAlertWith(title: .commonWarning(), message: description ?? String.errorSomethingWentWrong())
         }
     }
 

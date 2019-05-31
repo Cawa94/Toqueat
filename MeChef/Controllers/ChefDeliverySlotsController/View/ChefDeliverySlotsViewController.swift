@@ -34,8 +34,8 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
         super.viewDidLoad()
 
         instructionsLabel.text = chefDeliverySlotsViewModel.editable
-        ? "Here you can let people know when you're availble to deliver. Tap a slot to enable/disable it"
-        : "The chef will be available to deliver dishes only during this hours"
+        ? String.chefAvailabilityEditExplanation()
+        : String.chefAvailabilityExplanation()
         availableColorView.roundCorners(radii: availableColorView.bounds.height/2)
         unavailableColorView.roundCorners(radii: unavailableColorView.bounds.height/2)
 
@@ -52,9 +52,9 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
     override func configureNavigationBar() {
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
-        title = "Chef Availability"
+        title = .chefAvailability()
         if chefDeliverySlotsViewModel.editable {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save",
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: .commonSave(),
                                                                 style: .done,
                                                                 target: self,
                                                                 action: #selector(saveAndClose))
@@ -69,9 +69,9 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
         self.hudOperationWithSingle(operationSingle: updateSingle,
                                     onSuccessClosure: { _ in
                                         self.chefDeliverySlotsViewModel.reload()
-                                        NavigationService.reloadChefOrders = true
+                                        NavigationService.reloadChefWeekplan = true
                                         self.presentAlertWith(title: "YEAH",
-                                                              message: "Slots updated")
+                                                              message: .chefAvailabilitySlotsUpdated())
                                     },
                                    disposeBag: self.disposeBag)
     }
@@ -135,6 +135,8 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
     override func onResultsState() {
         chefDeliverySlotsViewModel.activeSlots = chefDeliverySlotsViewModel.result
         self.collectionView.reloadData()
+
+        super.onResultsState()
     }
 
 }

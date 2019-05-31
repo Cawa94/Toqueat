@@ -48,7 +48,9 @@ class NetworkService: NSObject {
                 debugPrint(parameters.url)
                 debugPrint(error)
                 let message: String
-                if let serverError = error.serverError,
+                if let stuartError = error.stuartError {
+                    message = stuartError.message
+                } else if let serverError = error.serverError,
                     let title = serverError.error {
                     message = title
                 } else {

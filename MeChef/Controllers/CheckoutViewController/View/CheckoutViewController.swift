@@ -24,7 +24,7 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let completeOrderModel = RoundedButtonViewModel(title: "Complete Order", type: .squeezedOrange)
+        let completeOrderModel = RoundedButtonViewModel(title: .checkoutCompleteOrder(), type: .squeezedOrange)
         completeOrderButton.configure(with: completeOrderModel)
 
         guard let paymentContext = checkoutViewModel.paymentContext
@@ -38,7 +38,7 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
     override func configureNavigationBar() {
         super.configureNavigationBar()
         navigationController?.isNavigationBarHidden = false
-        title = "Checkout"
+        title = .checkoutTitle()
     }
 
     // MARK: - Actions
@@ -80,6 +80,7 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
         dishesPriceLabel.text = CartService.localCart?.total.stringWithCurrency
         totalPriceLabel.text = newTotal.stringWithCurrency
         checkoutViewModel.paymentContext?.paymentAmount = Int(truncating: newTotal.multiplying(byPowerOf10: 2))
+
         super.onResultsState()
     }
 
@@ -88,7 +89,8 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
 extension CheckoutViewController: STPPaymentContextDelegate {
 
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
-        self.presentAlertWith(title: "WARNING", message: error.localizedDescription)
+        self.presentAlertWith(title: String.commonWarning().capitalized,
+                              message: error.localizedDescription)
     }
 
     // Called when user select a payment method
@@ -115,7 +117,8 @@ extension CheckoutViewController: STPPaymentContextDelegate {
                 let client = STPAPIClient.shared()
                 client.confirmPaymentIntent(with: paymentIntentParams, completion: { (paymentIntent, error) in
                     if let error = error {
-                        self.presentAlertWith(title: "WARNING", message: error.localizedDescription)
+                        self.presentAlertWith(title: String.commonWarning().capitalized,
+                                              message: error.localizedDescription)
                     } else if let paymentIntent = paymentIntent {
                         self.checkPaymentStatus(paymentIntent)
                     }
@@ -154,8 +157,8 @@ extension CheckoutViewController: STPPaymentContextDelegate {
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { order in
-                self.presentAlertWith(title: "YEAH", message: "Order placed with ID: \(order.id)",
-                    actions: [ UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                self.presentAlertWith(title: "YEAH", message: .checkoutCompleted(),
+                    actions: [ UIAlertAction(title: .commonOk(), style: .default, handler: { _ in
                         NavigationService.dismissCartNavigationController()
                     })])
                 CartService.localCart = .new
@@ -168,13 +171,15 @@ extension CheckoutViewController: STPPaymentContextDelegate {
             paymentIntent: paymentIntent,
             completion: { clientSecret, redirectError in
                 if let redirectError = redirectError {
-                    self.presentAlertWith(title: "WARNING", message: redirectError.localizedDescription)
+                    self.presentAlertWith(title: String.commonWarning().capitalized,
+                                          message: redirectError.localizedDescription)
                 } else {
                     // Fetch the latest status of the Payment Intent if necessary
                     STPAPIClient.shared()
                         .retrievePaymentIntent(withClientSecret: clientSecret) { paymentIntent, error in
                         if let error = error {
-                            self.presentAlertWith(title: "WARNING", message: error.localizedDescription)
+                            self.presentAlertWith(title: String.commonWarning().capitalized,
+                                                  message: error.localizedDescription)
                         } else if let paymentIntent = paymentIntent {
                             self.checkPaymentStatus(paymentIntent)
                         }

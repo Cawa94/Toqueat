@@ -2,7 +2,7 @@ import UIKit
 import RxSwift
 import Nuke
 
-class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.ResultType>,
+class ChefWeekplanViewController: BaseStatefulController<ChefWeekplanViewModel.ResultType>,
     UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView! {
@@ -18,9 +18,9 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
         }
     }
 
-    var chefOrdersViewModel: ChefOrdersViewModel! {
+    var chefWeekplanViewModel: ChefWeekplanViewModel! {
         didSet {
-            viewModel = chefOrdersViewModel
+            viewModel = chefWeekplanViewModel
         }
     }
 
@@ -36,15 +36,15 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if NavigationService.reloadChefOrders {
-            chefOrdersViewModel.reload()
-            NavigationService.reloadChefOrders = false
+        if NavigationService.reloadChefWeekplan {
+            chefWeekplanViewModel.reload()
+            NavigationService.reloadChefWeekplan = false
         }
         navigationController?.isNavigationBarHidden = true
     }
 
     @IBAction func profileAction(_ sender: Any) {
-        NavigationService.presentChefProfileController(chefId: chefOrdersViewModel.chefId)
+        NavigationService.presentChefProfileController(chefId: chefWeekplanViewModel.chefId)
     }
 
     // MARK: - Collection view data source and delegate methods
@@ -64,24 +64,24 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
                                                                 return UICollectionViewCell()
         }
 
-        cell.titleLabel.text = chefOrdersViewModel.elementTitleAt(indexPath)
+        cell.titleLabel.text = chefWeekplanViewModel.elementTitleAt(indexPath)
         if indexPath.section != 0 {
-            if let order = chefOrdersViewModel.orderAt(indexPath) {
+            if let order = chefWeekplanViewModel.orderAt(indexPath) {
                 cell.titleLabel.font = .mediumFontOf(size: 14)
-                cell.backgroundColor = chefOrdersViewModel.cellColorForOrder(state: order.orderState)
-                cell.titleLabel.textColor = chefOrdersViewModel.textColorForOrderCell(state: order.orderState)
+                cell.backgroundColor = chefWeekplanViewModel.cellColorForOrder(state: order.orderState)
+                cell.titleLabel.textColor = chefWeekplanViewModel.textColorForOrderCell(state: order.orderState)
             } else {
-                let isAvailable = chefOrdersViewModel.isLoading
-                    ? false : chefOrdersViewModel.isAvailableAt(indexPath)
+                let isAvailable = chefWeekplanViewModel.isLoading
+                    ? false : chefWeekplanViewModel.isAvailableAt(indexPath)
                 cell.titleLabel.font = isAvailable ? .mediumFontOf(size: 14) : .regularFontOf(size: 14)
-                cell.backgroundColor = chefOrdersViewModel.cellColorForHours
-                cell.titleLabel.textColor = chefOrdersViewModel.textColorForAvailability(isAvailable)
+                cell.backgroundColor = chefWeekplanViewModel.cellColorForHours
+                cell.titleLabel.textColor = chefWeekplanViewModel.textColorForAvailability(isAvailable)
             }
             cell.drawBorders(isWeekday: false)
         } else {
             cell.titleLabel.font = .boldFontOf(size: 16)
-            cell.backgroundColor = chefOrdersViewModel.cellColorForWeekdays
-            cell.titleLabel.textColor = chefOrdersViewModel.textColorForWeekdays
+            cell.backgroundColor = chefWeekplanViewModel.cellColorForWeekdays
+            cell.titleLabel.textColor = chefWeekplanViewModel.textColorForWeekdays
             cell.drawBorders(isWeekday: true)
         }
 
@@ -98,7 +98,7 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let order = chefOrdersViewModel.orderAt(indexPath) {
+        if let order = chefWeekplanViewModel.orderAt(indexPath) {
             NavigationService.pushOrderPulleyViewController(orderId: order.id, stuartId: order.stuartId)
         }
     }
@@ -106,8 +106,10 @@ class ChefOrdersViewController: BaseStatefulController<ChefOrdersViewModel.Resul
     // MARK: - StatefulViewController related methods
 
     override func onResultsState() {
-        chefOrdersViewModel.chefSlots = chefOrdersViewModel.result.deliverySlots
+        chefWeekplanViewModel.chefSlots = chefWeekplanViewModel.result.deliverySlots
         self.collectionView.reloadData()
+
+        super.onResultsState()
     }
 
 }

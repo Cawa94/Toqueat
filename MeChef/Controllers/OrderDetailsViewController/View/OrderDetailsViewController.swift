@@ -23,7 +23,7 @@ class OrderDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let cancelModel = RoundedButtonViewModel(title: "Refuse", type: .squeezedWhite)
+        let cancelModel = RoundedButtonViewModel(title: .commonCancel(), type: .squeezedWhite)
         refuseOrderButton.configure(with: cancelModel)
 
         tableView.register(UINib(nibName: "CartDishTableViewCell", bundle: nil),
@@ -39,7 +39,7 @@ class OrderDetailsViewController: UIViewController {
             .subscribe(onSuccess: { _ in
                 self.presentAlertWith(title: "YEAH",
                                       message: "Order canceled")
-                NavigationService.reloadChefOrders = true
+                NavigationService.reloadChefWeekplan = true
             })
             .disposed(by: self.disposeBag)*/
     }
@@ -160,7 +160,8 @@ extension OrderDetailsViewController: UITableViewDelegate, UITableViewDataSource
             let dish = viewModel.elements[indexPath.row]
             let dishViewModel = CartDishTableViewModel(
                 dish: dish,
-                quantityInOrder: viewModel.quantityOf(dish: dish))
+                quantityInOrder: viewModel.quantityOf(dish: dish),
+                isInCart: false)
             dishCell.configureWith(contentViewModel: dishViewModel)
             if indexPath.row == viewModel.elements.count - 1 {
                 DispatchQueue.main.async {
@@ -173,13 +174,13 @@ extension OrderDetailsViewController: UITableViewDelegate, UITableViewDataSource
             let cellModel: SubtitleTableViewModel
             switch indexPath.row {
             case 0:
-                cellModel = SubtitleTableViewModel(title: "Order Number",
+                cellModel = SubtitleTableViewModel(title: .orderDetailsOrderNumber(),
                                                    value: "\(order.id)")
             case 1:
-                cellModel = SubtitleTableViewModel(title: "Delivery date",
+                cellModel = SubtitleTableViewModel(title: .commonDeliveryDate(),
                                                    attributedValue: order.deliveryDate.attributedCheckoutMessage)
             case 2:
-                cellModel = SubtitleTableViewModel(title: "Delivery to",
+                cellModel = SubtitleTableViewModel(title: .orderDetailsDeliveryTo(),
                                                    value: "\(order.deliveryAddress)")
             default:
                 cellModel = SubtitleTableViewModel(title: "")

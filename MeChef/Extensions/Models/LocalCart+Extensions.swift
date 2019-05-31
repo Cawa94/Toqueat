@@ -31,4 +31,12 @@ extension LocalCart {
         return dishes.compactMap({ $0.price }).reduce(0, +)
     }
 
+    func canAddToCart(_ dishId: Int64) -> Bool {
+        if let localCartDish = dishes?.first(where: { $0.id == dishId }) {
+            return localCartDish.canAddToCart()
+        } else {
+            return true
+        }
+    }
+
 }

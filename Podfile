@@ -25,4 +25,5 @@ target 'Toqueat' do
   pod 'Stripe'
   pod 'CropViewController'
   pod 'Pulley'
+  pod 'NVActivityIndicatorView'
 end
