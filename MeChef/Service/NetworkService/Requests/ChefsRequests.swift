@@ -100,7 +100,8 @@ extension NetworkService {
 
     func updateChefDeviceToken(_ token: String, chefId: Int64) -> Single<Chef> {
         let body = [
-            "device_token": token
+            "device_token": token,
+            "lang": Locale.current.languageCode
         ]
 
         let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/update_device_token",

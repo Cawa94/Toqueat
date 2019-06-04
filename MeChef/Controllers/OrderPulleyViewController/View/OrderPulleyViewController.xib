@@ -34,6 +34,7 @@
                 <constraint firstItem="LRT-ZX-j2S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lSz-Rr-2aV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-296" y="-104"/>
         </view>
     </objects>
 </document>

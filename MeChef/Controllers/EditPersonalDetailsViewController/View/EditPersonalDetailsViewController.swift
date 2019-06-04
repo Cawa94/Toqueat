@@ -105,7 +105,8 @@ class EditPersonalDetailsViewController: UIViewController {
         hudOperationWithSingle(operationSingle: operationSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH", message: .profileUpdated(),
+                                    title: .commonSuccess(),
+                                    message: .profileUpdated(),
                                     actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadChefProfile = true
@@ -129,7 +130,8 @@ class EditPersonalDetailsViewController: UIViewController {
         hudOperationWithSingle(operationSingle: updateUserSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH", message: .profileUpdated(),
+                                    title: .commonSuccess(),
+                                    message: .profileUpdated(),
                                     actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadUserProfile = true
@@ -168,7 +170,7 @@ class EditPersonalDetailsViewController: UIViewController {
         self.hudOperationWithSingle(operationSingle: toggleAvailabilitySingle,
                                     onSuccessClosure: { chef in
                                         self.presentAlertWith(
-                                            title: "YEAH",
+                                            title: .commonSuccess(),
                                             message: chef.isActive ?? true
                                                 ? String.chefAccountActivated() : String.chefAccountDisabled(),
                                             actions: [ UIAlertAction(title: .commonOk(), style: .default,

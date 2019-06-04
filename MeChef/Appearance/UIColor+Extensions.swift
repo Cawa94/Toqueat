@@ -10,11 +10,11 @@ extension UIColor {
     static let placeholderPampasColor     = UIColor(hex6: 0xF3F0EB)
     static let lightGrayBackgroundColor   = UIColor(hex6: 0xFAFAFA)
     static let lightGrayBorderColor       = UIColor(hex6: 0xF0F0F0)
-    static let weekdayBorderColor         = UIColor(hex6: 0x676767)
+    static let weekdayBorderColor         = UIColor(hex6: 0xA5A5A5)
 
     //Orange
     static let mainOrangeColor         = UIColor(hex6: 0xF26E01)
-    static let highlightedOrangeColor  = UIColor(hex6: 0xF28A01)
+    static let lightOrangeColor        = UIColor(hex6: 0xF29101)
 
 }
 

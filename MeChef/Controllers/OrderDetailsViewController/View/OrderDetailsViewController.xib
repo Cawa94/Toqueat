@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,12 +16,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetailsViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
+                <outlet property="cancelOrderButton" destination="AtL-YC-jJM" id="Nis-kb-G2A"/>
                 <outlet property="contentViewHeightConstraint" destination="mui-NL-VF2" id="AxT-OC-13Y"/>
                 <outlet property="deliveryPriceLabel" destination="l5C-vI-uzN" id="44D-Me-BIU"/>
                 <outlet property="dishesPriceLabel" destination="kj0-Za-Ggm" id="AsB-f7-Hi4"/>
                 <outlet property="driverDeliveringView" destination="V5O-oQ-aDY" id="qLS-4M-gYk"/>
+                <outlet property="mainScrollView" destination="RQn-9L-0FN" id="FZ9-jV-7uV"/>
                 <outlet property="orderLabelTopConstraint" destination="Zak-Qa-OdS" id="lwR-ag-Bog"/>
-                <outlet property="refuseOrderButton" destination="AtL-YC-jJM" id="cZJ-Gq-6kC"/>
                 <outlet property="tableView" destination="9cy-ie-GVJ" id="dkk-08-J5G"/>
                 <outlet property="tableViewHeightConstraint" destination="1vh-ah-8qi" id="zhb-vu-8Mf"/>
                 <outlet property="totalPriceLabel" destination="QOk-Xj-1w7" id="hYl-lr-03y"/>
@@ -35,19 +35,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQn-9L-0FN">
-                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-Kr-fjR" userLabel="contentView">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
                             <subviews>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtL-YC-jJM" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
-                                    <rect key="frame" x="135" y="706" width="145" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Cancel"/>
-                                    <connections>
-                                        <action selector="cancelOrderAction:" destination="-1" eventType="touchUpInside" id="hns-gV-V1I"/>
-                                    </connections>
-                                </button>
                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5O-oQ-aDY" customClass="DriverDeliveringView" customModule="Toqueat" customModuleProvider="target">
                                     <rect key="frame" x="15" y="10" width="384" height="150"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,6 +67,15 @@
                                         <outlet property="delegate" destination="-1" id="uN9-tM-Xst"/>
                                     </connections>
                                 </tableView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Costs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIQ-1o-D4e">
+                                    <rect key="frame" x="25" y="406.5" width="37" height="16.5"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="order_details_costs"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABO-2D-qjb">
                                     <rect key="frame" x="25" y="433" width="364" height="22.5"/>
                                     <string key="text">........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................</string>
@@ -147,15 +148,13 @@
                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Costs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIQ-1o-D4e">
-                                    <rect key="frame" x="25" y="406.5" width="37" height="16.5"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="order_details_costs"/>
-                                    </userDefinedRuntimeAttributes>
-                                </label>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtL-YC-jJM" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
+                                    <rect key="frame" x="50" y="569.5" width="314" height="30"/>
+                                    <state key="normal" title="Cancel"/>
+                                    <connections>
+                                        <action selector="cancelOrderAction:" destination="-1" eventType="touchUpInside" id="hns-gV-V1I"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -163,6 +162,7 @@
                                 <constraint firstItem="PxD-ga-fLh" firstAttribute="centerY" secondItem="sWY-TM-73p" secondAttribute="centerY" constant="-1" id="3JZ-v5-vGY"/>
                                 <constraint firstItem="V5O-oQ-aDY" firstAttribute="top" secondItem="CnK-Kr-fjR" secondAttribute="top" constant="10" id="3io-ck-LlI"/>
                                 <constraint firstItem="l5C-vI-uzN" firstAttribute="centerY" secondItem="Nzm-di-ePD" secondAttribute="centerY" id="3yr-JK-Cmi"/>
+                                <constraint firstItem="AtL-YC-jJM" firstAttribute="leading" secondItem="CnK-Kr-fjR" secondAttribute="leading" constant="50" id="5WF-j4-HxO"/>
                                 <constraint firstItem="PxD-ga-fLh" firstAttribute="top" secondItem="ZA0-mQ-LhE" secondAttribute="bottom" constant="10" id="8se-yu-tcV"/>
                                 <constraint firstItem="E9m-bR-g3S" firstAttribute="leading" secondItem="CnK-Kr-fjR" secondAttribute="leading" constant="25" id="9xF-OM-7tf"/>
                                 <constraint firstItem="Nzm-di-ePD" firstAttribute="leading" secondItem="t6W-mg-Zn0" secondAttribute="leading" id="ART-ZE-cuG"/>
@@ -174,9 +174,11 @@
                                 <constraint firstItem="ABO-2D-qjb" firstAttribute="top" secondItem="hIQ-1o-D4e" secondAttribute="bottom" constant="10" id="IGv-PW-8op"/>
                                 <constraint firstItem="PxD-ga-fLh" firstAttribute="leading" secondItem="ABO-2D-qjb" secondAttribute="leading" id="JOV-sE-0dX"/>
                                 <constraint firstItem="hIQ-1o-D4e" firstAttribute="top" secondItem="9cy-ie-GVJ" secondAttribute="bottom" constant="10" id="ONF-bD-ApK"/>
+                                <constraint firstItem="AtL-YC-jJM" firstAttribute="top" secondItem="sWY-TM-73p" secondAttribute="bottom" constant="50" id="QGX-gj-7kE"/>
                                 <constraint firstItem="t6W-mg-Zn0" firstAttribute="leading" secondItem="CnK-Kr-fjR" secondAttribute="leading" constant="25" id="UNi-kV-GLX"/>
                                 <constraint firstItem="E9m-bR-g3S" firstAttribute="top" secondItem="CnK-Kr-fjR" secondAttribute="top" constant="20" id="Zak-Qa-OdS"/>
                                 <constraint firstItem="Nzm-di-ePD" firstAttribute="top" secondItem="ABO-2D-qjb" secondAttribute="bottom" constant="8" id="c4U-7s-dpE"/>
+                                <constraint firstAttribute="trailing" secondItem="AtL-YC-jJM" secondAttribute="trailing" constant="50" id="diR-Kf-LjV"/>
                                 <constraint firstItem="l5C-vI-uzN" firstAttribute="trailing" secondItem="ABO-2D-qjb" secondAttribute="trailing" id="eql-xf-Gc0"/>
                                 <constraint firstAttribute="trailing" secondItem="V5O-oQ-aDY" secondAttribute="trailing" constant="15" id="fJQ-eF-IgK"/>
                                 <constraint firstItem="sWY-TM-73p" firstAttribute="trailing" secondItem="ABO-2D-qjb" secondAttribute="trailing" id="g5e-yq-4MO"/>
@@ -205,15 +207,14 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="RQn-9L-0FN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="05J-wo-Fay"/>
-                <constraint firstItem="RQn-9L-0FN" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="QcW-pX-rgV"/>
+                <constraint firstItem="RQn-9L-0FN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="05J-wo-Fay"/>
+                <constraint firstItem="RQn-9L-0FN" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="QcW-pX-rgV"/>
                 <constraint firstAttribute="bottom" secondItem="RQn-9L-0FN" secondAttribute="bottom" id="oLC-F1-GIr"/>
-                <constraint firstItem="RQn-9L-0FN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wVG-V1-ss2"/>
+                <constraint firstItem="RQn-9L-0FN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wVG-V1-ss2"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="-2132" y="-333"/>
+            <point key="canvasLocation" x="-3290" y="-237"/>
         </view>
     </objects>
 </document>

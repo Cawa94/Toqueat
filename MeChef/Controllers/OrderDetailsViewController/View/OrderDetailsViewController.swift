@@ -15,7 +15,12 @@ class OrderDetailsViewController: UIViewController {
     @IBOutlet private weak var dishesPriceLabel: UILabel!
     @IBOutlet private weak var deliveryPriceLabel: UILabel!
     @IBOutlet private weak var totalPriceLabel: UILabel!
-    @IBOutlet private weak var refuseOrderButton: RoundedButton!
+    @IBOutlet private weak var cancelOrderButton: RoundedButton!
+    @IBOutlet private weak var mainScrollView: UIScrollView!
+
+    var scrollView: UIScrollView {
+        return mainScrollView
+    }
 
     var viewModel: OrderDetailsViewModel!
     let disposeBag = DisposeBag()
@@ -23,8 +28,13 @@ class OrderDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let cancelModel = RoundedButtonViewModel(title: .commonCancel(), type: .squeezedWhite)
-        refuseOrderButton.configure(with: cancelModel)
+        if SessionService.isChef {
+            let cancelModel = RoundedButtonViewModel(title: .commonCancel(), type: .squeezedRed)
+            cancelOrderButton.configure(with: cancelModel)
+            cancelOrderButton.isHidden = false
+        } else {
+            cancelOrderButton.isHidden = true
+        }
 
         tableView.register(UINib(nibName: "CartDishTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "CartDishTableViewCell")
@@ -33,22 +43,30 @@ class OrderDetailsViewController: UIViewController {
     }
 
     @IBAction func cancelOrderAction(_ sender: Any) {
-        /*viewModel.changeOrderStatusWith(orderId: viewModel.order?.id,
-                                        state: .canceled)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { _ in
-                self.presentAlertWith(title: "YEAH",
-                                      message: "Order canceled")
-                NavigationService.reloadChefWeekplan = true
-            })
-            .disposed(by: self.disposeBag)*/
+        guard let orderId = viewModel.order?.id, let stuartId = viewModel.stuartJob?.id
+            else { return }
+        let networkService = NetworkService.shared
+        let cancelOrderSingle = networkService.cancelStuartJobWith(stuartId)
+            .flatMap { _ in
+                networkService.changeOrderStatusWith(orderId: orderId,
+                                                     state: .canceled)
+            }
+        self.hudOperationWithSingle(operationSingle: cancelOrderSingle,
+                                    onSuccessClosure: { _ in
+                                        self.presentAlertWith(title: .commonSuccess(),
+                                                              message: .orderDetailsCanceled())
+                                        NavigationService.reloadChefWeekplan = true
+                                    },
+                                    disposeBag: self.disposeBag)
     }
 
     override func viewDidLayoutSubviews() {
+        let cancelButtonHeight: CGFloat = SessionService.isChef ? 160 : 0
         tableViewHeightConstraint.constant = tableView.contentSize.height
         contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
             + orderLabelTopConstraint.constant
             + 200 // view height without table
+            + cancelButtonHeight
     }
 
     // fake result state, called when PulleyController has result
@@ -108,7 +126,7 @@ extension OrderDetailsViewController: UITableViewDelegate, UITableViewDataSource
         case 0:
             return viewModel.numberOfItems(for: 0)
         default:
-            return 3
+            return SessionService.isChef ? 2 : 3
         }
     }
 

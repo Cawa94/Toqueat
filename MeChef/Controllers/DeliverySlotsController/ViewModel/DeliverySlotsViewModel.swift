@@ -19,7 +19,7 @@ final class DeliverySlotsViewModel: BaseStatefulViewModel<DeliverySlotsViewModel
         self.chefId = chefId
         let weekdays = [1, 2, 3, 4, 5, 6, 7]
         let firstDayIndex = (today.weekday != 1 ? today.weekday - 1 : 7) - 1
-        let firstDay = weekdays[cyclic: firstDayIndex + 2]
+        let firstDay = weekdays[cyclic: firstDayIndex /*+ 2*/]
         var tempWeekdays = DeliverySlot.weekdayTable.map { $0.key }.sorted(by: { $0 < $1 })
         if firstDay != 1 { // if not Monday, change order of the days
             let toMoveDays = tempWeekdays[0...firstDay - 2]
@@ -45,10 +45,8 @@ extension DeliverySlotsViewModel {
     func elementTitleAt(_ indexPath: IndexPath) -> String {
         switch indexPath.section {
         case 0:
-            //let slot = deliverySlotAt(IndexPath(row: indexPath.row, section: indexPath.section + 1))
-            //return "\(slot.weekday)"
-            let dayDate = today.dateByAdding(indexPath.row + 2, .day)
-            return "\(dayDate.weekdayName(.default)) \(dayDate.day)"
+            let dayDate = today.dateByAdding(indexPath.row /*+ 2*/, .day)
+            return "\(dayDate.weekdayName(.default).capitalized) \(dayDate.day)"
         default:
             return DeliverySlot.hoursRangeWithIndex(indexPath.section)
         }

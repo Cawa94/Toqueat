@@ -54,7 +54,8 @@ extension NetworkService {
 
     func updateUserDeviceToken(_ token: String, userId: Int64) -> Single<User> {
         let body = [
-            "device_token": token
+            "device_token": token,
+            "lang": Locale.current.languageCode
         ]
 
         let apiParameters = ApiRequestParameters(relativeUrl: "users/\(userId)/update_device_token",

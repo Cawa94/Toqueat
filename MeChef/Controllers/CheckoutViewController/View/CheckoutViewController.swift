@@ -32,7 +32,6 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
 
         paymentContext.delegate = self
         paymentContext.hostViewController = self
-        paymentContext.paymentAmount = 5000 // This is in cents, i.e. $50 USD
     }
 
     override func configureNavigationBar() {
@@ -106,7 +105,10 @@ extension CheckoutViewController: STPPaymentContextDelegate {
     func paymentContext(_ paymentContext: STPPaymentContext,
                         didCreatePaymentResult paymentResult: STPPaymentResult,
                         completion: @escaping STPErrorBlock) {
-        let payAndCreateOrderSingle = NetworkService.shared.generatePaymentIntent(parameters:
+
+        self.startLoading(with: self.loadingStateView)
+
+        NetworkService.shared.generatePaymentIntent(parameters:
             StripePaymentIntentParameters(amount: paymentContext.paymentAmount,
                                           paymentMethod: paymentResult.source.stripeID))
             .map { intentResponse in
@@ -117,17 +119,18 @@ extension CheckoutViewController: STPPaymentContextDelegate {
                 let client = STPAPIClient.shared()
                 client.confirmPaymentIntent(with: paymentIntentParams, completion: { (paymentIntent, error) in
                     if let error = error {
+                        self.endLoading(with: self.loadingStateView)
                         self.presentAlertWith(title: String.commonWarning().capitalized,
                                               message: error.localizedDescription)
                     } else if let paymentIntent = paymentIntent {
                         self.checkPaymentStatus(paymentIntent)
                     }
                 })
-            }
-
+            }.subscribe().disposed(by: self.disposeBag)
+/*
         self.hudOperationWithSingle(operationSingle: payAndCreateOrderSingle,
                                     onSuccessClosure: { _ in },
-                                    disposeBag: self.disposeBag)
+                                    disposeBag: self.disposeBag)*/
 
     }
 
@@ -156,12 +159,15 @@ extension CheckoutViewController: STPPaymentContextDelegate {
                     chefLocation: self.checkoutViewModel.result.chef.stuartLocation)
             }
             .observeOn(MainScheduler.instance)
-            .subscribe(onSuccess: { order in
-                self.presentAlertWith(title: "YEAH", message: .checkoutCompleted(),
+            .subscribe(onSuccess: { _ in
+                self.endLoading(with: self.loadingStateView)
+                self.presentAlertWith(title: .commonSuccess(), message: .checkoutCompleted(),
                     actions: [ UIAlertAction(title: .commonOk(), style: .default, handler: { _ in
                         NavigationService.dismissCartNavigationController()
                     })])
                 CartService.localCart = .new
+            }, onError: { _ in
+                self.endLoading(with: self.loadingStateView)
             })
             .disposed(by: self.disposeBag)
     }
@@ -178,6 +184,7 @@ extension CheckoutViewController: STPPaymentContextDelegate {
                     STPAPIClient.shared()
                         .retrievePaymentIntent(withClientSecret: clientSecret) { paymentIntent, error in
                         if let error = error {
+                            self.endLoading(with: self.loadingStateView)
                             self.presentAlertWith(title: String.commonWarning().capitalized,
                                                   message: error.localizedDescription)
                         } else if let paymentIntent = paymentIntent {
@@ -200,6 +207,7 @@ extension CheckoutViewController: STPPaymentContextDelegate {
     func paymentContext(_ paymentContext: STPPaymentContext,
                         didFinishWith status: STPPaymentStatus,
                         error: Error?) {
+        self.endLoading(with: self.loadingStateView)
     }
 
 }

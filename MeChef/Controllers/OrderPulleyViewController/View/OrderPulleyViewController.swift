@@ -53,7 +53,7 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
 
     override func configureNavigationBar() {
         navigationController?.isNavigationBarHidden = false
-        title = "Order Details"
+        title = .orderDetailsTitle()
     }
 
     // MARK: - StatefulViewController related methods
@@ -65,6 +65,7 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
         if let orderDetailsController = self.pulleyController.drawerContentViewController
             as? OrderDetailsViewController {
             orderDetailsController.viewModel = orderPulleyViewModel.orderDetailsViewModel
+            orderDetailsController.scrollView.delegate = self
             orderDetailsController.onResultState()
             orderPulleyViewModel.stuartJobDriver.drive(onNext: { _ in
                 orderDetailsController.updateEtaText()
@@ -92,6 +93,21 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
         }
 
         super.onResultsState()
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewHeight = scrollView.frame.size.height
+        let scrollContentSizeHeight = scrollView.contentSize.height
+        let scrollOffset = scrollView.contentOffset.y
+
+        if scrollOffset < 0 && pulleyController.allowsUserDrawerPositionChange {
+            // PULL DOWN -----------------
+            pulleyController.setDrawerPosition(position: .partiallyRevealed, animated: true)
+        } else if scrollOffset + scrollViewHeight == scrollContentSizeHeight {
+            // then we are at the end
+            pulleyController.setDrawerPosition(position: .open, animated: true)
+        }
+
     }
 
 }

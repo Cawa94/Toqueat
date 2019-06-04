@@ -70,7 +70,7 @@ class ChefDeliverySlotsViewController: BaseStatefulController<[DeliverySlot]>,
                                     onSuccessClosure: { _ in
                                         self.chefDeliverySlotsViewModel.reload()
                                         NavigationService.reloadChefWeekplan = true
-                                        self.presentAlertWith(title: "YEAH",
+                                        self.presentAlertWith(title: .commonSuccess(),
                                                               message: .chefAvailabilitySlotsUpdated())
                                     },
                                    disposeBag: self.disposeBag)

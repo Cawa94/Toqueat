@@ -55,7 +55,8 @@ extension CartDishTableViewCell: PlaceholderConfigurable {
         priceLabel.textColor = contentViewModel.isInCart ? .mainOrangeColor : .darkGrayColor
         nameLabel.text = contentViewModel.dish.name
         let dishQuantity = contentViewModel.quantityInOrder ?? contentViewModel.dish.quantityInCart
-        quantityLabel.text = dishQuantity > 1 ? "\(dishQuantity) dishes" : "\(dishQuantity) dish"
+        quantityLabel.text = dishQuantity > 1
+            ? "\(dishQuantity) \(String.commonDishes())" : "\(dishQuantity) \(String.commonDish())"
         let totalPrice = contentViewModel.dish.price.multiplying(by: NSDecimalNumber(value: dishQuantity))
         priceLabel.text = totalPrice.stringWithCurrency
 

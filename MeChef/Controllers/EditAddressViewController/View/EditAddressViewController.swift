@@ -45,7 +45,8 @@ class EditAddressViewController: BaseStatefulController<[City]> {
         hudOperationWithSingle(operationSingle: updateChefAddressSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH", message: .profileAddressUpdated(),
+                                    title: .commonSuccess(),
+                                    message: .profileAddressUpdated(),
                                     actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadChefProfile = true
@@ -61,7 +62,8 @@ class EditAddressViewController: BaseStatefulController<[City]> {
         hudOperationWithSingle(operationSingle: updateUserAddressSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH", message: .profileAddressUpdated(),
+                                    title: .commonSuccess(),
+                                    message: .profileAddressUpdated(),
                                     actions: [ UIAlertAction(title: .commonOk(), style: .default,
                                                              handler: { _ in
                                                                 NavigationService.reloadUserProfile = true

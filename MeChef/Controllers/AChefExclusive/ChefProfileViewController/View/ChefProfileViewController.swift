@@ -112,11 +112,11 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
             case 1:
                 switch indexPath.row {
                 case 0:
-                    viewModel = UserBarTableViewModel(option: .profileMyAvilability())
+                    viewModel = UserBarTableViewModel(option: .profileMyOrders())
                 case 1:
-                    viewModel = UserBarTableViewModel(option: .profileMyAddress())
+                    viewModel = UserBarTableViewModel(option: .profileMyAvilability())
                 case 2:
-                    viewModel = UserBarTableViewModel(option: .profileMyOrders(), hideBottomLine: false)
+                    viewModel = UserBarTableViewModel(option: .profileMyAddress(), hideBottomLine: false)
                 default:
                     viewModel = UserBarTableViewModel(option: "Unknown")
                 }
@@ -173,12 +173,12 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
         case 1:
             switch indexPath.row {
             case 0:
+                NavigationService.pushOrdersViewController()
+            case 1:
                 NavigationService.pushChefDeliverySlotsViewController(chefId: chefProfileViewModel.result.id,
                                                                       editable: true)
-            case 1:
-                NavigationService.pushEditAddressViewController()
             case 2:
-                NavigationService.pushOrdersViewController()
+                NavigationService.pushEditAddressViewController()
             default:
                 break
             }
@@ -240,8 +240,7 @@ extension ChefProfileViewController: WebViewControllerDelegate {
                 }
             self.hudOperationWithSingle(operationSingle: requestSingle,
                                         onSuccessClosure: { _ in
-                                            self.presentAlertWith(title: "YEAH",
-                                                                  message: .profileStripeConnected())
+                                            self.presentAlertWith(title: .commonSuccess(), message: .profileStripeConnected())
                                         },
                                         disposeBag: self.disposeBag)
         }

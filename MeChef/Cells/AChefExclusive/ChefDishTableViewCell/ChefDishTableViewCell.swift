@@ -63,7 +63,7 @@ extension ChefDishTableViewCell: PlaceholderConfigurable {
             dishImageView.image = UIImage(named: "dish_placeholder")
         }
         dishImageView.contentMode = .scaleAspectFill
-        isActiveLabel.text = contentViewModel.isActive ?? true ? "" : "DISABLED"
+        isActiveLabel.text = contentViewModel.isActive ?? true ? "" : .dishUnactive()
         isActiveLabel.textColor = contentViewModel.isActive ?? true ? .green : .red
     }
 

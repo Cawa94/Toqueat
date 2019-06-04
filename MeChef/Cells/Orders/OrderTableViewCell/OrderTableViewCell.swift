@@ -52,7 +52,7 @@ extension OrderTableViewCell: PlaceholderConfigurable {
 
         chefLabel.text = contentViewModel.order.chef.name
         totalLabel.text = contentViewModel.order.totalPrice.stringWithCurrency
-        deliveryLabel.text = "\(contentViewModel.delivery)"
+        deliveryLabel.attributedText = contentViewModel.order.deliveryDate.attributedShortMessage
         if let url = contentViewModel.order.chef.avatarLink {
             Nuke.loadImage(with: url, into: chefImageView)
         } else {

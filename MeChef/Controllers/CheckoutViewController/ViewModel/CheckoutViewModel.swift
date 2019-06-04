@@ -74,7 +74,8 @@ extension CheckoutViewModel {
                                              packageType: "small",
                                              packageDescription: "",
                                              clientReference: "\(orderId)")
-                let jobParameters = StuartJobParameters(pickupAt: nil /*order.deliveryDate*/,
+                let fixedStuartDate = order.deliveryDate.dateByAdding(-4, .hour).dateByAdding(15, .minute).date
+                let jobParameters = StuartJobParameters(pickupAt: fixedStuartDate /*nil*/,
                     pickups: [chefLocation],
                     dropoffs: [dropOff],
                     transportType: nil)

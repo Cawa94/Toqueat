@@ -64,7 +64,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
         hudOperationWithSingle(operationSingle: toggleSingle,
                                onSuccessClosure: { dish in
                                 self.presentAlertWith(
-                                    title: "YEAH",
+                                    title: .commonSuccess(),
                                     message: dish.isActive ?? true
                                         ? String.editDishEnabled() : String.editDishDisabled(),
                                     actions: [ UIAlertAction(title: .commonOk(), style: .default,
@@ -88,6 +88,8 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
         servingsTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         ingredientsTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         descriptionTextView.addLine(position: .bottom, color: .lightGray, width: 0.5)
+
+        ingredientsTextField.placeholder = String.dishIngredientsPlaceholder()
 
         typeTextField.inputView = typePicker
         typePicker.delegate = self
@@ -113,7 +115,8 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
             nameTextField.text = dish.name
             priceTextField.text = dish.price.stringWithoutCurrency
             maxQuantityTextField.text = "\(dish.maxQuantity)"
-            typeTextField.text = dish.categories?.first?.name
+            typeTextField.text = DishCategoryType.allValues
+                .first(where: { $0.id == dish.categories?.first?.id })?.name
             servingsTextField.text = "\(dish.servings ?? 1)"
             ingredientsTextField.text = dish.ingredients
             descriptionTextView.text = dish.description
@@ -215,7 +218,7 @@ extension ChefDishViewController: ValidationDelegate {
         hudOperationWithSingle(operationSingle: operationSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
-                                    title: "YEAH",
+                                    title: .commonSuccess(),
                                     message: self.chefDishViewModel.isNewDish
                                         ? .editDishCreated() : .editDishUpdated(),
                                     actions: [ UIAlertAction(title: .commonOk(), style: .default,

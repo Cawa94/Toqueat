@@ -52,8 +52,11 @@ extension String {
 	/// Choose delivery time
 	static func cartChooseDeliveryTime() -> String { return "cart_choose_delivery_time".localized() }
 
-	/// Your cart is empty. Just choose the perfect dishes you would like to taste
+	/// Your cart is empty. Choose the perfect dishes you would like to taste
 	static func cartEmptyText() -> String { return "cart_empty_text".localized() }
+
+	/// Choose payment method
+	static func checkoutChoosePaymentMethod() -> String { return "checkout_choose_payment_method".localized() }
 
 	/// Complete order
 	static func checkoutCompleteOrder() -> String { return "checkout_complete_order".localized() }
@@ -64,7 +67,7 @@ extension String {
 	/// Checkout
 	static func checkoutTitle() -> String { return "checkout_title".localized() }
 
-	/// Order placed! You'll receive a notification when driver will be coming at you
+	/// Order placed! You'll receive a notification when driver will be heading to your house
 	static func checkoutCompleted() -> String { return "checkout_completed".localized() }
 
 	/// Add dish
@@ -73,7 +76,7 @@ extension String {
 	/// Chef availability
 	static func chefAvailability() -> String { return "chef_availability".localized() }
 
-	/// Here you can let people know when you're available to deliver. Tap a slot to enable/disable it
+	/// Here you can let people know when you're available to deliver. Tap a slot to enable it
 	static func chefAvailabilityEditExplanation() -> String { return "chef_availability_edit_explanation".localized() }
 
 	/// The chef will be available to deliver dishes only during this hours
@@ -118,6 +121,9 @@ extension String {
 	/// Between
 	static func commonBetween() -> String { return "common_between".localized() }
 
+	/// Cancel
+	static func commonCancel() -> String { return "common_cancel".localized() }
+
 	/// Cart
 	static func commonCart() -> String { return "common_cart".localized() }
 
@@ -126,6 +132,9 @@ extension String {
 
 	/// Chefs
 	static func commonChefs() -> String { return "common_chefs".localized() }
+
+	/// Confirm
+	static func commonConfirm() -> String { return "common_confirm".localized() }
 
 	/// Delivery
 	static func commonDelivery() -> String { return "common_delivery".localized() }
@@ -145,6 +154,9 @@ extension String {
 	/// Edit
 	static func commonEdit() -> String { return "common_edit".localized() }
 
+	/// Ok
+	static func commonOk() -> String { return "common_ok".localized() }
+
 	/// Optional
 	static func commonOptional() -> String { return "common_optional".localized() }
 
@@ -154,20 +166,35 @@ extension String {
 	/// Save
 	static func commonSave() -> String { return "common_save".localized() }
 
+	/// Success
+	static func commonSuccess() -> String { return "common_success".localized() }
+
 	/// Total
 	static func commonTotal() -> String { return "common_total".localized() }
 
 	/// Warning
 	static func commonWarning() -> String { return "common_warning".localized() }
 
-	/// Cancel
-	static func commonCancel() -> String { return "common_cancel".localized() }
+	/// Monday
+	static func commonMonday() -> String { return "common_monday".localized() }
 
-	/// Confirm
-	static func commonConfirm() -> String { return "common_confirm".localized() }
+	/// Tuesday
+	static func commonTuesday() -> String { return "common_tuesday".localized() }
 
-	/// Ok
-	static func commonOk() -> String { return "common_ok".localized() }
+	/// Wednesday
+	static func commonWednesday() -> String { return "common_wednesday".localized() }
+
+	/// Thursday
+	static func commonThursday() -> String { return "common_thursday".localized() }
+
+	/// Friday
+	static func commonFriday() -> String { return "common_friday".localized() }
+
+	/// Saturday
+	static func commonSaturday() -> String { return "common_saturday".localized() }
+
+	/// Sunday
+	static func commonSunday() -> String { return "common_sunday".localized() }
 
 	/// Proceed to checkout
 	static func deliveryDateProceedCheckout() -> String { return "delivery_date_proceed_checkout".localized() }
@@ -193,6 +220,9 @@ extension String {
 	/// Describe your dish...
 	static func dishDescriptionPlaceholder() -> String { return "dish_description_placeholder".localized() }
 
+	/// (separated by commas)
+	static func dishIngredientsPlaceholder() -> String { return "dish_ingredients_placeholder".localized() }
+
 	/// Max quantity for order
 	static func dishMaxQuantity() -> String { return "dish_max_quantity".localized() }
 
@@ -205,7 +235,7 @@ extension String {
 	/// Desserts
 	static func dishTypeDesserts() -> String { return "dish_type_desserts".localized() }
 
-	/// Main courses
+	/// First courses
 	static func dishTypeMainCourses() -> String { return "dish_type_main_courses".localized() }
 
 	/// Salads
@@ -214,22 +244,25 @@ extension String {
 	/// Second courses
 	static func dishTypeSecondCourses() -> String { return "dish_type_second_courses".localized() }
 
-	/// Single courses
+	/// Unique dishes
 	static func dishTypeSingleCourses() -> String { return "dish_type_single_courses".localized() }
 
 	/// Snacks
 	static func dishTypeSnacks() -> String { return "dish_type_snacks".localized() }
 
-	/// Disable dish
+	/// Inactive
+	static func dishUnactive() -> String { return "dish_unactive".localized() }
+
+	/// Deactivate dish
 	static func editDishDisable() -> String { return "edit_dish_disable".localized() }
 
-	/// Dish disabled
+	/// Dish deactivated, from now on people will no longer see it
 	static func editDishDisabled() -> String { return "edit_dish_disabled".localized() }
 
-	/// Enable dish
+	/// Public dish
 	static func editDishEnable() -> String { return "edit_dish_enable".localized() }
 
-	/// Dish enabled
+	/// Dish activated, from now on people will be able to buy it
 	static func editDishEnabled() -> String { return "edit_dish_enabled".localized() }
 
 	/// New dish
@@ -238,7 +271,7 @@ extension String {
 	/// Edit dish
 	static func editDishTitle() -> String { return "edit_dish_title".localized() }
 
-	/// Dish created
+	/// Dish created, from now on people will be able to buy it
 	static func editDishCreated() -> String { return "edit_dish_created".localized() }
 
 	/// Dish updated
@@ -247,7 +280,7 @@ extension String {
 	/// Something went wrong
 	static func errorSomethingWentWrong() -> String { return "error_something_went_wrong".localized() }
 
-	/// You're gonna lose all your products
+	/// You're gonna lose all the products currently in cart
 	static func errorChangeCartChef() -> String { return "error_change_cart_chef".localized() }
 
 	/// Search chef
@@ -255,6 +288,9 @@ extension String {
 
 	/// Search dishes
 	static func mainSearchDish() -> String { return "main_search_dish".localized() }
+
+	/// Order canceled
+	static func orderDetailsCanceled() -> String { return "order_details_canceled".localized() }
 
 	/// Delivery to
 	static func orderDetailsDeliveryTo() -> String { return "order_details_delivery_to".localized() }

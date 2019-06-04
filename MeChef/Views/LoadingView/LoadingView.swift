@@ -32,7 +32,7 @@ final class LoadingView: UIView {
     func configure() {
         let indicator = NVActivityIndicatorView(frame: indicatorContentView.bounds,
                                                 type: .ballSpinFadeLoader,
-                                                color: .highlightedOrangeColor)
+                                                color: .mainOrangeColor)
         indicator.startAnimating()
         indicatorContentView.addSubview(indicator)
     }

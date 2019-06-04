@@ -55,7 +55,8 @@ extension DishTableViewCell: PlaceholderConfigurable {
 
         nameLabel.text = contentViewModel.dish.name
         priceLabel.text = contentViewModel.dish.price.stringWithCurrency
-        categoryLabel.text = contentViewModel.dish.categories?.first?.name
+        categoryLabel.text = DishCategoryType.allValues
+            .first(where: { $0.id == contentViewModel.dish.categories?.first?.id })?.name
         if let url = contentViewModel.dish.imageLink {
             Nuke.loadImage(with: url, into: dishImageView)
         } else {

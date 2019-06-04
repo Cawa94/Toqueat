@@ -34,7 +34,7 @@ extension NavigationService {
         let chefDishesController = NavigationService.chefDishesViewController(chefId: chefId)
             .embedInNavigationController()
         chefDishesController.tabBarItem =
-            UITabBarItem(title: .commonDishes(),
+            UITabBarItem(title: .chefMyDishes(),
                          image: UIImage(named: "dish_icon_off")?.withRenderingMode(.alwaysOriginal),
                          selectedImage: UIImage(named: "dish_icon_on")?.withRenderingMode(.alwaysOriginal))
         return chefDishesController

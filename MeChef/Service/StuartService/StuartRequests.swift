@@ -41,6 +41,12 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    func cancelStuartJobWith(_ jobId: Int64) -> Single<SimpleResponse> {
+        let apiParameters = ApiRequestParameters(stuartUrl: "v2/jobs/\(jobId)/cancel")
+
+        return request(with: apiParameters)
+    }
+
     func validateAddress(_ address: String, phone: String?) -> Single<BaseSuccessResponse> {
         let addressBody = ["address": address,
                            "type": "delivering",

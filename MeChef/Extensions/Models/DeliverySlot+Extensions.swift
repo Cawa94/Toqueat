@@ -18,13 +18,13 @@ extension DeliverySlot {
     }
 
     static let weekdayTable: [Int64: String] = [
-        1: "Monday",
-        2: "Tuesday",
-        3: "Wednesday",
-        4: "Thursday",
-        5: "Friday",
-        6: "Saturday",
-        7: "Sunday"
+        1: .commonMonday(),
+        2: .commonTuesday(),
+        3: .commonWednesday(),
+        4: .commonThursday(),
+        5: .commonFriday(),
+        6: .commonSaturday(),
+        7: .commonSunday()
     ]
 
     static let hoursTable: [Int64: String] = [
@@ -74,9 +74,9 @@ extension DeliverySlot {
 
     func attributedDeliveryMessage(with date: Date) -> NSAttributedString {
         return NSMutableAttributedString()
-            .normal("You will receive your order ", size: 15.0)
-            .bold("\(weekday) \(date.day) \(date.monthName(.default))", size: 15.0)
-            .normal(" between ", size: 15.0)
+            .normal("\(String.deliveryDateWillReceive()) ", size: 15.0)
+            .bold("\(weekday) \(date.day) \(date.monthName(.default).capitalized)", size: 15.0)
+            .normal(" \(String.commonBetween().lowercased()) ", size: 15.0)
             .bold(hourRange, size: 15.0)
     }
 

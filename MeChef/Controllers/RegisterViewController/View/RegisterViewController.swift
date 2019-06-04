@@ -89,7 +89,8 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
                                                                   email: email, password: password,
                                                                   cityId: cityId, address: street,
                                                                   zipcode: zipcode, apartment: apartment,
-                                                                  phone: phone)
+                                                                  phone: phone,
+                                                                  lang: Locale.current.languageCode ?? "en")
                 return NetworkService.shared.register(registerParameters: registrationParameters)
                     .flatMap { response -> Single<User> in
                         SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)

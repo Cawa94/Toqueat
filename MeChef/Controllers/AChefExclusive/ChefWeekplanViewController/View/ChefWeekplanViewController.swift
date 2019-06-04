@@ -67,7 +67,7 @@ class ChefWeekplanViewController: BaseStatefulController<ChefWeekplanViewModel.R
         cell.titleLabel.text = chefWeekplanViewModel.elementTitleAt(indexPath)
         if indexPath.section != 0 {
             if let order = chefWeekplanViewModel.orderAt(indexPath) {
-                cell.titleLabel.font = .mediumFontOf(size: 14)
+                cell.titleLabel.font = .boldFontOf(size: 14)
                 cell.backgroundColor = chefWeekplanViewModel.cellColorForOrder(state: order.orderState)
                 cell.titleLabel.textColor = chefWeekplanViewModel.textColorForOrderCell(state: order.orderState)
             } else {

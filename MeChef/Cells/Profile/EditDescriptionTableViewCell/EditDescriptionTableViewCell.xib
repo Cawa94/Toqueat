@@ -44,7 +44,7 @@
                             <constraint firstAttribute="trailing" secondItem="yrI-Ey-TE8" secondAttribute="trailing" constant="10" id="qPF-0Q-7aZ"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6Zi-zo-Zef">
+                    <view hidden="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6Zi-zo-Zef">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EWq-FN-T6T">
@@ -53,9 +53,6 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="KGk-i7-Jjw" id="3WC-sa-bsF"/>
-                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -100,8 +97,8 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="bottomSpacerView" destination="dMX-uF-cZS" id="h4E-B3-nfG"/>
-                <outlet property="contentContainerViewOutlet" destination="9VG-aX-VJL" id="hRF-bj-Ogd"/>
-                <outlet property="placeholderContainerViewOutlet" destination="6Zi-zo-Zef" id="XfN-Y2-TE3"/>
+                <outlet property="contentContainerViewOutlet" destination="9VG-aX-VJL" id="Sfd-Ji-Awd"/>
+                <outlet property="placeholderContainerViewOutlet" destination="6Zi-zo-Zef" id="sna-Ab-LK3"/>
                 <outlet property="textView" destination="yrI-Ey-TE8" id="IZL-go-VmT"/>
                 <outlet property="textViewHeightConstraint" destination="uvw-10-tF9" id="fch-Nr-5BM"/>
             </connections>

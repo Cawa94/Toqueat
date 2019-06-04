@@ -14,11 +14,6 @@ struct OrderDetailsViewModel {
 
 extension OrderDetailsViewModel {
 
-    func changeOrderStatusWith(orderId: Int64, state: OrderState) -> Single<Order> {
-        return NetworkService.shared.changeOrderStatusWith(orderId: orderId,
-                                                           state: state)
-    }
-
     func quantityOf(dish: LocalCartDish) -> Int {
         return order?.dishes.filter { $0.id == dish.id }.count ?? 1
     }

@@ -209,7 +209,7 @@ private extension RoundedButton.ButtonState {
             case .normal:
                 backgroundColor = .mainOrangeColor
             case .highlighted, .disabled:
-                backgroundColor = .highlightedOrangeColor
+                backgroundColor = .lightOrangeColor
             default:
                 backgroundColor = .mainOrangeColor
             }

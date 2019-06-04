@@ -43,7 +43,7 @@ extension ChefWeekplanViewModel {
         switch indexPath.section {
         case 0:
             let dayDate = today.dateByAdding(indexPath.row, .day)
-            return "\(dayDate.weekdayName(.default)) \(dayDate.day)"
+            return "\(dayDate.weekdayName(.default).capitalized) \(dayDate.day)"
         default:
             return DeliverySlot.hoursRangeWithIndex(indexPath.section)
         }
@@ -81,8 +81,10 @@ extension ChefWeekplanViewModel {
 
     func textColorForOrderCell(state: OrderState) -> UIColor {
         switch state {
-        default:
+        case .waitingForConfirmation:
             return .darkGrayColor
+        default:
+            return .white
         }
     }
 
@@ -91,7 +93,7 @@ extension ChefWeekplanViewModel {
         case .waitingForConfirmation:
             return .yellow
         default:
-            return .green
+            return .mainOrangeColor
         }
     }
 

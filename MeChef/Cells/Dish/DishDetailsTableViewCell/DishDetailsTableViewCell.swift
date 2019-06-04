@@ -61,8 +61,10 @@ extension DishDetailsTableViewCell: PlaceholderConfigurable {
         descriptionLabel.text = contentViewModel.description
         let addButtonModel = AddToCartViewModel(dish: contentViewModel)
         addToCartView.configureWith(addButtonModel)
-        categoryServingsLabel.text = "\(contentViewModel.categories?.first?.name ?? "") "
-            + "- \(contentViewModel.servings ?? 1) \(String.dishServings())"
+        let dishType = DishCategoryType.allValues
+            .first(where: { $0.id == contentViewModel.categories?.first?.id })?.name
+        categoryServingsLabel.text = "\(dishType ?? "") "
+            + "- \(contentViewModel.servings ?? 1) \(String.dishServings().lowercased())"
         if let ingredients = contentViewModel.ingredients?.replacingOccurrences(of: ",",
                                                                                 with: "\n\u{2022} "),
             ingredients.isNotEmpty {

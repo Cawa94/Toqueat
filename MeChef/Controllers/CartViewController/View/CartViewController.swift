@@ -171,7 +171,7 @@ extension CartViewController: SwipeTableViewCellDelegate {
                                                                 indexPath: indexPath)*/
                                             }
         }
-        removeOneAction.backgroundColor = .highlightedOrangeColor
+        removeOneAction.backgroundColor = .lightOrangeColor
         removeOneAction.font = .boldFontOf(size: 35)
         removeOneAction.textColor = .white
 
