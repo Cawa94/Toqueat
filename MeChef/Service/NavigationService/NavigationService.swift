@@ -161,7 +161,7 @@ extension NavigationService {
     }
 
     static func topControllerPreentAlertWith(title: String, message: String) {
-        rootNavigationController?.presentAlertWith(title: title, message: message)
+        appWindow.rootViewController?.presentAlertWith(title: title, message: message)
     }
 
     static func pushDeliverySlotsViewController(chefId: Int64) {

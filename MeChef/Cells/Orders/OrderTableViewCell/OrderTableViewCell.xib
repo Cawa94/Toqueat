@@ -134,6 +134,7 @@
                 <outlet property="chefImageView" destination="aCm-WG-7Hv" id="NDQ-i5-bgR"/>
                 <outlet property="chefLabel" destination="HgV-lc-oqz" id="tu8-cl-JcB"/>
                 <outlet property="contentContainerViewOutlet" destination="6Yy-qn-XHK" id="UFk-NK-nox"/>
+                <outlet property="dateLeadingConstraint" destination="bzA-bU-6xa" id="mfu-AF-tEj"/>
                 <outlet property="deliveryLabel" destination="qBC-0q-KIl" id="TMV-zQ-n6d"/>
                 <outlet property="placeholderContainerViewOutlet" destination="1fU-SS-KZd" id="GON-Mz-A3t"/>
                 <outlet property="totalLabel" destination="0PC-JZ-xmJ" id="okn-Np-RVf"/>

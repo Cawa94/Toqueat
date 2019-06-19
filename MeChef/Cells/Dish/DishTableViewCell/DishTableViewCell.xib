@@ -26,32 +26,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="219.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVA-5x-RHl" userLabel="ContentContainerView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="219.5"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wVA-5x-RHl">
+                        <rect key="frame" x="10" y="5" width="355" height="204.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" verticalHuggingPriority="253" translatesAutoresizingMaskIntoConstraints="NO" id="UCE-Ob-2Gf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="253" image="dish_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="UCE-Ob-2Gf">
+                                <rect key="frame" x="0.0" y="0.0" width="355" height="155"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="155" id="M8w-FT-To6"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjb-LY-wM7">
-                                <rect key="frame" x="5" y="160" width="197" height="22.5"/>
+                                <rect key="frame" x="5" y="160" width="177" height="22.5"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Bold" family="Roboto Slab" pointSize="17"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                                " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T37-mD-1KL">
-                                <rect key="frame" x="5" y="192.5" width="93.5" height="19"/>
+                                <rect key="frame" x="5" y="192.5" width="93.5" height="4"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Light" family="Roboto Slab" pointSize="12"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="               " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXw-pr-gUd">
-                                <rect key="frame" x="302" y="160" width="63" height="22.5"/>
+                                <rect key="frame" x="282" y="160" width="63" height="22.5"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="RobotoSlab-Bold" family="Roboto Slab" pointSize="17"/>
                                 <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -73,10 +73,10 @@
                             <constraint firstItem="Tjb-LY-wM7" firstAttribute="leading" secondItem="wVA-5x-RHl" secondAttribute="leading" constant="5" id="vF1-as-VHf"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4M-bE-KpX" userLabel="ContentContainerView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4M-bE-KpX">
                         <rect key="frame" x="10" y="5" width="355" height="204.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" verticalHuggingPriority="253" translatesAutoresizingMaskIntoConstraints="NO" id="UwX-gH-FTZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="253" verticalHuggingPriority="253" image="dish_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="UwX-gH-FTZ">
                                 <rect key="frame" x="0.0" y="0.0" width="355" height="155"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="155" id="m79-Hg-Hlc"/>
@@ -128,13 +128,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="A4M-bE-KpX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="IKX-YX-V5h"/>
-                    <constraint firstItem="wVA-5x-RHl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="V1n-yT-SLU"/>
+                    <constraint firstItem="wVA-5x-RHl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="V1n-yT-SLU"/>
                     <constraint firstAttribute="bottom" secondItem="A4M-bE-KpX" secondAttribute="bottom" constant="10" id="WsM-Yu-eys"/>
-                    <constraint firstAttribute="bottom" secondItem="wVA-5x-RHl" secondAttribute="bottom" id="eBD-BS-KJZ"/>
-                    <constraint firstItem="wVA-5x-RHl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kYY-3H-nfP"/>
+                    <constraint firstAttribute="bottom" secondItem="wVA-5x-RHl" secondAttribute="bottom" constant="10" id="eBD-BS-KJZ"/>
+                    <constraint firstItem="wVA-5x-RHl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="kYY-3H-nfP"/>
                     <constraint firstAttribute="trailing" secondItem="A4M-bE-KpX" secondAttribute="trailing" constant="10" id="mEM-77-GB0"/>
                     <constraint firstItem="A4M-bE-KpX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="prg-TL-7jU"/>
-                    <constraint firstAttribute="trailing" secondItem="wVA-5x-RHl" secondAttribute="trailing" id="waG-Q0-u9y"/>
+                    <constraint firstAttribute="trailing" secondItem="wVA-5x-RHl" secondAttribute="trailing" constant="10" id="waG-Q0-u9y"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -149,4 +149,7 @@
             <point key="canvasLocation" x="-258" y="111"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="dish_placeholder" width="512" height="512"/>
+    </resources>
 </document>

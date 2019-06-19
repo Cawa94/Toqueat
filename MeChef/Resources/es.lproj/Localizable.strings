@@ -95,13 +95,15 @@
 "order_details_canceled" = "Pedido cancelado";
 "order_details_costs" = "Costos";
 "order_details_delivery_to" = "Entregar a";
-"order_details_driver_eta" = "estará en tu casa";
+"order_details_driver_eta" = "estará en tu casa en";
 "order_details_driver_eta_undefined" = "will be at your house in a few minutes";
 "order_details_order_number" = "Número de orden";
 "order_details_title" = "Detalles del pedido";
 "order_details_your_dishes" = "Tus platos";
 "orders_canceled" = "Cancelado";
 "orders_delivered" = "Entregado";
+"orders_empty_placeholder" = "Aún no has completado alguna orden";
+"orders_empty_chef_placeholder" = "Aún no has recibido alguna orden";
 "orders_en_route" = "En camino";
 "orders_scheduled" = "Programado";
 "orders_title" = "Mis pedidos";

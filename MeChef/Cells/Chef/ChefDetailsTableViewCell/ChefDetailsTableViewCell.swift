@@ -53,7 +53,7 @@ extension ChefDetailsTableViewCell: PlaceholderConfigurable {
     func configure(contentViewModel: Chef) {
         self.viewModel = contentViewModel
 
-        instagramButton.isHidden = contentViewModel.instagramUsername == nil
+        instagramButton.isHidden = contentViewModel.instagramUsername?.isEmpty ?? true
         instagramButton.text = " @\(contentViewModel.instagramUsername ?? "")"
         nameLabel.text = "\(contentViewModel.name) \(contentViewModel.lastname)"
         cityLabel.text = contentViewModel.city.name

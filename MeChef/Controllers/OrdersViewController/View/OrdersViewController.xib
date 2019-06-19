@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrdersViewController" customModule="Toqueat" customModuleProvider="target">
             <connections>
+                <outlet property="emptyOrdersLabel" destination="PZf-7O-TeL" id="4Cy-7K-F8u"/>
                 <outlet property="tableView" destination="yTq-wI-lfT" id="h4a-Ki-clv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,6 +22,12 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You didn't completed any order yet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZf-7O-TeL">
+                    <rect key="frame" x="15" y="35" width="345" height="19"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yTq-wI-lfT">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -30,7 +37,10 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="yTq-wI-lfT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6b6-JB-iVd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PZf-7O-TeL" secondAttribute="trailing" constant="15" id="E7n-3P-X5G"/>
+                <constraint firstItem="PZf-7O-TeL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="GxW-0q-ZK6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yTq-wI-lfT" secondAttribute="trailing" id="ReV-UZ-Ezt"/>
+                <constraint firstItem="PZf-7O-TeL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="ac9-Gf-mg7"/>
                 <constraint firstItem="yTq-wI-lfT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fZO-O4-fRl"/>
                 <constraint firstAttribute="bottom" secondItem="yTq-wI-lfT" secondAttribute="bottom" id="waI-M8-dqR"/>
             </constraints>

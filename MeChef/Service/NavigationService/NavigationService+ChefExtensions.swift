@@ -45,8 +45,8 @@ extension NavigationService {
             .embedInNavigationController()
         weekplanController.tabBarItem =
             UITabBarItem(title: .chefWeekplan(),
-                         image: UIImage(named: "chef_icon_off")?.withRenderingMode(.alwaysOriginal),
-                         selectedImage: UIImage(named: "chef_icon_on")?.withRenderingMode(.alwaysOriginal))
+                         image: UIImage(named: "weekplan_icon_off")?.withRenderingMode(.alwaysOriginal),
+                         selectedImage: UIImage(named: "weekplan_icon_on")?.withRenderingMode(.alwaysOriginal))
         return weekplanController
     }
 

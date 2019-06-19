@@ -23,45 +23,45 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXk-op-Zgv">
+                    <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Dishes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk5-E3-HAD">
+                            <rect key="frame" x="25" y="7" width="196.5" height="46"/>
+                            <fontDescription key="fontDescription" name="Baskerville-BoldItalic" family="Baskerville" pointSize="40"/>
+                            <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="chef_my_dishes"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rte-RL-PHb">
+                            <rect key="frame" x="325" y="12.5" width="35" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Rte-RL-PHb" secondAttribute="height" multiplier="1:1" id="Rl5-6C-Ici"/>
+                                <constraint firstAttribute="width" constant="35" id="hmT-L7-S7s"/>
+                            </constraints>
+                            <state key="normal" image="profile"/>
+                            <connections>
+                                <action selector="profileAction:" destination="-1" eventType="touchUpInside" id="81q-jD-bXA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Rte-RL-PHb" secondAttribute="trailing" constant="15" id="HkJ-29-PEc"/>
+                        <constraint firstItem="fk5-E3-HAD" firstAttribute="centerY" secondItem="nXk-op-Zgv" secondAttribute="centerY" id="UkN-Jm-xlc"/>
+                        <constraint firstItem="fk5-E3-HAD" firstAttribute="leading" secondItem="nXk-op-Zgv" secondAttribute="leading" constant="25" id="V2Z-TY-nVc"/>
+                        <constraint firstItem="Rte-RL-PHb" firstAttribute="centerY" secondItem="nXk-op-Zgv" secondAttribute="centerY" id="YGc-J0-ZiQ"/>
+                        <constraint firstAttribute="height" constant="60" id="mVy-Wm-pAH"/>
+                    </constraints>
+                </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-Qy-JrG">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ukt-cW-PZa" userLabel="contentView">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXk-op-Zgv">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Dishes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk5-E3-HAD">
-                                            <rect key="frame" x="25" y="7.5" width="196.5" height="45.5"/>
-                                            <fontDescription key="fontDescription" name="Baskerville-BoldItalic" family="Baskerville" pointSize="40"/>
-                                            <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="chef_my_dishes"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rte-RL-PHb">
-                                            <rect key="frame" x="325" y="12.5" width="35" height="35"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="Rte-RL-PHb" secondAttribute="height" multiplier="1:1" id="Rl5-6C-Ici"/>
-                                                <constraint firstAttribute="width" constant="35" id="hmT-L7-S7s"/>
-                                            </constraints>
-                                            <state key="normal" image="profile"/>
-                                            <connections>
-                                                <action selector="profileAction:" destination="-1" eventType="touchUpInside" id="81q-jD-bXA"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Rte-RL-PHb" secondAttribute="trailing" constant="15" id="HkJ-29-PEc"/>
-                                        <constraint firstItem="fk5-E3-HAD" firstAttribute="centerY" secondItem="nXk-op-Zgv" secondAttribute="centerY" id="UkN-Jm-xlc"/>
-                                        <constraint firstItem="fk5-E3-HAD" firstAttribute="leading" secondItem="nXk-op-Zgv" secondAttribute="leading" constant="25" id="V2Z-TY-nVc"/>
-                                        <constraint firstItem="Rte-RL-PHb" firstAttribute="centerY" secondItem="nXk-op-Zgv" secondAttribute="centerY" id="YGc-J0-ZiQ"/>
-                                        <constraint firstAttribute="height" constant="60" id="mVy-Wm-pAH"/>
-                                    </constraints>
-                                </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eKA-JT-CTc">
                                     <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -73,13 +73,9 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="eKA-JT-CTc" secondAttribute="trailing" id="6Yc-Mi-DaG"/>
-                                <constraint firstItem="nXk-op-Zgv" firstAttribute="top" secondItem="ukt-cW-PZa" secondAttribute="top" id="BDk-Xf-T7m"/>
                                 <constraint firstAttribute="bottom" secondItem="eKA-JT-CTc" secondAttribute="bottom" id="CDu-CM-gOC"/>
                                 <constraint firstItem="eKA-JT-CTc" firstAttribute="leading" secondItem="ukt-cW-PZa" secondAttribute="leading" id="Jrj-5O-GS1"/>
                                 <constraint firstAttribute="height" constant="667" id="OqU-a0-QaJ"/>
-                                <constraint firstItem="nXk-op-Zgv" firstAttribute="leading" secondItem="ukt-cW-PZa" secondAttribute="leading" id="aYj-Hp-uCR"/>
-                                <constraint firstItem="eKA-JT-CTc" firstAttribute="top" secondItem="nXk-op-Zgv" secondAttribute="bottom" constant="10" id="haS-GX-AoB"/>
-                                <constraint firstAttribute="trailing" secondItem="nXk-op-Zgv" secondAttribute="trailing" id="kWg-WN-G3p"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -94,10 +90,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="xFb-Qy-JrG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="K2T-Qs-NfQ"/>
+                <constraint firstItem="nXk-op-Zgv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="2v3-Lj-oPF"/>
+                <constraint firstItem="nXk-op-Zgv" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="K2J-pb-dr6"/>
                 <constraint firstItem="xFb-Qy-JrG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Lm2-fB-gXz"/>
                 <constraint firstItem="xFb-Qy-JrG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TiM-wh-fUj"/>
+                <constraint firstItem="xFb-Qy-JrG" firstAttribute="top" secondItem="nXk-op-Zgv" secondAttribute="bottom" id="Uei-rr-Php"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="xFb-Qy-JrG" secondAttribute="bottom" id="Ywf-09-lQQ"/>
+                <constraint firstItem="nXk-op-Zgv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yA9-sh-PZt"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="64.799999999999997" y="130.88455772113943"/>

@@ -98,10 +98,12 @@
 "order_details_title" = "Order details";
 "order_details_your_dishes" = "Your dishes";
 "order_details_costs" = "Costs";
-"order_details_driver_eta" = "will be at your house";
+"order_details_driver_eta" = "will be at your house in";
 "order_details_driver_eta_undefined" = "will be at your house in a few minutes";
 "orders_canceled" = "Canceled";
 "orders_delivered" = "Delivered";
+"orders_empty_placeholder" = "You didn't completed any order yet";
+"orders_empty_chef_placeholder" = "You didn't received any order yet";
 "orders_en_route" = "En route";
 "orders_scheduled" = "Scheduled";
 "orders_title" = "My orders";

@@ -47,6 +47,9 @@ class BaseTableViewController<ResultType, ElementType>: BaseStatefulController<R
         return nil
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    }
+
     func configure(_ cell: UITableViewCell, at indexPath: IndexPath, isLoading: Bool) {
         if isLoading {
             configureWithPlaceholders(cell, at: indexPath)

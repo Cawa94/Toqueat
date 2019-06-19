@@ -110,7 +110,7 @@ class ChefDishesViewController: BaseTableViewController<Chef, ChefDish> {
     override func viewDidLayoutSubviews() {
         tableViewHeightConstraint.constant = tableView.contentSize.height
         contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
-            + 60 // Dishes title
+            //+ 60 // Dishes title
     }
 
 }

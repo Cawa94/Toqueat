@@ -1,13 +1,13 @@
 import UIKit
 import RxSwift
+import Nuke
 
 class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
     UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var searchBarContainerView: UIView!
-    @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var searchBarHeightConstraint: NSLayoutConstraint!
 
     var dishesViewModel: DishesViewModel! {
         didSet {
@@ -19,9 +19,12 @@ class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
     private var filteredText: String?
     private var selectedCategoryId: Int64?
     private lazy var searchBar: UISearchBar = .toqueatSearchBar
+    private var lastContentOffset: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.scrollView.delegate = self
 
         searchBar.frame = searchBarContainerView.bounds
         searchBarContainerView.addSubview(searchBar)
@@ -53,6 +56,20 @@ class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
         let nib = UINib(nibName: "DishCategoryCollectionViewCell", bundle: nil)
         collectionView.register(nib,
                                 forCellWithReuseIdentifier: "DishCategoryCollectionViewCell")
+
+        configureNuke()
+    }
+
+    func configureNuke() {
+        let contentModes = ImageLoadingOptions.ContentModes(
+            success: .scaleAspectFill,
+            failure: .scaleAspectFit,
+            placeholder: .scaleAspectFit)
+
+        ImageLoadingOptions.shared.contentModes = contentModes
+        ImageLoadingOptions.shared.placeholder = UIImage()
+        ImageLoadingOptions.shared.failureImage = UIImage(named: "dish_placeholder")
+        ImageLoadingOptions.shared.transition = .fadeIn(duration: 0.3)
     }
 
     @IBAction func profileAction(_ sender: Any) {
@@ -167,12 +184,20 @@ class DishesViewController: BaseTableViewController<[BaseDish], BaseDish>,
         super.onResultsState()
     }
 
-    override func viewDidLayoutSubviews() {
-        tableViewHeightConstraint.constant = tableView.contentSize.height
-        contentViewHeightConstraint.constant = tableViewHeightConstraint.constant
-            + 60 // Dishes title
-            + 80 // searchBar
-            + 56 // filters collectionView
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == tableView.scrollView {
+            let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+            let offset = scrollView.contentOffset.y
+            if translation.y > 0 && self.searchBarHeightConstraint.constant == 0 && offset <= 0 {
+                // move up
+                searchBarHeightConstraint.constant = 56
+            } else if translation.y < 0 && self.searchBarHeightConstraint.constant == 56 {
+                // move down
+                searchBarHeightConstraint.constant = 0
+            }
+
+            UIView.animate(withDuration: 0.2, animations: { self.view.layoutIfNeeded() })
+        }
     }
 
 }

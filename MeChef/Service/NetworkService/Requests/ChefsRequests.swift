@@ -55,10 +55,15 @@ extension NetworkService {
             .map { $0.deliverySlots }
     }
 
-    func searchChef(query: String) -> Single<[BaseChef]> {
-        let parameters = ["search": query] as Parameters
+    func searchChef(query: String?) -> Single<[BaseChef]> {
+        let parameters: Parameters
+        if let query = query {
+            parameters = ["search_query": query] as Parameters + currentCityParameter
+        } else {
+            parameters = currentCityParameter
+        }
         let apiParameters = ApiRequestParameters(relativeUrl: "searchChef",
-                                                 parameters: parameters + currentCityParameter)
+                                                 parameters: parameters)
 
         return (request(with: apiParameters) as Single<ChefsResponse>)
             .map { $0.chefs }

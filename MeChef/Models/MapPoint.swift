@@ -16,7 +16,7 @@ class HomePoint: NSObject, MKAnnotation {
 
 class CourierPoint: NSObject, MKAnnotation {
 
-    static let imageName = "motorbike_location"
+    static let imageName = "driver_location"
 
     let coordinate: CLLocationCoordinate2D
 

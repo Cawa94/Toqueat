@@ -75,10 +75,10 @@ extension CheckoutViewModel {
                                              packageDescription: "",
                                              clientReference: "\(orderId)")
                 let fixedStuartDate = order.deliveryDate.dateByAdding(-4, .hour).dateByAdding(15, .minute).date
-                let jobParameters = StuartJobParameters(pickupAt: fixedStuartDate /*nil*/,
-                    pickups: [chefLocation],
-                    dropoffs: [dropOff],
-                    transportType: nil)
+                let jobParameters = StuartJobParameters(pickupAt: /*fixedStuartDate*/ nil,
+                                                        pickups: [chefLocation],
+                                                        dropoffs: [dropOff],
+                                                        transportType: nil)
                 return NetworkService.shared.createStuartJobWith(jobParameters)
                     .flatMap { stuartJob -> Single<Order> in
                         networkService.setStuartIdFor(orderId: orderId, stuartId: stuartJob.id)

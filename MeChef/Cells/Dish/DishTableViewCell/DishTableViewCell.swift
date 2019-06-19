@@ -18,9 +18,11 @@ class DishTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         self.disposeBag = DisposeBag()
+        dishImageView.image = UIImage(named: "dish_placeholder")
     }
 
     override func awakeFromNib() {
+        dishImageView.image = UIImage(named: "dish_placeholder")
         dishImageView.clipsToBounds = true
         dishImageView.roundCorners(radii: 15.0)
         chefImageView.roundCorners(radii: chefImageView.frame.width/2,

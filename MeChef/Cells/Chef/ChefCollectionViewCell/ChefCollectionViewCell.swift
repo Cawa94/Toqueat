@@ -53,7 +53,7 @@ extension ChefCollectionViewCell: PlaceholderConfigurable {
         self.viewModel = contentViewModel
 
         nameLabel.text = "\(contentViewModel.name) \(contentViewModel.lastname)"
-        instaUsernameLabel.isHidden = contentViewModel.instagramUsername == nil
+        instaUsernameLabel.isHidden = contentViewModel.instagramUsername?.isEmpty ?? true
         instaUsernameLabel.text = "@\(contentViewModel.instagramUsername ?? "")"
         if let url = contentViewModel.avatarLink {
             Nuke.loadImage(with: url, into: avatarImageView)

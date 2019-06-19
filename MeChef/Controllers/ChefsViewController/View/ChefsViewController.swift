@@ -1,6 +1,7 @@
 import UIKit
 import RxSwift
 import RxGesture
+import Nuke
 
 class ChefsViewController: BaseStatefulController<[BaseChef]>,
     UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,
@@ -8,8 +9,7 @@ class ChefsViewController: BaseStatefulController<[BaseChef]>,
 
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var searchBarContainerView: UIView!
-    @IBOutlet private weak var contentViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var searchBarHeightConstraint: NSLayoutConstraint!
 
     var chefsViewModel: ChefsViewModel! {
         didSet {
@@ -24,6 +24,8 @@ class ChefsViewController: BaseStatefulController<[BaseChef]>,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        collectionView.scrollView.delegate = self
+
         searchBar.frame = searchBarContainerView.bounds
         searchBarContainerView.addSubview(searchBar)
         searchBar.placeholder = .mainSearchChef()
@@ -35,7 +37,7 @@ class ChefsViewController: BaseStatefulController<[BaseChef]>,
             .skip(1)
             .debounce(0.5)
             .drive(onNext: { text in
-                NetworkService.shared.searchChef(query: text)
+                NetworkService.shared.searchChef(query: text.isNotEmpty ? text : nil)
                     .observeOn(MainScheduler.instance)
                     .subscribe(onSuccess: { filteredChefs in
                         self.chefsViewModel.elements = filteredChefs
@@ -50,6 +52,20 @@ class ChefsViewController: BaseStatefulController<[BaseChef]>,
         let nib = UINib(nibName: ChefCollectionViewCell.reuseID, bundle: nil)
         collectionView.register(nib,
                                 forCellWithReuseIdentifier: ChefCollectionViewCell.reuseID)
+
+        configureNuke()
+    }
+
+    func configureNuke() {
+        let contentModes = ImageLoadingOptions.ContentModes(
+            success: .scaleAspectFill,
+            failure: .scaleAspectFill,
+            placeholder: .scaleAspectFit)
+
+        ImageLoadingOptions.shared.contentModes = contentModes
+        ImageLoadingOptions.shared.placeholder = UIImage()
+        ImageLoadingOptions.shared.failureImage = UIImage(named: "chef_placeholder")
+        ImageLoadingOptions.shared.transition = .fadeIn(duration: 0.3)
     }
 
     @IBAction func profileAction(_ sender: Any) {
@@ -147,12 +163,20 @@ class ChefsViewController: BaseStatefulController<[BaseChef]>,
         }
     }
 
-    override func viewDidLayoutSubviews() {
-        collectionViewHeightConstraint.constant = collectionView.contentSize.height
-        contentViewHeightConstraint.constant = collectionViewHeightConstraint.constant
-            + 60 // Chefs title
-            + 56 // searchBar
-        self.view.layoutIfNeeded()
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == collectionView.scrollView {
+            let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+            let offset = scrollView.contentOffset.y
+            if translation.y > 0 && self.searchBarHeightConstraint.constant == 0 && offset <= 0 {
+                // move up
+                searchBarHeightConstraint.constant = 56
+            } else if translation.y < 0 && self.searchBarHeightConstraint.constant == 56 {
+                // move down
+                searchBarHeightConstraint.constant = 0
+            }
+
+            UIView.animate(withDuration: 0.2, animations: { self.view.layoutIfNeeded() })
+        }
     }
 
     // MARK: - UISearchBarDelegate

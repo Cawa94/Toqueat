@@ -33,7 +33,7 @@ class MainTabViewController: UITabBarController {
 
     func configureTabBar() {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:
-            UIColor.mainGrayColor], for: .normal)
+            UIColor.darkGrayColor], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor:
             UIColor.mainOrangeColor], for: .selected)
         UITabBar.appearance().barTintColor = .white
@@ -73,8 +73,8 @@ class MainTabViewController: UITabBarController {
     func addBadge(value: Int) {
         let itemPosition = CGFloat(3)
         let itemWidth: CGFloat = tabBar.frame.width / 3
-        let xOffset: CGFloat = 12
-        let yOffset: CGFloat = -9
+        let xOffset: CGFloat = 20
+        let yOffset: CGFloat = 0
         let badgeView = PGTabBadge()
         badgeView.frame.size = CGSize(width: 17, height: 17)
         badgeView.center = CGPoint(x: (itemWidth * itemPosition) - (itemWidth/2) + xOffset,

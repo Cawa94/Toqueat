@@ -4,6 +4,8 @@ import Nuke
 
 class OrdersViewController: BaseTableViewController<[BaseOrder], OrdersViewModel.OrdersSection> {
 
+    @IBOutlet private weak var emptyOrdersLabel: UILabel!
+
     var ordersViewModel: OrdersViewModel! {
         didSet {
             tableViewModel = ordersViewModel
@@ -90,6 +92,11 @@ class OrdersViewController: BaseTableViewController<[BaseOrder], OrdersViewModel
 
     override func onResultsState() {
         ordersViewModel.elements = ordersViewModel.ordersGroupedByState
+        if ordersViewModel.elements.isEmpty {
+            self.tableView.isHidden = true
+            emptyOrdersLabel.text = SessionService.isChef
+                ? .ordersEmptyChefPlaceholder() : .ordersEmptyPlaceholder()
+        }
 
         super.onResultsState()
     }

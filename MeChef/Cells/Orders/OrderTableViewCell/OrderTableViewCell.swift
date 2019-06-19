@@ -11,6 +11,7 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet private weak var chefLabel: UILabel!
     @IBOutlet private weak var totalLabel: UILabel!
     @IBOutlet private weak var deliveryLabel: UILabel!
+    @IBOutlet private weak var dateLeadingConstraint: NSLayoutConstraint!
 
     var disposeBag = DisposeBag()
     private var viewModel: OrderTableViewModel?
@@ -53,6 +54,9 @@ extension OrderTableViewCell: PlaceholderConfigurable {
         chefLabel.text = contentViewModel.order.chef.name
         totalLabel.text = contentViewModel.order.totalPrice.stringWithCurrency
         deliveryLabel.attributedText = contentViewModel.order.deliveryDate.attributedShortMessage
+        dateLeadingConstraint.constant = SessionService.isChef ? -50 : 10
+        chefLabel.isHidden = SessionService.isChef
+        chefImageView.isHidden = SessionService.isChef
         if let url = contentViewModel.order.chef.avatarLink {
             Nuke.loadImage(with: url, into: chefImageView)
         } else {

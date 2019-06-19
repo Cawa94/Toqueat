@@ -307,7 +307,7 @@ extension String {
 	/// Costs
 	static func orderDetailsCosts() -> String { return "order_details_costs".localized() }
 
-	/// will be at your house
+	/// will be at your house in
 	static func orderDetailsDriverEta() -> String { return "order_details_driver_eta".localized() }
 
 	/// will be at your house in a few minutes
@@ -318,6 +318,12 @@ extension String {
 
 	/// Delivered
 	static func ordersDelivered() -> String { return "orders_delivered".localized() }
+
+	/// You didn't completed any order yet
+	static func ordersEmptyPlaceholder() -> String { return "orders_empty_placeholder".localized() }
+
+	/// You didn't received any order yet
+	static func ordersEmptyChefPlaceholder() -> String { return "orders_empty_chef_placeholder".localized() }
 
 	/// En route
 	static func ordersEnRoute() -> String { return "orders_en_route".localized() }
