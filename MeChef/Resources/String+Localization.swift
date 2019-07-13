@@ -7,6 +7,12 @@ import LeadKit
 // swiftlint:disable identifier_name
 
 extension String {
+	/// About us
+	static func aboutUsTitle() -> String { return "about_us_title".localized() }
+
+	/// For any question or if you need help, you can contact us at support@toqueat.com
+	static func aboutUsContactText() -> String { return "about_us_contact_text".localized() }
+
 	/// City
 	static func addressCity() -> String { return "address_city".localized() }
 

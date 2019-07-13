@@ -34,13 +34,7 @@ final class WebViewController: UIViewController {
         webView.setToCenter()
     }
 
-    func configureNavigationBar() {
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .mainOrangeColor
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ",
-                                                           style: .plain, target: nil, action: nil)
+    override func configureNavigationBar() {
         navigationController?.isNavigationBarHidden = false
         title = viewModel.pageTitle
     }

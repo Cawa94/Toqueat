@@ -49,17 +49,13 @@ class ProfileViewController: BaseStatefulController<User>,
     // MARK: - UITableViewDelegate
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return 1
         case 1:
             return 2
-        case 2:
-            return 1
         default:
             return 1
         }
@@ -113,12 +109,12 @@ class ProfileViewController: BaseStatefulController<User>,
                     viewModel = UserBarTableViewModel(option: .profileMyOrders())
                 case 1:
                     viewModel = UserBarTableViewModel(option: .profileMyAddress(), hideBottomLine: false)
-                case 2:
-                    viewModel = UserBarTableViewModel(option: "Payment Methods", hideBottomLine: false)
                 default:
                     viewModel = UserBarTableViewModel(option: "Unknown")
                 }
             case 2:
+                viewModel = UserBarTableViewModel(option: .aboutUsTitle(), hideBottomLine: false)
+            case 3:
                 viewModel = UserBarTableViewModel(option: .profileLogout(), arrowHidden: true, hideBottomLine: false)
             default:
                 viewModel = UserBarTableViewModel(option: "Unknown")
@@ -144,6 +140,8 @@ class ProfileViewController: BaseStatefulController<User>,
             return 30
         case 1:
             return 40
+        case 2:
+            return 20
         default:
             return 50
         }
@@ -167,11 +165,11 @@ class ProfileViewController: BaseStatefulController<User>,
                 NavigationService.pushOrdersViewController()
             case 1:
                 NavigationService.pushEditAddressViewController()
-            case 2:
-                break // Show Payment Methods
             default:
                 break
             }
+        case 2:
+            NavigationService.pushAboutUsViewController()
         default:
             SessionService.logout()
             DispatchQueue.main.async {

@@ -53,15 +53,9 @@ class EditPersonalDetailsViewController: UIViewController {
                            forCellReuseIdentifier: "EditDescriptionTableViewCell")
     }
 
-    func configureNavigationBar() {
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .mainOrangeColor
-        navigationController?.navigationBar.titleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: UIColor.darkGrayColor]
+    override func configureNavigationBar() {
         navigationController?.isNavigationBarHidden = false
         title = .profilePersonalDetails()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ",
-                                                           style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: .commonSave(),
                                                             style: .done,
                                                             target: self,

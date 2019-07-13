@@ -1,5 +1,6 @@
 import UIKit
 import SafariServices
+import MessageUI
 
 struct NavigationService {
 
@@ -117,6 +118,11 @@ extension NavigationService {
         push(viewController: editAddressController, animated: true)
     }
 
+    static func pushAboutUsViewController() {
+        let aboutUsController = aboutUsViewController()
+        push(viewController: aboutUsController, animated: true)
+    }
+
     static func pushOrderPulleyViewController(orderId: Int64, stuartId: Int64?) {
         let orderPulleyController = orderPulleyViewController(orderId: orderId,
                                                               stuartId: stuartId)
@@ -171,6 +177,10 @@ extension NavigationService {
 
     static func pushWebViewController(_ webController: WebViewController) {
         push(viewController: webController, animated: true)
+    }
+
+    static func presentMailController(controller: MFMailComposeViewController) {
+        navigationController?.present(controller, animated: true, completion: nil)
     }
 
     static func animateBasketItem() {

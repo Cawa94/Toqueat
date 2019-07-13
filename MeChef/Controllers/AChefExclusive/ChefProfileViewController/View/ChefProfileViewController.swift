@@ -49,19 +49,13 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
     // MARK: - UITableViewDelegate
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return 1
         case 1:
             return 3
-        case 2:
-            return 1
-        case 3:
-            return 1
         default:
             return 1
         }
@@ -128,6 +122,8 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
                                                   hideBottomLine: false,
                                                   checkHidden: !(chefProfileViewModel.result.authorizedStripe ?? false))
             case 3:
+                viewModel = UserBarTableViewModel(option: .aboutUsTitle(), hideBottomLine: false)
+            case 4:
                 viewModel = UserBarTableViewModel(option: .profileLogout(), arrowHidden: true, hideBottomLine: false)
             default:
                 viewModel = UserBarTableViewModel(option: "Unknown")
@@ -151,10 +147,12 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
         switch section {
         case 0, 1:
             return 30
-        case 2:
+        case 2, 4:
             return 20
+        case 3:
+            return 5
         default:
-            return 50
+            return 10
         }
     }
 
@@ -184,6 +182,8 @@ class ChefProfileViewController: BaseStatefulController<Chef>,
             }
         case 2:
             authorizeStripe()
+        case 3:
+            NavigationService.pushAboutUsViewController()
         default:
             SessionService.logout()
             DispatchQueue.main.async {
