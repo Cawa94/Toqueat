@@ -4,6 +4,9 @@ import Stripe
 
 final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultType> {
 
+    // Parameters
+    let packageSize = "medium"
+
     struct ResultType {
         let chef: Chef
         let deliveryCost: NSDecimalNumber
@@ -52,7 +55,7 @@ extension CheckoutViewModel {
         let dropOff = StuartLocation(address: userAddress,
                                      comment: userComment,
                                      contact: nil,
-                                     packageType: "small",
+                                     packageType: packageSize,
                                      packageDescription: "",
                                      clientReference: nil)
         let jobParameters = StuartJobParameters(pickupAt: pickupAt,
@@ -71,11 +74,11 @@ extension CheckoutViewModel {
                 let dropOff = StuartLocation(address: order.deliveryAddress,
                                              comment: order.deliveryComment,
                                              contact: order.user.stuartContact,
-                                             packageType: "small",
+                                             packageType: self.packageSize,
                                              packageDescription: "",
                                              clientReference: "\(orderId)")
-                let fixedStuartDate = order.deliveryDate.dateByAdding(-4, .hour).dateByAdding(15, .minute).date
-                let jobParameters = StuartJobParameters(pickupAt: /*fixedStuartDate*/ nil,
+                let fixedStuartDate = order.deliveryDate.dateByAdding(-4, .hour).date
+                let jobParameters = StuartJobParameters(pickupAt: nil, //fixedStuartDate,
                                                         pickups: [chefLocation],
                                                         dropoffs: [dropOff],
                                                         transportType: nil)

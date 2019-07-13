@@ -3,6 +3,15 @@ import Alamofire
 
 extension NetworkService {
 
+    func registerAsChef(registerParameters: UserCreateParameters) -> Single<Chef> {
+        let body = ChefCreateBody(chef: registerParameters)
+        let apiParameters = ApiRequestParameters(relativeUrl: "chefs",
+                                                 method: .post,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
     func getChefWith(chefId: Int64) -> Single<Chef> {
         let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)")
 

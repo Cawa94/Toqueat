@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2j-eF-mof" userLabel="contentView">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="850"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_logo_rounded" translatesAutoresizingMaskIntoConstraints="NO" id="h13-nC-uFG">
                                     <rect key="frame" x="157.66666666666666" y="10" width="60" height="60"/>
@@ -120,7 +120,7 @@
                                             </constraints>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="tel"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad" textContentType="tel"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="OFE-2x-LKt"/>
                                             </connections>
@@ -168,7 +168,7 @@
                                             </constraints>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="oEl-os-MKH"/>
                                             </connections>
@@ -209,7 +209,7 @@
                                 <constraint firstItem="TI4-Da-b3C" firstAttribute="leading" secondItem="d2j-eF-mof" secondAttribute="leading" constant="40" id="dm1-vF-nQq"/>
                                 <constraint firstItem="BNv-bf-F7C" firstAttribute="centerX" secondItem="d2j-eF-mof" secondAttribute="centerX" id="ecN-QQ-Lx7"/>
                                 <constraint firstItem="h13-nC-uFG" firstAttribute="centerX" secondItem="d2j-eF-mof" secondAttribute="centerX" id="lDm-KS-kay"/>
-                                <constraint firstAttribute="height" constant="800" id="qz1-b7-lx6"/>
+                                <constraint firstAttribute="height" constant="850" id="qz1-b7-lx6"/>
                                 <constraint firstItem="BNv-bf-F7C" firstAttribute="top" secondItem="h13-nC-uFG" secondAttribute="bottom" constant="5" id="v6i-tz-QDK"/>
                                 <constraint firstItem="TI4-Da-b3C" firstAttribute="top" secondItem="bXX-3t-ybO" secondAttribute="bottom" constant="30" id="zaM-sj-OKN"/>
                             </constraints>

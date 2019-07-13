@@ -6,7 +6,6 @@ struct OrderDetailsViewModel {
 
     let order: Order?
     let stuartJob: StuartJob?
-    let driverPhone: String?
     let isLoading: Bool
     let deliveryInProgress: Bool
 
@@ -20,6 +19,10 @@ extension OrderDetailsViewModel {
 
     var stuartDriver: StuartDriver? {
         return stuartJob?.driver
+    }
+
+    var stuartDelivery: StuartDelivery? {
+        return stuartJob?.deliveries.first
     }
 
     func numberOfItems(for section: Int) -> Int {

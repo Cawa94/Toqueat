@@ -28,14 +28,6 @@ class OrderDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if SessionService.isChef {
-            let cancelModel = RoundedButtonViewModel(title: .commonCancel(), type: .squeezedRed)
-            cancelOrderButton.configure(with: cancelModel)
-            cancelOrderButton.isHidden = false
-        } else {
-            cancelOrderButton.isHidden = true
-        }
-
         tableView.register(UINib(nibName: "CartDishTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "CartDishTableViewCell")
         tableView.register(UINib(nibName: "SubtitleTableViewCell", bundle: nil),
@@ -74,15 +66,41 @@ class OrderDetailsViewController: UIViewController {
 
         if viewModel.deliveryInProgress {
             driverDeliveringView.isHidden = false
-            orderLabelTopConstraint.constant = 180
+            orderLabelTopConstraint.constant = driverDeliveringView.bounds.height + 30
             UIView.animate(withDuration: 0.3, animations: {
                 self.view.layoutIfNeeded()
             })
             let driverModel = DriverDeliveringViewModel(stuartJob: viewModel.stuartJob,
-                                                        driverPhone: viewModel.driverPhone,
                                                         isChef: SessionService.isChef)
             driverDeliveringView.configure(with: driverModel)
+            driverDeliveringView.callDriverButton.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    guard let deliveryId = self.viewModel.stuartDelivery?.id
+                        else { return }
+                    NetworkService.shared.getStuartDriverPhoneFor("\(deliveryId)")
+                        .subscribe(onSuccess: {
+                            UIApplication.attemptPhoneCallWithPrompt(to: $0)
+                        })
+                        .disposed(by: self.disposeBag)
+                })
+                .disposed(by: self.disposeBag)
             updateEtaText()
+        }
+
+        // order can be canceled if is chef OR is customer and missing 12+ hours to delivery
+        if SessionService.isChef
+            && (viewModel.order?.orderState == .waitingForConfirmation || viewModel.order?.orderState == .scheduled) {
+            let cancelModel = RoundedButtonViewModel(title: .commonCancel(), type: .squeezedRed)
+            cancelOrderButton.configure(with: cancelModel)
+            cancelOrderButton.isHidden = false
+        } else if let deliveryDate = viewModel.order?.deliveryDate,
+            !SessionService.isChef, (Date() + 2.hours) < (deliveryDate - 12.hours),
+            (viewModel.order?.orderState == .waitingForConfirmation || viewModel.order?.orderState == .scheduled) {
+            let cancelModel = RoundedButtonViewModel(title: .commonCancel(), type: .squeezedRed)
+            cancelOrderButton.configure(with: cancelModel)
+            cancelOrderButton.isHidden = false
+        } else {
+            cancelOrderButton.isHidden = true
         }
 
         dishesPriceLabel.text = viewModel.order?.dishesPrice.stringWithCurrency

@@ -7,6 +7,7 @@ class ChefLoginViewController: UIViewController {
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var loginButton: RoundedButton!
+    @IBOutlet private weak var registerButton: RoundedButton!
 
     private let disposeBag = DisposeBag()
     private let validator = Validator()
@@ -19,6 +20,9 @@ class ChefLoginViewController: UIViewController {
 
         let loginModel = RoundedButtonViewModel(title: .authLoginAsChef(), type: .squeezedOrange)
         loginButton.configure(with: loginModel)
+
+        let registerModel = RoundedButtonViewModel(title: .authRegisterAsChef(), type: .squeezedWhite)
+        registerButton.configure(with: registerModel)
     }
 
     func addLinesToTextfields() {
@@ -33,6 +37,10 @@ class ChefLoginViewController: UIViewController {
 
     @IBAction func loginAction(_ sender: Any) {
         validator.validate(self)
+    }
+
+    @IBAction func registerAction(_ sender: Any) {
+        NavigationService.makeRegisterRootController(asChef: true)
     }
 
     @IBAction func standardLoginAction(_ sender: Any) {

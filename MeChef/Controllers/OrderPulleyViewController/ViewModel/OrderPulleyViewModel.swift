@@ -14,7 +14,6 @@ final class OrderPulleyViewModel: BaseStatefulViewModel<OrderPulleyViewModel.Res
     struct ResultType {
         let order: Order
         let stuartJob: StuartJob?
-        let driverPhone: String?
     }
 
     struct StuartJobNullable {
@@ -32,7 +31,7 @@ final class OrderPulleyViewModel: BaseStatefulViewModel<OrderPulleyViewModel.Res
             let stuartSingle = NetworkService.shared.getStuartJobWith(stuartId)
 
             combinedSingle = Single.zip(orderSingle, stuartSingle, resultSelector: {
-                ResultType(order: $0, stuartJob: $1, driverPhone: nil)
+                ResultType(order: $0, stuartJob: $1)
             })
 
             Observable<Int>.interval(.updateTimeInterval, scheduler: MainScheduler.instance)
@@ -43,7 +42,7 @@ final class OrderPulleyViewModel: BaseStatefulViewModel<OrderPulleyViewModel.Res
 
         } else {
             combinedSingle = orderSingle.map {
-                ResultType(order: $0, stuartJob: nil, driverPhone: nil)
+                ResultType(order: $0, stuartJob: nil)
             }
         }
 
@@ -81,11 +80,10 @@ extension OrderPulleyViewModel {
 
     var orderDetailsViewModel: OrderDetailsViewModel {
         return isLoading
-            ? OrderDetailsViewModel(order: nil, stuartJob: nil, driverPhone: nil,
+            ? OrderDetailsViewModel(order: nil, stuartJob: nil,
                                     isLoading: true, deliveryInProgress: false)
             : OrderDetailsViewModel(order: result.order,
                                     stuartJob: result.stuartJob,
-                                    driverPhone: result.driverPhone,
                                     isLoading: false,
                                     deliveryInProgress: deliveryInProgress)
     }

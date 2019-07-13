@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func registerAction(_ sender: Any) {
-        NavigationService.makeRegisterRootController()
+        NavigationService.makeRegisterRootController(asChef: false)
     }
 
     @IBAction func loginAsChefAction(_ sender: Any) {

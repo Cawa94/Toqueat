@@ -15,6 +15,7 @@
                 <outlet property="emailTextField" destination="FoJ-9o-KRE" id="3AD-el-8mB"/>
                 <outlet property="loginButton" destination="j0w-jf-34O" id="WLS-Wg-ZfE"/>
                 <outlet property="passwordTextField" destination="EgM-TT-o4L" id="kM0-Td-BQB"/>
+                <outlet property="registerButton" destination="fe0-Or-Oiu" id="DzL-JB-vo6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -80,18 +81,27 @@
                         <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="hNb-Jk-W30"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you would like to be a chef, please write an email at toqueat@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITN-G0-x9Q">
-                    <rect key="frame" x="10" y="465.5" width="355" height="35"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fe0-Or-Oiu" customClass="RoundedButton" customModule="Toqueat" customModuleProvider="target">
+                    <rect key="frame" x="40" y="460.5" width="295" height="30"/>
+                    <state key="normal" title="Register"/>
+                    <connections>
+                        <action selector="registerAction:" destination="-1" eventType="touchUpInside" id="c8E-mO-ZIf"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84u-bT-vWe">
+                    <rect key="frame" x="20" y="520.5" width="335" height="17.5"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="auth_how_become_chef"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="auth_contact_toqueat"/>
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="84u-bT-vWe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="1nc-th-RuK"/>
+                <constraint firstItem="84u-bT-vWe" firstAttribute="top" secondItem="fe0-Or-Oiu" secondAttribute="bottom" constant="30" id="588-mR-o2v"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EgM-TT-o4L" secondAttribute="trailing" constant="10" id="6aT-5N-7Lo"/>
                 <constraint firstItem="j0w-jf-34O" firstAttribute="top" secondItem="EgM-TT-o4L" secondAttribute="bottom" constant="30" id="7te-cn-x6d"/>
                 <constraint firstItem="Vd8-WB-uCj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="9J6-ec-xIC"/>
@@ -102,12 +112,13 @@
                 <constraint firstItem="FoJ-9o-KRE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="b5h-hc-duc"/>
                 <constraint firstItem="P1P-kg-xzW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="cXo-xY-ryZ"/>
                 <constraint firstItem="Vd8-WB-uCj" firstAttribute="width" secondItem="Vd8-WB-uCj" secondAttribute="height" multiplier="1:1" id="d3b-sw-VE1"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ITN-G0-x9Q" secondAttribute="trailing" constant="10" id="e4i-5Z-sIk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fe0-Or-Oiu" secondAttribute="trailing" constant="40" id="exH-Fb-Wab"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="P1P-kg-xzW" secondAttribute="trailing" constant="10" id="ghF-x7-ZjQ"/>
                 <constraint firstItem="EgM-TT-o4L" firstAttribute="top" secondItem="FoJ-9o-KRE" secondAttribute="bottom" constant="20" id="hIw-ap-QZr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="84u-bT-vWe" secondAttribute="trailing" constant="20" id="iFZ-mt-I6W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ux7-Lc-TSH" secondAttribute="bottom" constant="30" id="jb0-V5-10H"/>
-                <constraint firstItem="ITN-G0-x9Q" firstAttribute="top" secondItem="j0w-jf-34O" secondAttribute="bottom" constant="25" id="mJW-Qd-mBh"/>
-                <constraint firstItem="ITN-G0-x9Q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="nSC-1q-Exq"/>
+                <constraint firstItem="fe0-Or-Oiu" firstAttribute="top" secondItem="j0w-jf-34O" secondAttribute="bottom" constant="20" id="lCc-az-9k5"/>
+                <constraint firstItem="fe0-Or-Oiu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="lWP-gh-nBa"/>
                 <constraint firstItem="FoJ-9o-KRE" firstAttribute="top" secondItem="P1P-kg-xzW" secondAttribute="bottom" constant="50" id="nVg-rR-UTd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ux7-Lc-TSH" secondAttribute="trailing" constant="40" id="qGy-Y1-dAa"/>
                 <constraint firstItem="P1P-kg-xzW" firstAttribute="top" secondItem="Vd8-WB-uCj" secondAttribute="bottom" constant="10" id="rwS-7B-116"/>
@@ -115,6 +126,7 @@
                 <constraint firstItem="Ux7-Lc-TSH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="z0S-ER-fmB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-137" y="82"/>
         </view>
     </objects>
     <resources>

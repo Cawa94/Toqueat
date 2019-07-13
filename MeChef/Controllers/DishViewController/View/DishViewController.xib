@@ -114,7 +114,7 @@
                     </connections>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kxI-jI-dCV">
-                    <rect key="frame" x="15" y="57" width="25" height="25"/>
+                    <rect key="frame" x="15" y="56.666666666666657" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="kOM-2w-9SF"/>
                         <constraint firstAttribute="width" constant="25" id="ksM-vu-zge"/>
@@ -135,7 +135,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ULy-9d-V4t">
-                    <rect key="frame" x="15" y="57" width="25" height="25"/>
+                    <rect key="frame" x="15" y="56.666666666666657" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="dmn-Uk-eCr"/>
                         <constraint firstAttribute="width" constant="25" id="lEH-Ai-Ezj"/>
@@ -172,7 +172,7 @@
         </view>
     </objects>
     <resources>
-        <image name="back_arrow_orange" width="64" height="64"/>
-        <image name="back_arrow_white" width="64" height="64"/>
+        <image name="back_arrow_orange" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="back_arrow_white" width="42.666667938232422" height="42.666667938232422"/>
     </resources>
 </document>

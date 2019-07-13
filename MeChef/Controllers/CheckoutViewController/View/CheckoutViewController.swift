@@ -127,10 +127,6 @@ extension CheckoutViewController: STPPaymentContextDelegate {
                     }
                 })
             }.subscribe().disposed(by: self.disposeBag)
-/*
-        self.hudOperationWithSingle(operationSingle: payAndCreateOrderSingle,
-                                    onSuccessClosure: { _ in },
-                                    disposeBag: self.disposeBag)*/
 
     }
 
@@ -140,10 +136,9 @@ extension CheckoutViewController: STPPaymentContextDelegate {
             placeOrder()
         case .requiresSourceAction: // ---- REQUIRE EXTRA STEP TO AUTHORIZE PAYMENT ----
             redirectPayment(paymentIntent: paymentIntent)
-        case .requiresSource:
-            debugPrint("requiresSource")
         default:
-            break
+            self.endLoading(with: self.loadingStateView)
+            self.presentAlertWith(title: String.commonWarning().capitalized, message: .errorPayment())
         }
     }
 

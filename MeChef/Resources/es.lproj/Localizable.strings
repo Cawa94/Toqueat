@@ -6,11 +6,13 @@
 "address_zipcode" = "Código postal";
 "auth_already_registered" = "Ya registrado";
 "auth_are_chef" = "¿Eres un chef?";
-"auth_how_become_chef" = "Si desea ser chef, escriba un correo electrónico a toqueat@gmail.com";
+"auth_chef_registered_confirmation" = "Gracias por registrarte en Toqueat! Revisaremos tus datos y te enviaremos un correo electrónico cuando puedas comenzar a utilizar tu cuenta.";
+"auth_contact_toqueat" = "Para cualquier pregunta relacionada con ser un chef en Toqueat, escriba un correo electrónico a info@toqueat.com";
 "auth_login" = "Iniciar sesión";
 "auth_login_as_chef" = "Inicia sesión como chef";
 "auth_not_chef" = "No soy chef";
 "auth_register" = "Registro";
+"auth_register_as_chef" = "Registo como chef";
 "cart_chef_will_cook" = "va a cocinar estos platos para ti!";
 "cart_choose_delivery_time" = "Elijas la fecha de entrega";
 "cart_empty_text" = "Tu carrito esta vacío. Elige los platos perfectos que te gustaría probar.";
@@ -89,7 +91,9 @@
 "edit_dish_created" = "Plato creado, a partir de este momento todos podran verlo";
 "edit_dish_updated" = "Plato actualizado";
 "error_something_went_wrong" = "Algo salió mal";
+"error_payment" = "Algo no ha funcionado con el pago, por favor comprueba las informaciones y vuelva a intentarlo. Si sigues teniendo problemas, escribenos en support@toqueat.com";
 "error_change_cart_chef" = "Vas a perder todos los productos actualmente en carrito.";
+"error_wrong_confirm_password" = "Las 2 contraseñas no coinciden";
 "main_search_chef" = "Buscar chef";
 "main_search_dish" = "Buscar platos";
 "order_details_canceled" = "Pedido cancelado";

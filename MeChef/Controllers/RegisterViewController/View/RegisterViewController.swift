@@ -59,18 +59,31 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         streetTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         apartmentTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         zipcodeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+
+        nameTextField.placeholder = .userName()
+        lastnameTextField.placeholder = .userLastname()
+        emailTextField.placeholder = .userEmail()
+        passwordTextField.placeholder = .userPassword()
+        confirmPasswordTextField.placeholder = .userConfirmPassword()
+        phoneTextField.placeholder = .userPhone()
+        cityTextField.placeholder = .addressCity()
+        streetTextField.placeholder = "\(String.addressStreet()), \(String.addressNumber())"
+        apartmentTextField.placeholder = "\(String.addressFloor()), \(String.addressDoor())" +
+            " (\(String.commonOptional()))"
+        zipcodeTextField.placeholder = .addressZipcode()
     }
 
     func addValidationRules() {
         validator.registerField(nameTextField, rules: [RequiredRule()])
         validator.registerField(lastnameTextField, rules: [RequiredRule()])
-        validator.registerField(emailTextField, rules: [RequiredRule()])
+        validator.registerField(emailTextField, rules: [RequiredRule(), EmailRule()])
         validator.registerField(passwordTextField, rules: [RequiredRule()])
-        validator.registerField(confirmPasswordTextField, rules: [RequiredRule()])
+        validator.registerField(confirmPasswordTextField, rules: [RequiredRule(),
+                                                                  ConfirmationRule(confirmField: passwordTextField)])
         validator.registerField(phoneTextField, rules: [RequiredRule()])
         validator.registerField(cityTextField, rules: [RequiredRule()])
         validator.registerField(streetTextField, rules: [RequiredRule()])
-        validator.registerField(zipcodeTextField, rules: [RequiredRule()])
+        validator.registerField(zipcodeTextField, rules: [RequiredRule(), ZipCodeRule()])
     }
 
     func validationSuccessful() {
@@ -83,15 +96,23 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             else { return }
         let apartment = apartmentTextField.text
         let fullAddress = "\(street) \(apartment ?? "") \(zipcode) \(city)"
-        NetworkService.shared.validateAddress(fullAddress, phone: phone)
+        let registrationParameters = UserCreateParameters(name: name, lastname: lastName,
+                                                          email: email, password: password,
+                                                          cityId: cityId, address: street,
+                                                          zipcode: zipcode, apartment: apartment,
+                                                          phone: phone,
+                                                          lang: Locale.current.languageCode ?? "en")
+        if registerViewModel.asChef {
+            registerChef(chefParameters: registrationParameters, fullAddress: fullAddress)
+        } else {
+            registerUser(userParameters: registrationParameters, fullAddress: fullAddress)
+        }
+    }
+
+    func registerUser(userParameters: UserCreateParameters, fullAddress: String) {
+        NetworkService.shared.validateAddress(fullAddress, phone: userParameters.phone, isChef: false)
             .flatMap { _ -> Single<User> in
-                let registrationParameters = UserCreateParameters(name: name, lastname: lastName,
-                                                                  email: email, password: password,
-                                                                  cityId: cityId, address: street,
-                                                                  zipcode: zipcode, apartment: apartment,
-                                                                  phone: phone,
-                                                                  lang: Locale.current.languageCode ?? "en")
-                return NetworkService.shared.register(registerParameters: registrationParameters)
+                return NetworkService.shared.register(registerParameters: userParameters)
                     .flatMap { response -> Single<User> in
                         SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)
                         return NetworkService.shared.getUserInfo()
@@ -106,6 +127,23 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             .disposed(by: disposeBag)
     }
 
+    func registerChef(chefParameters: UserCreateParameters, fullAddress: String) {
+        NetworkService.shared.validateAddress(fullAddress, phone: chefParameters.phone, isChef: true)
+            .flatMap { _ in
+                return NetworkService.shared.registerAsChef(registerParameters: chefParameters)
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onSuccess: { _ in
+                self.presentAlertWith(title: .commonSuccess(),
+                                      message: .authChefRegisteredConfirmation(),
+                                      actions: [UIAlertAction(title: .commonOk(), style: .default,
+                                                              handler: { _ in
+                                                                NavigationService.makeChefLoginRootController()
+                                      })])
+            })
+            .disposed(by: disposeBag)
+    }
+
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {
         // turn the fields to red
         for (field, _) in errors {
@@ -113,6 +151,9 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
                 field.attributedPlaceholder = NSAttributedString(
                     string: field.placeholder ?? "",
                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+                if field == confirmPasswordTextField {
+                    self.presentAlertWith(title: .commonWarning(), message: .errorWrongConfirmPassword())
+                }
             }
         }
     }

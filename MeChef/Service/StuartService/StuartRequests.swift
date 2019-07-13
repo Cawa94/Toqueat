@@ -47,14 +47,21 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func validateAddress(_ address: String, phone: String?) -> Single<BaseSuccessResponse> {
+    func validateAddress(_ address: String, phone: String?, isChef: Bool) -> Single<BaseSuccessResponse> {
         let addressBody = ["address": address,
-                           "type": "delivering",
+                           "type": isChef ? "picking" : "delivering",
                            "phone": phone]
         let apiParameters = ApiRequestParameters(stuartUrl: "v2/addresses/validate",
                                                  parameters: addressBody.toJSON())
 
         return request(with: apiParameters)
+    }
+
+    func getStuartDriverPhoneFor(_ deliveryId: String) -> Single<String> {
+        let apiParameters = ApiRequestParameters(stuartUrl: "v2/deliveries/\(deliveryId)/phone_number")
+
+        return (request(with: apiParameters) as Single<StuartDriverPhone>)
+            .map { $0.phoneNumber }
     }
 
 }

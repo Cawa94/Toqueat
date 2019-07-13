@@ -31,8 +31,8 @@ class DishViewController: BaseStatefulController<Dish>,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        whiteBackgroundView.roundOnly(corners: [.topLeft, .topRight], cornerRadii: 30.0)
-        tableView.roundOnly(corners: [.topLeft, .topRight], cornerRadii: 30.0)
+        whiteBackgroundView.roundCorners(radii: 30.0)
+        tableView.roundCorners(radii: 30.0)
 
         tableView.register(UINib(nibName: "DishDetailsTableViewCell", bundle: nil),
                            forCellReuseIdentifier: "DishDetailsTableViewCell")

@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .disposed(by: disposeBag)
 
         STPPaymentConfiguration.shared().publishableKey = StripeService.publicKey
-        STPPaymentConfiguration.shared().appleMerchantIdentifier = "merchant.es.YC.toqueat"
+        STPPaymentConfiguration.shared().appleMerchantIdentifier = "merchant.com.toqueat.iosapp"
 
         return true
     }

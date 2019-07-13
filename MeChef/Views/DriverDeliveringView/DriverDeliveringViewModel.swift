@@ -4,7 +4,6 @@ import SwiftDate
 struct DriverDeliveringViewModel {
 
     let stuartJob: StuartJob?
-    let driverPhone: String?
     let isChef: Bool // if isChef, show extimated time to chef house
 
 }

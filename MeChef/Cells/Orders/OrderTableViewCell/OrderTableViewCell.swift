@@ -9,6 +9,7 @@ class OrderTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var chefImageView: UIImageView!
     @IBOutlet private weak var chefLabel: UILabel!
+    @IBOutlet private weak var orderNumberLabel: UILabel!
     @IBOutlet private weak var totalLabel: UILabel!
     @IBOutlet private weak var deliveryLabel: UILabel!
     @IBOutlet private weak var dateLeadingConstraint: NSLayoutConstraint!
@@ -51,6 +52,7 @@ extension OrderTableViewCell: PlaceholderConfigurable {
     func configure(contentViewModel: OrderTableViewModel) {
         self.viewModel = contentViewModel
 
+        orderNumberLabel.text = "#\(contentViewModel.order.id)"
         chefLabel.text = contentViewModel.order.chef.name
         totalLabel.text = contentViewModel.order.totalPrice.stringWithCurrency
         deliveryLabel.attributedText = contentViewModel.order.deliveryDate.attributedShortMessage

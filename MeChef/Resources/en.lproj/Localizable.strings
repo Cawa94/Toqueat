@@ -6,11 +6,13 @@
 "address_zipcode" = "Zipcode";
 "auth_already_registered" = "Already registered";
 "auth_are_chef" = "Are you a chef?";
-"auth_how_become_chef" = "If you would like to be a chef, please write an email at toqueat@gmail.com";
+"auth_chef_registered_confirmation" = "Thank you for registering on Toqueat! We'll review your data and will send you an email when you'll be able to start using your account";
+"auth_contact_toqueat" = "For any question regarding being a chef on Toqueat, please write an email at info@toqueat.com";
 "auth_login" = "Log in";
 "auth_login_as_chef" = "Log in as chef";
 "auth_not_chef" = "I am not a chef";
 "auth_register" = "Register";
+"auth_register_as_chef" = "Register as chef";
 "cart_chef_will_cook" = "is gonna cook this dishes for you!";
 "cart_choose_delivery_time" = "Choose delivery time";
 "cart_empty_text" = "Your cart is empty. Choose the perfect dishes you would like to taste";
@@ -88,8 +90,10 @@
 "edit_dish_title" = "Edit dish";
 "edit_dish_created" = "Dish created, from now on people will be able to buy it";
 "edit_dish_updated" = "Dish updated";
-"error_something_went_wrong" = "Something went wrong";
 "error_change_cart_chef" = "You're gonna lose all the products currently in cart";
+"error_payment" = "Something went wrong with the payment, please check your credit card and try again. If problem persists, please write at support@toqueat.com";
+"error_something_went_wrong" = "Something went wrong";
+"error_wrong_confirm_password" = "The 2 passwords do not match";
 "main_search_chef" = "Search chef";
 "main_search_dish" = "Search dishes";
 "order_details_canceled" = "Order canceled";

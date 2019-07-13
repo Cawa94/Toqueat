@@ -57,6 +57,7 @@
 		DA57E4E0222C57790086B5DA /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4DE222C57790086B5DA /* ChefViewController.swift */; };
 		DA57E4E1222C57790086B5DA /* ChefViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57E4DF222C57790086B5DA /* ChefViewController.xib */; };
 		DA57E4E3222C58D30086B5DA /* NavigationService+ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */; };
+		DA58C8EE22CB9E01001B9F51 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58C8ED22CB9E01001B9F51 /* UIApplication+Extensions.swift */; };
 		DA5A6C6B22A1808A00D28935 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A6C6A22A1808A00D28935 /* String+Localization.swift */; };
 		DA5A6C6D22A182D300D28935 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5A6C6C22A182D300D28935 /* UIButton+Extensions.swift */; };
 		DA5AD75F224A2CD700D1064E /* StickyGridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5AD75E224A2CD700D1064E /* StickyGridCollectionViewLayout.swift */; };
@@ -285,6 +286,7 @@
 		DA57E4DE222C57790086B5DA /* ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
 		DA57E4DF222C57790086B5DA /* ChefViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefViewController.xib; sourceTree = "<group>"; };
 		DA57E4E2222C58D30086B5DA /* NavigationService+ChefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ChefViewController.swift"; sourceTree = "<group>"; };
+		DA58C8ED22CB9E01001B9F51 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		DA5A6C6722A17C9100D28935 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DA5A6C6922A17CBA00D28935 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = ../es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DA5A6C6A22A1808A00D28935 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
@@ -616,6 +618,7 @@
 		DA3B120C229FE1CC00D6134B /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				DA58C8ED22CB9E01001B9F51 /* UIApplication+Extensions.swift */,
 				DA5A6C6C22A182D300D28935 /* UIButton+Extensions.swift */,
 				DAF21F2222B9386000FEDEAE /* UIImageView+Extensions.swift */,
 				DA3B120D229FE1FB00D6134B /* UILabel+Extensions.swift */,
@@ -1245,10 +1248,10 @@
 		DAD2B72C22639C25004286A7 /* Dish */ = {
 			isa = PBXGroup;
 			children = (
+				DA69D0F1225BD69B00231E3E /* DishCategoryCollectionViewCell */,
 				DA5DE16522734EBF00229486 /* DishCollectionViewCell */,
 				DA0328B2225CD221001FBE14 /* DishDetailsTableViewCell */,
 				DAC99471222BE96A000282F1 /* DishTableViewCell */,
-				DA69D0F1225BD69B00231E3E /* DishCategoryCollectionViewCell */,
 			);
 			path = Dish;
 			sourceTree = "<group>";
@@ -2248,6 +2251,7 @@
 				DA9363B5223984E200DF8951 /* Array+Extensions.swift in Sources */,
 				DADF5A28222AAE5A0064DB75 /* LeadKitError.swift in Sources */,
 				DAB775C0229C40F80040C386 /* SubtitleTableViewModel.swift in Sources */,
+				DA58C8EE22CB9E01001B9F51 /* UIApplication+Extensions.swift in Sources */,
 				DAF596332281F8210058E334 /* MainTabViewModel.swift in Sources */,
 				DABC32182254EFEB0001757E /* ChefCollectionViewCell.swift in Sources */,
 				DA28526122789B37009C0AD1 /* GoToPaymentView.swift in Sources */,
@@ -2428,7 +2432,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toqueat.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2449,7 +2453,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = es.YC.toqueat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toqueat.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -97,8 +97,8 @@ extension NavigationService {
         push(viewController: dishController, animated: true)
     }
 
-    static func makeRegisterRootController() {
-        let registerController = registerViewController().embedInNavigationController()
+    static func makeRegisterRootController(asChef: Bool) {
+        let registerController = registerViewController(asChef: asChef).embedInNavigationController()
         appWindow.changeRootController(controller: registerController)
     }
 
@@ -160,7 +160,7 @@ extension NavigationService {
         navigationController?.present(safariController, animated: true, completion: nil)
     }
 
-    static func topControllerPreentAlertWith(title: String, message: String) {
+    static func topControllerPresentAlertWith(title: String, message: String) {
         appWindow.rootViewController?.presentAlertWith(title: title, message: message)
     }
 

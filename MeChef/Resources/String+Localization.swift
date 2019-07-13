@@ -31,8 +31,11 @@ extension String {
 	/// Are you a chef?
 	static func authAreChef() -> String { return "auth_are_chef".localized() }
 
-	/// If you would like to be a chef, please write an email at toqueat@gmail.com
-	static func authHowBecomeChef() -> String { return "auth_how_become_chef".localized() }
+	/// Thank you for registering on Toqueat! We'll review your data and will send you an email when you'll be able to start using your account
+	static func authChefRegisteredConfirmation() -> String { return "auth_chef_registered_confirmation".localized() }
+
+	/// For any question regarding being a chef on Toqueat, please write an email at info@toqueat.com
+	static func authContactToqueat() -> String { return "auth_contact_toqueat".localized() }
 
 	/// Log in
 	static func authLogin() -> String { return "auth_login".localized() }
@@ -45,6 +48,9 @@ extension String {
 
 	/// Register
 	static func authRegister() -> String { return "auth_register".localized() }
+
+	/// Register as chef
+	static func authRegisterAsChef() -> String { return "auth_register_as_chef".localized() }
 
 	/// is gonna cook this dishes for you!
 	static func cartChefWillCook() -> String { return "cart_chef_will_cook".localized() }
@@ -277,11 +283,17 @@ extension String {
 	/// Dish updated
 	static func editDishUpdated() -> String { return "edit_dish_updated".localized() }
 
+	/// You're gonna lose all the products currently in cart
+	static func errorChangeCartChef() -> String { return "error_change_cart_chef".localized() }
+
+	/// Something went wrong with the payment, please check your credit card and try again. If problem persists, please write at support@toqueat.com
+	static func errorPayment() -> String { return "error_payment".localized() }
+
 	/// Something went wrong
 	static func errorSomethingWentWrong() -> String { return "error_something_went_wrong".localized() }
 
-	/// You're gonna lose all the products currently in cart
-	static func errorChangeCartChef() -> String { return "error_change_cart_chef".localized() }
+	/// The 2 passwords do not match
+	static func errorWrongConfirmPassword() -> String { return "error_wrong_confirm_password".localized() }
 
 	/// Search chef
 	static func mainSearchChef() -> String { return "main_search_chef".localized() }
