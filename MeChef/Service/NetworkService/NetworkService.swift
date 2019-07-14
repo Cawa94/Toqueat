@@ -13,7 +13,7 @@ public extension Alamofire.SessionManager {
 class NetworkService: NSObject {
 
     static let baseUrl = "https://toqueat.com/" // Server
-    //static let baseUrl = "http://192.168.1.33:3000/" // Home
+    //static let baseUrl = "http://192.168.1.37:3000/" // Home
     //static let baseUrl = "http://192.168.2.177:3000/" // Office
 
     // Alamofire Settings
@@ -47,6 +47,7 @@ class NetworkService: NSObject {
             .do(onError: { error in
                 debugPrint(parameters.url)
                 debugPrint(error)
+                // If you change this, also edit the hudOperationWithSingle func
                 let message: String
                 if let stuartError = error.stuartError {
                     message = stuartError.message

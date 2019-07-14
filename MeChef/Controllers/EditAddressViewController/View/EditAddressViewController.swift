@@ -40,8 +40,13 @@ class EditAddressViewController: BaseStatefulController<[City]> {
     func updateChefAddress(parameters: AddressUpdateParameters) {
         guard let chefId = editAddressViewModel.chef?.id
             else { return }
-        let updateChefAddressSingle = NetworkService.shared.updateChefAddress(parameters: parameters,
-                                                                              chefId: chefId)
+        let validateAddress = NetworkService.shared.validateAddress(parameters.address,
+                                                                    phone: editAddressViewModel.chef?.phone,
+                                                                    isChef: true)
+        let updateChefAddressSingle = validateAddress.flatMap { _ in
+                NetworkService.shared.updateChefAddress(parameters: parameters,
+                                                        chefId: chefId)
+        }
         hudOperationWithSingle(operationSingle: updateChefAddressSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(
@@ -57,8 +62,13 @@ class EditAddressViewController: BaseStatefulController<[City]> {
     func updateUserAddress(parameters: AddressUpdateParameters) {
         guard let userId = editAddressViewModel.user?.id
             else { return }
-        let updateUserAddressSingle = NetworkService.shared.updateUserAddress(parameters: parameters,
-                                                                              userId: userId)
+        let validateAddress = NetworkService.shared.validateAddress(parameters.address,
+                                                                    phone: editAddressViewModel.user?.phone,
+                                                                    isChef: false)
+        let updateUserAddressSingle = validateAddress.flatMap { _ in
+            NetworkService.shared.updateUserAddress(parameters: parameters,
+                                                    userId: userId)
+        }
         hudOperationWithSingle(operationSingle: updateUserAddressSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(

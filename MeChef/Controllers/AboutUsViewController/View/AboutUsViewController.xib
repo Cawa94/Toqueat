@@ -36,13 +36,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IS-1A-xDC">
-                    <rect key="frame" x="163" y="267.5" width="88.5" height="18"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    <rect key="frame" x="168.5" y="264.5" width="77" height="15.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-JY-c8j">
-                    <rect key="frame" x="40" y="335.5" width="334" height="19"/>
+                    <rect key="frame" x="40" y="330" width="334" height="19"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <tableView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="iQw-Xc-K6l">
-                    <rect key="frame" x="0.0" y="325.5" width="414" height="100"/>
+                    <rect key="frame" x="0.0" y="320" width="414" height="100"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="afw-rg-i0m"/>
@@ -90,7 +90,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iQw-Xc-K6l" secondAttribute="trailing" id="mb1-42-fQX"/>
                 <constraint firstItem="S50-Yc-Wr0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="r4R-LT-aAQ"/>
                 <constraint firstItem="S50-Yc-Wr0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="slU-41-nTz"/>
-                <constraint firstItem="9IS-1A-xDC" firstAttribute="top" secondItem="Qfl-IA-8Fv" secondAttribute="bottom" constant="3" id="xV4-IQ-FUG"/>
+                <constraint firstItem="9IS-1A-xDC" firstAttribute="top" secondItem="Qfl-IA-8Fv" secondAttribute="bottom" id="xV4-IQ-FUG"/>
                 <constraint firstItem="VjL-tg-4mf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zgK-Ei-gco"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
