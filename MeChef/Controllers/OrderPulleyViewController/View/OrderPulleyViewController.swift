@@ -60,7 +60,7 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
 
     override func onResultsState() {
         // Show map only if Stuart Job status is "in_progress"
-        // Check also if is driver is going to chef or customerh house and decide on that if show map
+        // Check also if driver is going to chef or customer house and decide on that if show map
 
         if let orderDetailsController = self.pulleyController.drawerContentViewController
             as? OrderDetailsViewController {

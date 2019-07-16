@@ -183,6 +183,11 @@ extension NavigationService {
         navigationController?.present(controller, animated: true, completion: nil)
     }
 
+    static func presentMaintenanceController() {
+        let maintenanceController = maintenanceViewController()
+        navigationController?.present(maintenanceController, animated: true, completion: nil)
+    }
+
     static func animateBasketItem() {
         guard let mainController = NavigationService.mainViewController,
             let cartItem = mainController.tabBar.items?[2]

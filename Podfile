@@ -26,4 +26,5 @@ target 'Toqueat' do
   pod 'CropViewController'
   pod 'Pulley'
   pod 'NVActivityIndicatorView'
+  pod 'SwiftyGif'
 end

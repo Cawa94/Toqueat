@@ -289,8 +289,11 @@ extension String {
 	/// Dish updated
 	static func editDishUpdated() -> String { return "edit_dish_updated".localized() }
 
-	/// You're gonna lose all the products currently in cart
+	/// You can order from only one chef at a time, if you continue you will lose all the products currently in cart. What would you like to do?
 	static func errorChangeCartChef() -> String { return "error_change_cart_chef".localized() }
+
+	/// In this moment our team of developers is working on some improvements and the service will be back online soon, sorry for the inconvenience
+	static func errorMaintenanceMessage() -> String { return "error_maintenance_message".localized() }
 
 	/// Something went wrong with the payment, please check your credit card and try again. If problem persists, please write at support@toqueat.com
 	static func errorPayment() -> String { return "error_payment".localized() }

@@ -4,8 +4,8 @@ extension Chef {
 
     var stuartContact: StuartContact {
         return StuartContact(firstname: name,
-                             lastname: "",
-                             phone: nil,
+                             lastname: lastname,
+                             phone: phone,
                              email: email,
                              company: nil,
                              companyName: nil)

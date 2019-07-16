@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MaintenanceViewController" customModule="Toqueat" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="workingImageView" destination="cFa-ls-XYx" id="MKs-lm-Umm"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_logo_rounded" translatesAutoresizingMaskIntoConstraints="NO" id="U3I-zG-KaO">
+                    <rect key="frame" x="177" y="64" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="U3I-zG-KaO" secondAttribute="height" multiplier="1:1" id="gVt-yQ-W6T"/>
+                        <constraint firstAttribute="width" constant="60" id="wnW-kK-Rw4"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER MAINTENANCE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfQ-ab-GHy">
+                    <rect key="frame" x="20" y="562.5" width="374" height="19.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="error_maintenance_message"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ups.." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4R1-1s-o8s">
+                    <rect key="frame" x="20" y="214" width="374" height="42"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="35"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cFa-ls-XYx">
+                    <rect key="frame" x="57" y="333.5" width="300" height="169"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="cFa-ls-XYx" secondAttribute="height" multiplier="16:9" id="Kdl-ZZ-MTi"/>
+                        <constraint firstAttribute="width" constant="300" id="Vq4-qE-fuC"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toqueat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvE-yy-qPO">
+                    <rect key="frame" x="157.5" y="129" width="99" height="30"/>
+                    <fontDescription key="fontDescription" name="Baskerville-Bold" family="Baskerville" pointSize="26"/>
+                    <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="KfQ-ab-GHy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1Ej-NM-Jz4"/>
+                <constraint firstItem="cFa-ls-XYx" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-30" id="81Y-iV-rAZ"/>
+                <constraint firstItem="U3I-zG-KaO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9NL-pl-2b6"/>
+                <constraint firstItem="4R1-1s-o8s" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="170" id="AbD-bj-TvS"/>
+                <constraint firstItem="U3I-zG-KaO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="B6z-J6-0BA"/>
+                <constraint firstItem="U3I-zG-KaO" firstAttribute="width" secondItem="U3I-zG-KaO" secondAttribute="height" multiplier="1:1" id="Nzz-zd-T7K"/>
+                <constraint firstItem="zvE-yy-qPO" firstAttribute="top" secondItem="U3I-zG-KaO" secondAttribute="bottom" constant="5" id="RdV-As-0Wi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KfQ-ab-GHy" secondAttribute="trailing" constant="20" id="Vsh-Vr-6V8"/>
+                <constraint firstItem="zvE-yy-qPO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vza-5P-iH8"/>
+                <constraint firstItem="cFa-ls-XYx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jyv-ub-pNr"/>
+                <constraint firstItem="KfQ-ab-GHy" firstAttribute="top" secondItem="cFa-ls-XYx" secondAttribute="bottom" constant="60" id="mKn-hz-2jI"/>
+                <constraint firstItem="4R1-1s-o8s" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="raf-58-B8c"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4R1-1s-o8s" secondAttribute="trailing" constant="20" id="t93-ys-amN"/>
+                <constraint firstItem="KfQ-ab-GHy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="zgN-dx-21l"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="app_logo_rounded" width="1024" height="1024"/>
+    </resources>
+</document>

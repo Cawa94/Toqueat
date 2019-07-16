@@ -92,7 +92,8 @@
 "edit_dish_title" = "Edit dish";
 "edit_dish_created" = "Dish created, from now on people will be able to buy it";
 "edit_dish_updated" = "Dish updated";
-"error_change_cart_chef" = "You're gonna lose all the products currently in cart";
+"error_change_cart_chef" = "You can order from only one chef at a time, if you continue you will lose all the products currently in cart. What would you like to do?";
+"error_maintenance_message" = "In this moment our team of developers is working on some improvements and the service will be back online soon, sorry for the inconvenience";
 "error_payment" = "Something went wrong with the payment, please check your credit card and try again. If problem persists, please write at support@toqueat.com";
 "error_something_went_wrong" = "Something went wrong";
 "error_wrong_confirm_password" = "The 2 passwords do not match";

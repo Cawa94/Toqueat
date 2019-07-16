@@ -73,7 +73,7 @@ extension CheckoutViewModel {
                     else { return Single.just(order) }
                 let dropOff = StuartLocation(address: order.deliveryAddress,
                                              comment: order.deliveryComment,
-                                             contact: order.user.stuartContact,
+                                             contact: SessionService.session?.user?.stuartContact,
                                              packageType: self.packageSize,
                                              packageDescription: "",
                                              clientReference: "\(orderId)")

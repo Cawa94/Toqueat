@@ -29,6 +29,13 @@ class MainTabViewController: UITabBarController {
         viewModel.customizeStripeUI()
         configureTabBar()
 
+        // On launch check if server is not in maintenance mode, otherwise present error controller
+        NetworkService.shared.getAppSettings().asDriver().drive(onNext: {
+            if $0.maintenanceMode {
+                NavigationService.presentMaintenanceController()
+            }
+        }).disposed(by: disposeBag)
+
     }
 
     func configureTabBar() {

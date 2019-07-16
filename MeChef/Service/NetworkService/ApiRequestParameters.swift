@@ -25,11 +25,12 @@ public struct ApiRequestParameters {
     }
 
     static var commonHeaders: HTTPHeaders {
+        let appVer = ["App-Version": Bundle.main.releaseVersionNumberPretty]
         if let authToken = SessionService.session?.authToken {
             return ["Authorization": authToken,
-                    "Is-Chef": "\(SessionService.isChef)"]
+                    "Is-Chef": "\(SessionService.isChef)"] + appVer
         } else {
-            return [:]
+            return appVer
         }
     }
 

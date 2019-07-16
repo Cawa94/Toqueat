@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -229,6 +229,12 @@
 		DAFD096F2229816C00F1255A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD096E2229816C00F1255A /* Models.swift */; };
 		DAFD09752229872700F1255A /* ApiRequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD09742229872700F1255A /* ApiRequestParameters.swift */; };
 		DAFD09782229903E00F1255A /* DishesRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD09772229903E00F1255A /* DishesRequests.swift */; };
+		DAFE536F22DE1CDB0058DCF9 /* SettingsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE536E22DE1CDB0058DCF9 /* SettingsRequests.swift */; };
+		DAFE537422DE21D10058DCF9 /* MaintenanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE537222DE21D10058DCF9 /* MaintenanceViewController.swift */; };
+		DAFE537522DE21D10058DCF9 /* MaintenanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFE537322DE21D10058DCF9 /* MaintenanceViewController.xib */; };
+		DAFE537722DE21F70058DCF9 /* NavigationService+MaintenanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE537622DE21F70058DCF9 /* NavigationService+MaintenanceViewController.swift */; };
+		DAFE537A22DE28880058DCF9 /* monkey.gif in Resources */ = {isa = PBXBuildFile; fileRef = DAFE537922DE28880058DCF9 /* monkey.gif */; };
+		DAFE537C22DE2CFF0058DCF9 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFE537B22DE2CFF0058DCF9 /* Bundle+Extensions.swift */; };
 		DAFEB6012240D65A00CABCF5 /* ChefProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFEB5FF2240D65A00CABCF5 /* ChefProfileViewController.swift */; };
 		DAFEB6022240D65A00CABCF5 /* ChefProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAFEB6002240D65A00CABCF5 /* ChefProfileViewController.xib */; };
 		DAFEB6042240D66500CABCF5 /* ChefProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFEB6032240D66500CABCF5 /* ChefProfileViewModel.swift */; };
@@ -470,6 +476,12 @@
 		DAFD096E2229816C00F1255A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		DAFD09742229872700F1255A /* ApiRequestParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestParameters.swift; sourceTree = "<group>"; };
 		DAFD09772229903E00F1255A /* DishesRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesRequests.swift; sourceTree = "<group>"; };
+		DAFE536E22DE1CDB0058DCF9 /* SettingsRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRequests.swift; sourceTree = "<group>"; };
+		DAFE537222DE21D10058DCF9 /* MaintenanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceViewController.swift; sourceTree = "<group>"; };
+		DAFE537322DE21D10058DCF9 /* MaintenanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceViewController.xib; sourceTree = "<group>"; };
+		DAFE537622DE21F70058DCF9 /* NavigationService+MaintenanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+MaintenanceViewController.swift"; sourceTree = "<group>"; };
+		DAFE537922DE28880058DCF9 /* monkey.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = monkey.gif; sourceTree = "<group>"; };
+		DAFE537B22DE2CFF0058DCF9 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		DAFEB5FF2240D65A00CABCF5 /* ChefProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefProfileViewController.swift; sourceTree = "<group>"; };
 		DAFEB6002240D65A00CABCF5 /* ChefProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefProfileViewController.xib; sourceTree = "<group>"; };
 		DAFEB6032240D66500CABCF5 /* ChefProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefProfileViewModel.swift; sourceTree = "<group>"; };
@@ -1030,10 +1042,11 @@
 		DAA0BEE8225F552100C70B54 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DA5A6C6A22A1808A00D28935 /* String+Localization.swift */,
+				DAFA9B7D2228907200B2CD4D /* Assets.xcassets */,
 				DA3B11FE229FD96200D6134B /* Base.lproj */,
 				DAA0BEE9225F552900C70B54 /* Fonts */,
-				DAFA9B7D2228907200B2CD4D /* Assets.xcassets */,
+				DAFE537822DE287C0058DCF9 /* Gif */,
+				DA5A6C6A22A1808A00D28935 /* String+Localization.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1072,6 +1085,7 @@
 			children = (
 				DAF4FE29222AD2C500F208DB /* AppDelegate+Extensions.swift */,
 				DA9363B4223984E200DF8951 /* Array+Extensions.swift */,
+				DAFE537B22DE2CFF0058DCF9 /* Bundle+Extensions.swift */,
 				DA636D8D2271F2BA00DA2A70 /* Date+Extensions.swift */,
 				DA3BC0C6226CA39F0045A352 /* Dictionary+Extensions.swift */,
 				DA5DE161227310B700229486 /* Error+Extensions.swift */,
@@ -1692,6 +1706,7 @@
 				DA0E2AA9227B3C4A00BBCACC /* EditPersonalDetailsViewController */,
 				DA84549A222D1E880052A8D2 /* LoginViewController */,
 				DAF4FE26222AD06900F208DB /* MainTabViewController */,
+				DAFE537022DE21AE0058DCF9 /* MaintenanceViewcontroller */,
 				DA636D822271E8DF00DA2A70 /* OrderDetailsViewController */,
 				DA753A0E229547E600F3F74A /* OrderPulleyViewController */,
 				DAB271692247B5C8005C0915 /* OrdersViewController */,
@@ -1758,9 +1773,36 @@
 				DA454777222FDDB100237F6D /* CitiesRequests.swift */,
 				DAFD09772229903E00F1255A /* DishesRequests.swift */,
 				DAF86AF82237F48400070B76 /* OrderRequests.swift */,
+				DAFE536E22DE1CDB0058DCF9 /* SettingsRequests.swift */,
 				DAAFED6D222E592B00F8F1BE /* UsersRequests.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		DAFE537022DE21AE0058DCF9 /* MaintenanceViewcontroller */ = {
+			isa = PBXGroup;
+			children = (
+				DAFE537622DE21F70058DCF9 /* NavigationService+MaintenanceViewController.swift */,
+				DAFE537122DE21B90058DCF9 /* View */,
+			);
+			path = MaintenanceViewcontroller;
+			sourceTree = "<group>";
+		};
+		DAFE537122DE21B90058DCF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DAFE537222DE21D10058DCF9 /* MaintenanceViewController.swift */,
+				DAFE537322DE21D10058DCF9 /* MaintenanceViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DAFE537822DE287C0058DCF9 /* Gif */ = {
+			isa = PBXGroup;
+			children = (
+				DAFE537922DE28880058DCF9 /* monkey.gif */,
+			);
+			path = Gif;
 			sourceTree = "<group>";
 		};
 		DAFEB5FB2240D61500CABCF5 /* ChefProfileViewController */ = {
@@ -1971,11 +2013,13 @@
 				DA28526522789B4E009C0AD1 /* GoToPaymentView.xib in Resources */,
 				DA8B703C22623995002DBF1A /* UserBarTableViewCell.xib in Resources */,
 				DAE902C722494BF900743D6A /* ChefDeliverySlotsViewController.xib in Resources */,
+				DAFE537522DE21D10058DCF9 /* MaintenanceViewController.xib in Resources */,
 				DAC99475222BE97C000282F1 /* DishTableViewCell.xib in Resources */,
 				DAC9946D222BE7F3000282F1 /* DishesViewController.xib in Resources */,
 				DA12672C223BC0170049215B /* AddressTableViewCell.xib in Resources */,
 				DA859D0A22411E9C008481D2 /* ChefWeekplanViewController.xib in Resources */,
 				DA3B1204229FD96200D6134B /* Localizable.strings in Resources */,
+				DAFE537A22DE28880058DCF9 /* monkey.gif in Resources */,
 				DA3B1209229FD97200D6134B /* Main.storyboard in Resources */,
 				DADFF2C4222E848000BB6404 /* DishViewController.xib in Resources */,
 				DAB271812247E213005C0915 /* TrackOrderViewController.xib in Resources */,
@@ -2025,67 +2069,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Toqueat/Pods-Toqueat-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/LeadKit/LeadKit.framework",
-				"${BUILT_PRODUCTS_DIR}/LeadKitAdditions/LeadKitAdditions.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework",
-				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/StatefulViewController/StatefulViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftValidator/SwiftValidator.framework",
-				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
-				"${BUILT_PRODUCTS_DIR}/TableKit/TableKit.framework",
-				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Toqueat/Pods-Toqueat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeadKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeadKitAdditions.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinLayout.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulley.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StatefulViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftValidator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TableKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Toqueat/Pods-Toqueat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Toqueat/Pods-Toqueat-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Toqueat/Pods-Toqueat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA3B120B229FE10B00D6134B /* Localization */ = {
@@ -2145,6 +2138,7 @@
 				DA0E2AB5227B3F6C00BBCACC /* EditFieldTableViewCell.swift in Sources */,
 				DAC9946C222BE7F3000282F1 /* DishesViewController.swift in Sources */,
 				DADFF2D8222EC42700BB6404 /* BaseStatefulViewModel.swift in Sources */,
+				DAFE537422DE21D10058DCF9 /* MaintenanceViewController.swift in Sources */,
 				DA57E4DD222C571F0086B5DA /* ChefViewModel.swift in Sources */,
 				DA8454A2222D1F0F0052A8D2 /* NavigationService+LoginViewController.swift in Sources */,
 				DADFF2DA222ED1C400BB6404 /* NetworkService+Extensions.swift in Sources */,
@@ -2240,6 +2234,7 @@
 				DA9E0749222E6D910094A69D /* UserDefaults+UserSession.swift in Sources */,
 				DAE902CF22494D8F00743D6A /* DeliverySlotCollectionViewCell.swift in Sources */,
 				DA913C7322464505003D4700 /* StuartRequests.swift in Sources */,
+				DAFE536F22DE1CDB0058DCF9 /* SettingsRequests.swift in Sources */,
 				DAF9C9A2226CE0FC00AD4248 /* ChefDishViewController.swift in Sources */,
 				DA8208B12234270A002E6743 /* CartService.swift in Sources */,
 				DAF86AF52237BF5000070B76 /* CartViewController+NavigationService.swift in Sources */,
@@ -2302,6 +2297,8 @@
 				DA28526322789B43009C0AD1 /* GoToPaymentViewModel.swift in Sources */,
 				DA3B120E229FE1FB00D6134B /* UILabel+Extensions.swift in Sources */,
 				DA69D0F4225BD6B600231E3E /* DishCategoryCollectionViewCell.swift in Sources */,
+				DAFE537C22DE2CFF0058DCF9 /* Bundle+Extensions.swift in Sources */,
+				DAFE537722DE21F70058DCF9 /* NavigationService+MaintenanceViewController.swift in Sources */,
 				DAB2716E2247B6D8005C0915 /* OrdersViewController.swift in Sources */,
 				DAC99474222BE97C000282F1 /* DishTableViewCell.swift in Sources */,
 				DAF9C998226CC82000AD4248 /* AddDishTableViewCell.swift in Sources */,

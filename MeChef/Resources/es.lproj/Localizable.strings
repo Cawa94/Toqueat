@@ -92,9 +92,10 @@
 "edit_dish_title" = "Editar plato";
 "edit_dish_created" = "Plato creado, a partir de este momento todos podran verlo";
 "edit_dish_updated" = "Plato actualizado";
-"error_something_went_wrong" = "Algo salió mal";
+"error_change_cart_chef" = "Puedes ordenar desde solo un chef a la vez, si continuas vas a perder todos los productos actualmente en carrito. Que quieres hacer?";
+"error_maintenance_message" = "En este momento nuestro equipo de desarrolladores esta trabajando en algunas mejoras y el servicio estará de nuevo en línea pronto, disculpe las molestias";
 "error_payment" = "Algo no ha funcionado con el pago, por favor comprueba las informaciones y vuelva a intentarlo. Si sigues teniendo problemas, escribenos en support@toqueat.com";
-"error_change_cart_chef" = "Vas a perder todos los productos actualmente en carrito.";
+"error_something_went_wrong" = "Algo salió mal";
 "error_wrong_confirm_password" = "Las 2 contraseñas no coinciden";
 "main_search_chef" = "Buscar chef";
 "main_search_dish" = "Buscar platos";

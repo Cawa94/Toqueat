@@ -5,7 +5,7 @@ import RxSwift
 final class DeliverySlotsViewModel: BaseStatefulViewModel<DeliverySlotsViewModel.ResultType> {
 
     // Parameters
-    let daysInAdvance = 0
+    let daysInAdvance = 2
 
     struct ResultType {
         let deliverySlots: [DeliverySlot]
