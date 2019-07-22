@@ -78,7 +78,7 @@ extension CheckoutViewModel {
                                              packageDescription: "",
                                              clientReference: "\(orderId)")
                 let fixedStuartDate = order.deliveryDate.dateByAdding(-4, .hour).date
-                let jobParameters = StuartJobParameters(pickupAt: nil, //fixedStuartDate,
+                let jobParameters = StuartJobParameters(pickupAt: fixedStuartDate, // nil
                                                         pickups: [chefLocation],
                                                         dropoffs: [dropOff],
                                                         transportType: nil)
@@ -86,7 +86,7 @@ extension CheckoutViewModel {
                     .flatMap { stuartJob -> Single<Order> in
                         networkService.setStuartIdFor(orderId: orderId, stuartId: stuartJob.id)
                             .flatMap { _ -> Single<Order> in
-                                networkService.changeOrderStatusWith(orderId: orderId,
+                                return networkService.changeOrderStatusWith(orderId: orderId,
                                                                             state: .scheduled)
                         }
                 }

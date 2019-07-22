@@ -87,19 +87,19 @@ class OrderDetailsViewController: UIViewController {
             updateEtaText()
         }
 
-        // order can be canceled if is chef OR is customer and missing 12+ hours to delivery
+        // order can be canceled if is chef OR TO DEVELOP!!! -> is customer and missing 12+ hours to delivery
         if SessionService.isChef
             && (viewModel.order?.orderState == .waitingForConfirmation || viewModel.order?.orderState == .scheduled) {
             let cancelModel = RoundedButtonViewModel(title: .commonCancel(), type: .squeezedRed)
             cancelOrderButton.configure(with: cancelModel)
             cancelOrderButton.isHidden = false
-        } else if let deliveryDate = viewModel.order?.deliveryDate,
+        } /*else if let deliveryDate = viewModel.order?.deliveryDate,
             !SessionService.isChef, (Date() + 2.hours) < (deliveryDate - 12.hours),
             (viewModel.order?.orderState == .waitingForConfirmation || viewModel.order?.orderState == .scheduled) {
             let cancelModel = RoundedButtonViewModel(title: .commonCancel(), type: .squeezedRed)
             cancelOrderButton.configure(with: cancelModel)
             cancelOrderButton.isHidden = false
-        } else {
+        }*/ else {
             cancelOrderButton.isHidden = true
         }
 

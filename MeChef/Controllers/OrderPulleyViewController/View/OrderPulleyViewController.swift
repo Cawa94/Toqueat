@@ -1,6 +1,8 @@
 import UIKit
 import Pulley
 import MapKit
+import RxCocoa
+import RxSwift
 
 class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.ResultType> {
 
@@ -69,8 +71,7 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
             orderDetailsController.onResultState()
             orderPulleyViewModel.stuartJobDriver.drive(onNext: { _ in
                 orderDetailsController.updateEtaText()
-            })
-                .disposed(by: orderDetailsController.disposeBag)
+            }).disposed(by: orderDetailsController.disposeBag)
         }
 
         if orderPulleyViewModel.deliveryInProgress {

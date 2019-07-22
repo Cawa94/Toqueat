@@ -23,6 +23,7 @@ class DishViewController: BaseStatefulController<Dish>,
     }
 
     private let disposeBag = DisposeBag()
+    private var descriptionExpanded = false
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -191,7 +192,15 @@ class DishViewController: BaseStatefulController<Dish>,
         switch cell {
         case let dishCell as DishDetailsTableViewCell:
             let dish = dishViewModel.result
-            dishCell.configureWith(contentViewModel: dish)
+            dishCell.configureWith(contentViewModel:
+                DishDetailsTableViewModel(dish: dish,
+                                          descriptionExpanded: self.descriptionExpanded))
+            dishCell.readMoreButton.rx.tapGesture().when(.recognized).asDriver()
+                .drive(onNext: { _ in
+                    self.descriptionExpanded = true
+                    self.tableView.reloadData()
+                })
+                .disposed(by: dishCell.disposeBag)
             dishCell.addToCartButton.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     self.addToCartAction()

@@ -175,6 +175,9 @@ extension String {
 	/// Profile
 	static func commonProfile() -> String { return "common_profile".localized() }
 
+	/// Read more...
+	static func commonReadMore() -> String { return "common_read_more".localized() }
+
 	/// Save
 	static func commonSave() -> String { return "common_save".localized() }
 
@@ -289,7 +292,7 @@ extension String {
 	/// Dish updated
 	static func editDishUpdated() -> String { return "edit_dish_updated".localized() }
 
-	/// You can order from only one chef at a time, if you continue you will lose all the products currently in cart. What would you like to do?
+	/// You can order only from one chef at a time, if you continue you will lose all the products currently in cart. Do you want to continue?
 	static func errorChangeCartChef() -> String { return "error_change_cart_chef".localized() }
 
 	/// In this moment our team of developers is working on some improvements and the service will be back online soon, sorry for the inconvenience

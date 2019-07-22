@@ -82,7 +82,7 @@
                                     <constraint firstAttribute="height" constant="155" id="m79-Hg-Hlc"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="df3-xL-pI6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chef_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="df3-xL-pI6">
                                 <rect key="frame" x="315" y="115" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="5rg-lV-ujk"/>
@@ -150,6 +150,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="chef_placeholder" width="450" height="450"/>
         <image name="dish_placeholder" width="512" height="512"/>
     </resources>
 </document>

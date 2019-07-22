@@ -37,7 +37,7 @@
                     <color key="textColor" red="0.94901960780000005" green="0.43137254899999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="teststripe@fake.es" placeholder="Email" textAlignment="center" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nd8-V2-98S">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="yuri.cavallin94@gmail.com" placeholder="Email" textAlignment="center" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Nd8-V2-98S">
                     <rect key="frame" x="10" y="280.5" width="355" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="JJd-lb-R6c"/>

@@ -24,6 +24,7 @@ class ChefViewController: BaseStatefulController<Chef>,
     }
 
     private let disposeBag = DisposeBag()
+    private var presentationExpanded = false
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -86,7 +87,15 @@ class ChefViewController: BaseStatefulController<Chef>,
         switch cell {
         case let chefDetailsCell as ChefDetailsTableViewCell:
             let chef = chefViewModel.result
-            chefDetailsCell.configureWith(contentViewModel: chef)
+            chefDetailsCell.configureWith(contentViewModel:
+                ChefDetailsTableViewModel(chef: chef,
+                                          descriptionExpanded: self.presentationExpanded))
+            chefDetailsCell.readMoreButton.rx.tapGesture().when(.recognized).asDriver()
+                .drive(onNext: { _ in
+                    self.presentationExpanded = true
+                    self.chefDetailsTableView.reloadData()
+                })
+                .disposed(by: chefDetailsCell.disposeBag)
             chefDetailsCell.instaButton.rx.tapGesture().when(.recognized)
                 .subscribe(onNext: { _ in
                     guard let username = chef.instagramUsername,

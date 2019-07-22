@@ -1537,8 +1537,8 @@
 		DAF5962B2281F5B50058E334 /* StripeService */ = {
 			isa = PBXGroup;
 			children = (
-				DAF5962C2281F5D20058E334 /* StripeService.swift */,
 				DAF5962E2281F6590058E334 /* StripeRequests.swift */,
+				DAF5962C2281F5D20058E334 /* StripeService.swift */,
 			);
 			path = StripeService;
 			sourceTree = "<group>";
@@ -1689,8 +1689,8 @@
 		DAFA9BA52228914E00B2CD4D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DA3F3C5122DA2D5C0091BFD3 /* AboutUsViewController */,
 				DAFEB5FC2240D62300CABCF5 /* AChefExclusive */,
+				DA3F3C5122DA2D5C0091BFD3 /* AboutUsViewController */,
 				DADD68C6223AB65A00D65C7A /* AddressViewController */,
 				DADFF2D2222EC26900BB6404 /* BaseStatefulController */,
 				DADFF2E2222ED87200BB6404 /* BaseTableViewController */,

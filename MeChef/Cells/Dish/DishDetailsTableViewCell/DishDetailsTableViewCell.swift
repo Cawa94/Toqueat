@@ -1,18 +1,26 @@
 import UIKit
 import RxSwift
 
+struct DishDetailsTableViewModel {
+
+    let dish: Dish
+    let descriptionExpanded: Bool
+
+}
+
 final class DishDetailsTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentContainerViewOutlet: UIView!
     @IBOutlet private weak var placeholderContainerViewOutlet: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var descriptionTextView: UITextView!
+    @IBOutlet private weak var readMore: UIButton!
     @IBOutlet private weak var categoryServingsLabel: UILabel!
     @IBOutlet private weak var ingredientsText: UILabel!
     @IBOutlet private weak var ingredientsLabel: UILabel!
     @IBOutlet private weak var addToCartView: AddToCartView!
 
-    var viewModel: Dish?
+    var viewModel: DishDetailsTableViewModel?
     var disposeBag = DisposeBag()
 
     public var addToCartButton: UIButton {
@@ -27,6 +35,10 @@ final class DishDetailsTableViewCell: UITableViewCell {
         return addToCartView.removeOne
     }
 
+    public var readMoreButton: UIButton {
+        return readMore
+    }
+
     override func prepareForReuse() {
         self.disposeBag = DisposeBag()
     }
@@ -35,7 +47,7 @@ final class DishDetailsTableViewCell: UITableViewCell {
 
 extension DishDetailsTableViewCell: PlaceholderConfigurable {
 
-    typealias ContentViewModelType = Dish
+    typealias ContentViewModelType = DishDetailsTableViewModel
     typealias PlaceholderViewModelType = Void
 
     var contentContainerView: UIView {
@@ -46,7 +58,7 @@ extension DishDetailsTableViewCell: PlaceholderConfigurable {
         return placeholderContainerViewOutlet
     }
 
-    func configureWith(loading: Bool = false, contentViewModel: Dish? = nil) {
+    func configureWith(loading: Bool = false, contentViewModel: DishDetailsTableViewModel? = nil) {
         if loading {
             configureContentLoading(with: .placeholder)
         } else if let contentViewModel = contentViewModel {
@@ -54,19 +66,26 @@ extension DishDetailsTableViewCell: PlaceholderConfigurable {
         }
     }
 
-    func configure(contentViewModel: Dish) {
+    func configure(contentViewModel: DishDetailsTableViewModel) {
         self.viewModel = contentViewModel
 
-        nameLabel.text = contentViewModel.name
-        descriptionLabel.text = contentViewModel.description
-        let addButtonModel = AddToCartViewModel(dish: contentViewModel)
+        nameLabel.text = contentViewModel.dish.name
+        descriptionTextView.text = contentViewModel.dish.description
+        if contentViewModel.descriptionExpanded {
+            descriptionTextView.translatesAutoresizingMaskIntoConstraints = true
+            descriptionTextView.sizeToFit()
+        }
+        readMore.isHidden = contentViewModel.descriptionExpanded
+            || descriptionTextView.frame.height >
+            descriptionTextView.sizeThatFits(descriptionTextView.bounds.size).height
+        let addButtonModel = AddToCartViewModel(dish: contentViewModel.dish)
         addToCartView.configureWith(addButtonModel)
         let dishType = DishCategoryType.allValues
-            .first(where: { $0.id == contentViewModel.categories?.first?.id })?.name
+            .first(where: { $0.id == contentViewModel.dish.categories?.first?.id })?.name
         categoryServingsLabel.text = "\(dishType ?? "") "
-            + "- \(contentViewModel.servings ?? 1) \(String.dishServings().lowercased())"
-        if let ingredients = contentViewModel.ingredients?.replacingOccurrences(of: ",",
-                                                                                with: "\n\u{2022} "),
+            + "- \(contentViewModel.dish.servings ?? 1) \(String.dishServings().lowercased())"
+        if let ingredients = contentViewModel.dish.ingredients?.replacingOccurrences(of: ",",
+                                                                                     with: "\n\u{2022} "),
             ingredients.isNotEmpty {
             ingredientsLabel.text = "\u{2022} \(ingredients)"
         } else {

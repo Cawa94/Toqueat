@@ -31,6 +31,7 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
             else { return }
 
         paymentContext.delegate = self
+        paymentContext.paymentCurrency = "EUR"
         paymentContext.hostViewController = self
     }
 
