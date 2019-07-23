@@ -56,7 +56,7 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
             let deliveryAddress = addressLabel.text
             else { return }
         let dishesPrice = dishes.map { ($0.price as Decimal) }.reduce(0, +)
-        let deliveryComment = SessionService.session?.user?.apartment
+        let deliveryComment = SessionService.session?.user?.stuartComment
         let orderParameters = OrderCreateParameters(userId: userId, dishIds: dishes.map { $0.id },
                                                     chefId: chefId, deliveryDate: deliveryDate,
                                                     deliverySlotId: deliverySlotId,
@@ -74,7 +74,7 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
 
     override func onResultsState() {
         deliveryDateLabel.attributedText = checkoutViewModel.cart.deliveryDate?.attributedCheckoutMessage
-        addressLabel.text = SessionService.session?.user?.address.fullAddress
+        addressLabel.text = SessionService.session?.user?.fullAddress
         let newTotal = (CartService.localCart?.total ?? 0.00).adding(checkoutViewModel.result.deliveryCost)
         deliveryPriceLabel.text = checkoutViewModel.result.deliveryCost.stringWithCurrency
         dishesPriceLabel.text = CartService.localCart?.total.stringWithCurrency
@@ -204,17 +204,6 @@ extension CheckoutViewController: STPPaymentContextDelegate {
                         didFinishWith status: STPPaymentStatus,
                         error: Error?) {
         self.endLoading(with: self.loadingStateView)
-    }
-
-}
-
-private extension String {
-
-    var fullAddress: String {
-        guard let city = SessionService.session?.user?.city.name,
-            let zipcode = SessionService.session?.user?.zipcode
-            else { return self }
-        return "\(self), \(zipcode) \(city)"
     }
 
 }

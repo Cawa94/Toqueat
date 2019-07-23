@@ -12,12 +12,23 @@ extension Chef {
     }
 
     var stuartLocation: StuartLocation {
-        return StuartLocation(address: address,
-                              comment: apartment,
+        return StuartLocation(address: "\(address.street) \(address.number ?? "")",
+                              comment: stuartComment,
                               contact: stuartContact,
                               packageType: nil,
                               packageDescription: nil,
                               clientReference: nil)
+    }
+
+    var stuartComment: String? {
+        var comment: String?
+        if let floor = address.floor {
+            comment = "Planta: \(floor) "
+        }
+        if let door = address.apartment {
+            comment = "\(comment ?? "")Puerta: \(door)"
+        }
+        return comment
     }
 
 }

@@ -122,6 +122,7 @@
 		DA9E0749222E6D910094A69D /* UserDefaults+UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9E0748222E6D910094A69D /* UserDefaults+UserSession.swift */; };
 		DA9E074E222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9E074D222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift */; };
 		DA9E0750222E71250094A69D /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9E074F222E71250094A69D /* SessionService.swift */; };
+		DAA06BD422E75EA400D8F644 /* AddressParameters+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA06BD322E75EA400D8F644 /* AddressParameters+Extensions.swift */; };
 		DAA8CD30222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA8CD2F222C5F8E0088FA48 /* NavigationService+MainTabViewController.swift */; };
 		DAAB7FF522994E1D00FB375B /* DriverDeliveringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB7FF422994E1D00FB375B /* DriverDeliveringView.swift */; };
 		DAAB7FF722994E2500FB375B /* DriverDeliveringView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAAB7FF622994E2500FB375B /* DriverDeliveringView.xib */; };
@@ -363,6 +364,7 @@
 		DA9E0748222E6D910094A69D /* UserDefaults+UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+UserSession.swift"; sourceTree = "<group>"; };
 		DA9E074D222E6FBA0094A69D /* UserDefaults+MappableDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+MappableDataTypes.swift"; sourceTree = "<group>"; };
 		DA9E074F222E71250094A69D /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		DAA06BD322E75EA400D8F644 /* AddressParameters+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddressParameters+Extensions.swift"; sourceTree = "<group>"; };
 		DAA0BEEB225F555E00C70B54 /* RobotoSlab-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Light.ttf"; sourceTree = "<group>"; };
 		DAA0BEEC225F555F00C70B54 /* RobotoSlab-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Thin.ttf"; sourceTree = "<group>"; };
 		DAA0BEED225F555F00C70B54 /* RobotoSlab-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-Bold.ttf"; sourceTree = "<group>"; };
@@ -858,6 +860,7 @@
 		DA8208B422343708002E6743 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DAA06BD322E75EA400D8F644 /* AddressParameters+Extensions.swift */,
 				DA3D4219223E5F0800AB2A27 /* Chef+Extensions.swift */,
 				DA93639C22395AF000DF8951 /* DeliverySlot+Extensions.swift */,
 				DAAD192C2236E95400543AE0 /* Dish+Extensions.swift */,
@@ -2251,6 +2254,7 @@
 				DA0E2AA8227B0A2A00BBCACC /* NSDecimalNumber+Extensions.swift in Sources */,
 				DA636D932271FD9800DA2A70 /* AddToCartViewModel.swift in Sources */,
 				DA9E0750222E71250094A69D /* SessionService.swift in Sources */,
+				DAA06BD422E75EA400D8F644 /* AddressParameters+Extensions.swift in Sources */,
 				DA3F3C5622DA2D890091BFD3 /* AboutUsViewController.swift in Sources */,
 				DA753A1322954A5500F3F74A /* OrderPulleyViewController.swift in Sources */,
 				DAE902C922494C0500743D6A /* ChefDeliverySlotsViewModel.swift in Sources */,

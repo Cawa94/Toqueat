@@ -30,7 +30,16 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func updateUserAddress(parameters: AddressUpdateParameters, userId: Int64) -> Single<User> {
+    func createUserAddress(parameters: AddressParameters) -> Single<Address> {
+        let body = AddressUpdateBody(address: parameters)
+        let apiParameters = ApiRequestParameters(relativeUrl: "user_addresses",
+                                                 method: .post,
+                                                 parameters: body.toJSON())
+
+        return request(with: apiParameters)
+    }
+
+    func updateUserAddress(parameters: AddressParameters, userId: Int64) -> Single<User> {
         let body = AddressUpdateBody(address: parameters)
         let apiParameters = ApiRequestParameters(relativeUrl: "users/\(userId)/update_address",
                                                  method: .patch,

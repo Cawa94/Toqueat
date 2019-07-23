@@ -37,10 +37,10 @@ class EditAddressViewController: BaseStatefulController<[City]> {
         validator.validate(self)
     }
 
-    func updateChefAddress(parameters: AddressUpdateParameters) {
+    func updateChefAddress(parameters: AddressParameters) {
         guard let chefId = editAddressViewModel.chef?.id
             else { return }
-        let validateAddress = NetworkService.shared.validateAddress(parameters.address,
+        let validateAddress = NetworkService.shared.validateAddress(parameters.streetWithNumber,
                                                                     phone: editAddressViewModel.chef?.phone,
                                                                     isChef: true)
         let updateChefAddressSingle = validateAddress.flatMap { _ in
@@ -59,10 +59,10 @@ class EditAddressViewController: BaseStatefulController<[City]> {
         }, disposeBag: disposeBag)
     }
 
-    func updateUserAddress(parameters: AddressUpdateParameters) {
+    func updateUserAddress(parameters: AddressParameters) {
         guard let userId = editAddressViewModel.user?.id
             else { return }
-        let validateAddress = NetworkService.shared.validateAddress(parameters.address,
+        let validateAddress = NetworkService.shared.validateAddress(parameters.streetWithNumber,
                                                                     phone: editAddressViewModel.user?.phone,
                                                                     isChef: false)
         let updateUserAddressSingle = validateAddress.flatMap { _ in
@@ -100,7 +100,7 @@ class EditAddressViewController: BaseStatefulController<[City]> {
 extension EditAddressViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -135,18 +135,22 @@ extension EditAddressViewController: UITableViewDelegate, UITableViewDataSource 
             switch indexPath.row {
             case 0:
                 let placeholderText = "\(String.addressStreet()), \(String.addressNumber())"
-                cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.address,
+                cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.street,
                                                         placeholder: placeholderText)
                 validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
             case 1:
-                let placeholderText = "\(String.addressFloor()), \(String.addressDoor()) (\(String.commonOptional()))"
+                let placeholderText = "\(String.addressFloor()) (\(String.commonOptional()))"
                 cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.apartment,
                                                         placeholder: placeholderText)
             case 2:
+                let placeholderText = "\(String.addressDoor()) (\(String.commonOptional()))"
+                cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.apartment,
+                                                        placeholder: placeholderText)
+            case 3:
                 cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.zipcode,
                                                         placeholder: .addressZipcode())
                 validator.registerField(editFieldCell.cellTextField, rules: [RequiredRule()])
-            case 3:
+            case 4:
                 cellViewModel = EditFieldTableViewModel(fieldValue: editAddressViewModel.city,
                                                         placeholder: .addressCity(),
                                                         hideBottomLine: false,
@@ -180,8 +184,8 @@ extension EditAddressViewController: UITableViewDelegate, UITableViewDataSource 
 extension EditAddressViewController: ValidationDelegate {
 
     func validationSuccessful() {
-        guard let addressCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditFieldTableViewCell,
-            let address = addressCell.cellTextField.text,
+        /*guard let streetCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? EditFieldTableViewCell,
+            let address = streetCell.cellTextField.text,
             let zipcodeCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? EditFieldTableViewCell,
             let zipcode = zipcodeCell.cellTextField.text,
             let cityCell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? EditFieldTableViewCell,
@@ -189,13 +193,15 @@ extension EditAddressViewController: ValidationDelegate {
             else { return }
 
         let apartmentCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? EditFieldTableViewCell
-        let addressParameters = AddressUpdateParameters(cityId: cityId, address: address,
-                                                        zipcode: zipcode, apartment: apartmentCell?.cellTextField.text)
+        let addressParameters = AddressParameters(cityId: cityId, street: street, zipcode: zipcode,
+         apartment: apartmentCell?.cellTextField.text, number: , floor: ) AddressParameters(cityId: cityId,
+         address: address,
+                                                  zipcode: zipcode, apartment: apartmentCell?.cellTextField.text)
         if editAddressViewModel.isChef {
             updateChefAddress(parameters: addressParameters)
         } else {
             updateUserAddress(parameters: addressParameters)
-        }
+        }*/
     }
 
     func validationFailed(_ errors: [(Validatable, ValidationError)]) {

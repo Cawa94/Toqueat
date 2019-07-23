@@ -20,19 +20,27 @@ extension EditAddressViewModel {
     }
 
     var city: String? {
-        return isChef ? chef?.city.name : user?.city.name
+        return isChef ? chef?.address.city.name : user?.address.city.name
     }
 
-    var address: String? {
-        return isChef ? chef?.address : user?.address
+    var street: String? {
+        return isChef ? chef?.address.street : user?.address.street
+    }
+
+    var number: String? {
+        return isChef ? chef?.address.number : user?.address.number
+    }
+
+    var floor: String? {
+        return isChef ? chef?.address.floor : user?.address.floor
     }
 
     var apartment: String? {
-        return isChef ? chef?.apartment : user?.apartment
+        return isChef ? chef?.address.apartment : user?.address.apartment
     }
 
     var zipcode: String? {
-        return isChef ? chef?.zipcode : user?.zipcode
+        return isChef ? chef?.address.zipcode : user?.address.zipcode
     }
 
 }

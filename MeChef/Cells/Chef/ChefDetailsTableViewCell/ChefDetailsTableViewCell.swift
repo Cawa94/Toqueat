@@ -68,7 +68,7 @@ extension ChefDetailsTableViewCell: PlaceholderConfigurable {
         instagramButton.isHidden = contentViewModel.chef.instagramUsername?.isEmpty ?? true
         instagramButton.text = " @\(contentViewModel.chef.instagramUsername ?? "")"
         nameLabel.text = "\(contentViewModel.chef.name) \(contentViewModel.chef.lastname)"
-        cityLabel.text = contentViewModel.chef.city.name
+        cityLabel.text = contentViewModel.chef.address.city.name
         presentationTextView.text = contentViewModel.chef.description
         if contentViewModel.descriptionExpanded {
             presentationTextView.translatesAutoresizingMaskIntoConstraints = true

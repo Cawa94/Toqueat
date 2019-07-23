@@ -87,7 +87,16 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
-    func updateChefAddress(parameters: AddressUpdateParameters, chefId: Int64) -> Single<Chef> {
+    func createChefAddress(parameters: AddressParameters) -> Single<Address> {
+        let body = AddressUpdateBody(address: parameters)
+        let apiParameters = ApiRequestParameters(relativeUrl: "chef_addresses",
+                                                 method: .post,
+                                                 parameters: body.toJSON())
+        
+        return request(with: apiParameters)
+    }
+
+    func updateChefAddress(parameters: AddressParameters, chefId: Int64) -> Single<Chef> {
         let body = AddressUpdateBody(address: parameters)
         let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/update_address",
                                                  method: .patch,

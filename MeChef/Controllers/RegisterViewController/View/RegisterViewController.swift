@@ -13,6 +13,8 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
     @IBOutlet private weak var phoneTextField: UITextField!
     @IBOutlet private weak var cityTextField: UITextField!
     @IBOutlet private weak var streetTextField: UITextField!
+    @IBOutlet private weak var numberTextField: UITextField!
+    @IBOutlet private weak var floorTextField: UITextField!
     @IBOutlet private weak var apartmentTextField: UITextField!
     @IBOutlet private weak var zipcodeTextField: UITextField!
     @IBOutlet private weak var registerButton: RoundedButton!
@@ -57,6 +59,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         phoneTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         cityTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         streetTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        floorTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         apartmentTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         zipcodeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
 
@@ -68,8 +71,8 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         phoneTextField.placeholder = .userPhone()
         cityTextField.placeholder = .addressCity()
         streetTextField.placeholder = "\(String.addressStreet()), \(String.addressNumber())"
-        apartmentTextField.placeholder = "\(String.addressFloor()), \(String.addressDoor())" +
-            " (\(String.commonOptional()))"
+        floorTextField.placeholder = "\(String.addressFloor())"
+        apartmentTextField.placeholder = "\(String.addressDoor())"
         zipcodeTextField.placeholder = .addressZipcode()
     }
 
@@ -94,29 +97,39 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             let phone = phoneTextField.text, let street = streetTextField.text,
             let zipcode = zipcodeTextField.text
             else { return }
-        let apartment = apartmentTextField.text
-        let fullAddress = "\(street) \(apartment ?? "") \(zipcode) \(city)"
-        let registrationParameters = UserCreateParameters(name: name, lastname: lastName,
+        let fullAddress = "\(street) \(floorTextField.text ?? "") \(apartmentTextField.text ?? "") \(zipcode) \(city)"
+        let addressParameters = AddressParameters(cityId: cityId, street: street, zipcode: zipcode,
+                                                  apartment: apartmentTextField.text, number: numberTextField.text,
+                                                  floor: floorTextField.text)
+        let registrationParameters = BaseCreateParameters(name: name, lastname: lastName,
                                                           email: email, password: password,
-                                                          cityId: cityId, address: street,
-                                                          zipcode: zipcode, apartment: apartment,
                                                           phone: phone,
                                                           lang: Locale.current.languageCode ?? "en")
         if registerViewModel.asChef {
-            registerChef(chefParameters: registrationParameters, fullAddress: fullAddress)
+            registerChef(address: addressParameters, parameters: registrationParameters, fullAddress: fullAddress)
         } else {
-            registerUser(userParameters: registrationParameters, fullAddress: fullAddress)
+            registerUser(address: addressParameters, parameters: registrationParameters, fullAddress: fullAddress)
         }
     }
 
-    func registerUser(userParameters: UserCreateParameters, fullAddress: String) {
-        NetworkService.shared.validateAddress(fullAddress, phone: userParameters.phone, isChef: false)
+    func registerUser(address: AddressParameters, parameters: BaseCreateParameters, fullAddress: String) {
+        let networkService = NetworkService.shared
+        networkService.validateAddress(fullAddress, phone: parameters.phone, isChef: false)
             .flatMap { _ -> Single<User> in
-                return NetworkService.shared.register(registerParameters: userParameters)
-                    .flatMap { response -> Single<User> in
-                        SessionService.session = UserSession(authToken: response.authToken, user: nil, chef: nil)
-                        return NetworkService.shared.getUserInfo()
-                }
+                return networkService.createUserAddress(parameters: address)
+                    .flatMap {
+                        let userParameters = UserCreateParameters(userAddressId: $0.id, name: parameters.name,
+                                                                  lastname: parameters.lastname,
+                                                                  email: parameters.email,
+                                                                  password: parameters.password,
+                                                                  phone: parameters.phone, lang: parameters.lang)
+                        return networkService.register(registerParameters: userParameters)
+                            .flatMap { response -> Single<User> in
+                                SessionService.session = UserSession(authToken: response.authToken,
+                                                                     user: nil, chef: nil)
+                                return networkService.getUserInfo()
+                        }
+                    }
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { user in
@@ -127,10 +140,19 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             .disposed(by: disposeBag)
     }
 
-    func registerChef(chefParameters: UserCreateParameters, fullAddress: String) {
-        NetworkService.shared.validateAddress(fullAddress, phone: chefParameters.phone, isChef: true)
-            .flatMap { _ in
-                return NetworkService.shared.registerAsChef(registerParameters: chefParameters)
+    func registerChef(address: AddressParameters, parameters: BaseCreateParameters, fullAddress: String) {
+        let networkService = NetworkService.shared
+        NetworkService.shared.validateAddress(fullAddress, phone: parameters.phone, isChef: true)
+            .flatMap { _ -> Single<Chef> in
+                return networkService.createChefAddress(parameters: address)
+                    .flatMap {
+                        let chefParameters = UserCreateParameters(userAddressId: $0.id, name: parameters.name,
+                                                                  lastname: parameters.lastname,
+                                                                  email: parameters.email,
+                                                                  password: parameters.password,
+                                                                  phone: parameters.phone, lang: parameters.lang)
+                        return networkService.registerAsChef(registerParameters: chefParameters)
+                    }
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { _ in
@@ -227,8 +249,10 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             textField.placeholder = .addressCity()
         case streetTextField:
             textField.placeholder = "\(String.addressStreet()), \(String.addressNumber())"
+        case floorTextField:
+            textField.placeholder = "\(String.addressFloor())"
         case apartmentTextField:
-            textField.placeholder = "\(String.addressFloor()), \(String.addressDoor()) (\(String.commonOptional()))"
+            textField.placeholder = "\(String.addressDoor())"
         case zipcodeTextField:
             textField.placeholder = .addressZipcode()
         default:

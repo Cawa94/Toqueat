@@ -52,8 +52,10 @@ extension ChefWeekplanViewModel {
     func orderAt(_ indexPath: IndexPath) -> BaseOrder? {
         guard !isLoading
             else { return nil }
+        let weekplanDayDate = today.dateByAdding(indexPath.row, .day)
         return result.orders.first(where: { $0.deliverySlot.weekdayId == (weekdaysOrdered[indexPath.row])
-            && $0.deliverySlot.hourId == (indexPath.section) && $0.orderState != .canceled }) ?? nil
+            && $0.deliverySlot.hourId == (indexPath.section) && $0.orderState != .canceled
+            && $0.deliveryDate.day == weekplanDayDate.day}) ?? nil
     }
 
     func isAvailableAt(_ indexPath: IndexPath) -> Bool {

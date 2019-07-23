@@ -12,9 +12,9 @@ public extension Alamofire.SessionManager {
 
 class NetworkService: NSObject {
 
-    static let baseUrl = "https://toqueat.com/" // Server
+    //static let baseUrl = "https://toqueat.com/" // Server
     //static let baseUrl = "http://192.168.1.37:3000/" // Home
-    //static let baseUrl = "http://192.168.2.177:3000/" // Office
+    static let baseUrl = "http://192.168.2.177:3000/" // Office
 
     // Alamofire Settings
     var defaultTimeoutInterval: TimeInterval = 20.0
@@ -33,7 +33,7 @@ class NetworkService: NSObject {
     }
 
     var currentCityParameter: Parameters {
-        guard let userCityId = SessionService.session?.user?.city.id
+        guard let userCityId = SessionService.session?.user?.address.city.id
             else { return [:] }
         return ["city_id": userCityId]
     }

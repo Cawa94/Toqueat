@@ -32,7 +32,7 @@ final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultTyp
             return NetworkService.shared
                 .getDeliveryCost(pickupAt: cart.deliveryDate,
                                  userAddress: SessionService.session?.user?.fullAddress ?? "",
-                                 userComment: SessionService.session?.user?.apartment,
+                                 userComment: SessionService.session?.user?.stuartComment,
                                  chef: chef)
         }
 

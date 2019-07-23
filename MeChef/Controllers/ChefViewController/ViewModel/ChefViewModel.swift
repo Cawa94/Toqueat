@@ -34,7 +34,7 @@ extension ChefViewModel {
     }
 
     var cityName: String {
-        return isLoading ? "LOADING" : result.city.name
+        return isLoading ? "LOADING" : result.address.city.name
     }
 
     var avatarUrl: URL? {
