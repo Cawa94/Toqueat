@@ -72,6 +72,19 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
             orderPulleyViewModel.stuartJobDriver.drive(onNext: { _ in
                 orderDetailsController.updateEtaText()
             }).disposed(by: orderDetailsController.disposeBag)
+            orderDetailsController.callDriverButton.rx.tapGesture().when(.recognized)
+                .subscribe(onNext: { _ in
+                    guard let deliveryId = orderDetailsController.viewModel.stuartDelivery?.id
+                        else { return }
+                    self.startLoading(with: self.loadingStateView)
+                    NetworkService.shared.getStuartDriverPhoneFor("\(deliveryId)").asDriver()
+                        .drive(onNext: {
+                            self.endLoading(with: self.loadingStateView)
+                            UIApplication.attemptPhoneCallWithPrompt(to: $0)
+                        })
+                        .disposed(by: orderDetailsController.disposeBag)
+                })
+                .disposed(by: orderDetailsController.disposeBag)
         }
 
         if orderPulleyViewModel.deliveryInProgress {

@@ -4,9 +4,6 @@ import Stripe
 
 final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultType> {
 
-    // Parameters
-    let packageSize = "medium"
-
     struct ResultType {
         let chef: Chef
         let deliveryCost: NSDecimalNumber
@@ -47,24 +44,6 @@ final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultTyp
 
 extension CheckoutViewModel {
 
-    func getDeliveryCost(pickupAt: Date?,
-                         userAddress: String,
-                         userComment: String?,
-                         chef: Chef) -> Single<NSDecimalNumber> {
-        let pickup = chef.stuartLocation
-        let dropOff = StuartLocation(address: userAddress,
-                                     comment: userComment,
-                                     contact: nil,
-                                     packageType: packageSize,
-                                     packageDescription: "",
-                                     clientReference: nil)
-        let jobParameters = StuartJobParameters(pickupAt: pickupAt,
-                                                pickups: [pickup],
-                                                dropoffs: [dropOff],
-                                                transportType: nil)
-        return NetworkService.shared.getStuartJobPriceWith(jobParameters)
-    }
-
     func createStuartJobWith(orderId: Int64, chefLocation: StuartLocation) -> Single<Order> {
         let networkService = NetworkService.shared
         return networkService.getOrderWith(orderId: orderId)
@@ -74,11 +53,11 @@ extension CheckoutViewModel {
                 let dropOff = StuartLocation(address: order.deliveryAddress,
                                              comment: order.deliveryComment,
                                              contact: SessionService.session?.user?.stuartContact,
-                                             packageType: self.packageSize,
+                                             packageType: "medium",
                                              packageDescription: "",
                                              clientReference: "\(orderId)")
                 let fixedStuartDate = order.deliveryDate.dateByAdding(-4, .hour).date
-                let jobParameters = StuartJobParameters(pickupAt: fixedStuartDate, // nil
+                let jobParameters = StuartJobParameters(pickupAt: nil, //fixedStuartDate,
                                                         pickups: [chefLocation],
                                                         dropoffs: [dropOff],
                                                         transportType: nil)

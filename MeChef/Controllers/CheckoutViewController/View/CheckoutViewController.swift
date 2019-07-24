@@ -106,7 +106,6 @@ extension CheckoutViewController: STPPaymentContextDelegate {
     func paymentContext(_ paymentContext: STPPaymentContext,
                         didCreatePaymentResult paymentResult: STPPaymentResult,
                         completion: @escaping STPErrorBlock) {
-
         self.startLoading(with: self.loadingStateView)
 
         NetworkService.shared.generatePaymentIntent(parameters:

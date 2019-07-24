@@ -214,7 +214,6 @@ extension ChefDishViewController: ValidationDelegate {
                                                   servings: Int(servings) ?? 1,
                                                   maxQuantity: Int(maxQuantityText) ?? 1)
         let operationSingle: Single<Void> = updateOrCreateDishSingle(parameters: dishParameters)
-
         hudOperationWithSingle(operationSingle: operationSingle,
                                onSuccessClosure: { _ in
                                 self.presentAlertWith(

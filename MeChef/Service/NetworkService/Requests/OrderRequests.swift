@@ -50,10 +50,11 @@ extension NetworkService {
         let dropOff = StuartLocation(address: userAddress,
                                      comment: userComment,
                                      contact: nil,
-                                     packageType: "small",
+                                     packageType: "medium",
                                      packageDescription: "",
                                      clientReference: nil)
-        let jobParameters = StuartJobParameters(pickupAt: pickupAt,
+        let fixedStuartDate = pickupAt?.dateByAdding(-4, .hour).date
+        let jobParameters = StuartJobParameters(pickupAt: fixedStuartDate,
                                                 pickups: [pickup],
                                                 dropoffs: [dropOff],
                                                 transportType: nil)

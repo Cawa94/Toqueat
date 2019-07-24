@@ -59,6 +59,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         phoneTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         cityTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         streetTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        numberTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         floorTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         apartmentTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         zipcodeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
@@ -70,9 +71,10 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         confirmPasswordTextField.placeholder = .userConfirmPassword()
         phoneTextField.placeholder = .userPhone()
         cityTextField.placeholder = .addressCity()
-        streetTextField.placeholder = "\(String.addressStreet()), \(String.addressNumber())"
-        floorTextField.placeholder = "\(String.addressFloor())"
-        apartmentTextField.placeholder = "\(String.addressDoor())"
+        streetTextField.placeholder = .addressStreet()
+        numberTextField.placeholder = .addressNumber()
+        floorTextField.placeholder = .addressFloor()
+        apartmentTextField.placeholder = .addressDoor()
         zipcodeTextField.placeholder = .addressZipcode()
     }
 
@@ -97,7 +99,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             let phone = phoneTextField.text, let street = streetTextField.text,
             let zipcode = zipcodeTextField.text
             else { return }
-        let fullAddress = "\(street) \(floorTextField.text ?? "") \(apartmentTextField.text ?? "") \(zipcode) \(city)"
+        let fullAddress = "\(street) \(numberTextField.text ?? "") \(zipcode) \(city)"
         let addressParameters = AddressParameters(cityId: cityId, street: street, zipcode: zipcode,
                                                   apartment: apartmentTextField.text, number: numberTextField.text,
                                                   floor: floorTextField.text)
@@ -113,6 +115,7 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
     }
 
     func registerUser(address: AddressParameters, parameters: BaseCreateParameters, fullAddress: String) {
+        self.startLoading(with: self.loadingStateView)
         let networkService = NetworkService.shared
         networkService.validateAddress(fullAddress, phone: parameters.phone, isChef: false)
             .flatMap { _ -> Single<User> in
@@ -133,20 +136,24 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { user in
+                self.endLoading(with: self.loadingStateView)
                 SessionService.updateWith(user: user)
                 CartService.localCart = .new
                 NavigationService.makeMainTabRootController()
+            }, onError: { _ in
+                self.endLoading(with: self.loadingStateView)
             })
             .disposed(by: disposeBag)
     }
 
     func registerChef(address: AddressParameters, parameters: BaseCreateParameters, fullAddress: String) {
+        self.startLoading(with: self.loadingStateView)
         let networkService = NetworkService.shared
         NetworkService.shared.validateAddress(fullAddress, phone: parameters.phone, isChef: true)
             .flatMap { _ -> Single<Chef> in
                 return networkService.createChefAddress(parameters: address)
                     .flatMap {
-                        let chefParameters = UserCreateParameters(userAddressId: $0.id, name: parameters.name,
+                        let chefParameters = ChefCreateParameters(chefAddressId: $0.id, name: parameters.name,
                                                                   lastname: parameters.lastname,
                                                                   email: parameters.email,
                                                                   password: parameters.password,
@@ -156,12 +163,15 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { _ in
+                self.endLoading(with: self.loadingStateView)
                 self.presentAlertWith(title: .commonSuccess(),
                                       message: .authChefRegisteredConfirmation(),
                                       actions: [UIAlertAction(title: .commonOk(), style: .default,
                                                               handler: { _ in
                                                                 NavigationService.makeChefLoginRootController()
                                       })])
+            }, onError: { _ in
+                self.endLoading(with: self.loadingStateView)
             })
             .disposed(by: disposeBag)
     }
@@ -248,11 +258,13 @@ UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, ValidationDel
         case cityTextField:
             textField.placeholder = .addressCity()
         case streetTextField:
-            textField.placeholder = "\(String.addressStreet()), \(String.addressNumber())"
+            textField.placeholder = .addressStreet()
+        case numberTextField:
+            textField.placeholder = .addressNumber()
         case floorTextField:
-            textField.placeholder = "\(String.addressFloor())"
+            textField.placeholder = .addressFloor()
         case apartmentTextField:
-            textField.placeholder = "\(String.addressDoor())"
+            textField.placeholder = .addressDoor()
         case zipcodeTextField:
             textField.placeholder = .addressZipcode()
         default:

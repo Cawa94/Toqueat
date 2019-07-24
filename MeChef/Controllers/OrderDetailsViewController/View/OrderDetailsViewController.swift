@@ -22,6 +22,10 @@ class OrderDetailsViewController: UIViewController {
         return mainScrollView
     }
 
+    var callDriverButton: UIButton {
+        return driverDeliveringView.callDriverButton
+    }
+
     var viewModel: OrderDetailsViewModel!
     let disposeBag = DisposeBag()
 
@@ -73,17 +77,6 @@ class OrderDetailsViewController: UIViewController {
             let driverModel = DriverDeliveringViewModel(stuartJob: viewModel.stuartJob,
                                                         isChef: SessionService.isChef)
             driverDeliveringView.configure(with: driverModel)
-            driverDeliveringView.callDriverButton.rx.tapGesture().when(.recognized)
-                .subscribe(onNext: { _ in
-                    guard let deliveryId = self.viewModel.stuartDelivery?.id
-                        else { return }
-                    NetworkService.shared.getStuartDriverPhoneFor("\(deliveryId)")
-                        .subscribe(onSuccess: {
-                            UIApplication.attemptPhoneCallWithPrompt(to: $0)
-                        })
-                        .disposed(by: self.disposeBag)
-                })
-                .disposed(by: self.disposeBag)
             updateEtaText()
         }
 

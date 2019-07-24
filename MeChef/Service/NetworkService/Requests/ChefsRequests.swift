@@ -3,7 +3,7 @@ import Alamofire
 
 extension NetworkService {
 
-    func registerAsChef(registerParameters: UserCreateParameters) -> Single<Chef> {
+    func registerAsChef(registerParameters: ChefCreateParameters) -> Single<Chef> {
         let body = ChefCreateBody(chef: registerParameters)
         let apiParameters = ApiRequestParameters(relativeUrl: "chefs",
                                                  method: .post,
@@ -92,7 +92,7 @@ extension NetworkService {
         let apiParameters = ApiRequestParameters(relativeUrl: "chef_addresses",
                                                  method: .post,
                                                  parameters: body.toJSON())
-        
+
         return request(with: apiParameters)
     }
 
