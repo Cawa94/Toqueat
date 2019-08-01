@@ -5,7 +5,7 @@ import SwiftDate
 
 private extension RxTimeInterval {
 
-    static let updateTimeInterval: RxTimeInterval = 5.0
+    static let updateTimeInterval: RxTimeInterval = 10.0
 
 }
 
@@ -13,53 +13,53 @@ final class OrderPulleyViewModel: BaseStatefulViewModel<OrderPulleyViewModel.Res
 
     struct ResultType {
         let order: Order
-        let stuartJob: StuartJob?
+        let driver: OrderDriver
+        let stuartJob: StuartJob? // Used to draw origin and destination on map
     }
 
-    struct StuartJobNullable {
-        let stuartJob: StuartJob?
-    }
-
-    private let disposeBag = DisposeBag()
-    private let stuartJobVariable = Variable<StuartJobNullable>(.init(stuartJob: nil))
+    var disposeBag = DisposeBag()
+    private let orderDriverVariable = Variable<OrderDriver>(.init(latitude: nil,
+                                                                  longitude: nil,
+                                                                  name: nil,
+                                                                  etaToOrigin: nil,
+                                                                  etaToDestination: nil))
 
     init(orderId: Int64, stuartId: Int64?) {
         let orderSingle = NetworkService.shared.getOrderWith(orderId: orderId)
+        let trackOrderSingle = NetworkService.shared.getOrderDriverLocation(orderId: orderId)
         let combinedSingle: Single<OrderPulleyViewModel.ResultType>
+
+        Observable<Int>.interval(.updateTimeInterval, scheduler: MainScheduler.instance)
+            .flatMap { _ in trackOrderSingle.map { $0 }}
+            .asDriver()
+            .drive(orderDriverVariable)
+            .disposed(by: disposeBag)
 
         if let stuartId = stuartId {
             let stuartSingle = NetworkService.shared.getStuartJobWith(stuartId)
-
-            combinedSingle = Single.zip(orderSingle, stuartSingle, resultSelector: {
-                ResultType(order: $0, stuartJob: $1)
+            combinedSingle = Single.zip(orderSingle, trackOrderSingle, stuartSingle, resultSelector: {
+                ResultType(order: $0, driver: $1, stuartJob: $2)
             })
 
-            Observable<Int>.interval(.updateTimeInterval, scheduler: MainScheduler.instance)
-                .flatMap { _ in stuartSingle.map { StuartJobNullable.init(stuartJob: $0) }}
-                .asDriver()
-                .drive(stuartJobVariable)
-                .disposed(by: disposeBag)
-
         } else {
-            combinedSingle = orderSingle.map {
-                ResultType(order: $0, stuartJob: nil)
-            }
+            combinedSingle = Single.zip(orderSingle, trackOrderSingle, resultSelector: {
+                ResultType(order: $0, driver: $1, stuartJob: nil)
+            })
         }
 
         super.init(dataSource: combinedSingle)
     }
 
-    var stuartJobDriver: Driver<StuartJobNullable> {
-        return stuartJobVariable.asDriver()
+    var orderDriverDriver: Driver<OrderDriver> {
+        return orderDriverVariable.asDriver()
     }
 
     var deliveryInProgress: Bool {
-        let stuartJob = result.stuartJob
         let dateArrivalString = SessionService.isChef
-            ? stuartJob?.deliveries.first?.eta.pickup
-            : stuartJob?.deliveries.first?.eta.dropoff
+            ? result.driver.etaToOrigin
+            : result.driver.etaToDestination
 
-        if stuartJob?.status == "in_progress",
+        if result.order.orderState == .enRoute,
             let deliveryDate = DateInRegion.init(dateArrivalString ?? ""),
             deliveryDate.isInFuture {
             return true
@@ -74,15 +74,16 @@ extension OrderPulleyViewModel {
 
     var trackOrderViewModel: TrackOrderViewModel {
         return isLoading
-            ? TrackOrderViewModel(stuartJob: nil, isLoading: true)
-            : TrackOrderViewModel(stuartJob: result.stuartJob, isLoading: false)
+            ? TrackOrderViewModel(driver: nil, stuartJob: nil, isLoading: true)
+            : TrackOrderViewModel(driver: result.driver, stuartJob: result.stuartJob, isLoading: false)
     }
 
     var orderDetailsViewModel: OrderDetailsViewModel {
         return isLoading
-            ? OrderDetailsViewModel(order: nil, stuartJob: nil,
+            ? OrderDetailsViewModel(order: nil, orderDriver: nil, stuartJob: nil,
                                     isLoading: true, deliveryInProgress: false)
             : OrderDetailsViewModel(order: result.order,
+                                    orderDriver: result.driver,
                                     stuartJob: result.stuartJob,
                                     isLoading: false,
                                     deliveryInProgress: deliveryInProgress)

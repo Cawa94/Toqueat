@@ -3,6 +3,9 @@ import Stripe
 
 class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultType> {
 
+    // Parameters
+    let fakePayment = false // 3€ Total (2€ dishes | 1€ delivery)
+
     @IBOutlet weak var deliveryDateLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dishesPriceLabel: UILabel!
@@ -57,14 +60,15 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
             else { return }
         let dishesPrice = dishes.map { ($0.price as Decimal) }.reduce(0, +)
         let deliveryComment = SessionService.session?.user?.stuartComment
-        let orderParameters = OrderCreateParameters(userId: userId, dishIds: dishes.map { $0.id },
-                                                    chefId: chefId, deliveryDate: deliveryDate,
-                                                    deliverySlotId: deliverySlotId,
-                                                    deliveryAddress: deliveryAddress,
-                                                    deliveryComment: deliveryComment,
-                                                    dishesPrice: NSDecimalNumber(decimal: dishesPrice),
-                                                    deliveryPrice: checkoutViewModel.result.deliveryCost,
-                                                    paymentIntentId: "")
+        let orderParameters = OrderCreateParameters(
+            userId: userId, dishIds: dishes.map { $0.id },
+            chefId: chefId, deliveryDate: deliveryDate,
+            deliverySlotId: deliverySlotId,
+            deliveryAddress: deliveryAddress,
+            deliveryComment: deliveryComment,
+            dishesPrice: fakePayment ? 2.00 : NSDecimalNumber(decimal: dishesPrice),
+            deliveryPrice: fakePayment ? 1.00 : checkoutViewModel.result.deliveryCost,
+            paymentIntentId: "")
         checkoutViewModel.orderParameters = orderParameters
 
         checkoutViewModel.paymentContext?.requestPayment()
@@ -79,7 +83,8 @@ class CheckoutViewController: BaseStatefulController<CheckoutViewModel.ResultTyp
         deliveryPriceLabel.text = checkoutViewModel.result.deliveryCost.stringWithCurrency
         dishesPriceLabel.text = CartService.localCart?.total.stringWithCurrency
         totalPriceLabel.text = newTotal.stringWithCurrency
-        checkoutViewModel.paymentContext?.paymentAmount = Int(truncating: newTotal.multiplying(byPowerOf10: 2))
+        checkoutViewModel.paymentContext?.paymentAmount = fakePayment
+            ? 300 : Int(truncating: newTotal.multiplying(byPowerOf10: 2))
 
         super.onResultsState()
     }
@@ -102,15 +107,23 @@ extension CheckoutViewController: STPPaymentContextDelegate {
         paymentMethodImageView.image = paymentContext.selectedPaymentMethod?.image
     }
 
+    // swiftlint:disable all
     // Called when user press the 'complete order' button
     func paymentContext(_ paymentContext: STPPaymentContext,
                         didCreatePaymentResult paymentResult: STPPaymentResult,
                         completion: @escaping STPErrorBlock) {
+        guard let orderParameters = checkoutViewModel.orderParameters
+            else { return }
         self.startLoading(with: self.loadingStateView)
 
         NetworkService.shared.generatePaymentIntent(parameters:
             StripePaymentIntentParameters(amount: paymentContext.paymentAmount,
-                                          paymentMethod: paymentResult.source.stripeID))
+                                          paymentMethod: paymentResult.source.stripeID,
+                                          chefId: orderParameters.chefId,
+                                          dishesPrice: Int(truncating: orderParameters
+                                            .dishesPrice.multiplying(byPowerOf10: 2)),
+                                          deliveryPrice: Int(truncating: orderParameters
+                                            .deliveryPrice.multiplying(byPowerOf10: 2))))
             .map { intentResponse in
                 self.checkoutViewModel.paymentIntentId = intentResponse.id
                 let paymentIntentParams = STPPaymentIntentParams(clientSecret: intentResponse.clientSecret)
@@ -119,26 +132,69 @@ extension CheckoutViewController: STPPaymentContextDelegate {
                 let client = STPAPIClient.shared()
                 client.confirmPaymentIntent(with: paymentIntentParams, completion: { (paymentIntent, error) in
                     if let error = error {
-                        self.endLoading(with: self.loadingStateView)
-                        self.presentAlertWith(title: String.commonWarning().capitalized,
-                                              message: error.localizedDescription)
+                        completion(error)
                     } else if let paymentIntent = paymentIntent {
-                        self.checkPaymentStatus(paymentIntent)
+                        switch paymentIntent.status {
+                        case .succeeded: // ---- PAYMENT SUCCEDED ----
+                            completion(nil)
+                        case .requiresSourceAction: // ---- REQUIRE EXTRA STEP TO AUTHORIZE PAYMENT ----
+                            guard let redirectContext = STPRedirectContext(
+                                paymentIntent: paymentIntent,
+                                completion: { clientSecret, redirectError in
+                                    if let redirectError = redirectError {
+                                        completion(redirectError)
+                                    } else {
+                                        // Fetch the latest status of the Payment Intent if necessary
+                                        STPAPIClient.shared()
+                                            .retrievePaymentIntent(withClientSecret: clientSecret) { paymentIntent, error in
+                                                if let error = error {
+                                                    completion(error)
+                                                } else if let paymentIntent = paymentIntent {
+                                                    switch paymentIntent.status {
+                                                    case .succeeded: // ---- PAYMENT SUCCEDED ----
+                                                        debugPrint("PLACE ORDER")
+                                                        completion(nil)
+                                                    default:
+                                                        self.endLoading(with: self.loadingStateView)
+                                                        self.presentAlertWith(title: String.commonWarning().capitalized, message: .errorPayment())
+                                                    }
+                                                }
+                                        }
+                                    }
+                            }) else {
+                                debugPrint("PaymentIntent action is not yet supported by the SDK")
+                                // This PaymentIntent action is not yet supported by the SDK.
+                                return
+                            }
+                            // Note you must retain this for the duration of the redirect flow
+                            // It dismisses any presented view controller upon deallocation.
+                            self.checkoutViewModel.redirectContext = redirectContext
+
+                            // opens SFSafariViewController to the necessary URL
+                            redirectContext.startRedirectFlow(from: self)
+                        default:
+                            self.endLoading(with: self.loadingStateView)
+                            self.presentAlertWith(title: String.commonWarning().capitalized, message: .errorPayment())
+                        }
                     }
                 })
             }.subscribe().disposed(by: self.disposeBag)
 
     }
 
-    func checkPaymentStatus(_ paymentIntent: STPPaymentIntent) {
-        switch paymentIntent.status {
-        case .succeeded: // ---- PAYMENT SUCCEDED ----
+    func paymentContext(_ paymentContext: STPPaymentContext,
+                        didFinishWith status: STPPaymentStatus,
+                        error: Error?) {
+        switch status {
+        case .success:
             placeOrder()
-        case .requiresSourceAction: // ---- REQUIRE EXTRA STEP TO AUTHORIZE PAYMENT ----
-            redirectPayment(paymentIntent: paymentIntent)
-        default:
+        case .error:
             self.endLoading(with: self.loadingStateView)
-            self.presentAlertWith(title: String.commonWarning().capitalized, message: .errorPayment())
+            self.presentAlertWith(title: String.commonWarning().capitalized,
+                                  message: error?.localizedDescription ?? .errorPayment())
+        case .userCancellation:
+            self.endLoading(with: self.loadingStateView)
+            return
         }
     }
 
@@ -149,17 +205,15 @@ extension CheckoutViewController: STPPaymentContextDelegate {
         NetworkService.shared
             .createNewOrderWith(parameters: orderParameters.copyWith(intentId: paymentIntentId))
             .flatMap {
-                self.checkoutViewModel.createStuartJobWith(
-                    orderId: $0.id,
-                    chefLocation: self.checkoutViewModel.result.chef.stuartLocation)
+                self.checkoutViewModel.createStuartJobWith(orderId: $0.id)
             }
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { _ in
                 self.endLoading(with: self.loadingStateView)
                 self.presentAlertWith(title: .commonSuccess(), message: .checkoutCompleted(),
-                    actions: [ UIAlertAction(title: .commonOk(), style: .default, handler: { _ in
-                        NavigationService.dismissCartNavigationController()
-                    })])
+                                      actions: [ UIAlertAction(title: .commonOk(), style: .default, handler: { _ in
+                                        NavigationService.dismissCartNavigationController()
+                                      })])
                 CartService.localCart = .new
             }, onError: { _ in
                 self.endLoading(with: self.loadingStateView)
@@ -167,42 +221,18 @@ extension CheckoutViewController: STPPaymentContextDelegate {
             .disposed(by: self.disposeBag)
     }
 
-    func redirectPayment(paymentIntent: STPPaymentIntent) {
-        guard let redirectContext = STPRedirectContext(
-            paymentIntent: paymentIntent,
-            completion: { clientSecret, redirectError in
-                if let redirectError = redirectError {
-                    self.presentAlertWith(title: String.commonWarning().capitalized,
-                                          message: redirectError.localizedDescription)
-                } else {
-                    // Fetch the latest status of the Payment Intent if necessary
-                    STPAPIClient.shared()
-                        .retrievePaymentIntent(withClientSecret: clientSecret) { paymentIntent, error in
-                        if let error = error {
-                            self.endLoading(with: self.loadingStateView)
-                            self.presentAlertWith(title: String.commonWarning().capitalized,
-                                                  message: error.localizedDescription)
-                        } else if let paymentIntent = paymentIntent {
-                            self.checkPaymentStatus(paymentIntent)
-                        }
-                    }
-                }
-        }) else {
-            // This PaymentIntent action is not yet supported by the SDK.
-            return
-        }
-        // Note you must retain this for the duration of the redirect flow
-        // It dismisses any presented view controller upon deallocation.
-        checkoutViewModel.redirectContext = redirectContext
+}
 
-        // opens SFSafariViewController to the necessary URL
-        redirectContext.startRedirectFlow(from: self)
+extension CheckoutViewController: PKPaymentAuthorizationViewControllerDelegate {
+
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        debugPrint("Finished")
     }
 
-    func paymentContext(_ paymentContext: STPPaymentContext,
-                        didFinishWith status: STPPaymentStatus,
-                        error: Error?) {
-        self.endLoading(with: self.loadingStateView)
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController,
+                                            didAuthorizePayment payment: PKPayment,
+                                            handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        debugPrint("Authorized")
     }
 
 }

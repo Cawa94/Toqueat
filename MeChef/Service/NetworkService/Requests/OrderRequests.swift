@@ -24,6 +24,13 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    func getOrderDriverLocation(orderId: Int64) -> Single<OrderDriver> {
+        let apiParameters = ApiRequestParameters(relativeUrl: "orders/\(orderId)/driver_location",
+                                                 method: .get)
+
+        return request(with: apiParameters)
+    }
+
     func changeOrderStatusWith(orderId: Int64, state: OrderState) -> Single<Order> {
         let parameters = ["state": state.rawValue]
         let apiParameters = ApiRequestParameters(relativeUrl: "orders/\(orderId)/set_new_state",
@@ -45,12 +52,13 @@ extension NetworkService {
     func getDeliveryCost(pickupAt: Date?,
                          userAddress: String,
                          userComment: String?,
-                         chef: Chef) -> Single<NSDecimalNumber> {
+                         chef: Chef,
+                         orderVolume: Int) -> Single<NSDecimalNumber> {
         let pickup = chef.stuartLocation
         let dropOff = StuartLocation(address: userAddress,
                                      comment: userComment,
                                      contact: nil,
-                                     packageType: "medium",
+                                     packageType: StuartContainer.getContainerFor(volume: orderVolume)?.rawValue,
                                      packageDescription: "",
                                      clientReference: nil)
         let fixedStuartDate = pickupAt?.dateByAdding(-4, .hour).date

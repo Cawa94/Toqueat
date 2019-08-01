@@ -3,24 +3,16 @@ import SwiftDate
 
 struct DriverDeliveringViewModel {
 
-    let stuartJob: StuartJob?
+    let orderDriver: OrderDriver?
     let isChef: Bool // if isChef, show extimated time to chef house
 
 }
 
 extension DriverDeliveringViewModel {
 
-    var stuartDriver: StuartDriver? {
-        return stuartJob?.driver
-    }
-
-    var driverEta: StuartEta? {
-        return stuartJob?.deliveries.first?.eta
-    }
-
     func attributedExtimatedTime() -> NSAttributedString {
-        let driverName = stuartDriver?.displayName ?? "Stuart driver"
-        let dateArrivalString = isChef ? driverEta?.pickup : driverEta?.dropoff
+        let driverName = orderDriver?.name ?? "Stuart driver"
+        let dateArrivalString = isChef ? orderDriver?.etaToOrigin : orderDriver?.etaToDestination
         if let deliveryDate = DateInRegion.init(dateArrivalString ?? "") {
             let time = fabs((deliveryDate - DateInRegion())).toString(options: {
                 $0.allowedUnits = [.minute]

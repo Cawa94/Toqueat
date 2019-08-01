@@ -220,6 +220,12 @@ extension String {
 	/// Add to basket
 	static func dishAddToBasket() -> String { return "dish_add_to_basket".localized() }
 
+	/// Container volume
+	static func dishContainerVolume() -> String { return "dish_container_volume".localized() }
+
+	/// How to know?
+	static func dishCalculateContainerVolume() -> String { return "dish_calculate_container_volume".localized() }
+
 	/// Ingredients
 	static func dishIngredients() -> String { return "dish_ingredients".localized() }
 

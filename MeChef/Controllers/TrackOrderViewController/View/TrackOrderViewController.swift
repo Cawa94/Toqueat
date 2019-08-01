@@ -12,7 +12,6 @@ class TrackOrderViewController: UIViewController, MKMapViewDelegate {
     private var locationsDrawn = false
 
     var viewModel: TrackOrderViewModel!
-
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {

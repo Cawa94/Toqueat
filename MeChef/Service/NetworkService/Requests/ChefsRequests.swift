@@ -33,11 +33,11 @@ extension NetworkService {
             .map { $0.deliverySlots }
     }
 
-    func getDeliverySlotBusyIdsFor(chefId: Int64) -> Single<[Int64]> {
+    func getDeliverySlotBusyIdsFor(chefId: Int64) -> Single<[DeliverySlotWithDate]> {
         let apiParameters = ApiRequestParameters(relativeUrl: "chefs/\(chefId)/deliveryslots_busy")
 
         return (request(with: apiParameters) as Single<DeliverySlotsBusyResponse>)
-            .map { $0.deliverySlotsIds }
+            .map { $0.deliverySlots }
     }
 
     func getOrdersFor(chefId: Int64) -> Single<[BaseOrder]> {

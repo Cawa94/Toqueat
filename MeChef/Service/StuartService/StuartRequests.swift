@@ -25,6 +25,7 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    // To the returned amount is manually added 21% VAT
     func getStuartJobPriceWith(_ jobParameters: StuartJobParameters) -> Single<NSDecimalNumber> {
         let body = StuartJobBody(job: jobParameters)
         let apiParameters = ApiRequestParameters(stuartUrl: "v2/jobs/pricing",
@@ -32,7 +33,7 @@ extension NetworkService {
                                                  parameters: body.toJSON())
 
         return (request(with: apiParameters) as Single<StuartJobPrice>)
-            .map { $0.amount }
+            .map { $0.amount.adding( $0.amount.dividing(by: 100).multiplying(by: 21)) }
     }
 
     func getStuartJobWith(_ jobId: Int64) -> Single<StuartJob> {

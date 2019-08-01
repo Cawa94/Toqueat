@@ -5,6 +5,7 @@ import SwiftDate
 struct OrderDetailsViewModel {
 
     let order: Order?
+    let orderDriver: OrderDriver?
     let stuartJob: StuartJob?
     let isLoading: Bool
     let deliveryInProgress: Bool
@@ -15,10 +16,6 @@ extension OrderDetailsViewModel {
 
     func quantityOf(dish: LocalCartDish) -> Int {
         return order?.dishes.filter { $0.id == dish.id }.count ?? 1
-    }
-
-    var stuartDriver: StuartDriver? {
-        return stuartJob?.driver
     }
 
     var stuartDelivery: StuartDelivery? {

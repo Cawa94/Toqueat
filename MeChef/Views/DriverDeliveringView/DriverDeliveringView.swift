@@ -47,11 +47,6 @@ extension DriverDeliveringView: ConfigurableView {
 
     public func configure(with viewModel: DriverDeliveringViewModel) {
         self.viewModel = viewModel
-
-        /*if let driverPicture = viewModel.stuartDriver?.pictureUrl,
-            let pictureUrl = URL(string: driverPicture) {
-            Nuke.loadImage(with: pictureUrl, into: driverImageView)
-        }*/
     }
 
     func updateEtaText() {

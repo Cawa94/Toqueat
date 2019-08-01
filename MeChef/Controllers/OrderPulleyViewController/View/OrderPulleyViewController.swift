@@ -53,6 +53,11 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
         embed(viewController: pulleyController, into: contentContainerView)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        orderPulleyViewModel.disposeBag = DisposeBag()
+    }
+
     override func configureNavigationBar() {
         navigationController?.isNavigationBarHidden = false
         title = .orderDetailsTitle()
@@ -69,7 +74,7 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
             orderDetailsController.viewModel = orderPulleyViewModel.orderDetailsViewModel
             orderDetailsController.scrollView.delegate = self
             orderDetailsController.onResultState()
-            orderPulleyViewModel.stuartJobDriver.drive(onNext: { _ in
+            orderPulleyViewModel.orderDriverDriver.drive(onNext: { _ in
                 orderDetailsController.updateEtaText()
             }).disposed(by: orderDetailsController.disposeBag)
             orderDetailsController.callDriverButton.rx.tapGesture().when(.recognized)
@@ -91,9 +96,9 @@ class OrderPulleyViewController: BaseStatefulController<OrderPulleyViewModel.Res
             if let mapController = self.pulleyController.primaryContentViewController as? TrackOrderViewController {
                 mapController.viewModel = orderPulleyViewModel.trackOrderViewModel
                 mapController.onResultState()
-                orderPulleyViewModel.stuartJobDriver.drive(onNext: { result in
-                    guard let latitude = result.stuartJob?.driver?.latitude,
-                        let longitude = result.stuartJob?.driver?.longitude
+                orderPulleyViewModel.orderDriverDriver.drive(onNext: { driver in
+                    guard let latitude = driver.latitude,
+                        let longitude = driver.longitude
                         else { return }
                     let courierCoordiante = CLLocationCoordinate2D(latitude: CLLocationDegrees(truncating: latitude),
                                                                    longitude: CLLocationDegrees(truncating: longitude))

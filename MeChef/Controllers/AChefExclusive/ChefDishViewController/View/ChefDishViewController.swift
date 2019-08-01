@@ -21,6 +21,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
     @IBOutlet private weak var servingsTextField: UITextField!
     @IBOutlet private weak var ingredientsTextField: UITextField!
     @IBOutlet private weak var descriptionTextView: UITextView!
+    @IBOutlet private weak var containerVolumeTextField: UITextField!
     @IBOutlet private weak var toggleDishButton: RoundedButton!
 
     private var placeholderLabel: UILabel!
@@ -87,6 +88,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
         typeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         servingsTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         ingredientsTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
+        containerVolumeTextField.addLine(position: .bottom, color: .lightGray, width: 0.5)
         descriptionTextView.addLine(position: .bottom, color: .lightGray, width: 0.5)
 
         ingredientsTextField.placeholder = String.dishIngredientsPlaceholder()
@@ -119,6 +121,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
                 .first(where: { $0.id == dish.categories?.first?.id })?.name
             servingsTextField.text = "\(dish.servings ?? 1)"
             ingredientsTextField.text = dish.ingredients
+            containerVolumeTextField.text = "\(dish.containerVolume)"
             descriptionTextView.text = dish.description
             placeholderLabel.isHidden = true
 
@@ -139,6 +142,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
         validator.registerField(maxQuantityTextField, rules: [RequiredRule()])
         validator.registerField(typeTextField, rules: [RequiredRule()])
         validator.registerField(servingsTextField, rules: [RequiredRule()])
+        validator.registerField(containerVolumeTextField, rules: [RequiredRule()])
     }
 
     func textViewDidChange(_ textView: UITextView) {
@@ -204,6 +208,7 @@ extension ChefDishViewController: ValidationDelegate {
             let description = descriptionTextView.text,
             let priceText = priceTextField.text,
             let maxQuantityText = maxQuantityTextField.text,
+            let containerVolumeText = containerVolumeTextField.text,
             let chefId = SessionService.session?.chef?.id
             else { return }
         let price = NSDecimalNumber(string: "\(priceText.doubleValue)")
@@ -212,7 +217,8 @@ extension ChefDishViewController: ValidationDelegate {
                                                   price: price, chefId: "\(chefId)",
                                                   categoryIds: [categoryId], ingredients: ingredients,
                                                   servings: Int(servings) ?? 1,
-                                                  maxQuantity: Int(maxQuantityText) ?? 1)
+                                                  maxQuantity: Int(maxQuantityText) ?? 1,
+                                                  containerVolume: Int(containerVolumeText) ?? 1)
         let operationSingle: Single<Void> = updateOrCreateDishSingle(parameters: dishParameters)
         hudOperationWithSingle(operationSingle: operationSingle,
                                onSuccessClosure: { _ in

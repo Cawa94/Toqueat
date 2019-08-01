@@ -149,6 +149,7 @@
 		DAB775C0229C40F80040C386 /* SubtitleTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB775BF229C40F80040C386 /* SubtitleTableViewModel.swift */; };
 		DAB89580227EF0ED0052DD46 /* DishCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB8957F227EF0ED0052DD46 /* DishCategoryType.swift */; };
 		DAB89582227EF1700052DD46 /* DishCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB89581227EF1700052DD46 /* DishCategory.swift */; };
+		DABA7F9722F2ECF70000120C /* StuartSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABA7F9622F2ECF70000120C /* StuartSize.swift */; };
 		DABB4BF3226E5E84000237ED /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB4BF2226E5E84000237ED /* ImagePickerManager.swift */; };
 		DABC32182254EFEB0001757E /* ChefCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC32162254EFEB0001757E /* ChefCollectionViewCell.swift */; };
 		DABC32192254EFEB0001757E /* ChefCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABC32172254EFEB0001757E /* ChefCollectionViewCell.xib */; };
@@ -395,6 +396,7 @@
 		DAB775BF229C40F80040C386 /* SubtitleTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewModel.swift; sourceTree = "<group>"; };
 		DAB8957F227EF0ED0052DD46 /* DishCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategoryType.swift; sourceTree = "<group>"; };
 		DAB89581227EF1700052DD46 /* DishCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategory.swift; sourceTree = "<group>"; };
+		DABA7F9622F2ECF70000120C /* StuartSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuartSize.swift; sourceTree = "<group>"; };
 		DABB4BF2226E5E84000237ED /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		DABC32162254EFEB0001757E /* ChefCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefCollectionViewCell.swift; sourceTree = "<group>"; };
 		DABC32172254EFEB0001757E /* ChefCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1271,6 +1273,7 @@
 			children = (
 				DAB8957F227EF0ED0052DD46 /* DishCategoryType.swift */,
 				DAD08B542245634E00F446C0 /* OrderStates.swift */,
+				DABA7F9622F2ECF70000120C /* StuartSize.swift */,
 				DA799AA622944ED900CF525A /* TransportType.swift */,
 			);
 			path = Enums;
@@ -2150,6 +2153,7 @@
 				DAD89ADB225DEBA5000664E2 /* RoundedButton.swift in Sources */,
 				DA5DE162227310B700229486 /* Error+Extensions.swift in Sources */,
 				DA0E2AB8227B3F8600BBCACC /* UserBarTableViewModel.swift in Sources */,
+				DABA7F9722F2ECF70000120C /* StuartSize.swift in Sources */,
 				DA799AA722944ED900CF525A /* TransportType.swift in Sources */,
 				DA3D421A223E5F0800AB2A27 /* Chef+Extensions.swift in Sources */,
 				DAD08B552245634E00F446C0 /* OrderStates.swift in Sources */,
@@ -2381,7 +2385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2437,7 +2441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

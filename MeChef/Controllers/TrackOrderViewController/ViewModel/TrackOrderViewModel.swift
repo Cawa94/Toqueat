@@ -3,6 +3,7 @@ import MapKit
 
 struct TrackOrderViewModel {
 
+    let driver: OrderDriver?
     let stuartJob: StuartJob?
     let isLoading: Bool
 
@@ -11,8 +12,8 @@ struct TrackOrderViewModel {
 extension TrackOrderViewModel {
 
     var courierCoordinate: CLLocationCoordinate2D? {
-        guard let latitude = stuartJob?.driver?.latitude,
-            let longitude = stuartJob?.driver?.longitude
+        guard let latitude = driver?.latitude,
+            let longitude = driver?.longitude
             else { return nil }
         return CLLocationCoordinate2D(latitude: CLLocationDegrees(truncating: latitude),
                                       longitude: CLLocationDegrees(truncating: longitude))

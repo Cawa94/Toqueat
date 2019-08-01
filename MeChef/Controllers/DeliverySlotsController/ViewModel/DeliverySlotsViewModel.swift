@@ -9,7 +9,7 @@ final class DeliverySlotsViewModel: BaseStatefulViewModel<DeliverySlotsViewModel
 
     struct ResultType {
         let deliverySlots: [DeliverySlot]
-        let slotsIdsBusy: [Int64]
+        let slotsBusy: [DeliverySlotWithDate]
     }
 
     private let disposeBag = DisposeBag()
@@ -35,7 +35,7 @@ final class DeliverySlotsViewModel: BaseStatefulViewModel<DeliverySlotsViewModel
         let slotsBusyRequest = NetworkService.shared.getDeliverySlotBusyIdsFor(chefId: chefId)
 
         let combinedSingle = Single.zip(slotsRequest, slotsBusyRequest) {
-            return ResultType(deliverySlots: $0, slotsIdsBusy: $1)
+            return ResultType(deliverySlots: $0, slotsBusy: $1)
         }
 
         super.init(dataSource: combinedSingle)
@@ -80,10 +80,11 @@ extension DeliverySlotsViewModel {
             && $0.hourId == (indexPath.section) })
     }
 
-    func hasAnOrderWith(slotId: Int64) -> Bool {
+    func hasAnOrderWith(slotId: Int64, at indexPath: IndexPath) -> Bool {
         guard !isLoading
             else { return false }
-        return result.slotsIdsBusy.contains(where: { $0 == slotId })
+        let weekplanDayDate = today.dateByAdding(indexPath.row + daysInAdvance, .day)
+        return result.slotsBusy.contains(where: { $0.id == slotId && $0.date.day == weekplanDayDate.day })
     }
 
     var cellColorForWeekdays: UIColor {

@@ -92,7 +92,7 @@ class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel
             var hasOrder = false
             if let selectedSlot = deliverySlotsViewModel.selectedSlot, deliverySlot == selectedSlot {
                 isSelected = true
-            } else if deliverySlotsViewModel.hasAnOrderWith(slotId: deliverySlot.id) {
+            } else if deliverySlotsViewModel.hasAnOrderWith(slotId: deliverySlot.id, at: indexPath) {
                 hasOrder = true
             }
             cell.backgroundColor = deliverySlotsViewModel.cellColorForHours(isSelected: isSelected,
@@ -123,7 +123,7 @@ class DeliverySlotsViewController: BaseStatefulController<DeliverySlotsViewModel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let deliverySlot = deliverySlotsViewModel.deliverySlotAt(indexPath)
         if deliverySlotsViewModel.isAvailableAt(indexPath),
-            !deliverySlotsViewModel.hasAnOrderWith(slotId: deliverySlot.id) {
+            !deliverySlotsViewModel.hasAnOrderWith(slotId: deliverySlot.id, at: indexPath) {
             let deliveryDate = deliverySlotsViewModel
                 .deliveryDate(weekdayId: deliverySlot.weekdayId, hourId: deliverySlot.hourId)
             CartService.localCart = CartService.localCart?.copyWith(deliveryDate: deliveryDate,

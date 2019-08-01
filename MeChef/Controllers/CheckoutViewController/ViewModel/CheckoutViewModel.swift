@@ -30,7 +30,8 @@ final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultTyp
                 .getDeliveryCost(pickupAt: cart.deliveryDate,
                                  userAddress: SessionService.session?.user?.fullAddress ?? "",
                                  userComment: SessionService.session?.user?.stuartComment,
-                                 chef: chef)
+                                 chef: chef,
+                                 orderVolume: cart.orderVolume)
         }
 
         let combinedSingle = Single.zip(chefRequestSingle, deliveryCostSingle) {
@@ -44,21 +45,22 @@ final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultTyp
 
 extension CheckoutViewModel {
 
-    func createStuartJobWith(orderId: Int64, chefLocation: StuartLocation) -> Single<Order> {
+    func createStuartJobWith(orderId: Int64) -> Single<Order> {
         let networkService = NetworkService.shared
         return networkService.getOrderWith(orderId: orderId)
             .flatMap { order -> Single<Order> in
                 guard order.stuartId == nil
                     else { return Single.just(order) }
-                let dropOff = StuartLocation(address: order.deliveryAddress,
-                                             comment: order.deliveryComment,
-                                             contact: SessionService.session?.user?.stuartContact,
-                                             packageType: "medium",
-                                             packageDescription: "",
-                                             clientReference: "\(orderId)")
+                let dropOff = StuartLocation(
+                    address: order.deliveryAddress,
+                    comment: order.deliveryComment,
+                    contact: SessionService.session?.user?.stuartContact,
+                    packageType: StuartContainer.getContainerFor(volume: self.cart.orderVolume)?.rawValue,
+                    packageDescription: "",
+                    clientReference: "\(orderId)")
                 let fixedStuartDate = order.deliveryDate.dateByAdding(-4, .hour).date
                 let jobParameters = StuartJobParameters(pickupAt: nil, //fixedStuartDate,
-                                                        pickups: [chefLocation],
+                                                        pickups: [self.result.chef.stuartLocation],
                                                         dropoffs: [dropOff],
                                                         transportType: nil)
                 return NetworkService.shared.createStuartJobWith(jobParameters)

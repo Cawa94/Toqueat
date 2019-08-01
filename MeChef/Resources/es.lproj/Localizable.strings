@@ -69,6 +69,8 @@
 "delivery_date_proceed_checkout" = "Pasar por la caja";
 "delivery_date_will_receive" = "Recibirás tu pedido";
 "dish_add_to_basket" = "Añadir al carrito";
+"dish_container_volume" = "Volumen del contenedor";
+"dish_calculate_container_volume" = "¿Cómo saberlo?";
 "dish_ingredients" = "Ingredientes";
 "dish_prepared_by" = "Preparado por";
 "dish_servings" = "Raciones";

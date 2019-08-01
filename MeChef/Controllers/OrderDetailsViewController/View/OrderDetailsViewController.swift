@@ -74,7 +74,7 @@ class OrderDetailsViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: {
                 self.view.layoutIfNeeded()
             })
-            let driverModel = DriverDeliveringViewModel(stuartJob: viewModel.stuartJob,
+            let driverModel = DriverDeliveringViewModel(orderDriver: viewModel.orderDriver,
                                                         isChef: SessionService.isChef)
             driverDeliveringView.configure(with: driverModel)
             updateEtaText()
