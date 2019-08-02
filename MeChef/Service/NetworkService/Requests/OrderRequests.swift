@@ -49,16 +49,19 @@ extension NetworkService {
         return request(with: apiParameters)
     }
 
+    // swiftlint:disable function_parameter_count
     func getDeliveryCost(pickupAt: Date?,
                          userAddress: String,
                          userComment: String?,
                          chef: Chef,
-                         orderVolume: Int) -> Single<NSDecimalNumber> {
+                         orderVolume: Int,
+                         minContainer: StuartContainer?) -> Single<NSDecimalNumber> {
         let pickup = chef.stuartLocation
         let dropOff = StuartLocation(address: userAddress,
                                      comment: userComment,
                                      contact: nil,
-                                     packageType: StuartContainer.getContainerFor(volume: orderVolume)?.rawValue,
+                                     packageType: StuartContainer.getContainerFor(volume: orderVolume,
+                                                                                  minContainer: minContainer)?.rawValue,
                                      packageDescription: "",
                                      clientReference: nil)
         let fixedStuartDate = pickupAt?.dateByAdding(-4, .hour).date

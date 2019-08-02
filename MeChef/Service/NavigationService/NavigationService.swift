@@ -188,6 +188,12 @@ extension NavigationService {
         navigationController?.present(maintenanceController, animated: true, completion: nil)
     }
 
+    static func presentContainerVolumeController(controller: ContainerVolumeViewController) {
+        rootNavigationController?.topVisibleViewController.present(controller.embedInNavigationController(),
+                                                                   animated: true,
+                                                                   completion: nil)
+    }
+
     static func animateBasketItem() {
         guard let mainController = NavigationService.mainViewController,
             let cartItem = mainController.tabBar.items?[2]

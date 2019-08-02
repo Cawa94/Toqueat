@@ -69,8 +69,13 @@
 "delivery_date_proceed_checkout" = "Proceed to checkout";
 "delivery_date_will_receive" = "You will receive your order";
 "dish_add_to_basket" = "Add to basket";
-"dish_container_volume" = "Container volume";
 "dish_calculate_container_volume" = "How to know?";
+"dish_container_calculate_volume" = "Calculate volume";
+"dish_container_depth" = "Depth (cm)";
+"dish_container_height" = "Height (cm)";
+"dish_container_volume" = "Container volume";
+"dish_container_volume_intruction" = "To optimize the delivery costs with the delivery company we're gonna need the size of the container you're gonna use for this dish. Please be sure to always use the same container, or in case you're gonna change it in future be sure to update this sizes.";
+"dish_container_width" = "Width (cm)";
 "dish_ingredients" = "Ingredients";
 "dish_prepared_by" = "Prepared by";
 "dish_servings" = "servings";

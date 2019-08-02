@@ -31,7 +31,8 @@ final class CheckoutViewModel: BaseStatefulViewModel<CheckoutViewModel.ResultTyp
                                  userAddress: SessionService.session?.user?.fullAddress ?? "",
                                  userComment: SessionService.session?.user?.stuartComment,
                                  chef: chef,
-                                 orderVolume: cart.orderVolume)
+                                 orderVolume: cart.orderVolume,
+                                 minContainer: cart.minContainer)
         }
 
         let combinedSingle = Single.zip(chefRequestSingle, deliveryCostSingle) {
@@ -55,7 +56,8 @@ extension CheckoutViewModel {
                     address: order.deliveryAddress,
                     comment: order.deliveryComment,
                     contact: SessionService.session?.user?.stuartContact,
-                    packageType: StuartContainer.getContainerFor(volume: self.cart.orderVolume)?.rawValue,
+                    packageType: StuartContainer.getContainerFor(volume: self.cart.orderVolume,
+                                                                 minContainer: self.cart.minContainer)?.rawValue,
                     packageDescription: "",
                     clientReference: "\(orderId)")
                 let fixedStuartDate = order.deliveryDate.dateByAdding(-4, .hour).date

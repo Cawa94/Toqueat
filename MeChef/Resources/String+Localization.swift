@@ -220,11 +220,26 @@ extension String {
 	/// Add to basket
 	static func dishAddToBasket() -> String { return "dish_add_to_basket".localized() }
 
+	/// How to know?
+	static func dishCalculateContainerVolume() -> String { return "dish_calculate_container_volume".localized() }
+
+	/// Calculate volume
+	static func dishContainerCalculateVolume() -> String { return "dish_container_calculate_volume".localized() }
+
+	/// Depth (cm)
+	static func dishContainerDepth() -> String { return "dish_container_depth".localized() }
+
+	/// Height (cm)
+	static func dishContainerHeight() -> String { return "dish_container_height".localized() }
+
 	/// Container volume
 	static func dishContainerVolume() -> String { return "dish_container_volume".localized() }
 
-	/// How to know?
-	static func dishCalculateContainerVolume() -> String { return "dish_calculate_container_volume".localized() }
+	/// To optimize the delivery costs with the delivery company we're gonna need the size of the container you're gonna use for this dish. Please be sure to always use the same container, or in case you're gonna change it in future be sure to update this sizes.
+	static func dishContainerVolumeIntruction() -> String { return "dish_container_volume_intruction".localized() }
+
+	/// Width (cm)
+	static func dishContainerWidth() -> String { return "dish_container_width".localized() }
 
 	/// Ingredients
 	static func dishIngredients() -> String { return "dish_ingredients".localized() }

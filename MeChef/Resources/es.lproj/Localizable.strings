@@ -69,8 +69,13 @@
 "delivery_date_proceed_checkout" = "Pasar por la caja";
 "delivery_date_will_receive" = "Recibirás tu pedido";
 "dish_add_to_basket" = "Añadir al carrito";
-"dish_container_volume" = "Volumen del contenedor";
 "dish_calculate_container_volume" = "¿Cómo saberlo?";
+"dish_container_calculate_volume" = "Calcular volumen";
+"dish_container_depth" = "Profundidad (cm)";
+"dish_container_height" = "Altura (cm)";
+"dish_container_volume" = "Volumen del contenedor";
+"dish_container_volume_intruction" = "Para optimizar los costos de entrega, necesitaremos el tamaño del contenedor que usará para este plato. Asegúrese de usar siempre el mismo contenedor, o en caso de que vaya a cámbielo en el futuro asegúrese de actualizar este tamaño";
+"dish_container_width" = "Ancho (cm)";
 "dish_ingredients" = "Ingredientes";
 "dish_prepared_by" = "Preparado por";
 "dish_servings" = "Raciones";

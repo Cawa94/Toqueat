@@ -37,6 +37,16 @@ extension LocalCart {
         return dishes.compactMap({ $0.containerVolume }).reduce(0, +)
     }
 
+    var minContainer: StuartContainer? {
+        guard let dishes = dishes
+            else { return .medium }
+        let biggerContainer = dishes
+            .compactMap { StuartContainer.getContainerFrom($0.minContainerSize) }
+            .sorted(by: { $0.volume < $1.volume })
+            .last ?? nil
+        return biggerContainer
+    }
+
     func canAddToCart(_ dishId: Int64) -> Bool {
         if let localCartDish = dishes?.first(where: { $0.id == dishId }) {
             return localCartDish.canAddToCart()

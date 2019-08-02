@@ -36,6 +36,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
     private var newImageData: Data?
     private let disposeBag = DisposeBag()
     private let typePicker = UIPickerView()
+    private var minContainerSize: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +75,12 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
                                                                 NavigationService.popNavigationTopController()
                                     })])
                                 }, disposeBag: disposeBag)
+    }
+
+    @IBAction func containerVolumeAction(_ sender: Any) {
+        let containerVolumeController = NavigationService.containerVolumeViewController()
+        containerVolumeController.delegate = self
+        NavigationService.presentContainerVolumeController(controller: containerVolumeController)
     }
 
     func configureXibElements() {
@@ -122,6 +129,7 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
             servingsTextField.text = "\(dish.servings ?? 1)"
             ingredientsTextField.text = dish.ingredients
             containerVolumeTextField.text = "\(dish.containerVolume)"
+            self.minContainerSize = dish.minContainerSize
             descriptionTextView.text = dish.description
             placeholderLabel.isHidden = true
 
@@ -199,6 +207,15 @@ class ChefDishViewController: BaseStatefulController<ChefDishViewModel.ResultTyp
 
 }
 
+extension ChefDishViewController: ContainerVolumeDelegate {
+
+    func calculated(volume: Int, minContainerSize: String) {
+        containerVolumeTextField.text = "\(volume)"
+        self.minContainerSize = minContainerSize
+    }
+
+}
+
 extension ChefDishViewController: ValidationDelegate {
 
     func validationSuccessful() {
@@ -209,7 +226,8 @@ extension ChefDishViewController: ValidationDelegate {
             let priceText = priceTextField.text,
             let maxQuantityText = maxQuantityTextField.text,
             let containerVolumeText = containerVolumeTextField.text,
-            let chefId = SessionService.session?.chef?.id
+            let chefId = SessionService.session?.chef?.id,
+            let minContainerSize = self.minContainerSize
             else { return }
         let price = NSDecimalNumber(string: "\(priceText.doubleValue)")
         let ingredients = ingredientsTextField.text
@@ -218,7 +236,8 @@ extension ChefDishViewController: ValidationDelegate {
                                                   categoryIds: [categoryId], ingredients: ingredients,
                                                   servings: Int(servings) ?? 1,
                                                   maxQuantity: Int(maxQuantityText) ?? 1,
-                                                  containerVolume: Int(containerVolumeText) ?? 1)
+                                                  containerVolume: Int(containerVolumeText) ?? 1,
+                                                  minContainerSize: minContainerSize)
         let operationSingle: Single<Void> = updateOrCreateDishSingle(parameters: dishParameters)
         hudOperationWithSingle(operationSingle: operationSingle,
                                onSuccessClosure: { _ in

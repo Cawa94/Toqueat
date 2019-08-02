@@ -149,7 +149,10 @@
 		DAB775C0229C40F80040C386 /* SubtitleTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB775BF229C40F80040C386 /* SubtitleTableViewModel.swift */; };
 		DAB89580227EF0ED0052DD46 /* DishCategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB8957F227EF0ED0052DD46 /* DishCategoryType.swift */; };
 		DAB89582227EF1700052DD46 /* DishCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB89581227EF1700052DD46 /* DishCategory.swift */; };
-		DABA7F9722F2ECF70000120C /* StuartSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABA7F9622F2ECF70000120C /* StuartSize.swift */; };
+		DABA7F9722F2ECF70000120C /* StuartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABA7F9622F2ECF70000120C /* StuartContainer.swift */; };
+		DABA7FA322F33EFC0000120C /* ContainerVolumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABA7FA122F33EFC0000120C /* ContainerVolumeViewController.swift */; };
+		DABA7FA422F33EFC0000120C /* ContainerVolumeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABA7FA222F33EFC0000120C /* ContainerVolumeViewController.xib */; };
+		DABA7FA822F33F560000120C /* NavigationService+ContainerVolumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABA7FA722F33F560000120C /* NavigationService+ContainerVolumeViewController.swift */; };
 		DABB4BF3226E5E84000237ED /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB4BF2226E5E84000237ED /* ImagePickerManager.swift */; };
 		DABC32182254EFEB0001757E /* ChefCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABC32162254EFEB0001757E /* ChefCollectionViewCell.swift */; };
 		DABC32192254EFEB0001757E /* ChefCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DABC32172254EFEB0001757E /* ChefCollectionViewCell.xib */; };
@@ -396,7 +399,10 @@
 		DAB775BF229C40F80040C386 /* SubtitleTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewModel.swift; sourceTree = "<group>"; };
 		DAB8957F227EF0ED0052DD46 /* DishCategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategoryType.swift; sourceTree = "<group>"; };
 		DAB89581227EF1700052DD46 /* DishCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategory.swift; sourceTree = "<group>"; };
-		DABA7F9622F2ECF70000120C /* StuartSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuartSize.swift; sourceTree = "<group>"; };
+		DABA7F9622F2ECF70000120C /* StuartContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuartContainer.swift; sourceTree = "<group>"; };
+		DABA7FA122F33EFC0000120C /* ContainerVolumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVolumeViewController.swift; sourceTree = "<group>"; };
+		DABA7FA222F33EFC0000120C /* ContainerVolumeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContainerVolumeViewController.xib; sourceTree = "<group>"; };
+		DABA7FA722F33F560000120C /* NavigationService+ContainerVolumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationService+ContainerVolumeViewController.swift"; sourceTree = "<group>"; };
 		DABB4BF2226E5E84000237ED /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		DABC32162254EFEB0001757E /* ChefCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChefCollectionViewCell.swift; sourceTree = "<group>"; };
 		DABC32172254EFEB0001757E /* ChefCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChefCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1194,6 +1200,24 @@
 			path = SubtitleTableViewCell;
 			sourceTree = "<group>";
 		};
+		DABA7F9E22F33EAC0000120C /* ContainerVolumeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DABA7FA722F33F560000120C /* NavigationService+ContainerVolumeViewController.swift */,
+				DABA7FA022F33EE90000120C /* View */,
+			);
+			path = ContainerVolumeViewController;
+			sourceTree = "<group>";
+		};
+		DABA7FA022F33EE90000120C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DABA7FA122F33EFC0000120C /* ContainerVolumeViewController.swift */,
+				DABA7FA222F33EFC0000120C /* ContainerVolumeViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DABC32152254EFD00001757E /* ChefCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1273,7 +1297,7 @@
 			children = (
 				DAB8957F227EF0ED0052DD46 /* DishCategoryType.swift */,
 				DAD08B542245634E00F446C0 /* OrderStates.swift */,
-				DABA7F9622F2ECF70000120C /* StuartSize.swift */,
+				DABA7F9622F2ECF70000120C /* StuartContainer.swift */,
 				DA799AA622944ED900CF525A /* TransportType.swift */,
 			);
 			path = Enums;
@@ -1705,6 +1729,7 @@
 				DAE902C122494BCD00743D6A /* ChefDeliverySlotsController */,
 				DAF4FE1A222ACF8D00F208DB /* ChefsViewController */,
 				DA57E4D8222C56CA0086B5DA /* ChefViewController */,
+				DABA7F9E22F33EAC0000120C /* ContainerVolumeViewController */,
 				DA9363A9223964AA00DF8951 /* DeliverySlotsController */,
 				DAC99465222BE7B2000282F1 /* DishesViewController */,
 				DADFF2BC222E845200BB6404 /* DishViewController */,
@@ -1995,6 +2020,7 @@
 				DA78566D223FF9A0001BB354 /* ChefLoginViewController.xib in Resources */,
 				DA1CC82F2260CDB300992BB7 /* RobotoSlab-Bold.ttf in Resources */,
 				DA0328BB225CD4C2001FBE14 /* ChefDetailsTableViewCell.xib in Resources */,
+				DABA7FA422F33EFC0000120C /* ContainerVolumeViewController.xib in Resources */,
 				DA5DE16A22734EDF00229486 /* DishCollectionViewCell.xib in Resources */,
 				DA8454A0222D1EA80052A8D2 /* LoginViewController.xib in Resources */,
 				DAB2716F2247B6D8005C0915 /* OrdersViewController.xib in Resources */,
@@ -2153,7 +2179,7 @@
 				DAD89ADB225DEBA5000664E2 /* RoundedButton.swift in Sources */,
 				DA5DE162227310B700229486 /* Error+Extensions.swift in Sources */,
 				DA0E2AB8227B3F8600BBCACC /* UserBarTableViewModel.swift in Sources */,
-				DABA7F9722F2ECF70000120C /* StuartSize.swift in Sources */,
+				DABA7F9722F2ECF70000120C /* StuartContainer.swift in Sources */,
 				DA799AA722944ED900CF525A /* TransportType.swift in Sources */,
 				DA3D421A223E5F0800AB2A27 /* Chef+Extensions.swift in Sources */,
 				DAD08B552245634E00F446C0 /* OrderStates.swift in Sources */,
@@ -2201,6 +2227,7 @@
 				DAF4FE28222AD0AB00F208DB /* MainTabViewController.swift in Sources */,
 				DA3BC0C7226CA39F0045A352 /* Dictionary+Extensions.swift in Sources */,
 				DADFF2C3222E848000BB6404 /* DishViewController.swift in Sources */,
+				DABA7FA322F33EFC0000120C /* ContainerVolumeViewController.swift in Sources */,
 				DA8B703B22623995002DBF1A /* UserBarTableViewCell.swift in Sources */,
 				DAFEB6012240D65A00CABCF5 /* ChefProfileViewController.swift in Sources */,
 				DAFEB6142240E49300CABCF5 /* NavigationService+ChefDishesViewController.swift in Sources */,
@@ -2258,6 +2285,7 @@
 				DA0E2AA8227B0A2A00BBCACC /* NSDecimalNumber+Extensions.swift in Sources */,
 				DA636D932271FD9800DA2A70 /* AddToCartViewModel.swift in Sources */,
 				DA9E0750222E71250094A69D /* SessionService.swift in Sources */,
+				DABA7FA822F33F560000120C /* NavigationService+ContainerVolumeViewController.swift in Sources */,
 				DAA06BD422E75EA400D8F644 /* AddressParameters+Extensions.swift in Sources */,
 				DA3F3C5622DA2D890091BFD3 /* AboutUsViewController.swift in Sources */,
 				DA753A1322954A5500F3F74A /* OrderPulleyViewController.swift in Sources */,

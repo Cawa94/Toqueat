@@ -198,6 +198,9 @@
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="dish_calculate_container_volume"/>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="containerVolumeAction:" destination="-1" eventType="touchUpInside" id="9PK-K1-V7g"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsz-iO-zXe">
                                     <rect key="frame" x="10" y="609.5" width="71.5" height="17"/>
